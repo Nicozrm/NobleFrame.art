@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | NobleFrame</title>
+    <meta name="description" content="Erfahren Sie mehr über NobleFrame – Ihr Premium Digital Atelier für exklusive Websites und digitale Lösungen.">
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAsElEQVR4Ae2WIQ7CQBBFX0ICqEoEigNUcP+DVHEDQoLkAJwBgUQhuACSClQ3YDN/k0ky3W5TNpvJvGTNzM7/f7YlCIIgWBVgB+TACbjK+Qk4A3fgAFzk/A7sgJaOE3CVc+q+BTZABWSy3wC/6e8DqBUfR/0V8KT+1cIb8ATEin9o8lEC9Cr+U5M/E6CS+1TxL02eJoB69k9N/lZAJf12Tf5agELut/IPBEEQBMF/8QL+8D3h4ymmPwAAAABJRU5ErkJggg==">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23000' width='32' height='32'/%3E%3Crect x='2' y='2' width='28' height='28' fill='none' stroke='%23C9A962' stroke-width='2'/%3E%3Crect x='8' y='8' width='16' height='16' fill='none' stroke='%23C9A962' stroke-width='1'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}:root{--gold:#C9A962;--gold-light:#E8D5A3;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.45);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%)}html{scroll-behavior:smooth}body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;line-height:1.6}
+        .bg-effects{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}.glow{position:absolute;border-radius:50%;filter:blur(120px)}.glow-1{width:500px;height:500px;background:rgba(201,169,98,.06);top:-200px;right:-100px}.glow-2{width:400px;height:400px;background:rgba(201,169,98,.04);bottom:-150px;left:-100px}.grid-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(201,169,98,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,98,.012) 1px,transparent 1px);background-size:80px 80px}
+        .nav{position:fixed;top:0;left:0;width:100%;padding:25px 60px;display:flex;justify-content:space-between;align-items:center;z-index:1000;transition:all .4s ease}.nav.scrolled{background:rgba(0,0,0,.95);backdrop-filter:blur(20px);padding:18px 60px;border-bottom:1px solid rgba(201,169,98,.1)}.logo{display:flex;align-items:center;gap:15px;text-decoration:none;z-index:1001}.logo-icon{width:45px;height:45px}.logo-icon svg{width:100%;height:100%}.frame-outer{stroke:var(--gold);stroke-width:2;fill:none}.frame-inner{stroke:var(--gold);stroke-width:1.5;fill:none;opacity:.6}.frame-lines{stroke:var(--gold);stroke-width:.5;opacity:.4}.logo-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:8px;color:var(--white);text-transform:uppercase}.nav-links{display:flex;gap:35px;list-style:none}.nav-links a{color:var(--white-muted);text-decoration:none;font-size:.85rem;font-weight:400;letter-spacing:2px;text-transform:uppercase;transition:all .3s ease;position:relative}.nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s ease}.nav-links a:hover{color:var(--gold-light)}.nav-links a:hover::after{width:100%}.nav-links a.active{color:var(--gold)}.nav-links a.active::after{width:100%}.nav-cta{padding:12px 30px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .4s ease}.nav-cta:hover{background:var(--gold);color:var(--black)}
+        .menu-toggle{display:none;flex-direction:column;gap:6px;cursor:pointer;padding:10px;z-index:1001;background:none;border:none}.menu-toggle span{width:28px;height:2px;background:var(--gold);transition:all .3s ease;display:block}.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}.menu-toggle.active span:nth-child(2){opacity:0}.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}.mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.98);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .4s ease}.mobile-menu.active{opacity:1;visibility:visible}.mobile-menu-links{display:flex;flex-direction:column;align-items:center;gap:25px}.mobile-menu-links a{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--white);text-decoration:none;letter-spacing:3px;transition:color .3s ease}.mobile-menu-links a:hover{color:var(--gold)}
+        .page-header{min-height:50vh;display:flex;align-items:center;justify-content:center;position:relative;padding:160px 60px 80px;text-align:center}.page-header-content{position:relative;z-index:10}.page-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:rgba(201,169,98,.08);border:1px solid rgba(201,169,98,.25);margin-bottom:25px;opacity:0;animation:fadeInUp .8s ease .3s forwards}.badge-dot{width:8px;height:8px;background:var(--gold);border-radius:50%}.page-badge span{font-size:.75rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase}.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:300;line-height:1.1;margin-bottom:20px;opacity:0;animation:fadeInUp .8s ease .5s forwards}.page-title .accent{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:400}.page-subtitle{font-size:1.1rem;color:var(--white-muted);max-width:600px;margin:0 auto;line-height:1.7;opacity:0;animation:fadeInUp .8s ease .7s forwards}@keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}.page-badge,.page-title,.page-subtitle{transform:translateY(25px)}
+        .story-section{padding:100px 60px;position:relative;z-index:10}.story-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}.story-images{position:relative;height:500px}.story-img{position:absolute;border:1px solid rgba(201,169,98,.2);overflow:hidden;transition:all .5s ease}.story-img:hover{border-color:rgba(201,169,98,.4);z-index:10}.story-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}.story-img:hover img{transform:scale(1.05)}.story-img-1{width:280px;height:350px;top:0;left:0}.story-img-2{width:250px;height:300px;bottom:0;right:0}.story-img-3{width:180px;height:220px;top:50%;left:50%;transform:translate(-50%,-50%)}.story-content h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:30px}.story-content h2 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.story-content p{color:var(--white-muted);font-size:1.05rem;line-height:1.9;margin-bottom:20px}.story-content .highlight{color:var(--gold);font-weight:500}
+        .values-section{padding:100px 60px;position:relative;z-index:10;background:rgba(201,169,98,.02);border-top:1px solid rgba(201,169,98,.1);border-bottom:1px solid rgba(201,169,98,.1)}.values-header{text-align:center;margin-bottom:60px}.values-header h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:300;margin-bottom:15px}.values-header h2 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1200px;margin:0 auto}.value-card{text-align:center;padding:40px 25px;border:1px solid rgba(201,169,98,.1);transition:all .4s ease}.value-card:hover{border-color:rgba(201,169,98,.3);transform:translateY(-5px)}.value-icon{width:60px;height:60px;margin:0 auto 25px;border:1px solid rgba(201,169,98,.3);display:flex;align-items:center;justify-content:center}.value-icon svg{width:28px;height:28px;stroke:var(--gold)}.value-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--white);margin-bottom:15px}.value-card p{color:var(--white-muted);font-size:.9rem;line-height:1.7}
+        .philosophy-section{padding:100px 60px;position:relative;z-index:10}.philosophy-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}.philosophy-content h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:30px}.philosophy-content h2 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.philosophy-content p{color:var(--white-muted);font-size:1.05rem;line-height:1.9;margin-bottom:20px}.philosophy-image{position:relative;aspect-ratio:4/3;border:1px solid rgba(201,169,98,.2);overflow:hidden}.philosophy-image img{width:100%;height:100%;object-fit:cover}.philosophy-image::before{content:'';position:absolute;top:15px;left:15px;right:15px;bottom:15px;border:1px solid rgba(201,169,98,.15);z-index:1;pointer-events:none}
+        .cta-section{text-align:center;padding:100px 60px;position:relative;z-index:10;border-top:1px solid rgba(201,169,98,.1)}.cta-text{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--white);margin-bottom:30px}.cta-text span{color:var(--gold)}.cta-btn{display:inline-block;padding:18px 50px;background:var(--gold);color:var(--black);font-size:.85rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .4s ease;border:1px solid var(--gold)}.cta-btn:hover{background:transparent;color:var(--gold)}
+        .footer-mini{padding:35px 60px;border-top:1px solid rgba(201,169,98,.1);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:10}.footer-mini p{color:var(--white-subtle);font-size:.85rem}.footer-mini span{color:var(--gold)}.footer-links{display:flex;gap:25px}.footer-links a{color:var(--white-subtle);text-decoration:none;font-size:.8rem;transition:color .3s ease}.footer-links a:hover{color:var(--gold)}
+        @media(max-width:1024px){.nav-links,.nav-cta{display:none}.menu-toggle{display:flex}.page-header{padding:140px 40px 60px}.story-section,.values-section,.philosophy-section{padding:80px 40px}.story-container,.philosophy-container{grid-template-columns:1fr;gap:50px}.story-images{height:400px}.values-grid{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:768px){.nav{padding:20px 25px}.logo-text{font-size:1.2rem;letter-spacing:5px}.page-header{padding:120px 25px 50px}.story-section,.values-section,.philosophy-section{padding:60px 25px}.story-images{height:350px}.story-img-1{width:200px;height:260px}.story-img-2{width:180px;height:220px}.story-img-3{width:140px;height:170px}.values-grid{grid-template-columns:1fr}.cta-section{padding:60px 25px}.cta-text{font-size:1.5rem}.footer-mini{flex-direction:column;gap:15px;text-align:center;padding:30px 25px}}
+    </style>
+</head>
+<body>
+<div class="bg-effects"><div class="glow glow-1"></div><div class="glow glow-2"></div><div class="grid-overlay"></div></div>
+<nav class="nav" id="navbar"><a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect class="frame-outer" x="5" y="5" width="90" height="90"/><rect class="frame-inner" x="25" y="25" width="50" height="50"/><line class="frame-lines" x1="50" y1="5" x2="50" y2="95"/><line class="frame-lines" x1="5" y1="50" x2="95" y2="50"/></svg></div><span class="logo-text">NobleFrame</span></a><ul class="nav-links"><li><a href="about.html" class="active">About</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="kompetenzen.html">Kompetenzen</a></li><li><a href="team.html">Team</a></li><li><a href="tools.html">Tools</a></li><li><a href="labs.html">Labs</a></li></ul><a href="index.html#kontakt" class="nav-cta">Kontakt</a><button class="menu-toggle" id="menuToggle" aria-label="Menü"><span></span><span></span><span></span></button></nav>
+<div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="portfolio.html">Portfolio</a><a href="kompetenzen.html">Kompetenzen</a><a href="team.html">Team</a><a href="tools.html">Tools</a><a href="labs.html">Labs</a><a href="index.html#kontakt">Kontakt</a></div></div>
+
+<header class="page-header"><div class="page-header-content"><div class="page-badge"><span class="badge-dot"></span><span>Über uns</span></div><h1 class="page-title">Wir sind <span class="accent">NobleFrame</span></h1><p class="page-subtitle">Ein Premium Digital Atelier, das digitale Visionen in außergewöhnliche Realitäten verwandelt. Gegründet mit der Mission, Exzellenz in jedem Pixel zu liefern.</p></div></header>
+
+<section class="story-section">
+    <div class="story-container">
+        <div class="story-images">
+            <div class="story-img story-img-1"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="Team bei der Arbeit"></div>
+            <div class="story-img story-img-2"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80" alt="Kreatives Brainstorming"></div>
+            <div class="story-img story-img-3"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&q=80" alt="Design Prozess"></div>
+        </div>
+        <div class="story-content">
+            <h2>Unsere <span>Geschichte</span></h2>
+            <p>NobleFrame wurde aus einer einfachen Überzeugung heraus geboren: <span class="highlight">Digitale Exzellenz sollte keine Kompromisse kennen.</span></p>
+            <p>Als Team von leidenschaftlichen Entwicklern und Designern haben wir uns zusammengefunden, um Unternehmen dabei zu helfen, ihre digitale Präsenz auf das nächste Level zu heben.</p>
+            <p>Heute arbeiten wir mit anspruchsvollen Kunden zusammen, die verstehen, dass eine außergewöhnliche digitale Präsenz mehr ist als nur eine Website – sie ist ein Statement.</p>
+        </div>
+    </div>
+</section>
+
+<section class="values-section">
+    <div class="values-header"><h2>Unsere <span>Werte</span></h2></div>
+    <div class="values-grid">
+        <div class="value-card">
+            <div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"/></svg></div>
+            <h3>Exzellenz</h3>
+            <p>Wir streben in allem, was wir tun, nach Perfektion – von der ersten Idee bis zum fertigen Produkt.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"/></svg></div>
+            <h3>Kreativität</h3>
+            <p>Wir denken über Konventionen hinaus und schaffen Lösungen, die überraschen und begeistern.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg></div>
+            <h3>Partnerschaft</h3>
+            <p>Wir arbeiten eng mit unseren Kunden zusammen, um ihre Vision zu verstehen und zu verwirklichen.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></div>
+            <h3>Innovation</h3>
+            <p>Wir nutzen modernste Technologien und Methoden für zukunftssichere Lösungen.</p>
+        </div>
+    </div>
+</section>
+
+<section class="philosophy-section">
+    <div class="philosophy-container">
+        <div class="philosophy-content">
+            <h2>Unsere <span>Philosophie</span></h2>
+            <p>Wir glauben, dass großartiges Design mehr ist als Ästhetik. Es ist die perfekte Verbindung aus Form, Funktion und Emotion.</p>
+            <p>Jedes Projekt beginnt mit dem Verständnis Ihrer einzigartigen Geschichte. Wir tauchen tief in Ihre Marke ein, um digitale Erlebnisse zu schaffen, die nicht nur beeindrucken, sondern auch konvertieren.</p>
+            <p>Unser Ansatz ist methodisch, aber unsere Kreativität kennt keine Grenzen. Das Ergebnis? Digitale Meisterwerke, die Ihre Marke auf das nächste Level heben.</p>
+        </div>
+        <div class="philosophy-image"><img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&q=80" alt="Design Philosophie"></div>
+    </div>
+</section>
+
+<section class="cta-section"><p class="cta-text">Bereit, etwas <span>Außergewöhnliches</span> zu schaffen?</p><a href="index.html#kontakt" class="cta-btn">Projekt anfragen</a></section>
+
+<footer class="footer-mini"><p>© 2025 <span>NobleFrame</span>. Alle Rechte vorbehalten.</p><div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a></div></footer>
+
+<script>
+const navbar=document.getElementById('navbar');window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>50));
+const menuToggle=document.getElementById('menuToggle'),mobileMenu=document.getElementById('mobileMenu');menuToggle.addEventListener('click',()=>{menuToggle.classList.toggle('active');mobileMenu.classList.toggle('active');document.body.style.overflow=mobileMenu.classList.contains('active')?'hidden':''});mobileMenu.querySelectorAll('a').forEach(link=>{link.addEventListener('click',()=>{menuToggle.classList.remove('active');mobileMenu.classList.remove('active');document.body.style.overflow=''})});
+</script>
+</body>
+</html>

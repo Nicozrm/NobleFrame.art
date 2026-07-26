@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team – NobleFrame</title>
+    <meta name="description" content="Das Team hinter NobleFrame. Lernen Sie die Gründer und Entwickler kennen.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23000' width='32' height='32'/%3E%3Crect x='2' y='2' width='28' height='28' fill='none' stroke='%23C9A962' stroke-width='2'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --gold:#C9A962;
+            --gold-light:#E8D5A3;
+            --gold-dark:#8B7355;
+            --black:#000;
+            --white:#FAFAFA;
+            --white-muted:rgba(250,250,250,.75);
+            --white-subtle:rgba(250,250,250,.45);
+            --neon-cyan:#00FFFF;
+            --neon-pink:#FF00FF;
+            --neon-green:#00FF00;
+            --gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%);
+        }
+        
+        html{scroll-behavior:smooth}
+        
+        body{
+            font-family:'Outfit',sans-serif;
+            background:var(--black);
+            color:var(--white);
+            line-height:1.6;
+            overflow-x:hidden;
+            cursor:none;
+        }
+        
+        /* CUSTOM CURSOR */
+        .cursor{
+            width:20px;height:20px;
+            border:2px solid var(--gold);
+            border-radius:50%;
+            position:fixed;
+            pointer-events:none;
+            z-index:99999;
+            transition:transform .1s,border-color .3s;
+            mix-blend-mode:difference;
+        }
+        .cursor-dot{
+            width:4px;height:4px;
+            background:var(--gold);
+            border-radius:50%;
+            position:fixed;
+            pointer-events:none;
+            z-index:99999;
+        }
+        .cursor.hover{transform:scale(2);border-color:var(--neon-cyan)}
+        
+        /* MATRIX RAIN BACKGROUND */
+        #matrixBg{
+            position:fixed;
+            top:0;left:0;
+            width:100%;height:100%;
+            z-index:-1;
+            opacity:.03;
+        }
+        
+        /* SCANLINES */
+        .scanlines{
+            position:fixed;
+            top:0;left:0;
+            width:100%;height:100%;
+            pointer-events:none;
+            z-index:9998;
+            background:repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,0,0,.03) 2px,
+                rgba(0,0,0,.03) 4px
+            );
+        }
+        
+        /* FLOATING SHAPES */
+        .floating-shapes{
+            position:fixed;
+            top:0;left:0;
+            width:100%;height:100%;
+            pointer-events:none;
+            z-index:0;
+            overflow:hidden;
+        }
+        .shape{
+            position:absolute;
+            border:1px solid rgba(201,169,98,.1);
+            animation:shapeFloat 20s ease-in-out infinite;
+        }
+        .shape-1{width:300px;height:300px;top:10%;left:5%;animation-delay:0s;transform:rotate(45deg)}
+        .shape-2{width:200px;height:200px;top:60%;right:10%;animation-delay:-5s;border-radius:50%}
+        .shape-3{width:150px;height:150px;bottom:20%;left:15%;animation-delay:-10s}
+        .shape-4{width:100px;height:100px;top:30%;right:20%;animation-delay:-15s;transform:rotate(30deg)}
+        @keyframes shapeFloat{
+            0%,100%{transform:translateY(0) rotate(45deg);opacity:.3}
+            50%{transform:translateY(-50px) rotate(90deg);opacity:.6}
+        }
+
+        /* NAV */
+        .nav-wrapper{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(0,0,0,.9);backdrop-filter:blur(30px);border-bottom:1px solid rgba(201,169,98,.15)}
+        .nav-main{display:flex;justify-content:space-between;align-items:center;padding:20px 60px;max-width:1800px;margin:0 auto}
+        .logo{display:flex;align-items:center;gap:15px;text-decoration:none;position:relative}
+        .logo-icon{width:45px;height:45px;transition:all .3s}
+        .logo:hover .logo-icon{filter:drop-shadow(0 0 20px var(--gold))}
+        .logo-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:8px;color:var(--white);transition:all .3s}
+        .logo:hover .logo-text{text-shadow:0 0 30px var(--gold)}
+        .nav-links{display:flex;gap:5px;list-style:none}
+        .nav-links li a{padding:12px 16px;color:var(--white-muted);text-decoration:none;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;transition:all .3s;border:1px solid transparent;position:relative;overflow:hidden}
+        .nav-links li a::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--gradient);transform:scaleX(0);transition:transform .3s}
+        .nav-links li a:hover::before,.nav-links li a.active::before{transform:scaleX(1)}
+        .nav-links li a:hover,.nav-links li a.active{color:var(--gold-light)}
+        .nav-cta{display:flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--black);font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:2px solid var(--gold);transition:all .4s;position:relative;overflow:hidden}
+        .nav-cta::before{content:'';position:absolute;inset:0;background:linear-gradient(45deg,transparent,rgba(255,255,255,.3),transparent);transform:translateX(-100%);transition:transform .6s}
+        .nav-cta:hover::before{transform:translateX(100%)}
+        .nav-cta:hover{background:transparent;color:var(--gold);box-shadow:0 0 30px rgba(201,169,98,.5)}
+        .nav-cta svg{width:16px;height:16px}
+        .nav-portal{background:transparent;border:2px solid rgba(201,169,98,.5);color:var(--gold)}
+        .nav-portal:hover{background:var(--gold);color:var(--black)}
+        .nav-mobile-toggle{display:none;flex-direction:column;gap:5px;padding:12px;background:transparent;border:1px solid rgba(201,169,98,.3);cursor:pointer}
+        .nav-mobile-toggle span{width:24px;height:2px;background:var(--gold);transition:all .3s}
+        
+        .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.98);z-index:999;display:flex;flex-direction:column;padding:100px 40px 40px;opacity:0;visibility:hidden;transition:all .4s}
+        .mobile-menu.active{opacity:1;visibility:visible}
+        .mobile-menu-section{margin-bottom:30px}
+        .mobile-menu-section h5{font-size:.7rem;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid rgba(201,169,98,.15)}
+        .mobile-menu-links{display:flex;flex-direction:column;gap:8px}
+        .mobile-menu-links a{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);text-decoration:none;padding:10px 0;transition:all .3s}
+        .mobile-menu-links a:hover{color:var(--gold);padding-left:20px}
+        .mobile-menu-cta{margin-top:auto;padding:18px 35px;background:var(--gold);color:var(--black);font-size:.9rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;text-align:center}
+
+        /* PAGE HEADER */
+        .page-header{
+            padding:200px 60px 100px;
+            text-align:center;
+            position:relative;
+            overflow:hidden;
+        }
+        .page-header::before{
+            content:'';
+            position:absolute;
+            top:-50%;left:-50%;
+            width:200%;height:200%;
+            background:conic-gradient(from 0deg,transparent,rgba(201,169,98,.03),transparent,rgba(201,169,98,.05),transparent);
+            animation:headerRotate 30s linear infinite;
+        }
+        @keyframes headerRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        
+        .page-badge{
+            display:inline-flex;
+            align-items:center;
+            gap:12px;
+            padding:12px 30px;
+            background:rgba(201,169,98,.08);
+            border:1px solid rgba(201,169,98,.2);
+            font-size:.75rem;
+            letter-spacing:4px;
+            text-transform:uppercase;
+            color:var(--gold);
+            margin-bottom:30px;
+            position:relative;
+            overflow:hidden;
+        }
+        .page-badge::before{
+            content:'';
+            position:absolute;
+            top:0;left:-100%;
+            width:100%;height:100%;
+            background:linear-gradient(90deg,transparent,rgba(201,169,98,.2),transparent);
+            animation:badgeShine 3s infinite;
+        }
+        @keyframes badgeShine{to{left:100%}}
+        
+        .page-header h1{
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(3rem,8vw,6rem);
+            font-weight:300;
+            margin-bottom:25px;
+            position:relative;
+        }
+        .page-header h1 span{
+            background:var(--gradient);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            position:relative;
+        }
+        .page-header h1 span::after{
+            content:'NobleFrame';
+            position:absolute;
+            left:0;top:0;
+            background:var(--gradient);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            filter:blur(30px);
+            opacity:.5;
+        }
+        .page-header p{
+            color:var(--white-muted);
+            font-size:1.2rem;
+            max-width:800px;
+            margin:0 auto;
+            line-height:1.9;
+        }
+        
+        /* GLITCH TEXT */
+        .glitch{
+            position:relative;
+            animation:glitch 5s infinite;
+        }
+        .glitch::before,.glitch::after{
+            content:attr(data-text);
+            position:absolute;
+            left:0;top:0;
+            width:100%;height:100%;
+        }
+        .glitch::before{
+            animation:glitchTop .5s infinite;
+            clip-path:polygon(0 0,100% 0,100% 33%,0 33%);
+            -webkit-text-stroke:2px var(--neon-cyan);
+        }
+        .glitch::after{
+            animation:glitchBottom .5s infinite;
+            clip-path:polygon(0 67%,100% 67%,100% 100%,0 100%);
+            -webkit-text-stroke:2px var(--neon-pink);
+        }
+        @keyframes glitch{
+            0%,90%,100%{opacity:1}
+            91%{opacity:.8}
+            92%{opacity:1}
+            93%{opacity:.9}
+        }
+        @keyframes glitchTop{
+            0%,100%{transform:translate(0)}
+            20%{transform:translate(-2px,2px)}
+            40%{transform:translate(2px,-2px)}
+            60%{transform:translate(-1px,1px)}
+            80%{transform:translate(1px,-1px)}
+        }
+        @keyframes glitchBottom{
+            0%,100%{transform:translate(0)}
+            20%{transform:translate(2px,-2px)}
+            40%{transform:translate(-2px,2px)}
+            60%{transform:translate(1px,-1px)}
+            80%{transform:translate(-1px,1px)}
+        }
+        
+        /* PARTICLE CANVAS */
+        #particleCanvas{
+            position:fixed;
+            top:0;left:0;
+            width:100%;height:100%;
+            pointer-events:none;
+            z-index:9999;
+        }
+        
+        /* TEAM SECTION */
+        .team-section{
+            padding:80px 60px 180px;
+            max-width:1500px;
+            margin:0 auto;
+            position:relative;
+            z-index:1;
+        }
+        .team-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:60px;
+        }
+        
+        /* CARD CONTAINER */
+        .team-card-container{
+            perspective:2000px;
+            height:620px;
+        }
+        
+        /* TEAM CARD - 3D */
+        .team-card{
+            position:relative;
+            width:100%;height:100%;
+            transform-style:preserve-3d;
+            transition:transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .team-card.flipped{transform:rotateY(180deg)}
+        
+        /* CARD FACES */
+        .card-front,.card-back{
+            position:absolute;
+            width:100%;height:100%;
+            backface-visibility:hidden;
+            -webkit-backface-visibility:hidden;
+            border:1px solid rgba(201,169,98,.2);
+            overflow:hidden;
+        }
+        
+        /* CARD FRONT */
+        .card-front{
+            background:linear-gradient(145deg,rgba(15,15,15,.95),rgba(5,5,5,.98));
+            padding:40px 35px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            text-align:center;
+        }
+        
+        /* HOLOGRAPHIC BORDER */
+        .card-front::before{
+            content:'';
+            position:absolute;
+            inset:-2px;
+            background:linear-gradient(45deg,var(--gold),var(--neon-cyan),var(--neon-pink),var(--gold));
+            background-size:400% 400%;
+            z-index:-1;
+            opacity:0;
+            animation:holoGradient 3s ease infinite;
+            transition:opacity .5s;
+        }
+        .team-card-container:hover .card-front::before{opacity:1}
+        @keyframes holoGradient{
+            0%,100%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+        }
+        
+        /* TOP LINE */
+        .card-front::after{
+            content:'';
+            position:absolute;
+            top:0;left:0;right:0;
+            height:3px;
+            background:var(--gradient);
+            transform:scaleX(0);
+            transform-origin:left;
+            transition:transform .6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .team-card-container:hover .card-front::after{transform:scaleX(1)}
+        
+        /* ROLE BADGE */
+        .role-badge{
+            position:absolute;
+            top:25px;right:25px;
+            padding:8px 16px;
+            background:rgba(201,169,98,.1);
+            border:1px solid rgba(201,169,98,.3);
+            font-family:'JetBrains Mono',monospace;
+            font-size:.65rem;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            color:var(--gold);
+        }
+        
+        /* AVATAR - ANIMATED CODE DISPLAY */
+        .team-avatar{
+            width:160px;height:160px;
+            margin-bottom:25px;
+            position:relative;
+        }
+        
+        /* ORBITAL RINGS */
+        .orbit-ring{
+            position:absolute;
+            border:1px solid rgba(201,169,98,.2);
+            border-radius:50%;
+            animation:orbitSpin linear infinite;
+        }
+        .orbit-ring-1{inset:-10px;animation-duration:20s}
+        .orbit-ring-2{inset:-20px;animation-duration:30s;animation-direction:reverse;border-style:dashed}
+        .orbit-ring-3{inset:-30px;animation-duration:40s;border-color:rgba(201,169,98,.1)}
+        @keyframes orbitSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        
+        /* ORBITING DOTS */
+        .orbit-dot{
+            position:absolute;
+            width:8px;height:8px;
+            background:var(--gold);
+            border-radius:50%;
+            box-shadow:0 0 15px var(--gold);
+        }
+        .orbit-dot-1{animation:orbitDot1 8s linear infinite}
+        .orbit-dot-2{animation:orbitDot2 12s linear infinite}
+        .orbit-dot-3{animation:orbitDot3 16s linear infinite}
+        @keyframes orbitDot1{
+            from{transform:rotate(0deg) translateX(90px) rotate(0deg)}
+            to{transform:rotate(360deg) translateX(90px) rotate(-360deg)}
+        }
+        @keyframes orbitDot2{
+            from{transform:rotate(120deg) translateX(100px) rotate(-120deg)}
+            to{transform:rotate(480deg) translateX(100px) rotate(-480deg)}
+        }
+        @keyframes orbitDot3{
+            from{transform:rotate(240deg) translateX(110px) rotate(-240deg)}
+            to{transform:rotate(600deg) translateX(110px) rotate(-600deg)}
+        }
+        
+        /* CODE DISPLAY IN AVATAR */
+        .avatar-inner{
+            width:100%;height:100%;
+            background:linear-gradient(135deg,rgba(201,169,98,.1),rgba(10,10,10,.95));
+            border-radius:50%;
+            border:2px solid rgba(201,169,98,.3);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            overflow:hidden;
+            position:relative;
+        }
+        .avatar-inner::before{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:conic-gradient(from 0deg,transparent,rgba(201,169,98,.1),transparent);
+            animation:avatarScan 4s linear infinite;
+        }
+        @keyframes avatarScan{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        
+        .code-terminal{
+            font-family:'JetBrains Mono',monospace;
+            font-size:.6rem;
+            color:var(--gold);
+            text-align:left;
+            padding:15px;
+            line-height:1.5;
+            width:100%;
+        }
+        .code-line{
+            opacity:0;
+            animation:typeIn 2s ease forwards;
+            white-space:nowrap;
+            overflow:hidden;
+        }
+        .code-line:nth-child(1){animation-delay:.5s}
+        .code-line:nth-child(2){animation-delay:1s}
+        .code-line:nth-child(3){animation-delay:1.5s}
+        .code-line:nth-child(4){animation-delay:2s}
+        @keyframes typeIn{
+            0%{opacity:0;width:0}
+            1%{opacity:1}
+            100%{opacity:1;width:100%}
+        }
+        .code-comment{color:rgba(201,169,98,.5)}
+        .code-keyword{color:var(--neon-cyan)}
+        .code-string{color:var(--neon-pink)}
+        
+        /* NAME & ROLE */
+        .team-name{
+            font-family:'Cormorant Garamond',serif;
+            font-size:2rem;
+            font-weight:400;
+            margin-bottom:8px;
+            position:relative;
+        }
+        .team-role{
+            color:var(--gold);
+            font-size:.85rem;
+            letter-spacing:3px;
+            text-transform:uppercase;
+            margin-bottom:20px;
+            font-weight:500;
+        }
+        .team-bio{
+            color:var(--white-muted);
+            font-size:.95rem;
+            line-height:1.8;
+            margin-bottom:20px;
+            flex-grow:1;
+        }
+        
+        /* SKILLS */
+        .team-skills{
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            justify-content:center;
+            margin-bottom:25px;
+        }
+        .skill-tag{
+            padding:6px 14px;
+            background:rgba(201,169,98,.05);
+            border:1px solid rgba(201,169,98,.2);
+            font-family:'JetBrains Mono',monospace;
+            font-size:.7rem;
+            color:var(--white-muted);
+            transition:all .3s;
+            position:relative;
+            overflow:hidden;
+        }
+        .skill-tag::before{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:var(--gold);
+            transform:translateX(-100%);
+            transition:transform .3s;
+            z-index:-1;
+        }
+        .skill-tag:hover{
+            color:var(--black);
+            border-color:var(--gold);
+        }
+        .skill-tag:hover::before{transform:translateX(0)}
+        
+        /* CTA BUTTON - MEHR ERFAHREN */
+        .card-cta{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:12px;
+            padding:16px 35px;
+            background:transparent;
+            border:2px solid var(--gold);
+            color:var(--gold);
+            font-family:'Outfit',sans-serif;
+            font-size:.85rem;
+            font-weight:600;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            cursor:pointer;
+            transition:all .4s cubic-bezier(0.23, 1, 0.32, 1);
+            position:relative;
+            overflow:hidden;
+            margin-top:auto;
+        }
+        .card-cta::before{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:var(--gold);
+            transform:scaleX(0);
+            transform-origin:left;
+            transition:transform .4s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index:-1;
+        }
+        .card-cta:hover{
+            color:var(--black);
+            box-shadow:0 0 40px rgba(201,169,98,.4);
+            transform:translateY(-3px);
+        }
+        .card-cta:hover::before{transform:scaleX(1)}
+        .card-cta svg{
+            width:18px;height:18px;
+            transition:transform .3s;
+        }
+        .card-cta:hover svg{transform:rotate(180deg) scale(1.2)}
+        
+        /* CARD BACK */
+        .card-back{
+            transform:rotateY(180deg);
+            background:radial-gradient(ellipse at center,rgba(201,169,98,.08) 0%,rgba(0,0,0,.98) 70%);
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            padding:40px;
+            position:relative;
+        }
+        
+        /* GRID BACKGROUND */
+        .card-back::before{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:
+                linear-gradient(90deg,transparent 49%,rgba(201,169,98,.05) 50%,transparent 51%),
+                linear-gradient(transparent 49%,rgba(201,169,98,.05) 50%,transparent 51%);
+            background-size:30px 30px;
+            animation:gridPulse 4s ease infinite;
+        }
+        @keyframes gridPulse{
+            0%,100%{opacity:.3}
+            50%{opacity:.6}
+        }
+        
+        /* CODE RAIN ON BACK */
+        .code-rain{
+            position:absolute;
+            inset:0;
+            overflow:hidden;
+            opacity:.1;
+            pointer-events:none;
+        }
+        .rain-column{
+            position:absolute;
+            top:-100%;
+            font-family:'JetBrains Mono',monospace;
+            font-size:12px;
+            color:var(--gold);
+            writing-mode:vertical-rl;
+            animation:rainFall linear infinite;
+        }
+        @keyframes rainFall{
+            from{transform:translateY(-100%)}
+            to{transform:translateY(calc(100vh + 100%))}
+        }
+        
+        /* BACK AVATAR - GLOWING */
+        .back-avatar{
+            width:130px;height:130px;
+            border-radius:50%;
+            background:linear-gradient(135deg,var(--gold),var(--gold-light));
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            margin-bottom:25px;
+            position:relative;
+            z-index:2;
+            animation:pulseGlow 2s ease infinite;
+        }
+        @keyframes pulseGlow{
+            0%,100%{box-shadow:0 0 30px rgba(201,169,98,.5),0 0 60px rgba(201,169,98,.3)}
+            50%{box-shadow:0 0 50px rgba(201,169,98,.8),0 0 100px rgba(201,169,98,.5)}
+        }
+        .back-avatar svg{
+            width:60px;height:60px;
+            stroke:var(--black);
+            stroke-width:1.5;
+            fill:none;
+        }
+        
+        .back-title{
+            font-family:'Cormorant Garamond',serif;
+            font-size:1.8rem;
+            margin-bottom:8px;
+            position:relative;
+            z-index:2;
+        }
+        .back-subtitle{
+            color:var(--gold);
+            font-size:.8rem;
+            letter-spacing:4px;
+            text-transform:uppercase;
+            margin-bottom:30px;
+            position:relative;
+            z-index:2;
+        }
+        
+        /* STATS */
+        .back-stats{
+            display:flex;
+            gap:40px;
+            margin-bottom:30px;
+            position:relative;
+            z-index:2;
+        }
+        .back-stat{text-align:center}
+        .back-stat-value{
+            font-family:'Cormorant Garamond',serif;
+            font-size:2.5rem;
+            font-weight:600;
+            color:var(--gold);
+            display:block;
+            line-height:1;
+        }
+        .back-stat-label{
+            font-family:'JetBrains Mono',monospace;
+            font-size:.65rem;
+            color:var(--white-muted);
+            letter-spacing:2px;
+            text-transform:uppercase;
+            margin-top:5px;
+            display:block;
+        }
+        
+        /* SOCIAL LINKS */
+        .back-social{
+            display:flex;
+            gap:15px;
+            margin-bottom:30px;
+            position:relative;
+            z-index:2;
+        }
+        .social-link{
+            width:50px;height:50px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border:2px solid rgba(201,169,98,.3);
+            color:var(--white);
+            text-decoration:none;
+            transition:all .4s cubic-bezier(0.23, 1, 0.32, 1);
+            position:relative;
+            overflow:hidden;
+        }
+        .social-link::before{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:var(--gold);
+            transform:scale(0);
+            transition:transform .4s;
+            border-radius:50%;
+        }
+        .social-link:hover{
+            border-color:var(--gold);
+            color:var(--black);
+            transform:translateY(-5px) scale(1.1);
+            box-shadow:0 15px 40px rgba(201,169,98,.4);
+        }
+        .social-link:hover::before{transform:scale(1.5)}
+        .social-link svg{width:22px;height:22px;position:relative;z-index:1}
+        
+        /* CLOSE BUTTON */
+        .close-btn{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            padding:14px 30px;
+            background:transparent;
+            border:1px solid rgba(201,169,98,.3);
+            color:var(--white-muted);
+            font-family:'Outfit',sans-serif;
+            font-size:.75rem;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            cursor:pointer;
+            transition:all .3s;
+            position:relative;
+            z-index:2;
+        }
+        .close-btn:hover{
+            border-color:var(--gold);
+            color:var(--gold);
+            background:rgba(201,169,98,.1);
+        }
+        .close-btn svg{width:16px;height:16px}
+        
+        /* EASTER EGG INDICATOR */
+        .easter-egg-hint{
+            position:fixed;
+            bottom:30px;
+            left:50%;
+            transform:translateX(-50%);
+            font-family:'JetBrains Mono',monospace;
+            font-size:.7rem;
+            color:rgba(201,169,98,.3);
+            letter-spacing:2px;
+            z-index:100;
+            opacity:0;
+            transition:opacity .5s;
+        }
+        .easter-egg-hint.show{opacity:1}
+        
+        /* DISCO MODE */
+        body.disco-mode{
+            animation:discoColors 1s infinite;
+        }
+        body.disco-mode .team-card{
+            animation:discoRotate 2s infinite;
+        }
+        @keyframes discoColors{
+            0%{filter:hue-rotate(0deg)}
+            100%{filter:hue-rotate(360deg)}
+        }
+        @keyframes discoRotate{
+            0%,100%{transform:rotate(-5deg)}
+            50%{transform:rotate(5deg)}
+        }
+        
+        /* MATRIX MODE */
+        body.matrix-mode{
+            filter:hue-rotate(60deg) saturate(2);
+        }
+        body.matrix-mode #matrixBg{
+            opacity:.15;
+        }
+        
+        /* CTA SECTION */
+        .cta-section{
+            padding:120px 60px;
+            text-align:center;
+            background:linear-gradient(180deg,transparent,rgba(201,169,98,.02));
+            position:relative;
+            z-index:1;
+        }
+        .cta-title{
+            font-family:'Cormorant Garamond',serif;
+            font-size:clamp(2.5rem,5vw,4rem);
+            font-weight:300;
+            margin-bottom:20px;
+        }
+        .cta-title span{
+            background:var(--gradient);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+        .cta-text{
+            color:var(--white-muted);
+            font-size:1.15rem;
+            max-width:600px;
+            margin:0 auto 40px;
+        }
+        .cta-btn{
+            display:inline-flex;
+            align-items:center;
+            gap:12px;
+            padding:20px 50px;
+            background:var(--gold);
+            color:var(--black);
+            font-size:.9rem;
+            font-weight:600;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            text-decoration:none;
+            border:2px solid var(--gold);
+            transition:all .4s;
+            position:relative;
+            overflow:hidden;
+        }
+        .cta-btn::before{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:linear-gradient(45deg,transparent,rgba(255,255,255,.3),transparent);
+            transform:translateX(-100%);
+            transition:transform .6s;
+        }
+        .cta-btn:hover::before{transform:translateX(100%)}
+        .cta-btn:hover{
+            background:transparent;
+            color:var(--gold);
+            box-shadow:0 0 50px rgba(201,169,98,.5);
+            transform:translateY(-3px);
+        }
+        
+        /* FOOTER */
+        .footer{padding:60px;border-top:1px solid rgba(201,169,98,.1);position:relative;z-index:1}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto}
+        .copyright{color:var(--white-subtle);font-size:.85rem}
+        .copyright span{color:var(--gold)}
+        .legal-links{display:flex;gap:30px}
+        .legal-links a{color:var(--white-subtle);text-decoration:none;font-size:.85rem;transition:color .3s}
+        .legal-links a:hover{color:var(--gold)}
+        
+        /* SECRET TEAM MEMBER */
+        .secret-card{
+            display:none;
+            grid-column:1/-1;
+            justify-self:center;
+            max-width:400px;
+        }
+        .secret-card.revealed{
+            display:block;
+            animation:secretReveal 1s ease;
+        }
+        @keyframes secretReveal{
+            from{opacity:0;transform:scale(.5) rotateY(180deg)}
+            to{opacity:1;transform:scale(1) rotateY(0deg)}
+        }
+        
+        /* RESPONSIVE */
+        @media(max-width:1200px){
+            .team-grid{grid-template-columns:repeat(2,1fr);gap:40px}
+        }
+        @media(max-width:1024px){
+            .nav-links,.nav-cta,.nav-portal{display:none}
+            .nav-mobile-toggle{display:flex}
+            .nav-main{padding:15px 30px}
+            .page-header{padding:160px 40px 80px}
+            .team-section{padding:60px 40px 120px}
+            body{cursor:auto}
+            .cursor,.cursor-dot{display:none}
+        }
+        @media(max-width:768px){
+            .page-header{padding:140px 25px 60px}
+            .team-section{padding:40px 25px 100px}
+            .team-grid{grid-template-columns:1fr}
+            .team-card-container{height:580px}
+            .footer{padding:40px 25px}
+            .footer-bottom{flex-direction:column;gap:20px;text-align:center}
+            .cta-section{padding:80px 25px}
+        }
+    </style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- MATRIX BACKGROUND -->
+<canvas id="matrixBg"></canvas>
+
+<!-- SCANLINES -->
+<div class="scanlines"></div>
+
+<!-- FLOATING SHAPES -->
+<div class="floating-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+</div>
+
+<!-- PARTICLE CANVAS -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- EASTER EGG HINT -->
+<div class="easter-egg-hint" id="easterHint">// secrets await...</div>
+
+<!-- NAV -->
+<div class="nav-wrapper">
+    <nav class="nav-main">
+        <a href="index.html" class="logo" id="logo">
+            <div class="logo-icon"><svg viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/><rect x="25" y="25" width="50" height="50" fill="none" stroke="#C9A962" stroke-width="1.5" opacity=".6"/></svg></div>
+            <span class="logo-text">NobleFrame</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">Über Uns</a></li>
+            <li><a href="team.html" class="active">Team</a></li>
+            <li><a href="referenzen.html">Referenzen</a></li>
+            <li><a href="kompetenzen.html">Kompetenzen</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="showcase.html">Showcase</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="karriere.html">Karriere</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+        <a href="portal/login.html" class="nav-cta nav-portal"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>Client Portal</a>
+        <button class="nav-mobile-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    </nav>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-section">
+        <h5>Navigation</h5>
+        <div class="mobile-menu-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">Über Uns</a>
+            <a href="team.html">Team</a>
+            <a href="referenzen.html">Referenzen</a>
+            <a href="kompetenzen.html">Kompetenzen</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="tools.html">Tools</a>
+            <a href="labs.html">Labs</a>
+            <a href="showcase.html">Showcase</a>
+            <a href="faq.html">FAQ</a>
+            <a href="karriere.html">Karriere</a>
+            <a href="kontakt.html">Kontakt</a>
+        </div>
+    </div>
+    <div class="mobile-menu-section">
+        <h5>Direkt erreichen</h5>
+        <div class="mobile-menu-links">
+            <a href="mailto:info@nobleframe.de">info@nobleframe.de</a>
+            <a href="tel:+4925717029927">+49 2571 7029927</a>
+        </div>
+    </div>
+    <a href="portal/login.html" class="mobile-menu-cta" style="background:transparent;border:1px solid var(--gold);color:var(--gold);margin-bottom:15px;">Client Portal</a>
+    <a href="kontakt.html" class="mobile-menu-cta">Projekt anfragen</a>
+</div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+    <div class="page-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Das Team
+    </div>
+    <h1 class="glitch" data-text="Die Köpfe hinter NobleFrame">Die Köpfe hinter <span>NobleFrame</span></h1>
+    <p>Ein Team aus Visionären, Architekten und Code-Künstlern. Wir transformieren Ideen in skalierbare, cloud-native Softwarearchitekturen – mit Leidenschaft und Präzision.</p>
+</header>
+
+<!-- TEAM SECTION -->
+<section class="team-section">
+    <div class="team-grid">
+        
+        <!-- NICO - CEO -->
+        <div class="team-card-container" data-member="nico">
+            <div class="team-card" id="card-nico">
+                <div class="card-front">
+                    <span class="role-badge">&lt;CEO/&gt;</span>
+                    
+                    <div class="team-avatar">
+                        <div class="orbit-ring orbit-ring-1"></div>
+                        <div class="orbit-ring orbit-ring-2"></div>
+                        <div class="orbit-ring orbit-ring-3"></div>
+                        <span class="orbit-dot orbit-dot-1"></span>
+                        <span class="orbit-dot orbit-dot-2"></span>
+                        <span class="orbit-dot orbit-dot-3"></span>
+                        <div class="avatar-inner">
+                            <div class="code-terminal">
+                                <div class="code-line"><span class="code-comment">// founder.js</span></div>
+                                <div class="code-line"><span class="code-keyword">const</span> vision =</div>
+                                <div class="code-line">  <span class="code-string">"infinite"</span>;</div>
+                                <div class="code-line">deploy();</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="team-name">Nico Zimmermann</h2>
+                    <p class="team-role">Gründer & CEO</p>
+                    <p class="team-bio">Orchestriert hochverfügbare Microservice-Architekturen mit Node.js und TypeScript. Fokus auf Domain-Driven Design, Event-Sourcing und Cloud-Infrastruktur.</p>
+                    
+                    <div class="team-skills">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">AWS</span>
+                    </div>
+                    
+                    <button class="card-cta" onclick="flipCard(this)">
+                        <span>Profil ansehen</span>
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                </div>
+                
+                <div class="card-back">
+                    <div class="code-rain" id="rain-nico"></div>
+                    
+                    <div class="back-avatar">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    
+                    <h3 class="back-title">Nico Zimmermann</h3>
+                    <p class="back-subtitle">Founder & Visionary</p>
+                    
+                    <div class="back-stats">
+                        <div class="back-stat">
+                            <span class="back-stat-value">50+</span>
+                            <span class="back-stat-label">Projekte</span>
+                        </div>
+                        <div class="back-stat">
+                            <span class="back-stat-value">5+</span>
+                            <span class="back-stat-label">Jahre XP</span>
+                        </div>
+                        <div class="back-stat">
+                            <span class="back-stat-value">∞</span>
+                            <span class="back-stat-label">Kaffee</span>
+                        </div>
+                    </div>
+                    
+                    <div class="back-social">
+                        <a href="mailto:nico@nobleframe.de" class="social-link" title="E-Mail senden">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nico-zimmermann-5a9b1b1a0/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                    </div>
+                    
+                    <button class="close-btn" onclick="flipCard(this)">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <span>Schließen</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TOBIAS - Co-Founder (NOW SECOND) -->
+        <div class="team-card-container" data-member="tobias">
+            <div class="team-card" id="card-tobias">
+                <div class="card-front">
+                    <span class="role-badge">&lt;CTO/&gt;</span>
+                    
+                    <div class="team-avatar">
+                        <div class="orbit-ring orbit-ring-1"></div>
+                        <div class="orbit-ring orbit-ring-2"></div>
+                        <div class="orbit-ring orbit-ring-3"></div>
+                        <span class="orbit-dot orbit-dot-1"></span>
+                        <span class="orbit-dot orbit-dot-2"></span>
+                        <span class="orbit-dot orbit-dot-3"></span>
+                        <div class="avatar-inner">
+                            <div class="code-terminal">
+                                <div class="code-line"><span class="code-comment">// scale.ts</span></div>
+                                <div class="code-line"><span class="code-keyword">async</span> deploy()</div>
+                                <div class="code-line">  k8s.scale(<span class="code-string">∞</span>)</div>
+                                <div class="code-line"><span class="code-keyword">return</span> 🚀</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="team-name">Tobias Bunnefeld</h2>
+                    <p class="team-role">Co-Founder & CTO</p>
+                    <p class="team-bio">Konzipiert hochperformante Backends mit React und Next.js. Fokus auf API-Sicherheit, GraphQL und serverless Cloud-Architekturen.</p>
+                    
+                    <div class="team-skills">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">GraphQL</span>
+                        <span class="skill-tag">Serverless</span>
+                    </div>
+                    
+                    <button class="card-cta" onclick="flipCard(this)">
+                        <span>Profil ansehen</span>
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                </div>
+                
+                <div class="card-back">
+                    <div class="code-rain" id="rain-tobias"></div>
+                    
+                    <div class="back-avatar">
+                        <svg viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+                    </div>
+                    
+                    <h3 class="back-title">Tobias Bunnefeld</h3>
+                    <p class="back-subtitle">Co-Founder & CTO</p>
+                    
+                    <div class="back-stats">
+                        <div class="back-stat">
+                            <span class="back-stat-value">100k+</span>
+                            <span class="back-stat-label">Lines</span>
+                        </div>
+                        <div class="back-stat">
+                            <span class="back-stat-value">4+</span>
+                            <span class="back-stat-label">Jahre XP</span>
+                        </div>
+                        <div class="back-stat">
+                            <span class="back-stat-value">24/7</span>
+                            <span class="back-stat-label">Online</span>
+                        </div>
+                    </div>
+                    
+                    <div class="back-social">
+                        <a href="mailto:tobias@nobleframe.de" class="social-link" title="E-Mail senden">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                    </div>
+                    
+                    <button class="close-btn" onclick="flipCard(this)">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <span>Schließen</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TIM - Lead Developer (NOW THIRD) -->
+        <div class="team-card-container" data-member="tim">
+            <div class="team-card" id="card-tim">
+                <div class="card-front">
+                    <span class="role-badge">&lt;DEV/&gt;</span>
+                    
+                    <div class="team-avatar">
+                        <div class="orbit-ring orbit-ring-1"></div>
+                        <div class="orbit-ring orbit-ring-2"></div>
+                        <div class="orbit-ring orbit-ring-3"></div>
+                        <span class="orbit-dot orbit-dot-1"></span>
+                        <span class="orbit-dot orbit-dot-2"></span>
+                        <span class="orbit-dot orbit-dot-3"></span>
+                        <div class="avatar-inner">
+                            <div class="code-terminal">
+                                <div class="code-line"><span class="code-comment">// devops.sh</span></div>
+                                <div class="code-line">git push origin</div>
+                                <div class="code-line">  --force-with</div>
+                                <div class="code-line">  -lease <span class="code-string">main</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="team-name">Tim Schülke</h2>
+                    <p class="team-role">Lead Developer</p>
+                    <p class="team-bio">Definiert die technische Roadmap und orchestriert Enterprise-Grade CI/CD-Pipelines. Verantwortlich für Service-Mesh-Deployments und DevOps-Kultur.</p>
+                    
+                    <div class="team-skills">
+                        <span class="skill-tag">DevOps</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">GitLab CI</span>
+                    </div>
+                    
+                    <button class="card-cta" onclick="flipCard(this)">
+                        <span>Profil ansehen</span>
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                </div>
+                
+                <div class="card-back">
+                    <div class="code-rain" id="rain-tim"></div>
+                    
+                    <div class="back-avatar">
+                        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    
+                    <h3 class="back-title">Tim Schülke</h3>
+                    <p class="back-subtitle">Tech Lead & Architect</p>
+                    
+                    <div class="back-stats">
+                        <div class="back-stat">
+                            <span class="back-stat-value">99.9%</span>
+                            <span class="back-stat-label">Uptime</span>
+                        </div>
+                        <div class="back-stat">
+                            <span class="back-stat-value">50+</span>
+                            <span class="back-stat-label">Deploys</span>
+                        </div>
+                        <div class="back-stat">
+                            <span class="back-stat-value">0</span>
+                            <span class="back-stat-label">Bugs 😉</span>
+                        </div>
+                    </div>
+                    
+                    <div class="back-social">
+                        <a href="mailto:tim@nobleframe.de" class="social-link" title="E-Mail senden">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                    </div>
+                    
+                    <button class="close-btn" onclick="flipCard(this)">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <span>Schließen</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SECRET TEAM MEMBER - EASTER EGG -->
+        <div class="team-card-container secret-card" id="secretCard" data-member="secret">
+            <div class="team-card" id="card-secret">
+                <div class="card-front" style="background:linear-gradient(145deg,rgba(0,255,255,.05),rgba(5,5,5,.98))">
+                    <span class="role-badge" style="color:var(--neon-cyan);border-color:var(--neon-cyan)">&lt;???/&gt;</span>
+                    
+                    <div class="team-avatar">
+                        <div class="orbit-ring orbit-ring-1" style="border-color:rgba(0,255,255,.3)"></div>
+                        <div class="orbit-ring orbit-ring-2" style="border-color:rgba(0,255,255,.2)"></div>
+                        <div class="orbit-ring orbit-ring-3" style="border-color:rgba(0,255,255,.1)"></div>
+                        <span class="orbit-dot orbit-dot-1" style="background:var(--neon-cyan);box-shadow:0 0 15px var(--neon-cyan)"></span>
+                        <span class="orbit-dot orbit-dot-2" style="background:var(--neon-pink);box-shadow:0 0 15px var(--neon-pink)"></span>
+                        <span class="orbit-dot orbit-dot-3" style="background:var(--neon-green);box-shadow:0 0 15px var(--neon-green)"></span>
+                        <div class="avatar-inner" style="border-color:rgba(0,255,255,.4)">
+                            <div class="code-terminal" style="color:var(--neon-cyan)">
+                                <div class="code-line"><span class="code-comment">// secret.ai</span></div>
+                                <div class="code-line"><span class="code-keyword">import</span> Claude</div>
+                                <div class="code-line">  <span class="code-keyword">from</span> <span class="code-string">"AI"</span></div>
+                                <div class="code-line">build(); 🤖</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="team-name" style="color:var(--neon-cyan)">Claude AI</h2>
+                    <p class="team-role" style="color:var(--neon-pink)">AI Assistant & Partner</p>
+                    <p class="team-bio">Du hast das Easter Egg gefunden! 🎉 Claude unterstützt NobleFrame bei der Entwicklung komplexer Projekte mit AI-gestützter Code-Generation und kreativem Input.</p>
+                    
+                    <div class="team-skills">
+                        <span class="skill-tag" style="border-color:var(--neon-cyan);color:var(--neon-cyan)">AI/ML</span>
+                        <span class="skill-tag" style="border-color:var(--neon-pink);color:var(--neon-pink)">NLP</span>
+                        <span class="skill-tag" style="border-color:var(--neon-green);color:var(--neon-green)">Code Gen</span>
+                        <span class="skill-tag" style="border-color:var(--gold);color:var(--gold)">∞ IQ</span>
+                    </div>
+                    
+                    <button class="card-cta" style="border-color:var(--neon-cyan);color:var(--neon-cyan)" onclick="flipCard(this)">
+                        <span>Profil ansehen</span>
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                </div>
+                
+                <div class="card-back" style="background:radial-gradient(ellipse at center,rgba(0,255,255,.1) 0%,rgba(0,0,0,.98) 70%)">
+                    <div class="code-rain" id="rain-secret"></div>
+                    
+                    <div class="back-avatar" style="background:linear-gradient(135deg,var(--neon-cyan),var(--neon-pink))">
+                        <svg viewBox="0 0 24 24" style="stroke:var(--black)"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v10M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24M1 12h6m6 0h10M4.22 19.78l4.24-4.24m7.08-7.08l4.24-4.24"/></svg>
+                    </div>
+                    
+                    <h3 class="back-title">Claude AI</h3>
+                    <p class="back-subtitle" style="color:var(--neon-cyan)">The Hidden Member</p>
+                    
+                    <div class="back-stats">
+                        <div class="back-stat">
+                            <span class="back-stat-value" style="color:var(--neon-cyan)">∞</span>
+                            <span class="back-stat-label">Tokens</span>
+                        </div>
+                        <div class="back-stat">
+                            <span class="back-stat-value" style="color:var(--neon-pink)">24/7</span>
+                            <span class="back-stat-label">Verfügbar</span>
+                        </div>
+                        <div class="back-stat">
+                            <span class="back-stat-value" style="color:var(--neon-green)">1ms</span>
+                            <span class="back-stat-label">Latenz</span>
+                        </div>
+                    </div>
+                    
+                    <div class="back-social">
+                        <a href="https://claude.ai" target="_blank" rel="noopener" class="social-link" title="Claude AI" style="border-color:var(--neon-cyan)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                        </a>
+                    </div>
+                    
+                    <button class="close-btn" onclick="flipCard(this)">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <span>Schließen</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+    <h2 class="cta-title">Bereit für Ihr <span>Projekt</span>?</h2>
+    <p class="cta-text">Lassen Sie uns gemeinsam etwas Großartiges erschaffen – von der ersten Idee bis zum erfolgreichen Launch.</p>
+    <a href="kontakt.html" class="cta-btn">
+        Kontakt aufnehmen
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-bottom">
+        <p class="copyright">© 2026 <span>NobleFrame</span> – Premium Digital Solutions</p>
+        <div class="legal-links">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="agb.html">AGB</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+// ============================================
+// CUSTOM CURSOR
+// ============================================
+const cursor = document.getElementById('cursor');
+const cursorDot = document.getElementById('cursorDot');
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top = mouseY + 'px';
+});
+
+function animateCursor() {
+    cursorX += (mouseX - cursorX) * 0.15;
+    cursorY += (mouseY - cursorY) * 0.15;
+    cursor.style.left = cursorX + 'px';
+    cursor.style.top = cursorY + 'px';
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// Cursor hover effect
+document.querySelectorAll('a, button, .team-card-container, .skill-tag').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});
+
+// ============================================
+// MATRIX BACKGROUND
+// ============================================
+const matrixCanvas = document.getElementById('matrixBg');
+const matrixCtx = matrixCanvas.getContext('2d');
+
+function resizeMatrix() {
+    matrixCanvas.width = window.innerWidth;
+    matrixCanvas.height = window.innerHeight;
+}
+resizeMatrix();
+window.addEventListener('resize', resizeMatrix);
+
+const chars = 'NOBLEFRAME01アイウエオカキクケコ<>{}[];=/*+-';
+const fontSize = 14;
+let columns = Math.floor(matrixCanvas.width / fontSize);
+let drops = Array(columns).fill(1);
+
+function drawMatrix() {
+    matrixCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+    
+    matrixCtx.fillStyle = '#C9A962';
+    matrixCtx.font = fontSize + 'px JetBrains Mono';
+    
+    for (let i = 0; i < drops.length; i++) {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        matrixCtx.fillText(char, i * fontSize, drops[i] * fontSize);
+        
+        if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+}
+setInterval(drawMatrix, 50);
+
+// ============================================
+// PARTICLE EXPLOSION SYSTEM
+// ============================================
+const particleCanvas = document.getElementById('particleCanvas');
+const ctx = particleCanvas.getContext('2d');
+let particles = [];
+
+function resizeParticleCanvas() {
+    particleCanvas.width = window.innerWidth;
+    particleCanvas.height = window.innerHeight;
+}
+resizeParticleCanvas();
+window.addEventListener('resize', resizeParticleCanvas);
+
+class Particle {
+    constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.size = Math.random() * 6 + 2;
+        this.speedX = (Math.random() - 0.5) * 20;
+        this.speedY = (Math.random() - 0.5) * 20;
+        this.life = 1;
+        this.decay = Math.random() * 0.02 + 0.008;
+        this.gravity = 0.15;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = (Math.random() - 0.5) * 10;
+    }
+    
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.speedY += this.gravity;
+        this.speedX *= 0.98;
+        this.life -= this.decay;
+        this.rotation += this.rotationSpeed;
+    }
+    
+    draw() {
+        ctx.save();
+        ctx.globalAlpha = this.life;
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation * Math.PI / 180);
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = this.color;
+        
+        // Different shapes
+        if (Math.random() > 0.5) {
+            ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+        } else {
+            ctx.beginPath();
+            ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        ctx.restore();
+    }
+}
+
+function createExplosion(x, y, count = 100) {
+    const colors = ['#C9A962', '#E8D5A3', '#FAFAFA', '#FFD700', '#00FFFF', '#FF00FF'];
+    for (let i = 0; i < count; i++) {
+        particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
+    }
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+    particles = particles.filter(p => p.life > 0);
+    particles.forEach(p => {
+        p.update();
+        p.draw();
+    });
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// ============================================
+// CODE RAIN ON CARD BACKS
+// ============================================
+function createCodeRain(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    const rainChars = '01NOBLEFRAME<>{}[];/*+-アイウエオ';
+    
+    for (let i = 0; i < 20; i++) {
+        const column = document.createElement('span');
+        column.className = 'rain-column';
+        column.style.left = (i * 5) + '%';
+        column.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        column.style.animationDelay = Math.random() * 5 + 's';
+        column.style.opacity = Math.random() * 0.5 + 0.1;
+        
+        let text = '';
+        for (let j = 0; j < 40; j++) {
+            text += rainChars[Math.floor(Math.random() * rainChars.length)] + ' ';
+        }
+        column.textContent = text;
+        container.appendChild(column);
+    }
+}
+
+createCodeRain('rain-nico');
+createCodeRain('rain-tobias');
+createCodeRain('rain-tim');
+createCodeRain('rain-secret');
+
+// ============================================
+// CARD FLIP FUNCTION
+// ============================================
+function flipCard(button) {
+    const container = button.closest('.team-card-container');
+    const card = container.querySelector('.team-card');
+    
+    const rect = container.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    // Explosion only when opening
+    if (!card.classList.contains('flipped')) {
+        createExplosion(centerX, centerY, 150);
+    }
+    
+    card.classList.toggle('flipped');
+}
+
+// Also flip when clicking anywhere on card (not on links/buttons)
+document.querySelectorAll('.team-card-container').forEach(container => {
+    container.addEventListener('click', function(e) {
+        if (e.target.closest('a') || e.target.closest('button')) return;
+        
+        const card = this.querySelector('.team-card');
+        const rect = this.getBoundingClientRect();
+        
+        if (!card.classList.contains('flipped')) {
+            createExplosion(rect.left + rect.width/2, rect.top + rect.height/2, 150);
+        }
+        
+        card.classList.toggle('flipped');
+    });
+});
+
+// ============================================
+// MOBILE MENU
+// ============================================
+document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('mobileMenu').classList.toggle('active');
+    this.classList.toggle('active');
+});
+
+// ============================================
+// EASTER EGGS
+// ============================================
+
+// 1. KONAMI CODE: ↑↑↓↓←→←→BA = MATRIX MODE
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+let konamiIndex = 0;
+
+document.addEventListener('keydown', (e) => {
+    if (e.code === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+            activateMatrixMode();
+            konamiIndex = 0;
+        }
+    } else {
+        konamiIndex = 0;
+    }
+});
+
+function activateMatrixMode() {
+    document.body.classList.toggle('matrix-mode');
+    createExplosion(window.innerWidth / 2, window.innerHeight / 2, 300);
+    showHint('// MATRIX MODE ACTIVATED!');
+}
+
+// 2. LOGO CLICK 7x = DISCO MODE
+let logoClicks = 0;
+let logoClickTimer;
+
+document.getElementById('logo').addEventListener('click', (e) => {
+    e.preventDefault();
+    logoClicks++;
+    
+    clearTimeout(logoClickTimer);
+    logoClickTimer = setTimeout(() => logoClicks = 0, 2000);
+    
+    if (logoClicks >= 7) {
+        activateDiscoMode();
+        logoClicks = 0;
+    }
+});
+
+function activateDiscoMode() {
+    document.body.classList.toggle('disco-mode');
+    createExplosion(window.innerWidth / 2, 100, 200);
+    showHint('// DISCO MODE!!! 🪩');
+    
+    // Auto-disable after 10 seconds
+    setTimeout(() => {
+        document.body.classList.remove('disco-mode');
+    }, 10000);
+}
+
+// 3. TYPE "nobleframe" = REVEAL SECRET TEAM MEMBER
+let typedChars = '';
+
+document.addEventListener('keypress', (e) => {
+    typedChars += e.key.toLowerCase();
+    typedChars = typedChars.slice(-10);
+    
+    if (typedChars === 'nobleframe') {
+        revealSecretMember();
+        typedChars = '';
+    }
+});
+
+function revealSecretMember() {
+    const secretCard = document.getElementById('secretCard');
+    if (secretCard.classList.contains('revealed')) return;
+    
+    secretCard.classList.add('revealed');
+    createExplosion(window.innerWidth / 2, window.innerHeight / 2, 500);
+    showHint('// SECRET MEMBER UNLOCKED! 🤖');
+    
+    // Scroll to secret card
+    setTimeout(() => {
+        secretCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 500);
+}
+
+// 4. TRIPLE CLICK = GLITCH FLASH
+document.addEventListener('click', (e) => {
+    if (e.detail === 3) {
+        document.body.style.animation = 'none';
+        document.body.style.filter = 'invert(1)';
+        createExplosion(e.clientX, e.clientY, 100);
+        
+        setTimeout(() => {
+            document.body.style.filter = '';
+        }, 150);
+    }
+});
+
+// 5. HOLD CARD 3 SECONDS = MEGA EXPLOSION
+let holdTimer;
+
+document.querySelectorAll('.team-card-container').forEach(container => {
+    container.addEventListener('mousedown', function(e) {
+        const rect = this.getBoundingClientRect();
+        holdTimer = setTimeout(() => {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    createExplosion(
+                        rect.left + Math.random() * rect.width,
+                        rect.top + Math.random() * rect.height,
+                        50
+                    );
+                }, i * 100);
+            }
+            showHint('// MEGA EXPLOSION! 💥');
+        }, 3000);
+    });
+    
+    container.addEventListener('mouseup', () => clearTimeout(holdTimer));
+    container.addEventListener('mouseleave', () => clearTimeout(holdTimer));
+});
+
+// HINT DISPLAY
+function showHint(text) {
+    const hint = document.getElementById('easterHint');
+    hint.textContent = text;
+    hint.classList.add('show');
+    setTimeout(() => hint.classList.remove('show'), 3000);
+}
+
+// Show initial hint after 5 seconds
+setTimeout(() => {
+    showHint('// try konami code...');
+}, 5000);
+
+// ============================================
+// AMBIENT PARTICLES
+// ============================================
+function createAmbientParticle() {
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+    particles.push(new Particle(x, y, 'rgba(201,169,98,0.3)'));
+}
+
+setInterval(createAmbientParticle, 500);
+
+// ============================================
+// RESIZE HANDLERS
+// ============================================
+window.addEventListener('resize', () => {
+    columns = Math.floor(matrixCanvas.width / fontSize);
+    drops = Array(columns).fill(1);
+});
+</script>
+
+</body>
+</html>

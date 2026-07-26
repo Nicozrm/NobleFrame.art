@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referenzen – NobleFrame | Case Studies</title>
+    <meta name="description" content="Interaktive Case Studies mit Vorher-Nachher-Vergleichen und messbaren Ergebnissen.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23000' width='32' height='32'/%3E%3Crect x='2' y='2' width='28' height='28' fill='none' stroke='%23C9A962' stroke-width='2'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--gold:#C9A962;--gold-light:#E8D5A3;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.45);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%);--success:#22c55e;--danger:#ef4444}
+        html{scroll-behavior:smooth}
+        body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);line-height:1.6}
+        .bg-effects{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}.glow-1{position:absolute;width:600px;height:600px;background:rgba(201,169,98,.05);border-radius:50%;filter:blur(150px);top:-200px;right:-100px}
+        
+        .nav-wrapper{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(0,0,0,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,98,.1)}
+        .nav-main{display:flex;justify-content:space-between;align-items:center;padding:20px 60px}
+        .logo{display:flex;align-items:center;gap:15px;text-decoration:none}
+        .logo-icon{width:45px;height:45px}
+        .logo-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:8px;color:var(--white);text-transform:uppercase}
+        .nav-links{display:flex;gap:8px;list-style:none}
+        .nav-links>li>a{padding:12px 18px;color:var(--white-muted);text-decoration:none;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;transition:all .3s;border:1px solid transparent}
+        .nav-links>li>a:hover,.nav-links>li>a.active{color:var(--gold-light);border-color:rgba(201,169,98,.2);background:rgba(201,169,98,.05)}
+        .nav-cta{padding:14px 30px;background:var(--gold);color:var(--black);font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);transition:all .4s}
+        .nav-cta:hover{background:transparent;color:var(--gold)}
+        .nav-mobile-toggle{display:none;flex-direction:column;gap:5px;padding:12px;background:transparent;border:1px solid rgba(201,169,98,.3);cursor:pointer}
+        .nav-mobile-toggle span{width:24px;height:2px;background:var(--gold)}
+        .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.98);z-index:999;padding:100px 40px;opacity:0;visibility:hidden;transition:all .4s}
+        .mobile-menu.active{opacity:1;visibility:visible}
+        .mobile-menu-links{display:flex;flex-direction:column;gap:15px}
+        .mobile-menu-links a{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);text-decoration:none}
+
+        .page-hero{padding:160px 60px 80px;text-align:center;position:relative;z-index:10}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:rgba(201,169,98,.08);border:1px solid rgba(201,169,98,.2);margin-bottom:25px}
+        .hero-badge span{font-size:.75rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase}
+        .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;margin-bottom:20px}
+        .hero-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero-subtitle{color:var(--white-muted);font-size:1.1rem;max-width:700px;margin:0 auto}
+
+        /* CASE STUDY */
+        .case-study{padding:80px 60px;position:relative;z-index:10;border-bottom:1px solid rgba(201,169,98,.1)}
+        .case-study:last-of-type{border-bottom:none}
+        .case-container{max-width:1400px;margin:0 auto}
+        .case-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:50px;flex-wrap:wrap;gap:30px}
+        .case-info{max-width:600px}
+        .case-badge{display:inline-flex;padding:6px 14px;background:rgba(201,169,98,.1);font-size:.7rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:15px}
+        .case-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:15px}
+        .case-title span{color:var(--gold)}
+        .case-desc{color:var(--white-muted);font-size:1rem;line-height:1.8}
+        .case-stats{display:flex;gap:40px}
+        .stat-item{text-align:center}
+        .stat-value{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;color:var(--success)}
+        .stat-value.gold{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .stat-label{font-size:.75rem;color:var(--white-subtle);letter-spacing:1px;text-transform:uppercase;margin-top:5px}
+
+        /* BEFORE/AFTER SLIDER */
+        .comparison-section{margin-bottom:50px}
+        .comparison-label{display:flex;justify-content:space-between;margin-bottom:15px}
+        .comparison-label span{font-size:.8rem;color:var(--white-muted);letter-spacing:1px;text-transform:uppercase}
+        .comparison-label span:first-child{color:var(--danger)}
+        .comparison-label span:last-child{color:var(--success)}
+        
+        .comparison-slider{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(201,169,98,.2);cursor:ew-resize;user-select:none}
+        .comparison-slider::before{content:'← Ziehen →';position:absolute;bottom:15px;left:50%;transform:translateX(-50%);padding:8px 16px;background:rgba(0,0,0,.8);color:var(--gold);font-size:.75rem;letter-spacing:1px;z-index:20;pointer-events:none;opacity:.8}
+        
+        .comparison-before,.comparison-after{position:absolute;top:0;left:0;width:100%;height:100%}
+        .comparison-before{clip-path:inset(0 50% 0 0)}
+        .comparison-after{background:#0a0a0a}
+        
+        /* Website Mockups für Before/After */
+        .mockup-container{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:20px}
+        .site-mockup{width:90%;height:90%;border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+        .mockup-bar{height:30px;display:flex;align-items:center;padding:0 12px;gap:6px}
+        .mockup-dot{width:10px;height:10px;border-radius:50%}
+        .mockup-content{height:calc(100% - 30px);padding:15px;display:flex;flex-direction:column}
+        
+        /* BEFORE Styles - Outdated */
+        .before-mockup{background:#f5f5f5}
+        .before-mockup .mockup-bar{background:#e0e0e0}
+        .before-mockup .mockup-dot{background:#ccc}
+        .before-mockup .mockup-content{background:#fff}
+        .before-mockup .mock-nav{display:flex;gap:15px;padding:10px;background:#2c3e50;margin-bottom:15px}
+        .before-mockup .mock-nav-item{color:#fff;font-size:11px;font-family:Arial,sans-serif}
+        .before-mockup .mock-hero{background:linear-gradient(135deg,#667eea,#764ba2);padding:30px;text-align:center;margin-bottom:15px}
+        .before-mockup .mock-hero h2{color:#fff;font-size:16px;font-family:Arial,sans-serif;font-weight:bold;margin-bottom:10px}
+        .before-mockup .mock-hero p{color:rgba(255,255,255,.7);font-size:10px;font-family:Arial,sans-serif}
+        .before-mockup .mock-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:1}
+        .before-mockup .mock-card{background:#f8f8f8;border:1px solid #ddd;padding:10px;display:flex;flex-direction:column}
+        .before-mockup .mock-card-img{background:#e0e0e0;height:40px;margin-bottom:8px}
+        .before-mockup .mock-card-title{height:8px;background:#ccc;margin-bottom:5px;width:80%}
+        .before-mockup .mock-card-text{height:6px;background:#e5e5e5;width:100%}
+        
+        /* AFTER Styles - Premium */
+        .after-mockup{background:#0a0a0a}
+        .after-mockup .mockup-bar{background:linear-gradient(180deg,#1a1a1a,#0f0f0f)}
+        .after-mockup .mockup-dot:nth-child(1){background:#ff5f57}
+        .after-mockup .mockup-dot:nth-child(2){background:#febc2e}
+        .after-mockup .mockup-dot:nth-child(3){background:#28c840}
+        .after-mockup .mockup-content{background:linear-gradient(180deg,#0a0a0a,#111)}
+        .after-mockup .mock-nav{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;border-bottom:1px solid rgba(201,169,98,.1)}
+        .after-mockup .mock-logo{width:80px;height:16px;background:var(--gradient);border-radius:2px}
+        .after-mockup .mock-nav-links{display:flex;gap:20px}
+        .after-mockup .mock-nav-item{width:40px;height:6px;background:rgba(255,255,255,.15);border-radius:2px}
+        .after-mockup .mock-hero{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px}
+        .after-mockup .mock-hero-badge{padding:5px 12px;background:rgba(201,169,98,.1);border:1px solid rgba(201,169,98,.2);margin-bottom:15px}
+        .after-mockup .mock-hero-badge span{font-size:8px;color:var(--gold);letter-spacing:2px}
+        .after-mockup .mock-hero h2{font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;font-weight:300;margin-bottom:10px}
+        .after-mockup .mock-hero h2 span{color:var(--gold)}
+        .after-mockup .mock-hero p{font-size:9px;color:rgba(255,255,255,.6);margin-bottom:15px}
+        .after-mockup .mock-cta{padding:8px 20px;background:var(--gold);color:#000;font-size:8px;font-weight:600;letter-spacing:1px}
+        .after-mockup .mock-cards{display:flex;gap:15px;margin-top:auto;padding:15px}
+        .after-mockup .mock-card{flex:1;padding:15px;background:rgba(201,169,98,.03);border:1px solid rgba(201,169,98,.1)}
+        .after-mockup .mock-card-icon{width:24px;height:24px;border:1px solid rgba(201,169,98,.3);margin-bottom:10px}
+        .after-mockup .mock-card-title{height:8px;background:rgba(255,255,255,.2);margin-bottom:6px;width:70%}
+        .after-mockup .mock-card-text{height:5px;background:rgba(255,255,255,.08);width:100%}
+        
+        .slider-handle{position:absolute;top:0;bottom:0;width:4px;background:var(--gold);left:50%;transform:translateX(-50%);z-index:15;cursor:ew-resize}
+        .slider-handle::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center}
+        .slider-handle::after{content:'⟷';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--black);font-size:18px;font-weight:bold}
+
+        /* METRICS TIMELINE */
+        .metrics-section{margin-bottom:40px}
+        .metrics-title{font-size:.9rem;color:var(--white);margin-bottom:20px;font-weight:500}
+        .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+        .metric-card{padding:25px;background:rgba(201,169,98,.03);border:1px solid rgba(201,169,98,.1);text-align:center;position:relative;overflow:hidden}
+        .metric-card::before{content:'';position:absolute;bottom:0;left:0;height:3px;background:var(--gradient);width:0;transition:width 1s ease}
+        .metric-card.animated::before{width:100%}
+        .metric-icon{width:40px;height:40px;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,169,98,.2)}
+        .metric-icon svg{width:20px;height:20px;stroke:var(--gold)}
+        .metric-before{font-size:.85rem;color:var(--danger);margin-bottom:5px}
+        .metric-after{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--success);margin-bottom:5px}
+        .metric-label{font-size:.75rem;color:var(--white-subtle);letter-spacing:1px;text-transform:uppercase}
+
+        /* TECH & PROCESS */
+        .case-details{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+        .detail-section h4{font-size:.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+        .tech-stack{display:flex;flex-wrap:wrap;gap:10px}
+        .tech-tag{padding:8px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);font-size:.8rem;color:var(--white-muted)}
+        .process-list{list-style:none}
+        .process-list li{padding:12px 0;border-bottom:1px solid rgba(201,169,98,.05);font-size:.9rem;color:var(--white-muted);display:flex;align-items:center;gap:12px}
+        .process-list li::before{content:'';width:8px;height:8px;background:var(--gold);opacity:.5}
+
+        /* CTA */
+        .cta-section{padding:120px 60px;text-align:center;background:linear-gradient(180deg,transparent,rgba(201,169,98,.03));position:relative;z-index:10}
+        .cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:20px}
+        .cta-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .cta-text{color:var(--white-muted);font-size:1.1rem;max-width:600px;margin:0 auto 40px}
+        .cta-btn{display:inline-flex;padding:18px 45px;background:var(--gold);color:var(--black);font-size:.9rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);transition:all .4s}
+        .cta-btn:hover{background:transparent;color:var(--gold)}
+
+        /* FOOTER */
+        .footer{padding:60px;border-top:1px solid rgba(201,169,98,.1);position:relative;z-index:10}
+        .footer-main{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.5fr;gap:40px;max-width:1400px;margin:0 auto 40px}
+        .footer-logo{display:flex;align-items:center;gap:15px;margin-bottom:15px}
+        .footer-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.2rem;letter-spacing:5px;color:var(--white)}
+        .footer-tagline{color:var(--white-muted);font-size:.85rem}
+        .footer-section h4{font-size:.75rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+        .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+        .footer-links a,.footer-links li{color:var(--white-muted);text-decoration:none;font-size:.85rem}
+        .footer-links a:hover{color:var(--gold)}
+        .social-links{display:flex;gap:12px}
+        .social-link{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,169,98,.3);color:var(--white-muted);transition:all .3s}
+        .social-link:hover{background:var(--gold);border-color:var(--gold);color:var(--black)}
+        .social-link svg{width:18px;height:18px}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:30px;border-top:1px solid rgba(201,169,98,.1);max-width:1400px;margin:0 auto}
+        .copyright{color:var(--white-subtle);font-size:.8rem}
+        .copyright span{color:var(--gold)}
+        .legal-links{display:flex;gap:25px}
+        .legal-links a{color:var(--white-subtle);text-decoration:none;font-size:.75rem}
+
+        @media(max-width:1200px){.case-stats{gap:25px}.metrics-grid{grid-template-columns:repeat(2,1fr)}.case-details{grid-template-columns:1fr}.footer-main{grid-template-columns:1fr 1fr 1fr}}
+        @media(max-width:1024px){.nav-links,.nav-cta{display:none}.nav-mobile-toggle{display:flex}.nav-main{padding:15px 30px}.page-hero{padding:140px 40px 60px}.case-study{padding:60px 40px}.case-header{flex-direction:column}}
+        @media(max-width:768px){.page-hero{padding:120px 25px 50px}.case-study{padding:40px 25px}.case-stats{flex-wrap:wrap;gap:20px}.metrics-grid{grid-template-columns:1fr}.footer{padding:40px 25px}.footer-main{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:15px;text-align:center}.cta-section{padding:80px 25px}}
+    </style>
+</head>
+<body>
+<div class="bg-effects"><div class="glow-1"></div></div>
+
+<div class="nav-wrapper">
+    <nav class="nav-main">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><svg viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/><rect x="25" y="25" width="50" height="50" fill="none" stroke="#C9A962" stroke-width="1.5" opacity=".6"/></svg></div>
+            <span class="logo-text">NobleFrame</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="referenzen.html" class="active">Referenzen</a></li>
+            <li><a href="kompetenzen.html">Kompetenzen</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="karriere.html">Karriere</a></li>
+        </ul>
+        <a href="index.html#kontakt" class="nav-cta">Projekt starten</a>
+        <button class="nav-mobile-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    </nav>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links">
+        <a href="index.html">Home</a><a href="referenzen.html">Referenzen</a><a href="kompetenzen.html">Kompetenzen</a><a href="portfolio.html">Portfolio</a><a href="tools.html">Tools</a><a href="labs.html">Labs</a><a href="faq.html">FAQ</a><a href="karriere.html">Karriere</a>
+    </div>
+</div>
+
+<section class="page-hero">
+    <div class="hero-badge"><span>Case Studies</span></div>
+    <h1 class="hero-title">Unsere <span>Referenzen</span></h1>
+    <p class="hero-subtitle">Interaktive Vorher-Nachher-Vergleiche aus realen Projekten. Kundennamen wurden auf Wunsch anonymisiert. Ziehen Sie den Slider und erleben Sie die Transformation.</p>
+</section>
+
+<!-- CASE STUDY 1: LuxuryRetail -->
+<section class="case-study" id="luxuryretail">
+    <div class="case-container">
+        <div class="case-header">
+            <div class="case-info">
+                <div class="case-badge">E-Commerce Relaunch</div>
+                <h2 class="case-title">Luxury<span>Retail</span></h2>
+                <p class="case-desc">Komplette Transformation eines veralteten Online-Shops zu einer High-Performance E-Commerce Plattform. Headless-Architektur, optimierte Customer Journey und Premium-UX.</p>
+            </div>
+            <div class="case-stats">
+                <div class="stat-item">
+                    <div class="stat-value">+312%</div>
+                    <div class="stat-label">Umsatz</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">+68%</div>
+                    <div class="stat-label">Conversion</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value gold">1.2s</div>
+                    <div class="stat-label">Ladezeit</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-section">
+            <div class="comparison-label">
+                <span>Vorher – Veraltet</span>
+                <span>Nachher – Premium</span>
+            </div>
+            <div class="comparison-slider" data-slider="1">
+                <div class="comparison-after">
+                    <div class="mockup-container">
+                        <div class="site-mockup after-mockup">
+                            <div class="mockup-bar">
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                            </div>
+                            <div class="mockup-content">
+                                <div class="mock-nav">
+                                    <div class="mock-logo"></div>
+                                    <div class="mock-nav-links">
+                                        <div class="mock-nav-item"></div>
+                                        <div class="mock-nav-item"></div>
+                                        <div class="mock-nav-item"></div>
+                                    </div>
+                                </div>
+                                <div class="mock-hero">
+                                    <div class="mock-hero-badge"><span>LUXURY COLLECTION</span></div>
+                                    <h2>Exklusive <span>Mode</span></h2>
+                                    <p>Handverlesene Premium-Stücke für anspruchsvolle Kunden</p>
+                                    <div class="mock-cta">ENTDECKEN</div>
+                                </div>
+                                <div class="mock-cards">
+                                    <div class="mock-card">
+                                        <div class="mock-card-icon"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                    <div class="mock-card">
+                                        <div class="mock-card-icon"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                    <div class="mock-card">
+                                        <div class="mock-card-icon"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-before">
+                    <div class="mockup-container" style="background:#f0f0f0">
+                        <div class="site-mockup before-mockup">
+                            <div class="mockup-bar">
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                            </div>
+                            <div class="mockup-content">
+                                <div class="mock-nav">
+                                    <span class="mock-nav-item">HOME</span>
+                                    <span class="mock-nav-item">SHOP</span>
+                                    <span class="mock-nav-item">ABOUT</span>
+                                    <span class="mock-nav-item">CONTACT</span>
+                                </div>
+                                <div class="mock-hero">
+                                    <h2>Welcome to Our Store!</h2>
+                                    <p>Check out our latest products</p>
+                                </div>
+                                <div class="mock-grid">
+                                    <div class="mock-card">
+                                        <div class="mock-card-img"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                    <div class="mock-card">
+                                        <div class="mock-card-img"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                    <div class="mock-card">
+                                        <div class="mock-card-img"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-handle"></div>
+            </div>
+        </div>
+
+        <div class="metrics-section">
+            <div class="metrics-title">Messbare Ergebnisse nach 6 Monaten</div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                    <div class="metric-before">Vorher: 4.8s</div>
+                    <div class="metric-after">1.2s</div>
+                    <div class="metric-label">Ladezeit</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+                    <div class="metric-before">Vorher: 1.2%</div>
+                    <div class="metric-after">3.8%</div>
+                    <div class="metric-label">Conversion Rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                    <div class="metric-before">Vorher: €89</div>
+                    <div class="metric-after">€156</div>
+                    <div class="metric-label">Ø Warenkorbwert</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
+                    <div class="metric-before">Vorher: 34</div>
+                    <div class="metric-after">98</div>
+                    <div class="metric-label">PageSpeed Score</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-details">
+            <div class="detail-section">
+                <h4>Tech Stack</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">Next.js 14</span>
+                    <span class="tech-tag">Shopify Plus</span>
+                    <span class="tech-tag">Sanity CMS</span>
+                    <span class="tech-tag">Vercel</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                </div>
+            </div>
+            <div class="detail-section">
+                <h4>Prozess</h4>
+                <ul class="process-list">
+                    <li>Discovery & UX-Audit</li>
+                    <li>Headless-Architektur Design</li>
+                    <li>UI/UX Redesign & Prototyping</li>
+                    <li>Entwicklung & Testing</li>
+                    <li>Migration & Go-Live</li>
+                    <li>Optimierung & A/B-Testing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CASE STUDY 2: FinanceFlow -->
+<section class="case-study" id="financeflow">
+    <div class="case-container">
+        <div class="case-header">
+            <div class="case-info">
+                <div class="case-badge">SaaS Platform</div>
+                <h2 class="case-title">Finance<span>Flow</span></h2>
+                <p class="case-desc">UX-Transformation einer FinTech-Plattform. Fokus auf Onboarding-Optimierung, Dashboard-Redesign und Churn-Reduktion durch bessere User Experience.</p>
+            </div>
+            <div class="case-stats">
+                <div class="stat-item">
+                    <div class="stat-value">+185%</div>
+                    <div class="stat-label">Signups</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">-45%</div>
+                    <div class="stat-label">Churn</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value gold">92</div>
+                    <div class="stat-label">NPS Score</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-section">
+            <div class="comparison-label">
+                <span>Vorher – Komplex</span>
+                <span>Nachher – Klar</span>
+            </div>
+            <div class="comparison-slider" data-slider="2">
+                <div class="comparison-after">
+                    <div class="mockup-container">
+                        <div class="site-mockup after-mockup" style="--gold:#64ffda">
+                            <div class="mockup-bar">
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                            </div>
+                            <div class="mockup-content" style="background:linear-gradient(180deg,#0a192f,#112240)">
+                                <div class="mock-nav">
+                                    <div class="mock-logo" style="background:linear-gradient(135deg,#64ffda,#4fd1c5)"></div>
+                                    <div class="mock-nav-links">
+                                        <div class="mock-nav-item"></div>
+                                        <div class="mock-nav-item"></div>
+                                    </div>
+                                </div>
+                                <div class="mock-hero">
+                                    <div class="mock-hero-badge" style="border-color:rgba(100,255,218,.2);background:rgba(100,255,218,.1)"><span style="color:#64ffda">FINTECH 2.0</span></div>
+                                    <h2>Smart <span style="color:#64ffda">Finance</span></h2>
+                                    <p>Ihre Finanzen. Intelligent verwaltet.</p>
+                                    <div class="mock-cta" style="background:#64ffda">STARTEN</div>
+                                </div>
+                                <div class="mock-cards">
+                                    <div class="mock-card" style="border-color:rgba(100,255,218,.1);background:rgba(100,255,218,.03)">
+                                        <div class="mock-card-icon" style="border-color:rgba(100,255,218,.3)"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                    <div class="mock-card" style="border-color:rgba(100,255,218,.1);background:rgba(100,255,218,.03)">
+                                        <div class="mock-card-icon" style="border-color:rgba(100,255,218,.3)"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                    <div class="mock-card" style="border-color:rgba(100,255,218,.1);background:rgba(100,255,218,.03)">
+                                        <div class="mock-card-icon" style="border-color:rgba(100,255,218,.3)"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-before">
+                    <div class="mockup-container" style="background:#f0f0f0">
+                        <div class="site-mockup before-mockup">
+                            <div class="mockup-bar">
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                            </div>
+                            <div class="mockup-content">
+                                <div class="mock-nav" style="background:#1a365d">
+                                    <span class="mock-nav-item">Dashboard</span>
+                                    <span class="mock-nav-item">Reports</span>
+                                    <span class="mock-nav-item">Settings</span>
+                                    <span class="mock-nav-item">Help</span>
+                                </div>
+                                <div class="mock-hero" style="background:linear-gradient(135deg,#2b6cb0,#1a365d)">
+                                    <h2>Financial Dashboard</h2>
+                                    <p>Manage your accounts</p>
+                                </div>
+                                <div class="mock-grid">
+                                    <div class="mock-card">
+                                        <div class="mock-card-img"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                    <div class="mock-card">
+                                        <div class="mock-card-img"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                    <div class="mock-card">
+                                        <div class="mock-card-img"></div>
+                                        <div class="mock-card-title"></div>
+                                        <div class="mock-card-text"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-handle"></div>
+            </div>
+        </div>
+
+        <div class="case-details">
+            <div class="detail-section">
+                <h4>Tech Stack</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">AWS</span>
+                </div>
+            </div>
+            <div class="detail-section">
+                <h4>Fokus</h4>
+                <ul class="process-list">
+                    <li>Onboarding Flow Redesign</li>
+                    <li>Dashboard UX Optimierung</li>
+                    <li>Mobile-First Approach</li>
+                    <li>Performance Tuning</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <h2 class="cta-title">Ihr Projekt als nächste <span>Success Story</span>?</h2>
+    <p class="cta-text">Lassen Sie uns besprechen, wie wir auch Ihre digitale Präsenz transformieren können.</p>
+    <a href="index.html#kontakt" class="cta-btn">Projekt anfragen</a>
+</section>
+
+<footer class="footer">
+    <div class="footer-main">
+        <div>
+            <div class="footer-logo"><svg width="35" height="35" viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/></svg><span class="footer-logo-text">NOBLEFRAME</span></div>
+            <p class="footer-tagline">Premium Digital Atelier</p>
+        </div>
+        <div class="footer-section"><h4>Navigation</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="referenzen.html">Referenzen</a></li><li><a href="kompetenzen.html">Kompetenzen</a></li></ul></div>
+        <div class="footer-section"><h4>Mehr</h4><ul class="footer-links"><li><a href="tools.html">Tools</a></li><li><a href="labs.html">Labs</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+        <div class="footer-section">
+            <h4>Folge uns</h4>
+            <div class="social-links">
+                <a href="https://instagram.com/nobleframe.de" target="_blank" class="social-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                <a href="https://x.com/nobleframe_de" target="_blank" class="social-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-section"><h4>Kontakt</h4><ul class="footer-links"><li><a href="mailto:info@nobleframe.de">info@nobleframe.de</a></li><li>48565 Steinfurt</li></ul></div>
+    </div>
+    <div class="footer-bottom"><p class="copyright">© 2025 <span>NobleFrame</span></p><div class="legal-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div></div>
+</footer>
+
+<script>
+document.getElementById('navToggle').addEventListener('click',()=>{document.getElementById('mobileMenu').classList.toggle('active')});
+
+// Before/After Slider
+document.querySelectorAll('.comparison-slider').forEach(slider => {
+    const handle = slider.querySelector('.slider-handle');
+    const before = slider.querySelector('.comparison-before');
+    let isDragging = false;
+    
+    function updateSlider(x) {
+        const rect = slider.getBoundingClientRect();
+        let percent = ((x - rect.left) / rect.width) * 100;
+        percent = Math.max(0, Math.min(100, percent));
+        handle.style.left = percent + '%';
+        before.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+    }
+    
+    slider.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+    slider.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); });
+    
+    document.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
+    document.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); });
+    
+    document.addEventListener('mouseup', () => { isDragging = false; });
+    document.addEventListener('touchend', () => { isDragging = false; });
+});
+
+// Animate metrics on scroll
+const metricObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.metric-card').forEach(card => metricObserver.observe(card));
+</script>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+        <div class="cookie-text">
+            <h4>Cookie-Einstellungen</h4>
+            <p>Wir verwenden technisch notwendige Cookies für den Betrieb dieser Website. <a href="datenschutz.html">Mehr erfahren</a></p>
+        </div>
+        <div class="cookie-actions">
+            <button class="cookie-btn cookie-accept" id="cookieAccept">Akzeptieren</button>
+            <button class="cookie-btn cookie-settings" id="cookieSettings">Einstellungen</button>
+        </div>
+    </div>
+</div>
+<style>
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);border-top:1px solid rgba(201,169,98,.2);padding:20px 40px;z-index:10000;transform:translateY(100%);transition:transform .4s ease;backdrop-filter:blur(20px)}
+.cookie-banner.active{transform:translateY(0)}
+.cookie-content{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.cookie-text h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#C9A962;margin-bottom:5px}
+.cookie-text p{color:rgba(250,250,250,.75);font-size:.85rem;margin:0}
+.cookie-text a{color:#C9A962;text-decoration:none}
+.cookie-actions{display:flex;gap:12px}
+.cookie-btn{padding:12px 25px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:1px;cursor:pointer;transition:all .3s;border:none}
+.cookie-accept{background:#C9A962;color:#000}
+.cookie-accept:hover{background:#E8D5A3}
+.cookie-settings{background:transparent;border:1px solid rgba(201,169,98,.3);color:rgba(250,250,250,.75)}
+.cookie-settings:hover{border-color:#C9A962;color:#C9A962}
+@media(max-width:768px){.cookie-banner{padding:20px}.cookie-content{flex-direction:column;text-align:center}.cookie-actions{width:100%;justify-content:center}}
+</style>
+<script>
+const cookieBanner=document.getElementById("cookieBanner");const cookieAccept=document.getElementById("cookieAccept");const cookieSettings=document.getElementById("cookieSettings");function getCookie(e){const t="; "+document.cookie;const n=t.split("; "+e+"=");if(n.length===2)return n.pop().split(";").shift()}function setCookie(e,t,n){const o=new Date;o.setTime(o.getTime()+n*24*60*60*1e3);document.cookie=e+"="+t+";expires="+o.toUTCString()+";path=/;SameSite=Lax"}if(!getCookie("cookie_consent")){setTimeout(function(){cookieBanner.classList.add("active")},1e3)}cookieAccept.addEventListener("click",function(){setCookie("cookie_consent","accepted",365);cookieBanner.classList.remove("active")});cookieSettings.addEventListener("click",function(){window.location.href="datenschutz.html#cookies"});
+</script>
+
+</body>
+</html>

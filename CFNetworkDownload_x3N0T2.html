@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie-Richtlinie | NobleFrame</title>
+    <meta name="description" content="Cookie-Richtlinie von NobleFrame.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23000' width='100' height='100'/%3E%3Crect x='5' y='5' width='90' height='90' fill='none' stroke='%23C9A962' stroke-width='3'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}:root{--gold:#C9A962;--gold-light:#E8D5A3;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.45);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%)}html{scroll-behavior:smooth}body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;line-height:1.6}
+        .bg-effects{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}.glow{position:absolute;border-radius:50%;filter:blur(120px)}.glow-1{width:500px;height:500px;background:rgba(201,169,98,.06);top:-200px;right:-100px}.grid-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(201,169,98,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,98,.012) 1px,transparent 1px);background-size:80px 80px}
+        .nav{position:fixed;top:0;left:0;width:100%;padding:25px 60px;display:flex;justify-content:space-between;align-items:center;z-index:1000;background:rgba(0,0,0,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,98,.1)}.logo{display:flex;align-items:center;gap:15px;text-decoration:none}.logo-icon{width:45px;height:45px}.logo-icon svg{width:100%;height:100%}.frame-outer{stroke:var(--gold);stroke-width:2;fill:none}.frame-inner{stroke:var(--gold);stroke-width:1.5;fill:none;opacity:.6}.frame-lines{stroke:var(--gold);stroke-width:.5;opacity:.4}.logo-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:8px;color:var(--white);text-transform:uppercase}.nav-links{display:flex;gap:35px;list-style:none}.nav-links a{color:var(--white-muted);text-decoration:none;font-size:.85rem;font-weight:400;letter-spacing:2px;text-transform:uppercase;transition:all .3s ease}.nav-links a:hover{color:var(--gold-light)}.nav-cta{padding:12px 30px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .4s ease}.nav-cta:hover{background:var(--gold);color:var(--black)}
+        .menu-toggle{display:none;flex-direction:column;gap:6px;cursor:pointer;padding:10px;z-index:1001;background:none;border:none}.menu-toggle span{width:28px;height:2px;background:var(--gold);transition:all .3s ease;display:block}.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}.menu-toggle.active span:nth-child(2){opacity:0}.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}.mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.98);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .4s ease}.mobile-menu.active{opacity:1;visibility:visible}.mobile-menu-links{display:flex;flex-direction:column;align-items:center;gap:25px}.mobile-menu-links a{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--white);text-decoration:none;letter-spacing:3px;transition:color .3s ease}.mobile-menu-links a:hover{color:var(--gold)}
+        .legal-page{padding:160px 60px 100px;position:relative;z-index:10;max-width:900px;margin:0 auto}
+        .legal-page h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;margin-bottom:15px}.legal-page h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .legal-updated{font-size:.85rem;color:var(--white-subtle);margin-bottom:50px}
+        .legal-section{margin-bottom:50px}.legal-section h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--gold);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(201,169,98,.15)}.legal-section h3{font-size:1rem;font-weight:500;color:var(--white);margin:25px 0 12px}.legal-section p{color:var(--white-muted);font-size:.95rem;line-height:1.8;margin-bottom:15px}.legal-section a{color:var(--gold);text-decoration:none;transition:color .3s ease}.legal-section a:hover{color:var(--gold-light)}.legal-section ul{color:var(--white-muted);font-size:.95rem;line-height:1.8;margin:15px 0 15px 25px}.legal-section li{margin-bottom:8px}
+        .cookie-table{width:100%;border-collapse:collapse;margin:25px 0}.cookie-table th,.cookie-table td{padding:15px;text-align:left;border-bottom:1px solid rgba(201,169,98,.15)}.cookie-table th{color:var(--gold);font-weight:500;font-size:.85rem;letter-spacing:1px;text-transform:uppercase}.cookie-table td{color:var(--white-muted);font-size:.9rem}.cookie-table tr:hover td{background:rgba(201,169,98,.03)}
+        .footer-mini{padding:35px 60px;border-top:1px solid rgba(201,169,98,.1);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:10}.footer-mini p{color:var(--white-subtle);font-size:.85rem}.footer-mini span{color:var(--gold)}.footer-links{display:flex;gap:25px}.footer-links a{color:var(--white-subtle);text-decoration:none;font-size:.8rem;transition:color .3s ease}.footer-links a:hover{color:var(--gold)}
+        @media(max-width:1024px){.nav-links,.nav-cta{display:none}.menu-toggle{display:flex}.legal-page{padding:140px 40px 80px}}
+        @media(max-width:768px){.nav{padding:20px 25px}.logo-text{font-size:1.2rem;letter-spacing:5px}.legal-page{padding:120px 25px 60px}.cookie-table{font-size:.8rem}.cookie-table th,.cookie-table td{padding:10px 8px}.footer-mini{flex-direction:column;gap:15px;text-align:center;padding:30px 25px}}
+    </style>
+</head>
+<body>
+<div class="bg-effects"><div class="glow glow-1"></div><div class="grid-overlay"></div></div>
+<nav class="nav" id="navbar">
+    <a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect class="frame-outer" x="5" y="5" width="90" height="90"/><rect class="frame-inner" x="25" y="25" width="50" height="50"/><line class="frame-lines" x1="50" y1="5" x2="50" y2="95"/><line class="frame-lines" x1="5" y1="50" x2="95" y2="50"/></svg></div><span class="logo-text">NobleFrame</span></a>
+    <ul class="nav-links"><li><a href="about.html">About</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="kompetenzen.html">Kompetenzen</a></li><li><a href="team.html">Team</a></li><li><a href="tools.html">Tools</a></li><li><a href="labs.html">Labs</a></li></ul>
+    <a href="index.html#kontakt" class="nav-cta">Kontakt</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="portfolio.html">Portfolio</a><a href="kompetenzen.html">Kompetenzen</a><a href="team.html">Team</a><a href="tools.html">Tools</a><a href="labs.html">Labs</a><a href="index.html#kontakt">Kontakt</a></div></div>
+
+<main class="legal-page">
+    <h1><span>Cookie-Richtlinie</span></h1>
+    <p class="legal-updated">Stand: Januar 2025</p>
+    
+    <section class="legal-section">
+        <h2>Was sind Cookies?</h2>
+        <p>Cookies sind kleine Textdateien, die von Websites auf Ihrem Computer, Tablet oder Smartphone gespeichert werden. Sie ermöglichen es der Website, Ihre Aktionen und Präferenzen (wie Login, Sprache, Schriftgröße und andere Anzeigeeinstellungen) über einen bestimmten Zeitraum zu speichern, sodass Sie diese nicht bei jedem Besuch der Website oder beim Navigieren zwischen Seiten erneut eingeben müssen.</p>
+    </section>
+    
+    <section class="legal-section">
+        <h2>Wie verwenden wir Cookies?</h2>
+        <p>Unsere Website verwendet verschiedene Arten von Cookies für unterschiedliche Zwecke. Einige Cookies sind notwendig, damit die Website ordnungsgemäß funktioniert, während andere dazu dienen, Ihre Erfahrung zu verbessern oder uns zu helfen, die Website zu optimieren.</p>
+    </section>
+    
+    <section class="legal-section">
+        <h2>Arten von Cookies</h2>
+        
+        <h3>Notwendige Cookies</h3>
+        <p>Diese Cookies sind für das Funktionieren der Website unerlässlich und können in unseren Systemen nicht deaktiviert werden. Sie werden normalerweise nur als Reaktion auf von Ihnen durchgeführte Aktionen gesetzt, die einer Anforderung von Diensten entsprechen, wie z. B. das Festlegen Ihrer Datenschutzeinstellungen, das Anmelden oder das Ausfüllen von Formularen.</p>
+        
+        <table class="cookie-table">
+            <thead>
+                <tr>
+                    <th>Cookie-Name</th>
+                    <th>Zweck</th>
+                    <th>Speicherdauer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>cookie_consent</td>
+                    <td>Speichert Ihre Cookie-Einwilligung</td>
+                    <td>1 Jahr</td>
+                </tr>
+                <tr>
+                    <td>session_id</td>
+                    <td>Sitzungsidentifikation</td>
+                    <td>Sitzungsende</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Funktionale Cookies</h3>
+        <p>Diese Cookies ermöglichen erweiterte Funktionen und Personalisierung der Website. Sie können von uns oder von Drittanbietern gesetzt werden, deren Dienste wir auf unseren Seiten nutzen.</p>
+        
+        <h3>Analytische Cookies</h3>
+        <p>Diese Cookies ermöglichen es uns, Besuche und Verkehrsquellen zu zählen, damit wir die Leistung unserer Website messen und verbessern können. Sie helfen uns zu verstehen, welche Seiten am beliebtesten und welche am wenigsten beliebt sind, und zu sehen, wie sich Besucher auf der Website bewegen.</p>
+        
+        <h3>Marketing-Cookies</h3>
+        <p>Diese Cookies können von unseren Werbepartnern über unsere Website gesetzt werden. Sie können von diesen Unternehmen verwendet werden, um ein Profil Ihrer Interessen zu erstellen und Ihnen relevante Werbung auf anderen Websites zu zeigen. Derzeit verwenden wir keine Marketing-Cookies.</p>
+    </section>
+    
+    <section class="legal-section">
+        <h2>Cookies von Drittanbietern</h2>
+        <p>Wir können Dienste von Drittanbietern nutzen, die möglicherweise eigene Cookies setzen:</p>
+        
+        <h3>Formspree</h3>
+        <p>Für unsere Kontaktformulare nutzen wir Formspree. Dieser Dienst kann funktionale Cookies setzen, um die Formularübermittlung zu verarbeiten. Weitere Informationen finden Sie in der <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Datenschutzerklärung von Formspree</a>.</p>
+        
+        <h3>Google Fonts</h3>
+        <p>Wir verwenden Google Fonts lokal. Es werden keine Verbindungen zu Google-Servern hergestellt und daher auch keine Cookies von Google gesetzt.</p>
+    </section>
+    
+    <section class="legal-section">
+        <h2>Ihre Cookie-Einstellungen verwalten</h2>
+        <p>Sie haben verschiedene Möglichkeiten, Cookies zu kontrollieren und zu löschen:</p>
+        <ul>
+            <li><strong>Browser-Einstellungen:</strong> Die meisten Webbrowser ermöglichen es Ihnen, Cookies über die Einstellungen zu kontrollieren. Sie können Ihren Browser so einstellen, dass er alle Cookies blockiert oder Sie benachrichtigt, wenn eine Website versucht, Cookies zu setzen.</li>
+            <li><strong>Cookies löschen:</strong> Sie können alle Cookies löschen, die sich bereits auf Ihrem Computer befinden, und die meisten Browser so einstellen, dass sie das Speichern von Cookies verhindern.</li>
+            <li><strong>Private/Inkognito-Modus:</strong> Sie können im privaten oder Inkognito-Modus surfen, wodurch nach Beendigung der Sitzung keine Cookies gespeichert werden.</li>
+        </ul>
+        <p>Bitte beachten Sie, dass das Blockieren oder Löschen von Cookies die Funktionalität unserer Website beeinträchtigen kann.</p>
+    </section>
+    
+    <section class="legal-section">
+        <h2>Browser-spezifische Anleitungen</h2>
+        <p>Hier finden Sie Anleitungen zur Cookie-Verwaltung für die gängigsten Browser:</p>
+        <ul>
+            <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+            <li><a href="https://support.mozilla.org/de/kb/cookies-erlauben-und-ablehnen" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+            <li><a href="https://support.apple.com/de-de/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+            <li><a href="https://support.microsoft.com/de-de/microsoft-edge/cookies-in-microsoft-edge-löschen-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Microsoft Edge</a></li>
+        </ul>
+    </section>
+    
+    <section class="legal-section">
+        <h2>Änderungen dieser Cookie-Richtlinie</h2>
+        <p>Wir können diese Cookie-Richtlinie von Zeit zu Zeit aktualisieren, um Änderungen an den von uns verwendeten Cookies oder aus anderen betrieblichen, rechtlichen oder regulatorischen Gründen widerzuspiegeln. Bitte besuchen Sie diese Cookie-Richtlinie regelmäßig, um über unsere Verwendung von Cookies und verwandten Technologien informiert zu bleiben.</p>
+        <p>Das Datum am Anfang dieser Cookie-Richtlinie gibt an, wann sie zuletzt aktualisiert wurde.</p>
+    </section>
+    
+    <section class="legal-section">
+        <h2>Kontakt</h2>
+        <p>Wenn Sie Fragen zu unserer Verwendung von Cookies oder anderen Technologien haben, kontaktieren Sie uns bitte:</p>
+        <p>E-Mail: <a href="mailto:info@nobleframe.de">info@nobleframe.de</a></p>
+        <p>Weitere Informationen finden Sie auch in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+    </section>
+</main>
+
+<footer class="footer-mini"><p>© 2025 <span>NobleFrame</span>. Alle Rechte vorbehalten.</p><div class="footer-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a><a href="cookie-richtlinie.html">Cookies</a></div></footer>
+<script>const menuToggle=document.getElementById('menuToggle'),mobileMenu=document.getElementById('mobileMenu');menuToggle.addEventListener('click',()=>{menuToggle.classList.toggle('active');mobileMenu.classList.toggle('active');document.body.style.overflow=mobileMenu.classList.contains('active')?'hidden':''});mobileMenu.querySelectorAll('a').forEach(link=>{link.addEventListener('click',()=>{menuToggle.classList.remove('active');mobileMenu.classList.remove('active');document.body.style.overflow=''})});</script>
+</body>
+</html>

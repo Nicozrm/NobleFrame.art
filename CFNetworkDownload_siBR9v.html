@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ – NobleFrame | Häufige Fragen</title>
+    <meta name="description" content="Antworten auf alle Fragen zu Preisen, Prozessen, Technik und mehr.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23000' width='32' height='32'/%3E%3Crect x='2' y='2' width='28' height='28' fill='none' stroke='%23C9A962' stroke-width='2'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--gold:#C9A962;--gold-light:#E8D5A3;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.45);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%)}
+        html{scroll-behavior:smooth}
+        body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);line-height:1.6}
+        .bg-effects{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}.glow-1{position:absolute;width:500px;height:500px;background:rgba(201,169,98,.06);border-radius:50%;filter:blur(120px);top:-200px;right:-100px}
+        .nav-wrapper{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(0,0,0,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,98,.1)}
+        .nav-main{display:flex;justify-content:space-between;align-items:center;padding:20px 60px}
+        .logo{display:flex;align-items:center;gap:15px;text-decoration:none}
+        .logo-icon{width:45px;height:45px}
+        .logo-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:8px;color:var(--white);text-transform:uppercase}
+        .nav-links{display:flex;gap:8px;list-style:none}
+        .nav-links>li>a{padding:12px 18px;color:var(--white-muted);text-decoration:none;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;transition:all .3s ease;border:1px solid transparent}
+        .nav-links>li>a:hover,.nav-links>li>a.active{color:var(--gold-light);border-color:rgba(201,169,98,.2);background:rgba(201,169,98,.05)}
+        .nav-cta{padding:14px 30px;background:var(--gold);color:var(--black);font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);transition:all .4s}
+        .nav-cta:hover{background:transparent;color:var(--gold)}
+        .nav-mobile-toggle{display:none;flex-direction:column;gap:5px;padding:12px;background:transparent;border:1px solid rgba(201,169,98,.3);cursor:pointer}
+        .nav-mobile-toggle span{width:24px;height:2px;background:var(--gold)}
+        .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.98);z-index:999;padding:100px 40px;opacity:0;visibility:hidden;transition:all .4s}
+        .mobile-menu.active{opacity:1;visibility:visible}
+        .mobile-menu-links{display:flex;flex-direction:column;gap:15px}
+        .mobile-menu-links a{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);text-decoration:none}
+        .page-header{padding:160px 60px 60px;text-align:center;position:relative;z-index:10}
+        .page-header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;margin-bottom:20px}
+        .page-header h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .page-header p{color:var(--white-muted);font-size:1.1rem;max-width:700px;margin:0 auto}
+        .faq-section{padding:60px;position:relative;z-index:10}
+        .faq-container{max-width:1000px;margin:0 auto}
+        .faq-search{max-width:600px;margin:0 auto 40px;position:relative}
+        .faq-search input{width:100%;padding:18px 25px 18px 55px;background:rgba(201,169,98,.03);border:1px solid rgba(201,169,98,.2);color:var(--white);font-size:1rem}
+        .faq-search input:focus{outline:none;border-color:var(--gold)}
+        .faq-search svg{position:absolute;left:20px;top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:var(--gold)}
+        .faq-nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:50px;justify-content:center}
+        .faq-nav-btn{padding:12px 22px;background:transparent;border:1px solid rgba(201,169,98,.2);color:var(--white-muted);font-size:.85rem;cursor:pointer;transition:all .3s}
+        .faq-nav-btn:hover,.faq-nav-btn.active{background:var(--gold);border-color:var(--gold);color:var(--black)}
+        .faq-content{display:none}
+        .faq-content.active{display:block}
+        .faq-category-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold);margin-bottom:25px;padding-bottom:15px;border-bottom:1px solid rgba(201,169,98,.15)}
+        .faq-item{border-bottom:1px solid rgba(201,169,98,.1)}
+        .faq-question{width:100%;display:flex;justify-content:space-between;align-items:center;padding:22px 0;background:none;border:none;color:var(--white);font-size:1rem;text-align:left;cursor:pointer}
+        .faq-question:hover{color:var(--gold)}
+        .faq-question svg{width:18px;height:18px;stroke:var(--gold);transition:transform .3s;flex-shrink:0;margin-left:15px}
+        .faq-item.active .faq-question svg{transform:rotate(180deg)}
+        .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s}
+        .faq-item.active .faq-answer{max-height:500px}
+        .faq-answer-content{padding:0 0 22px;color:var(--white-muted);font-size:.95rem;line-height:1.8}
+        .footer{padding:80px 60px 40px;border-top:1px solid rgba(201,169,98,.1);position:relative;z-index:10}
+        .footer-main{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:60px;max-width:1400px;margin:0 auto 60px}
+        .footer-logo{display:flex;align-items:center;gap:15px;margin-bottom:20px}
+        .footer-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;letter-spacing:6px;color:var(--white)}
+        .footer-tagline{color:var(--white-muted);font-size:.9rem}
+        .footer-section h4{font-size:.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:25px}
+        .footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+        .footer-links a,.footer-links li{color:var(--white-muted);text-decoration:none;font-size:.9rem}
+        .footer-links a:hover{color:var(--gold)}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:40px;border-top:1px solid rgba(201,169,98,.1);max-width:1400px;margin:0 auto}
+        .copyright{color:var(--white-subtle);font-size:.85rem}
+        .copyright span{color:var(--gold)}
+        .legal-links{display:flex;gap:30px}
+        .legal-links a{color:var(--white-subtle);text-decoration:none;font-size:.8rem}
+        @media(max-width:1024px){.nav-links,.nav-cta{display:none}.nav-mobile-toggle{display:flex}.nav-main{padding:15px 30px}.page-header{padding:140px 40px 50px}.faq-section{padding:40px}.footer-main{grid-template-columns:1fr 1fr}}
+        @media(max-width:768px){.page-header{padding:120px 25px 40px}.faq-section{padding:25px}.faq-nav{gap:8px}.footer{padding:60px 25px 30px}.footer-main{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:20px;text-align:center}}
+    </style>
+</head>
+<body>
+<div class="bg-effects"><div class="glow-1"></div></div>
+<div class="nav-wrapper">
+    <nav class="nav-main">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><svg viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/><rect x="25" y="25" width="50" height="50" fill="none" stroke="#C9A962" stroke-width="1.5" opacity=".6"/></svg></div>
+            <span class="logo-text">NobleFrame</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="referenzen.html">Referenzen</a></li>
+            <li><a href="kompetenzen.html">Kompetenzen</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="faq.html" class="active">FAQ</a></li>
+            <li><a href="karriere.html">Karriere</a></li>
+        </ul>
+        <a href="index.html#kontakt" class="nav-cta">Projekt starten</a>
+        <button class="nav-mobile-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    </nav>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links">
+        <a href="index.html">Home</a><a href="referenzen.html">Referenzen</a><a href="kompetenzen.html">Kompetenzen</a><a href="portfolio.html">Portfolio</a><a href="tools.html">Tools</a><a href="labs.html">Labs</a><a href="faq.html">FAQ</a><a href="karriere.html">Karriere</a>
+    </div>
+</div>
+<header class="page-header">
+    <h1>Häufig gestellte <span>Fragen</span></h1>
+    <p>Transparente Antworten auf die wichtigsten Fragen zu unseren Services, Preisen und Prozessen.</p>
+</header>
+<section class="faq-section">
+    <div class="faq-search">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="faqSearch" placeholder="Frage suchen...">
+    </div>
+    <div class="faq-container">
+        <div class="faq-nav">
+            <button class="faq-nav-btn active" data-cat="allgemein">Allgemein</button>
+            <button class="faq-nav-btn" data-cat="preise">Preise</button>
+            <button class="faq-nav-btn" data-cat="prozess">Prozess</button>
+            <button class="faq-nav-btn" data-cat="technik">Technik</button>
+            <button class="faq-nav-btn" data-cat="support">Support</button>
+            <button class="faq-nav-btn" data-cat="design">Design</button>
+        </div>
+        <div class="faq-content active" id="faq-allgemein">
+            <h3 class="faq-category-title">Allgemeine Fragen</h3>
+            <div class="faq-item"><button class="faq-question">Was unterscheidet NobleFrame von anderen Agenturen?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Wir verstehen uns als digitales Atelier: Jedes Projekt wird individuell konzipiert, mit Fokus auf Qualität und messbare Ergebnisse. Wir nehmen uns Zeit für Ihre Anforderungen und liefern maßgeschneiderte Lösungen statt Standardprodukte.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Für welche Unternehmen arbeitet ihr?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Wir arbeiten mit Unternehmen unterschiedlicher Größe – von Gründern über Mittelständler bis zu etablierten Marken. Branchen: E-Commerce, SaaS, Dienstleister, Healthcare, Finance und mehr.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Welche Services bietet ihr an?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Unsere Kernkompetenzen: Webdesign & Entwicklung, E-Commerce Lösungen, Web-Applikationen, UX/UI Design, Conversion-Optimierung und Digital Strategy.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Arbeitet ihr international?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Ja! Wir arbeiten mit Kunden aus dem gesamten DACH-Raum und international. Kommunikation erfolgt auf Deutsch oder Englisch.</div></div></div>
+        </div>
+        <div class="faq-content" id="faq-preise">
+            <h3 class="faq-category-title">Preise & Budget</h3>
+            <div class="faq-item"><button class="faq-question">Was kostet ein Projekt bei NobleFrame?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Die Kosten hängen stark vom Umfang ab. Kleinere Projekte wie Landing Pages starten ab ca. 5.000€, umfangreiche Web-Apps oder E-Commerce-Lösungen liegen typischerweise zwischen 30.000€ und 100.000€+. Im Erstgespräch klären wir Ihre Anforderungen und erstellen ein individuelles Angebot.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Warum variieren die Preise so stark?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Jedes Projekt ist individuell. Eine einfache Landingpage erfordert anderen Aufwand als ein komplexer Online-Shop mit Schnittstellen. Wir kalkulieren transparent nach tatsächlichem Aufwand – keine versteckten Kosten, keine Überraschungen.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Wie läuft die Bezahlung ab?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Wir arbeiten mit Meilensteinen: Typischerweise 40% bei Projektstart, 30% nach Design-Freigabe, 30% bei Launch. Details vereinbaren wir individuell im Angebot.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Gibt es laufende Kosten?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Im Projektpreis ist üblicherweise ein Support-Zeitraum enthalten. Danach bieten wir Wartungsverträge je nach Umfang an. Hosting-Kosten hängen vom gewählten Anbieter ab.</div></div></div>
+        </div>
+        <div class="faq-content" id="faq-prozess">
+            <h3 class="faq-category-title">Unser Prozess</h3>
+            <div class="faq-item"><button class="faq-question">Wie lange dauert ein Projekt?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Landing Pages: 4-6 Wochen. Corporate Websites: 8-12 Wochen. E-Commerce: 10-16 Wochen. Web-Applikationen: 12-20+ Wochen.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Wie sieht der Ablauf aus?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">1. Discovery – Analyse. 2. Strategie – Konzept. 3. Design – UI/UX. 4. Entwicklung. 5. Testing. 6. Launch. 7. Optimierung.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Wie oft gibt es Updates?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Wöchentliche Status-Updates und Milestone-Präsentationen. Sie haben jederzeit Zugang zum Projektmanagement-Tool.</div></div></div>
+        </div>
+        <div class="faq-content" id="faq-technik">
+            <h3 class="faq-category-title">Technik</h3>
+            <div class="faq-item"><button class="faq-question">Welche Technologien nutzt ihr?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Frontend: React, Next.js, Vue.js, TypeScript. Backend: Node.js, Python. E-Commerce: Shopify Plus, Medusa. CMS: Sanity, Strapi. Hosting: Vercel, AWS.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Wie erreicht ihr schnelle Ladezeiten?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">SSR/SSG, optimierte Bilder (WebP, AVIF), Code-Splitting, CDN-Distribution. Unsere Websites erreichen durchschnittlich 90+ im PageSpeed-Score.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Kann ich Inhalte selbst bearbeiten?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Ja! Wir setzen auf benutzerfreundliche Headless CMS-Lösungen, mit denen Sie ohne Programmierkenntnisse Inhalte ändern können.</div></div></div>
+        </div>
+        <div class="faq-content" id="faq-support">
+            <h3 class="faq-category-title">Support</h3>
+            <div class="faq-item"><button class="faq-question">Wie ist der Support nach Launch?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Nach dem Launch: 2-4 Wochen Hypercare mit intensivem Monitoring. Danach greifen die vereinbarten Support-Pakete.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Wie schnell reagiert ihr?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Standard: 24 Stunden (werktags). Premium: 4 Stunden für kritische Issues.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Bietet ihr Hosting an?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Ja, Managed Hosting als Teil unserer Wartungspakete. Wir empfehlen je nach Projekt Vercel, AWS oder dedizierte Server.</div></div></div>
+        </div>
+        <div class="faq-content" id="faq-design">
+            <h3 class="faq-category-title">Design</h3>
+            <div class="faq-item"><button class="faq-question">Wie läuft der Design-Prozess ab?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">1. Discovery. 2. Moodboards. 3. Wireframes. 4. UI Design in Figma. 5. Interaktive Prototypen. Jeder Schritt wird abgestimmt.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Erstellt ihr auch Branding?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Ja! Vollständige Branding-Pakete ab 5.000€: Logo, Farbpalette, Typografie, Brand Guidelines.</div></div></div>
+            <div class="faq-item"><button class="faq-question">Bekomme ich die Design-Dateien?<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="faq-answer-content">Ja, nach Projektabschluss erhalten Sie alle Figma-Dateien, Assets und Dokumentation. Volle Eigentumsrechte inklusive.</div></div></div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="footer-main">
+        <div><div class="footer-logo"><svg width="40" height="40" viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/></svg><span class="footer-logo-text">NOBLEFRAME</span></div><p class="footer-tagline">Premium Digital Atelier</p></div>
+        <div class="footer-section"><h4>Navigation</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="referenzen.html">Referenzen</a></li><li><a href="kompetenzen.html">Kompetenzen</a></li></ul></div>
+        <div class="footer-section"><h4>Mehr</h4><ul class="footer-links"><li><a href="tools.html">Tools</a></li><li><a href="labs.html">Labs</a></li><li><a href="faq.html">FAQ</a></li><li><a href="karriere.html">Karriere</a></li></ul></div>
+        <div class="footer-section"><h4>Kontakt</h4><ul class="footer-links"><li><a href="mailto:info@nobleframe.de">info@nobleframe.de</a></li><li><a href="tel:+4915292612795">+49 152 92612795</a></li><li>48565 Steinfurt</li></ul></div>
+    </div>
+    <div class="footer-bottom"><p class="copyright">© 2025 <span>NobleFrame</span></p><div class="legal-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div></div>
+</footer>
+<script>
+document.getElementById('navToggle').addEventListener('click',()=>{document.getElementById('mobileMenu').classList.toggle('active')});
+document.querySelectorAll('.faq-nav-btn').forEach(btn=>{btn.addEventListener('click',()=>{const cat=btn.dataset.cat;document.querySelectorAll('.faq-nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.faq-content').forEach(c=>{c.classList.remove('active');if(c.id==='faq-'+cat)c.classList.add('active')})})});
+document.querySelectorAll('.faq-question').forEach(q=>{q.addEventListener('click',()=>{const item=q.parentElement;const wasActive=item.classList.contains('active');item.parentElement.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('active'));if(!wasActive)item.classList.add('active')})});
+document.getElementById('faqSearch').addEventListener('input',e=>{const term=e.target.value.toLowerCase();let count=0;document.querySelectorAll('.faq-item').forEach(item=>{const q=item.querySelector('.faq-question').textContent.toLowerCase();const a=item.querySelector('.faq-answer-content').textContent.toLowerCase();if(q.includes(term)||a.includes(term)){item.style.display='block';count++}else{item.style.display='none'}});if(term){document.querySelectorAll('.faq-content').forEach(c=>c.classList.add('active'));document.querySelectorAll('.faq-nav-btn').forEach(b=>b.classList.remove('active'))}else{document.querySelectorAll('.faq-content').forEach(c=>c.classList.remove('active'));document.getElementById('faq-allgemein').classList.add('active');document.querySelector('.faq-nav-btn').classList.add('active')}});
+</script>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+        <div class="cookie-text">
+            <h4>Cookie-Einstellungen</h4>
+            <p>Wir verwenden technisch notwendige Cookies für den Betrieb dieser Website. <a href="datenschutz.html">Mehr erfahren</a></p>
+        </div>
+        <div class="cookie-actions">
+            <button class="cookie-btn cookie-accept" id="cookieAccept">Akzeptieren</button>
+            <button class="cookie-btn cookie-settings" id="cookieSettings">Einstellungen</button>
+        </div>
+    </div>
+</div>
+<style>
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);border-top:1px solid rgba(201,169,98,.2);padding:20px 40px;z-index:10000;transform:translateY(100%);transition:transform .4s ease;backdrop-filter:blur(20px)}
+.cookie-banner.active{transform:translateY(0)}
+.cookie-content{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.cookie-text h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#C9A962;margin-bottom:5px}
+.cookie-text p{color:rgba(250,250,250,.75);font-size:.85rem;margin:0}
+.cookie-text a{color:#C9A962;text-decoration:none}
+.cookie-actions{display:flex;gap:12px}
+.cookie-btn{padding:12px 25px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:1px;cursor:pointer;transition:all .3s;border:none}
+.cookie-accept{background:#C9A962;color:#000}
+.cookie-accept:hover{background:#E8D5A3}
+.cookie-settings{background:transparent;border:1px solid rgba(201,169,98,.3);color:rgba(250,250,250,.75)}
+.cookie-settings:hover{border-color:#C9A962;color:#C9A962}
+@media(max-width:768px){.cookie-banner{padding:20px}.cookie-content{flex-direction:column;text-align:center}.cookie-actions{width:100%;justify-content:center}}
+</style>
+<script>
+const cookieBanner=document.getElementById("cookieBanner");const cookieAccept=document.getElementById("cookieAccept");const cookieSettings=document.getElementById("cookieSettings");function getCookie(e){const t="; "+document.cookie;const n=t.split("; "+e+"=");if(n.length===2)return n.pop().split(";").shift()}function setCookie(e,t,n){const o=new Date;o.setTime(o.getTime()+n*24*60*60*1e3);document.cookie=e+"="+t+";expires="+o.toUTCString()+";path=/;SameSite=Lax"}if(!getCookie("cookie_consent")){setTimeout(function(){cookieBanner.classList.add("active")},1e3)}cookieAccept.addEventListener("click",function(){setCookie("cookie_consent","accepted",365);cookieBanner.classList.remove("active")});cookieSettings.addEventListener("click",function(){window.location.href="datenschutz.html#cookies"});
+</script>
+
+</body>
+</html>

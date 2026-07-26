@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum – NobleFrame</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23000' width='32' height='32'/%3E%3Crect x='2' y='2' width='28' height='28' fill='none' stroke='%23C9A962' stroke-width='2'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--gold:#C9A962;--gold-light:#E8D5A3;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.45);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%)}
+        html{scroll-behavior:smooth}
+        body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);line-height:1.8}
+        
+        .nav-wrapper{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(0,0,0,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,98,.1)}
+        .nav-main{display:flex;justify-content:space-between;align-items:center;padding:20px 60px}
+        .logo{display:flex;align-items:center;gap:15px;text-decoration:none}
+        .logo-icon{width:45px;height:45px}
+        .logo-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:8px;color:var(--white);text-transform:uppercase}
+        .nav-back{padding:12px 25px;color:var(--white-muted);text-decoration:none;font-size:.85rem;letter-spacing:1px;border:1px solid rgba(201,169,98,.2);transition:all .3s}
+        .nav-back:hover{border-color:var(--gold);color:var(--gold)}
+
+        .legal-container{max-width:800px;margin:0 auto;padding:160px 40px 80px}
+        .legal-header{margin-bottom:50px}
+        .legal-header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:15px}
+        .legal-header h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .legal-header p{color:var(--white-subtle);font-size:.9rem}
+        
+        .legal-section{margin-bottom:40px}
+        .legal-section h2{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--gold);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(201,169,98,.15)}
+        .legal-section h3{font-size:1rem;font-weight:500;color:var(--white);margin:20px 0 10px}
+        .legal-section p,.legal-section li{color:var(--white-muted);font-size:.95rem;margin-bottom:12px}
+        .legal-section ul{list-style:none;padding-left:0}
+        .legal-section li{padding-left:20px;position:relative}
+        .legal-section li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;background:var(--gold);opacity:.5}
+        .legal-section a{color:var(--gold);text-decoration:none}
+        .legal-section a:hover{text-decoration:underline}
+        
+        .contact-box{background:rgba(201,169,98,.03);border:1px solid rgba(201,169,98,.15);padding:25px;margin:20px 0}
+        .contact-box p{margin-bottom:8px}
+        .contact-box strong{color:var(--white)}
+        
+        .footer-mini{padding:40px;border-top:1px solid rgba(201,169,98,.1);text-align:center;margin-top:60px}
+        .footer-mini p{color:var(--white-subtle);font-size:.85rem}
+        .footer-mini a{color:var(--gold);text-decoration:none;margin:0 15px}
+
+        @media(max-width:768px){.nav-main{padding:15px 25px}.legal-container{padding:140px 25px 60px}}
+    </style>
+</head>
+<body>
+
+<div class="nav-wrapper">
+    <nav class="nav-main">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><svg viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/><rect x="25" y="25" width="50" height="50" fill="none" stroke="#C9A962" stroke-width="1.5" opacity=".6"/></svg></div>
+            <span class="logo-text">NobleFrame</span>
+        </a>
+        <a href="index.html" class="nav-back">← Zurück zur Website</a>
+    </nav>
+</div>
+
+<div class="legal-container">
+    <header class="legal-header">
+        <h1><span>Impressum</span></h1>
+        <p>Angaben gemäß § 5 TMG | Stand: Januar 2026</p>
+    </header>
+
+    <section class="legal-section">
+        <h2>Anbieter</h2>
+        <div class="contact-box">
+            <p><strong>NobleFrame</strong></p>
+            <p>Nico Zimmermann & Tim Schülke</p>
+            <p>48565 Steinfurt</p>
+            <p>Deutschland</p>
+        </div>
+    </section>
+
+    <section class="legal-section">
+        <h2>Kontakt</h2>
+        <p><strong>E-Mail:</strong> <a href="/cdn-cgi/l/email-protection#650c0b030a250b0a07090003170408004b0100"><span class="__cf_email__" data-cfemail="f49d9a929bb49a9b9698919286959991da9091">[email&#160;protected]</span></a></p>
+        <p><strong>Telefon:</strong> <a href="tel:+4915292612795">+49 152 92612795</a></p>
+        <p><strong>Website:</strong> <a href="https://nobleframe.de">www.nobleframe.de</a></p>
+    </section>
+
+    <section class="legal-section">
+        <h2>Vertretungsberechtigte Gesellschafter</h2>
+        <p>Nico Zimmermann</p>
+        <p>Tim Schülke</p>
+    </section>
+
+    <section class="legal-section">
+        <h2>Umsatzsteuer-Identifikationsnummer</h2>
+        <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:</p>
+        <p><strong>DE 128 456 422</strong></p>
+    </section>
+
+    <section class="legal-section">
+        <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+        <p>Nico Zimmermann</p>
+        <p>48565 Steinfurt</p>
+    </section>
+
+    <section class="legal-section">
+        <h2>Streitschlichtung</h2>
+        <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a></p>
+        <p>Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+        <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    </section>
+
+    <section class="legal-section">
+        <h2>Haftung für Inhalte</h2>
+        <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+        <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+    </section>
+
+    <section class="legal-section">
+        <h2>Haftung für Links</h2>
+        <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+        <p>Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+    </section>
+
+    <section class="legal-section">
+        <h2>Urheberrecht</h2>
+        <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+        <p>Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+    </section>
+
+    <footer class="footer-mini">
+        <p>©

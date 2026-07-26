@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools – NobleFrame | Kostenlose Business-Tools</title>
+    <meta name="description" content="Kostenlose Tools für Unternehmer: ROI-Rechner, PageSpeed-Analyse, Projektkosten-Kalkulator und mehr.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23000' width='32' height='32'/%3E%3Crect x='2' y='2' width='28' height='28' fill='none' stroke='%23C9A962' stroke-width='2'/%3E%3Crect x='8' y='8' width='16' height='16' fill='none' stroke='%23C9A962' stroke-width='1'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--gold:#C9A962;--gold-light:#E8D5A3;--gold-dark:#8B7355;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.45);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%)}
+        html{scroll-behavior:smooth}
+        body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;line-height:1.6}
+        
+        .bg-effects{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}.ambient-glow{position:absolute;border-radius:50%;filter:blur(120px)}.glow-1{width:500px;height:500px;background:rgba(201,169,98,.06);top:-200px;right:-100px}.glow-2{width:400px;height:400px;background:rgba(201,169,98,.04);bottom:-150px;left:-100px}.grid-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(201,169,98,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,98,.012) 1px,transparent 1px);background-size:80px 80px}
+        
+        /* NAV */
+        .nav-wrapper{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(0,0,0,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,98,.1)}
+        .nav-main{display:flex;justify-content:space-between;align-items:center;padding:20px 60px}
+        .logo{display:flex;align-items:center;gap:15px;text-decoration:none}
+        .logo-icon{width:45px;height:45px}
+        .logo-icon svg{width:100%;height:100%}
+        .frame-outer{stroke:var(--gold);stroke-width:2;fill:none}
+        .frame-inner{stroke:var(--gold);stroke-width:1.5;fill:none;opacity:.6}
+        .frame-lines{stroke:var(--gold);stroke-width:.5;opacity:.4}
+        .logo-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:8px;color:var(--white);text-transform:uppercase}
+        .nav-links{display:flex;gap:8px;list-style:none}
+        .nav-links>li>a{display:flex;align-items:center;gap:6px;padding:12px 18px;color:var(--white-muted);text-decoration:none;font-size:.85rem;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;transition:all .3s ease;border:1px solid transparent}
+        .nav-links>li>a:hover,.nav-links>li>a.active{color:var(--gold-light);border-color:rgba(201,169,98,.2);background:rgba(201,169,98,.05)}
+        .nav-cta{display:flex;align-items:center;gap:8px;padding:14px 30px;background:var(--gold);color:var(--black);font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .4s ease;border:1px solid var(--gold)}
+        .nav-cta:hover{background:transparent;color:var(--gold)}
+        .nav-mobile-toggle{display:none;flex-direction:column;gap:5px;padding:12px;background:transparent;border:1px solid rgba(201,169,98,.3);cursor:pointer}
+        .nav-mobile-toggle span{width:24px;height:2px;background:var(--gold);transition:all .3s ease}
+        .nav-mobile-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .nav-mobile-toggle.active span:nth-child(2){opacity:0}
+        .nav-mobile-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.98);z-index:999;display:flex;flex-direction:column;padding:100px 40px 40px;opacity:0;visibility:hidden;transition:all .4s ease;overflow-y:auto}
+        .mobile-menu.active{opacity:1;visibility:visible}
+        .mobile-menu-section{margin-bottom:30px}
+        .mobile-menu-section h5{font-size:.7rem;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid rgba(201,169,98,.15)}
+        .mobile-menu-links{display:flex;flex-direction:column;gap:8px}
+        .mobile-menu-links a{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);text-decoration:none;padding:10px 0;transition:all .3s ease;border-left:2px solid transparent;padding-left:15px}
+        .mobile-menu-links a:hover{color:var(--gold);border-left-color:var(--gold)}
+        .mobile-menu-cta{margin-top:auto;padding:18px 35px;background:var(--gold);color:var(--black);font-size:.9rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;text-align:center;border:none}
+
+        /* PAGE HEADER */
+        .page-header{padding:160px 60px 80px;text-align:center;position:relative;z-index:10}
+        .page-header-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(201,169,98,.08);border:1px solid rgba(201,169,98,.2);margin-bottom:20px;font-size:.7rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase}
+        .page-header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;margin-bottom:20px}
+        .page-header h1 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .page-header p{color:var(--white-muted);font-size:1.1rem;max-width:700px;margin:0 auto;line-height:1.8}
+
+        /* TOOLS GRID */
+        .tools-section{padding:60px;position:relative;z-index:10}
+        .tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;max-width:1400px;margin:0 auto}
+        
+        /* TOOL CARD */
+        .tool-card{background:rgba(201,169,98,.02);border:1px solid rgba(201,169,98,.12);padding:40px;transition:all .4s ease}
+        .tool-card:hover{border-color:rgba(201,169,98,.3)}
+        .tool-header{display:flex;align-items:center;gap:20px;margin-bottom:25px}
+        .tool-icon{width:60px;height:60px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,169,98,.25);flex-shrink:0}
+        .tool-icon svg{width:28px;height:28px;stroke:var(--gold)}
+        .tool-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--white)}
+        .tool-description{font-size:.95rem;color:var(--white-muted);margin-bottom:30px;line-height:1.7}
+        
+        /* FORM ELEMENTS */
+        .tool-form{display:flex;flex-direction:column;gap:20px}
+        .input-group{display:flex;flex-direction:column;gap:8px}
+        .input-group label{font-size:.8rem;color:var(--white-subtle);letter-spacing:1px;text-transform:uppercase}
+        .input-group input,.input-group select{background:rgba(0,0,0,.5);border:1px solid rgba(201,169,98,.2);padding:14px 18px;color:var(--white);font-family:'Outfit',sans-serif;font-size:.95rem;transition:all .3s ease}
+        .input-group input:focus,.input-group select:focus{outline:none;border-color:var(--gold);background:rgba(201,169,98,.05)}
+        .input-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23C9A962'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;background-size:18px}
+        .input-group select option{background:var(--black);color:var(--white)}
+        .input-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+        .input-suffix{position:relative}
+        .input-suffix input{padding-right:50px}
+        .input-suffix span{position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--white-subtle);font-size:.9rem}
+        
+        .tool-btn{padding:16px 35px;background:var(--gold);color:var(--black);font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold);cursor:pointer;transition:all .4s ease;margin-top:10px}
+        .tool-btn:hover{background:transparent;color:var(--gold)}
+        
+        /* RESULTS */
+        .tool-result{margin-top:30px;padding:30px;background:rgba(201,169,98,.05);border:1px solid rgba(201,169,98,.2);display:none}
+        .tool-result.active{display:block}
+        .result-title{font-size:.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+        .result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+        .result-item{text-align:center;padding:20px;background:rgba(0,0,0,.3)}
+        .result-value{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--gold);display:block;margin-bottom:5px}
+        .result-label{font-size:.75rem;color:var(--white-subtle);letter-spacing:1px;text-transform:uppercase}
+        .result-message{font-size:.95rem;color:var(--white-muted);line-height:1.7;margin-top:20px;padding-top:20px;border-top:1px solid rgba(201,169,98,.1)}
+
+        /* FOOTER */
+        .footer{padding:80px 60px 40px;border-top:1px solid rgba(201,169,98,.1);position:relative;z-index:10}
+        .footer-container{max-width:1400px;margin:0 auto}
+        .footer-main{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:60px;margin-bottom:60px}
+        .footer-brand{max-width:300px}
+        .footer-logo{display:flex;align-items:center;gap:15px;margin-bottom:20px}
+        .footer-logo-icon{width:40px;height:40px}
+        .footer-logo-icon svg{width:100%;height:100%}
+        .footer-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;letter-spacing:6px;color:var(--white)}
+        .footer-tagline{color:var(--white-muted);font-size:.9rem;line-height:1.7}
+        .footer-section h4{font-size:.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:25px;font-weight:500}
+        .footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+        .footer-links a,.footer-links li{color:var(--white-muted);text-decoration:none;font-size:.9rem;transition:all .3s ease}
+        .footer-links a:hover{color:var(--gold)}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:40px;border-top:1px solid rgba(201,169,98,.1)}
+        .copyright{color:var(--white-subtle);font-size:.85rem}
+        .copyright span{color:var(--gold)}
+        .legal-links{display:flex;gap:30px}
+        .legal-links a{color:var(--white-subtle);text-decoration:none;font-size:.8rem;transition:color .3s ease}
+        .legal-links a:hover{color:var(--gold)}
+
+        /* RESPONSIVE */
+        @media(max-width:1200px){
+            .tools-grid{grid-template-columns:1fr}
+            .footer-main{grid-template-columns:1fr 1fr;gap:40px}
+        }
+        @media(max-width:1024px){
+            .nav-links{display:none}
+            .nav-cta{display:none}
+            .nav-mobile-toggle{display:flex}
+            .nav-main{padding:15px 30px}
+            .page-header{padding:140px 40px 60px}
+            .tools-section{padding:40px}
+        }
+        @media(max-width:768px){
+            .nav-main{padding:15px 25px}
+            .logo-text{font-size:1.2rem;letter-spacing:5px}
+            .page-header{padding:120px 25px 50px}
+            .tools-section{padding:25px}
+            .tool-card{padding:25px}
+            .input-row{grid-template-columns:1fr}
+            .result-grid{grid-template-columns:1fr}
+            .footer{padding:60px 25px 30px}
+            .footer-main{grid-template-columns:1fr;gap:40px}
+            .footer-bottom{flex-direction:column;gap:20px;text-align:center}
+            .legal-links{flex-wrap:wrap;justify-content:center;gap:15px}
+        }
+    </style>
+</head>
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg-effects">
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="grid-overlay"></div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav-wrapper">
+    <nav class="nav-main">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="frame-outer" x="5" y="5" width="90" height="90"/>
+                    <rect class="frame-inner" x="25" y="25" width="50" height="50"/>
+                    <line class="frame-lines" x1="50" y1="5" x2="50" y2="95"/>
+                    <line class="frame-lines" x1="5" y1="50" x2="95" y2="50"/>
+                </svg>
+            </div>
+            <span class="logo-text">NobleFrame</span>
+        </a>
+        
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="referenzen.html">Referenzen</a></li>
+            <li><a href="kompetenzen.html">Kompetenzen</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="tools.html" class="active">Tools</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="faq.html">FAQ</a>
+            <a href="karriere.html">Karriere</a></li>
+        </ul>
+        
+        <a href="index.html#kontakt" class="nav-cta">Projekt starten</a>
+        
+        <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Menü">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-section">
+        <h5>Navigation</h5>
+        <div class="mobile-menu-links">
+            <a href="index.html">Home</a>
+            <a href="referenzen.html">Referenzen</a>
+            <a href="kompetenzen.html">Kompetenzen</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="tools.html">Tools</a>
+            <a href="labs.html">Labs</a>
+            <a href="faq.html">FAQ</a>
+            <a href="karriere.html">Karriere</a>
+        </div>
+    </div>
+    <a href="index.html#kontakt" class="mobile-menu-cta">Projekt starten</a>
+</div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+    <div class="page-header-badge">Kostenlose Tools</div>
+    <h1>Business <span>Tools</span></h1>
+    <p>Praktische Rechner und Analysetools für Unternehmer und Marketing-Entscheider. Kostenlos und ohne Anmeldung.</p>
+</header>
+
+<!-- TOOLS -->
+<section class="tools-section">
+    <div class="tools-grid">
+        
+        <!-- ROI CALCULATOR -->
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h2 class="tool-title">ROI-Rechner</h2>
+            </div>
+            <p class="tool-description">Berechnen Sie den Return on Investment für Ihre Website oder digitale Kampagne. Finden Sie heraus, wann sich Ihre Investition rentiert.</p>
+            
+            <form class="tool-form" id="roiForm">
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Investition</label>
+                        <div class="input-suffix">
+                            <input type="number" id="roiInvestment" placeholder="50000" value="50000">
+                            <span>€</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Aktueller Monatsumsatz</label>
+                        <div class="input-suffix">
+                            <input type="number" id="roiCurrentRevenue" placeholder="100000" value="100000">
+                            <span>€</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Erwartete Steigerung</label>
+                        <div class="input-suffix">
+                            <input type="number" id="roiIncrease" placeholder="30" value="30">
+                            <span>%</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Gewinnmarge</label>
+                        <div class="input-suffix">
+                            <input type="number" id="roiMargin" placeholder="25" value="25">
+                            <span>%</span>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="tool-btn">ROI berechnen</button>
+            </form>
+            
+            <div class="tool-result" id="roiResult">
+                <div class="result-title">Ihre Ergebnisse</div>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-value" id="roiMonthlyProfit">0€</span>
+                        <span class="result-label">Zusätzl. Gewinn/Monat</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="roiPayback">0</span>
+                        <span class="result-label">Monate bis Amortisation</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="roiYearlyProfit">0€</span>
+                        <span class="result-label">Zusätzl. Gewinn/Jahr</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="roiPercent">0%</span>
+                        <span class="result-label">ROI nach 12 Monaten</span>
+                    </div>
+                </div>
+                <p class="result-message" id="roiMessage"></p>
+            </div>
+        </div>
+
+        <!-- PROJECT COST CALCULATOR -->
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                </div>
+                <h2 class="tool-title">Projektkosten-Schätzer</h2>
+            </div>
+            <p class="tool-description">Erhalten Sie eine erste Einschätzung, was Ihr digitales Projekt kosten könnte. Basierend auf Projekttyp, Umfang und Anforderungen.</p>
+            
+            <form class="tool-form" id="costForm">
+                <div class="input-group">
+                    <label>Projekttyp</label>
+                    <select id="costType">
+                        <option value="landing">Landing Page</option>
+                        <option value="corporate">Corporate Website</option>
+                        <option value="shop" selected>E-Commerce Shop</option>
+                        <option value="webapp">Web-Applikation</option>
+                        <option value="relaunch">Website Relaunch</option>
+                    </select>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Anzahl Seiten/Funktionen</label>
+                        <select id="costPages">
+                            <option value="small">1-5 Seiten</option>
+                            <option value="medium" selected>6-15 Seiten</option>
+                            <option value="large">16-30 Seiten</option>
+                            <option value="xlarge">30+ Seiten</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Design-Anspruch</label>
+                        <select id="costDesign">
+                            <option value="standard">Standard</option>
+                            <option value="premium" selected>Premium</option>
+                            <option value="luxury">Luxury / Custom</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Integrationen</label>
+                        <select id="costIntegrations">
+                            <option value="none">Keine</option>
+                            <option value="basic" selected>Basis (CMS, Analytics)</option>
+                            <option value="advanced">Erweitert (CRM, ERP)</option>
+                            <option value="custom">Custom APIs</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Zeitrahmen</label>
+                        <select id="costTimeline">
+                            <option value="relaxed">Flexibel (3+ Monate)</option>
+                            <option value="standard" selected>Standard (2-3 Monate)</option>
+                            <option value="fast">Schnell (4-8 Wochen)</option>
+                            <option value="urgent">Dringend (&lt;4 Wochen)</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="tool-btn">Kosten schätzen</button>
+            </form>
+            
+            <div class="tool-result" id="costResult">
+                <div class="result-title">Geschätzte Kosten</div>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-value" id="costMin">0€</span>
+                        <span class="result-label">Minimum</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="costMax">0€</span>
+                        <span class="result-label">Maximum</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="costDuration">0</span>
+                        <span class="result-label">Wochen Projektdauer</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="costMonthly">0€</span>
+                        <span class="result-label">Laufende Kosten/Monat</span>
+                    </div>
+                </div>
+                <p class="result-message" id="costMessage"></p>
+            </div>
+        </div>
+
+        <!-- CONVERSION CALCULATOR -->
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                </div>
+                <h2 class="tool-title">Conversion-Rechner</h2>
+            </div>
+            <p class="tool-description">Berechnen Sie, wie viel mehr Umsatz eine verbesserte Conversion Rate bringen würde. Kleine Änderungen können große Auswirkungen haben.</p>
+            
+            <form class="tool-form" id="conversionForm">
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Monatliche Besucher</label>
+                        <input type="number" id="convVisitors" placeholder="10000" value="10000">
+                    </div>
+                    <div class="input-group">
+                        <label>Aktuelle Conversion Rate</label>
+                        <div class="input-suffix">
+                            <input type="number" id="convCurrent" placeholder="2" value="2" step="0.1">
+                            <span>%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Ziel Conversion Rate</label>
+                        <div class="input-suffix">
+                            <input type="number" id="convTarget" placeholder="3.5" value="3.5" step="0.1">
+                            <span>%</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Ø Bestellwert</label>
+                        <div class="input-suffix">
+                            <input type="number" id="convAov" placeholder="150" value="150">
+                            <span>€</span>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="tool-btn">Potenzial berechnen</button>
+            </form>
+            
+            <div class="tool-result" id="conversionResult">
+                <div class="result-title">Ihr Umsatzpotenzial</div>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-value" id="convCurrentRev">0€</span>
+                        <span class="result-label">Aktueller Umsatz/Monat</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="convTargetRev">0€</span>
+                        <span class="result-label">Ziel Umsatz/Monat</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="convDiffMonth">+0€</span>
+                        <span class="result-label">Mehr Umsatz/Monat</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="convDiffYear">+0€</span>
+                        <span class="result-label">Mehr Umsatz/Jahr</span>
+                    </div>
+                </div>
+                <p class="result-message" id="conversionMessage"></p>
+            </div>
+        </div>
+
+        <!-- PAGESPEED IMPACT -->
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-icon">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <h2 class="tool-title">PageSpeed Impact</h2>
+            </div>
+            <p class="tool-description">Berechnen Sie, wie viel Umsatz Sie durch eine langsame Website verlieren. Jede Sekunde zählt.</p>
+            
+            <form class="tool-form" id="speedForm">
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Aktuelle Ladezeit</label>
+                        <div class="input-suffix">
+                            <input type="number" id="speedCurrent" placeholder="4.5" value="4.5" step="0.1">
+                            <span>Sek.</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Ziel Ladezeit</label>
+                        <div class="input-suffix">
+                            <input type="number" id="speedTarget" placeholder="1.5" value="1.5" step="0.1">
+                            <span>Sek.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Monatlicher Umsatz</label>
+                        <div class="input-suffix">
+                            <input type="number" id="speedRevenue" placeholder="100000" value="100000">
+                            <span>€</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Monatliche Besucher</label>
+                        <input type="number" id="speedVisitors" placeholder="50000" value="50000">
+                    </div>
+                </div>
+                <button type="submit" class="tool-btn">Impact berechnen</button>
+            </form>
+            
+            <div class="tool-result" id="speedResult">
+                <div class="result-title">Performance Impact</div>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-value" id="speedBounce">0%</span>
+                        <span class="result-label">Bounce Rate Reduktion</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="speedConvLift">+0%</span>
+                        <span class="result-label">Conversion Lift</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="speedMonthly">+0€</span>
+                        <span class="result-label">Zusätzl. Umsatz/Monat</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-value" id="speedYearly">+0€</span>
+                        <span class="result-label">Zusätzl. Umsatz/Jahr</span>
+                    </div>
+                </div>
+                <p class="result-message" id="speedMessage"></p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/>
+                            <rect x="25" y="25" width="50" height="50" fill="none" stroke="#C9A962" stroke-width="1.5" opacity="0.7"/>
+                        </svg>
+                    </div>
+                    <span class="footer-logo-text">NOBLEFRAME</span>
+                </div>
+                <p class="footer-tagline">Premium Digital Atelier für exklusive Websites, Apps & Growth Solutions.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="referenzen.html">Referenzen</a></li>
+                    <li><a href="kompetenzen.html">Kompetenzen</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Mehr</h4>
+                <ul class="footer-links">
+                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="labs.html">Labs</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+            <li><a href="faq.html">FAQ</a>
+            <a href="karriere.html">Karriere</a></li>
+                    <li><a href="index.html#kontakt">Kontakt</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Kontakt</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@nobleframe.de">info@nobleframe.de</a></li>
+                    <li><a href="tel:+4915292612795">+49 152 92612795</a></li>
+                    <li>48565 Steinfurt</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">© 2025 <span>NobleFrame</span>. Alle Rechte vorbehalten.</p>
+            <div class="legal-links">
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+                <a href="agb.html">AGB</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Mobile menu
+const navMobileToggle = document.getElementById('navMobileToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+navMobileToggle.addEventListener('click', () => {
+    navMobileToggle.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMobileToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+});
+
+// Format currency
+function formatCurrency(num) {
+    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(num);
+}
+
+// ROI Calculator
+document.getElementById('roiForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const investment = parseFloat(document.getElementById('roiInvestment').value) || 0;
+    const currentRevenue = parseFloat(document.getElementById('roiCurrentRevenue').value) || 0;
+    const increase = parseFloat(document.getElementById('roiIncrease').value) || 0;
+    const margin = parseFloat(document.getElementById('roiMargin').value) || 0;
+    
+    const additionalRevenue = currentRevenue * (increase / 100);
+    const additionalProfit = additionalRevenue * (margin / 100);
+    const paybackMonths = Math.ceil(investment / additionalProfit);
+    const yearlyProfit = additionalProfit * 12;
+    const roi = ((yearlyProfit - investment) / investment) * 100;
+    
+    document.getElementById('roiMonthlyProfit').textContent = formatCurrency(additionalProfit);
+    document.getElementById('roiPayback').textContent = paybackMonths;
+    document.getElementById('roiYearlyProfit').textContent = formatCurrency(yearlyProfit);
+    document.getElementById('roiPercent').textContent = Math.round(roi) + '%';
+    
+    let message = '';
+    if (paybackMonths <= 3) {
+        message = '🚀 Exzellent! Ihre Investition amortisiert sich in unter einem Quartal. Das ist ein überdurchschnittlich schneller ROI.';
+    } else if (paybackMonths <= 6) {
+        message = '✅ Sehr gut! Eine Amortisation innerhalb von 6 Monaten ist ein starkes Ergebnis für digitale Projekte.';
+    } else if (paybackMonths <= 12) {
+        message = '👍 Solide! Ein ROI innerhalb eines Jahres liegt im erwarteten Bereich für nachhaltige Investments.';
+    } else {
+        message = '⚠️ Bei längeren Amortisationszeiten sollten wir besprechen, wie wir die erwartete Steigerung optimieren können.';
+    }
+    document.getElementById('roiMessage').textContent = message;
+    document.getElementById('roiResult').classList.add('active');
+});
+
+// Project Cost Calculator
+document.getElementById('costForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const baseCosts = { landing: 8000, corporate: 25000, shop: 45000, webapp: 60000, relaunch: 30000 };
+    const pageMultiplier = { small: 0.7, medium: 1, large: 1.5, xlarge: 2.2 };
+    const designMultiplier = { standard: 0.8, premium: 1, luxury: 1.5 };
+    const integrationAdd = { none: 0, basic: 5000, advanced: 15000, custom: 30000 };
+    const timelineMultiplier = { relaxed: 0.9, standard: 1, fast: 1.2, urgent: 1.5 };
+    const durations = { landing: 4, corporate: 8, shop: 12, webapp: 16, relaunch: 10 };
+    const monthlyCosts = { landing: 50, corporate: 150, shop: 300, webapp: 500, relaunch: 200 };
+    
+    const type = document.getElementById('costType').value;
+    const pages = document.getElementById('costPages').value;
+    const design = document.getElementById('costDesign').value;
+    const integrations = document.getElementById('costIntegrations').value;
+    const timeline = document.getElementById('costTimeline').value;
+    
+    const base = baseCosts[type];
+    const cost = (base * pageMultiplier[pages] * designMultiplier[design] + integrationAdd[integrations]) * timelineMultiplier[timeline];
+    const minCost = Math.round(cost * 0.85 / 1000) * 1000;
+    const maxCost = Math.round(cost * 1.15 / 1000) * 1000;
+    const duration = Math.round(durations[type] * pageMultiplier[pages] / timelineMultiplier[timeline]);
+    const monthly = monthlyCosts[type] * designMultiplier[design];
+    
+    document.getElementById('costMin').textContent = formatCurrency(minCost);
+    document.getElementById('costMax').textContent = formatCurrency(maxCost);
+    document.getElementById('costDuration').textContent = duration;
+    document.getElementById('costMonthly').textContent = formatCurrency(monthly);
+    
+    let message = `Basierend auf Ihren Angaben liegt Ihr Projekt im ${design === 'luxury' ? 'Premium' : design === 'premium' ? 'gehobenen' : 'Standard'}-Segment. `;
+    message += timeline === 'urgent' ? 'Der Express-Zuschlag erhöht die Kosten um ca. 50%.' : 'Für ein unverbindliches Detailangebot kontaktieren Sie uns.';
+    document.getElementById('costMessage').textContent = message;
+    document.getElementById('costResult').classList.add('active');
+});
+
+// Conversion Calculator
+document.getElementById('conversionForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const visitors = parseFloat(document.getElementById('convVisitors').value) || 0;
+    const currentRate = parseFloat(document.getElementById('convCurrent').value) || 0;
+    const targetRate = parseFloat(document.getElementById('convTarget').value) || 0;
+    const aov = parseFloat(document.getElementById('convAov').value) || 0;
+    
+    const currentConversions = visitors * (currentRate / 100);
+    const targetConversions = visitors * (targetRate / 100);
+    const currentRevenue = currentConversions * aov;
+    const targetRevenue = targetConversions * aov;
+    const diffMonth = targetRevenue - currentRevenue;
+    const diffYear = diffMonth * 12;
+    
+    document.getElementById('convCurrentRev').textContent = formatCurrency(currentRevenue);
+    document.getElementById('convTargetRev').textContent = formatCurrency(targetRevenue);
+    document.getElementById('convDiffMonth').textContent = '+' + formatCurrency(diffMonth);
+    document.getElementById('convDiffYear').textContent = '+' + formatCurrency(diffYear);
+    
+    const percentIncrease = ((targetRate - currentRate) / currentRate * 100).toFixed(0);
+    let message = `Eine Steigerung von ${currentRate}% auf ${targetRate}% entspricht einer Verbesserung um ${percentIncrease}%. `;
+    if (diffYear > 100000) {
+        message += 'Bei diesem Potenzial ist ein professionelles Conversion-Optimierungsprojekt definitiv empfehlenswert.';
+    } else {
+        message += 'Schon kleine UX-Verbesserungen können signifikante Auswirkungen auf Ihren Umsatz haben.';
+    }
+    document.getElementById('conversionMessage').textContent = message;
+    document.getElementById('conversionResult').classList.add('active');
+});
+
+// PageSpeed Calculator
+document.getElementById('speedForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const currentSpeed = parseFloat(document.getElementById('speedCurrent').value) || 0;
+    const targetSpeed = parseFloat(document.getElementById('speedTarget').value) || 0;
+    const revenue = parseFloat(document.getElementById('speedRevenue').value) || 0;
+    const visitors = parseFloat(document.getElementById('speedVisitors').value) || 0;
+    
+    // Studies show ~7% conversion drop per second of load time
+    const secondsSaved = currentSpeed - targetSpeed;
+    const conversionLift = secondsSaved * 7; // 7% per second
+    const bounceReduction = secondsSaved * 8; // ~8% bounce rate per second
+    const additionalRevenue = revenue * (conversionLift / 100);
+    const yearlyRevenue = additionalRevenue * 12;
+    
+    document.getElementById('speedBounce').textContent = '-' + Math.round(bounceReduction) + '%';
+    document.getElementById('speedConvLift').textContent = '+' + Math.round(conversionLift) + '%';
+    document.getElementById('speedMonthly').textContent = '+' + formatCurrency(additionalRevenue);
+    document.getElementById('speedYearly').textContent = '+' + formatCurrency(yearlyRevenue);
+    
+    let message = `Durch eine Reduktion der Ladezeit um ${secondsSaved.toFixed(1)} Sekunden können Sie Ihre Conversion um ca. ${Math.round(conversionLift)}% steigern. `;
+    if (currentSpeed > 3) {
+        message += 'Bei einer Ladezeit über 3 Sekunden verlieren Sie bereits 40% der Besucher.';
+    } else {
+        message += 'Eine Ladezeit unter 2 Sekunden gilt als exzellent und wird von Google belohnt.';
+    }
+    document.getElementById('speedMessage').textContent = message;
+    document.getElementById('speedResult').classList.add('active');
+});
+</script>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+        <div class="cookie-text">
+            <h4>Cookie-Einstellungen</h4>
+            <p>Wir verwenden technisch notwendige Cookies für den Betrieb dieser Website. <a href="datenschutz.html">Mehr erfahren</a></p>
+        </div>
+        <div class="cookie-actions">
+            <button class="cookie-btn cookie-accept" id="cookieAccept">Akzeptieren</button>
+            <button class="cookie-btn cookie-settings" id="cookieSettings">Einstellungen</button>
+        </div>
+    </div>
+</div>
+<style>
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);border-top:1px solid rgba(201,169,98,.2);padding:20px 40px;z-index:10000;transform:translateY(100%);transition:transform .4s ease;backdrop-filter:blur(20px)}
+.cookie-banner.active{transform:translateY(0)}
+.cookie-content{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.cookie-text h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#C9A962;margin-bottom:5px}
+.cookie-text p{color:rgba(250,250,250,.75);font-size:.85rem;margin:0}
+.cookie-text a{color:#C9A962;text-decoration:none}
+.cookie-actions{display:flex;gap:12px}
+.cookie-btn{padding:12px 25px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:1px;cursor:pointer;transition:all .3s;border:none}
+.cookie-accept{background:#C9A962;color:#000}
+.cookie-accept:hover{background:#E8D5A3}
+.cookie-settings{background:transparent;border:1px solid rgba(201,169,98,.3);color:rgba(250,250,250,.75)}
+.cookie-settings:hover{border-color:#C9A962;color:#C9A962}
+@media(max-width:768px){.cookie-banner{padding:20px}.cookie-content{flex-direction:column;text-align:center}.cookie-actions{width:100%;justify-content:center}}
+</style>
+<script>
+const cookieBanner=document.getElementById("cookieBanner");const cookieAccept=document.getElementById("cookieAccept");const cookieSettings=document.getElementById("cookieSettings");function getCookie(e){const t="; "+document.cookie;const n=t.split("; "+e+"=");if(n.length===2)return n.pop().split(";").shift()}function setCookie(e,t,n){const o=new Date;o.setTime(o.getTime()+n*24*60*60*1e3);document.cookie=e+"="+t+";expires="+o.toUTCString()+";path=/;SameSite=Lax"}if(!getCookie("cookie_consent")){setTimeout(function(){cookieBanner.classList.add("active")},1e3)}cookieAccept.addEventListener("click",function(){setCookie("cookie_consent","accepted",365);cookieBanner.classList.remove("active")});cookieSettings.addEventListener("click",function(){window.location.href="datenschutz.html#cookies"});
+</script>
+
+</body>
+</html>

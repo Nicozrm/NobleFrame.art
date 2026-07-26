@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kompetenzen – NobleFrame | Unsere Services</title>
+    <meta name="description" content="Premium Webdesign, E-Commerce, Web-Apps und Growth Strategy. Full-Service von Strategie bis Optimierung.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23000' width='32' height='32'/%3E%3Crect x='2' y='2' width='28' height='28' fill='none' stroke='%23C9A962' stroke-width='2'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--gold:#C9A962;--gold-light:#E8D5A3;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.45);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%)}
+        html{scroll-behavior:smooth}
+        body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);line-height:1.6}
+        .bg-effects{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}.glow-1{position:absolute;width:600px;height:600px;background:rgba(201,169,98,.05);border-radius:50%;filter:blur(150px);top:-200px;right:-100px}
+        
+        .nav-wrapper{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(0,0,0,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,98,.1)}
+        .nav-main{display:flex;justify-content:space-between;align-items:center;padding:20px 60px}
+        .logo{display:flex;align-items:center;gap:15px;text-decoration:none}
+        .logo-icon{width:45px;height:45px}
+        .logo-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:8px;color:var(--white);text-transform:uppercase}
+        .nav-links{display:flex;gap:8px;list-style:none}
+        .nav-links>li>a{padding:12px 18px;color:var(--white-muted);text-decoration:none;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;transition:all .3s;border:1px solid transparent}
+        .nav-links>li>a:hover,.nav-links>li>a.active{color:var(--gold-light);border-color:rgba(201,169,98,.2);background:rgba(201,169,98,.05)}
+        .nav-cta{display:flex;align-items:center;gap:8px;padding:14px 30px;background:var(--gold);color:var(--black);font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);transition:all .4s}
+        .nav-cta:hover{background:transparent;color:var(--gold)}
+        .nav-cta svg{width:16px;height:16px}
+        .nav-portal{background:transparent;border:1px solid rgba(201,169,98,.4);color:var(--gold)}
+        .nav-portal:hover{background:var(--gold);color:var(--black)}
+        .nav-mobile-toggle{display:none;flex-direction:column;gap:5px;padding:12px;background:transparent;border:1px solid rgba(201,169,98,.3);cursor:pointer}
+        .nav-mobile-toggle span{width:24px;height:2px;background:var(--gold)}
+        .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.98);z-index:999;padding:100px 40px;opacity:0;visibility:hidden;transition:all .4s}
+        .mobile-menu.active{opacity:1;visibility:visible}
+        .mobile-menu-links{display:flex;flex-direction:column;gap:15px}
+        .mobile-menu-links a{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white);text-decoration:none}
+
+        .page-hero{padding:160px 60px 80px;text-align:center;position:relative;z-index:10}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:rgba(201,169,98,.08);border:1px solid rgba(201,169,98,.2);margin-bottom:25px}
+        .hero-badge span{font-size:.75rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase}
+        .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;margin-bottom:20px}
+        .hero-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero-subtitle{color:var(--white-muted);font-size:1.1rem;max-width:700px;margin:0 auto}
+
+        /* SERVICES */
+        .services-section{padding:80px 60px;position:relative;z-index:10}
+        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1400px;margin:0 auto}
+        .service-card{background:rgba(201,169,98,.02);border:1px solid rgba(201,169,98,.1);padding:50px 40px;transition:all .4s;position:relative;overflow:hidden}
+        .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);transform:scaleX(0);transition:transform .4s}
+        .service-card:hover{border-color:rgba(201,169,98,.3);transform:translateY(-5px)}
+        .service-card:hover::before{transform:scaleX(1)}
+        .service-icon{width:60px;height:60px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,169,98,.3);margin-bottom:30px}
+        .service-icon svg{width:28px;height:28px;stroke:var(--gold)}
+        .service-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin-bottom:15px}
+        .service-title span{color:var(--gold)}
+        .service-desc{color:var(--white-muted);font-size:.9rem;line-height:1.8;margin-bottom:25px}
+        .service-features{list-style:none}
+        .service-features li{padding:8px 0;border-bottom:1px solid rgba(201,169,98,.05);font-size:.85rem;color:var(--white-subtle);display:flex;align-items:center;gap:10px}
+        .service-features li::before{content:'';width:6px;height:6px;background:var(--gold);opacity:.5}
+        .service-price{margin-top:25px;padding-top:25px;border-top:1px solid rgba(201,169,98,.1)}
+        .service-price span{font-size:.8rem;color:var(--gold);letter-spacing:1px}
+
+        /* PROCESS */
+        .process-section{padding:100px 60px;background:rgba(201,169,98,.02);position:relative;z-index:10}
+        .section-header{text-align:center;margin-bottom:60px}
+        .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300}
+        .section-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1200px;margin:0 auto}
+        .process-step{text-align:center;position:relative}
+        .process-step::after{content:'';position:absolute;top:30px;left:calc(50% + 40px);width:calc(100% - 80px);height:1px;background:rgba(201,169,98,.2)}
+        .process-step:last-child::after{display:none}
+        .process-number{width:60px;height:60px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;border:2px solid var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);position:relative;z-index:2;background:var(--black)}
+        .process-title{font-size:1rem;font-weight:500;margin-bottom:10px}
+        .process-desc{font-size:.85rem;color:var(--white-muted);line-height:1.6}
+
+        /* TECH STACK */
+        .tech-section{padding:100px 60px;position:relative;z-index:10}
+        .tech-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;max-width:1000px;margin:0 auto}
+        .tech-item{padding:30px 20px;background:rgba(201,169,98,.02);border:1px solid rgba(201,169,98,.1);text-align:center;transition:all .3s}
+        .tech-item:hover{border-color:var(--gold);background:rgba(201,169,98,.05)}
+        .tech-name{font-size:.8rem;color:var(--white-muted);letter-spacing:1px}
+
+        /* CTA */
+        .cta-section{padding:120px 60px;text-align:center;background:linear-gradient(180deg,transparent,rgba(201,169,98,.03));position:relative;z-index:10}
+        .cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:20px}
+        .cta-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .cta-text{color:var(--white-muted);font-size:1.1rem;max-width:600px;margin:0 auto 40px}
+        .cta-btn{display:inline-flex;padding:18px 45px;background:var(--gold);color:var(--black);font-size:.9rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);transition:all .4s}
+        .cta-btn:hover{background:transparent;color:var(--gold)}
+
+        /* FOOTER */
+        .footer{padding:60px;border-top:1px solid rgba(201,169,98,.1);position:relative;z-index:10}
+        .footer-main{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.5fr;gap:40px;max-width:1400px;margin:0 auto 40px}
+        .footer-logo{display:flex;align-items:center;gap:15px;margin-bottom:15px}
+        .footer-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.2rem;letter-spacing:5px;color:var(--white)}
+        .footer-tagline{color:var(--white-muted);font-size:.85rem}
+        .footer-section h4{font-size:.75rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+        .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+        .footer-links a,.footer-links li{color:var(--white-muted);text-decoration:none;font-size:.85rem}
+        .footer-links a:hover{color:var(--gold)}
+        .social-links{display:flex;gap:12px}
+        .social-link{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,169,98,.3);color:var(--white-muted);transition:all .3s}
+        .social-link:hover{background:var(--gold);border-color:var(--gold);color:var(--black)}
+        .social-link svg{width:18px;height:18px}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:30px;border-top:1px solid rgba(201,169,98,.1);max-width:1400px;margin:0 auto}
+        .copyright{color:var(--white-subtle);font-size:.8rem}
+        .copyright span{color:var(--gold)}
+        .legal-links{display:flex;gap:25px}
+        .legal-links a{color:var(--white-subtle);text-decoration:none;font-size:.75rem}
+
+        @media(max-width:1200px){.services-grid{grid-template-columns:repeat(2,1fr)}.process-grid{grid-template-columns:repeat(2,1fr)}.process-step::after{display:none}.tech-grid{grid-template-columns:repeat(4,1fr)}.footer-main{grid-template-columns:1fr 1fr 1fr}}
+        @media(max-width:1024px){.nav-links,.nav-cta{display:none}.nav-mobile-toggle{display:flex}.nav-main{padding:15px 30px}.page-hero{padding:140px 40px 60px}.services-section{padding:60px 40px}.process-section{padding:80px 40px}.tech-section{padding:80px 40px}}
+        @media(max-width:768px){.nav-main{padding:15px 25px}.page-hero{padding:120px 25px 50px}.services-section{padding:40px 25px}.services-grid{grid-template-columns:1fr}.process-section{padding:60px 25px}.process-grid{grid-template-columns:1fr}.tech-section{padding:60px 25px}.tech-grid{grid-template-columns:repeat(3,1fr)}.footer{padding:40px 25px}.footer-main{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:15px;text-align:center}.cta-section{padding:80px 25px}}
+    </style>
+</head>
+<body>
+<div class="bg-effects"><div class="glow-1"></div></div>
+
+<div class="nav-wrapper">
+    <nav class="nav-main">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><svg viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/><rect x="25" y="25" width="50" height="50" fill="none" stroke="#C9A962" stroke-width="1.5" opacity=".6"/></svg></div>
+            <span class="logo-text">NobleFrame</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="referenzen.html">Referenzen</a></li>
+            <li><a href="kompetenzen.html" class="active">Kompetenzen</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="karriere.html">Karriere</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+        <a href="portal/login.html" class="nav-cta nav-portal">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            Client Portal
+        </a>
+        <a href="kontakt.html" class="nav-cta">Projekt anfragen</a>
+        <button class="nav-mobile-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    </nav>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links">
+        <a href="index.html">Home</a><a href="referenzen.html">Referenzen</a><a href="kompetenzen.html">Kompetenzen</a><a href="portfolio.html">Portfolio</a><a href="tools.html">Tools</a><a href="labs.html">Labs</a><a href="faq.html">FAQ</a><a href="karriere.html">Karriere</a>
+    </div>
+    <a href="portal/login.html" class="mobile-cta-secondary">Client Portal</a>
+</div>
+
+<section class="page-hero">
+    <div class="hero-badge"><span>Full-Service</span></div>
+    <h1 class="hero-title">Unsere <span>Kompetenzen</span></h1>
+    <p class="hero-subtitle">Von der Strategie bis zur laufenden Optimierung. Wir liefern messbare Ergebnisse.</p>
+</section>
+
+<section class="services-section">
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+            <h3 class="service-title">Premium <span>Webdesign</span></h3>
+            <p class="service-desc">Maßgeschneiderte Websites, die Ihre Marke perfekt repräsentieren und Besucher in Kunden verwandeln.</p>
+            <ul class="service-features">
+                <li>UX/UI Design</li>
+                <li>Responsive Development</li>
+                <li>CMS-Integration</li>
+                <li>Performance-Optimierung</li>
+            </ul>
+            <div class="service-price"><span>Ab 50.000€</span></div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
+            <h3 class="service-title">E-Commerce <span>Solutions</span></h3>
+            <p class="service-desc">Hochperformante Online-Shops mit Headless-Architektur für maximale Conversion und Skalierbarkeit.</p>
+            <ul class="service-features">
+                <li>Shopify Plus / Custom</li>
+                <li>Headless Commerce</li>
+                <li>Payment Integration</li>
+                <li>Conversion-Optimierung</li>
+            </ul>
+            <div class="service-price"><span>Ab 75.000€</span></div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
+            <h3 class="service-title">Web-<span>Applikationen</span></h3>
+            <p class="service-desc">Komplexe Web-Apps und SaaS-Plattformen mit modernster Technologie und skalierbarer Architektur.</p>
+            <ul class="service-features">
+                <li>React / Next.js / Vue.js</li>
+                <li>API Development</li>
+                <li>Cloud Infrastructure</li>
+                <li>Real-time Features</li>
+            </ul>
+            <div class="service-price"><span>Ab 100.000€</span></div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg></div>
+            <h3 class="service-title">Branding & <span>UI Design</span></h3>
+            <p class="service-desc">Distinctive Brand Identities und User Interfaces, die Ihre Marke unverwechselbar machen.</p>
+            <ul class="service-features">
+                <li>Brand Strategy</li>
+                <li>Visual Identity</li>
+                <li>Design Systems</li>
+                <li>Prototyping</li>
+            </ul>
+            <div class="service-price"><span>Ab 15.000€</span></div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+            <h3 class="service-title">Digital <span>Growth</span></h3>
+            <p class="service-desc">Datengetriebene Strategien für nachhaltiges Wachstum und messbare Business-Ergebnisse.</p>
+            <ul class="service-features">
+                <li>SEO & Content Strategy</li>
+                <li>Conversion Optimization</li>
+                <li>Analytics Setup</li>
+                <li>A/B Testing</li>
+            </ul>
+            <div class="service-price"><span>Ab 3.000€/Monat</span></div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
+            <h3 class="service-title">KI & <span>Automation</span></h3>
+            <p class="service-desc">Intelligente Lösungen mit künstlicher Intelligenz für effizientere Prozesse und bessere Kundenerlebnisse.</p>
+            <ul class="service-features">
+                <li>OpenAI / Claude Integration</li>
+                <li>Chatbots & Assistenten</li>
+                <li>Prozessautomatisierung</li>
+                <li>Custom AI Solutions</li>
+            </ul>
+            <div class="service-price"><span>Ab 25.000€</span></div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+            <h3 class="service-title">Support & <span>Wartung</span></h3>
+            <p class="service-desc">Laufende Betreuung mit proaktivem Monitoring, Updates und dediziertem Support-Team.</p>
+            <ul class="service-features">
+                <li>24/7 Monitoring</li>
+                <li>Security Updates</li>
+                <li>Performance Reports</li>
+                <li>Priority Support</li>
+            </ul>
+            <div class="service-price"><span>Ab 500€/Monat</span></div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg></div>
+            <h3 class="service-title">Digital <span>Consulting</span></h3>
+            <p class="service-desc">Strategische Beratung für Ihre digitale Transformation – von der Analyse bis zur Umsetzung.</p>
+            <ul class="service-features">
+                <li>Digital Strategy</li>
+                <li>Technology Assessment</li>
+                <li>Roadmap Planning</li>
+                <li>Vendor Selection</li>
+            </ul>
+            <div class="service-price"><span>Ab 2.500€/Tag</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="process-section">
+    <div class="section-header">
+        <h2 class="section-title">Unser <span>Prozess</span></h2>
+    </div>
+    <div class="process-grid">
+        <div class="process-step">
+            <div class="process-number">01</div>
+            <h3 class="process-title">Discovery</h3>
+            <p class="process-desc">Analyse Ihrer Ziele, Zielgruppe und Wettbewerb. Strategische Grundlage für messbare Ergebnisse.</p>
+        </div>
+        <div class="process-step">
+            <div class="process-number">02</div>
+            <h3 class="process-title">Konzept & Design</h3>
+            <p class="process-desc">Wireframes, UI Design und Prototypen. Iterative Abstimmung für perfekte Ergebnisse.</p>
+        </div>
+        <div class="process-step">
+            <div class="process-number">03</div>
+            <h3 class="process-title">Entwicklung</h3>
+            <p class="process-desc">Moderne Tech-Stack, sauberer Code, Performance-First. Qualität ohne Kompromisse.</p>
+        </div>
+        <div class="process-step">
+            <div class="process-number">04</div>
+            <h3 class="process-title">Launch & Optimierung</h3>
+            <p class="process-desc">Go-Live mit Monitoring, datenbasierte Optimierung für kontinuierliches Wachstum.</p>
+        </div>
+    </div>
+</section>
+
+<section class="tech-section">
+    <div class="section-header">
+        <h2 class="section-title">Unser <span>Tech Stack</span></h2>
+    </div>
+    <div class="tech-grid">
+        <div class="tech-item"><span class="tech-name">React</span></div>
+        <div class="tech-item"><span class="tech-name">Next.js</span></div>
+        <div class="tech-item"><span class="tech-name">Vue.js</span></div>
+        <div class="tech-item"><span class="tech-name">TypeScript</span></div>
+        <div class="tech-item"><span class="tech-name">Node.js</span></div>
+        <div class="tech-item"><span class="tech-name">Python</span></div>
+        <div class="tech-item"><span class="tech-name">Shopify Plus</span></div>
+        <div class="tech-item"><span class="tech-name">Sanity</span></div>
+        <div class="tech-item"><span class="tech-name">Strapi</span></div>
+        <div class="tech-item"><span class="tech-name">Vercel</span></div>
+        <div class="tech-item"><span class="tech-name">AWS</span></div>
+        <div class="tech-item"><span class="tech-name">Figma</span></div>
+        <div class="tech-item"><span class="tech-name">Supabase</span></div>
+        <div class="tech-item"><span class="tech-name">PostgreSQL</span></div>
+        <div class="tech-item"><span class="tech-name">TailwindCSS</span></div>
+        <div class="tech-item"><span class="tech-name">GSAP</span></div>
+        <div class="tech-item"><span class="tech-name">Three.js</span></div>
+        <div class="tech-item"><span class="tech-name">Stripe</span></div>
+        <div class="tech-item"><span class="tech-name">OpenAI API</span></div>
+        <div class="tech-item"><span class="tech-name">Claude API</span></div>
+        <div class="tech-item"><span class="tech-name">Brevo</span></div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <h2 class="cta-title">Projekt <span>besprechen</span>?</h2>
+    <p class="cta-text">Kostenloses Strategiegespräch – wir analysieren Ihre Situation und zeigen Potenziale auf.</p>
+    <a href="kontakt.html" class="cta-btn">Gespräch vereinbaren</a>
+</section>
+
+<footer class="footer">
+    <div class="footer-main">
+        <div>
+            <div class="footer-logo"><svg width="35" height="35" viewBox="0 0 100 100"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/></svg><span class="footer-logo-text">NOBLEFRAME</span></div>
+            <p class="footer-tagline">Premium Digital Atelier</p>
+        </div>
+        <div class="footer-section"><h4>Navigation</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="referenzen.html">Referenzen</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
+        <div class="footer-section"><h4>Mehr</h4><ul class="footer-links"><li><a href="tools.html">Tools</a></li><li><a href="labs.html">Labs</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+        <div class="footer-section">
+            <h4>Folge uns</h4>
+            <div class="social-links">
+                <a href="https://instagram.com/nobleframe.de" target="_blank" class="social-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                <a href="https://x.com/nobleframe_de" target="_blank" class="social-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-section"><h4>Kontakt</h4><ul class="footer-links"><li><a href="/cdn-cgi/l/email-protection#c4adaaa2ab84aaaba6a8a1a2b6a5a9a1eaa0a1"><span class="__cf_email__" data-cfemail="cba2a5ada48ba5a4a9a7aeadb9aaa6aee5afae">[email&#160;protected]</span></a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p class="copyright">© 2026 <span>NobleFrame</span></p><div class="legal-links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div></div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.getElementById('navToggle').addEventListener('click',()=>{document.getElementById('mobileMenu').classList.toggle('active')});</script>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+        <div class="cookie-text">
+            <h4>Cookie-Einstellungen</h4>
+            <p>Wir verwenden technisch notwendige Cookies für den Betrieb dieser Website. <a href="datenschutz.html">Mehr erfahren</a></p>
+        </div>
+        <div class="cookie-actions">
+            <button class="cookie-btn cookie-accept" id="cookieAccept">Akzeptieren</button>
+            <button class="cookie-btn cookie-settings" id="cookieSettings">Einstellungen</button>
+        </div>
+    </div>
+</div>
+<style>
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);border-top:1px solid rgba(201,169,98,.2);padding:20px 40px;z-index:10000;transform:translateY(100%);transition:transform .4s ease;backdrop-filter:blur(20px)}
+.cookie-banner.active{transform:translateY(0)}
+.cookie-content{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.cookie-text h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#C9A962;margin-bottom:5px}
+.cookie-text p{color:rgba(250,250,250,.75);font-size:.85rem;margin:0}
+.cookie-text a{color:#C9A962;text-decoration:none}
+.cookie-actions{display:flex;gap:12px}
+.cookie-btn{padding:12px 25px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:1px;cursor:pointer;transition:all .3s;border:none}
+.cookie-accept{background:#C9A962;color:#000}
+.cookie-accept:hover{background:#E8D5A3}
+.cookie-settings{background:transparent;border:1px solid rgba(201,169,98,.3);color:rgba(250,250,250,.75)}
+.cookie-settings:hover{border-color:#C9A962;color:#C9A962}
+@media(max-width:768px){.cookie-banner{padding:20px}.cookie-content{flex-direction:column;text-align:center}.cookie-actions{width:100%;justify-content:center}}
+</style>
+<script>
+const cookieBanner=document.getElementById("cookieBanner");const cookieAccept=document.getElementById("cookieAccept");const cookieSettings=document.getElementById("cookieSettings");function getCookie(e){const t="; "+document.cookie;const n=t.split("; "+e+"=");if(n.length===2)return n.pop().split(";").shift()}function setCookie(e,t,n){const o=n
