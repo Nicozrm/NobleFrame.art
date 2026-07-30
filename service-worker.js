@@ -1,26 +1,38 @@
-/* NobleFrame – Service Worker (cache-first mit Runtime-Caching) */
-const CACHE = "nobleframe-v15";
+/* NobleFrame – Service Worker
+   Strategie:
+   • Navigationen (HTML): network-first → Besucher sehen immer den neuesten
+     Stand; der Cache dient nur als Offline-Fallback.
+   • Statische Assets (JS/CSS/Bilder, same-origin): stale-while-revalidate →
+     sofortige Antwort aus dem Cache, Aktualisierung im Hintergrund.
+   • /api/ und der OMEGA-OS-Showcase (eigener SW) werden nie abgefangen. */
+const CACHE = "nobleframe-v9";
 
-/* Kern-Seiten, die offline verfügbar sein sollen.
-   Einzelne Fehlschläge brechen die Installation NICHT ab (allSettled).
-   Relative Pfade: funktionieren auf Root-Domains UND Unterpfaden (z. B. GitHub Pages). */
+/* Kern-Seiten für den Offline-Fallback. Einzelne Fehlschläge brechen die
+   Installation NICHT ab (allSettled). */
 const CORE = [
-  "./",
-  "./index.html",
-  "./leistungen.html",
-  "./signatur.html",
-  "./showcase.html",
-  "./tools.html",
-  "./about.html",
-  "./kontakt.html",
-  "./faq.html",
-  "./karriere.html",
-  "./impressum.html",
-  "./datenschutz.html",
-  "./agb.html",
-  "./nf-boot.js",
-  "./nf-engine.js",
-  "./site.webmanifest"
+  "/",
+  "/index.html",
+  "/cinematic-engine.js",
+  "/nf-interactions.js",
+  "/nf-tech.js",
+  "/nf-shader.js",
+  "/vendor/lenis.min.js",
+  "/manifest.json",
+  "/assets/fonts/fonts.css",
+  "/assets/fonts/outfit-latin.woff2",
+  "/assets/fonts/cormorant-garamond-latin.woff2",
+  "/assets/fonts/jetbrains-mono-latin.woff2",
+  "/leistungen.html",
+  "/referenzen.html",
+  "/showcase.html",
+  "/tools.html",
+  "/about.html",
+  "/kontakt.html",
+  "/faq.html",
+  "/karriere.html",
+  "/impressum.html",
+  "/datenschutz.html",
+  "/agb.html"
 ];
 
 self.addEventListener("install", (event) => {
@@ -46,20 +58,45 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(req.url);
   // Externe Anfragen (Fonts, Google APIs, etc.) nicht abfangen
   if (url.origin !== self.location.origin) return;
-  // OMEGA OS bringt eigenen Service Worker mit – dessen Subpfad NICHT abfangen.
-  if (url.pathname.includes("/showcase/omega-os/")) return;
+  // KI-Endpunkt ist dynamisch, niemals cachen
+  if (url.pathname.startsWith("/api/")) return;
+  // OMEGA OS bringt einen eigenen Service Worker mit – Subpfad nicht anfassen
+  if (url.pathname.startsWith("/showcase/omega-os/")) return;
 
+  const isNavigation = req.mode === "navigate" ||
+    (req.headers.get("accept") || "").includes("text/html");
+
+  if (isNavigation) {
+    // Network-first: frisches HTML, Cache nur offline
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          if (res && res.status === 200) {
+            const copy = res.clone();
+            caches.open(CACHE).then((cache) => cache.put(req, copy)).catch(() => {});
+          }
+          return res;
+        })
+        .catch(() =>
+          caches.match(req).then((cached) => cached || caches.match("/index.html"))
+        )
+    );
+    return;
+  }
+
+  // Assets: stale-while-revalidate
   event.respondWith(
     caches.match(req).then((cached) => {
-      if (cached) return cached;
-      return fetch(req).then((res) => {
-        // Nur erfolgreiche Basis-Antworten cachen
-        if (res && res.status === 200 && res.type === "basic") {
-          const copy = res.clone();
-          caches.open(CACHE).then((cache) => cache.put(req, copy)).catch(() => {});
-        }
-        return res;
-      }).catch(() => caches.match("./index.html"));
+      const refresh = fetch(req)
+        .then((res) => {
+          if (res && res.status === 200 && res.type === "basic") {
+            const copy = res.clone();
+            caches.open(CACHE).then((cache) => cache.put(req, copy)).catch(() => {});
+          }
+          return res;
+        })
+        .catch(() => cached);
+      return cached || refresh;
     })
   );
 });
