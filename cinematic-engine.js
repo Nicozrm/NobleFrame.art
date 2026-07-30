@@ -82,7 +82,30 @@
     dprMax: Math.min(devicePixelRatio || 1, isMobile ? 1.6 : 2),
     focal: 0.60,       // * min(cssW,cssH) → Brennweite in px
     grain: true,
+
+    /* ── Frame-Budget ────────────────────────────────────────────────────
+       Pro Bild werden Szene, zwei Bloom-Stufen, Trail und Vignette über die
+       volle Fläche gezogen — die Kosten wachsen also mit der Pixelzahl, und
+       die wächst quadratisch mit der DPR. Eine reine DPR-Deckelung greift
+       deshalb bei grossen Schirmen zu spät: 2560×1440 bei dpr 2 sind 29 Mio.
+       Pixel je Puffer.
+
+       Das Budget ist ein Sicherheitsnetz für genau diese Fälle, keine
+       generelle Absenkung: bei 1440×900 auf einem Retina-Schirm bleiben
+       ~1,76 statt 2,0 — praktisch unsichtbar. Alles Weitere regelt die
+       Messung unten, die jetzt nach ~0,2 s statt nach ~20 s greift.        */
+    pixelBudget: isMobile ? 1.5e6 : 4.0e6,
+    dprMin: 0.62,
+    targetMs: 16.7,    // Zielrate 60 fps — nicht „so viel wie geht"
+    degradeMs: 22,     // darüber wird Qualität abgebaut
+    upgradeMs: 12,     // darunter darf sie zurückkommen
   };
+
+  /* Höchste DPR, bei der die Fläche noch ins Budget passt. */
+  function dprForBudget(w, h) {
+    if (w <= 0 || h <= 0) return CFG.dprMax;
+    return clamp(Math.sqrt(CFG.pixelBudget / (w * h)), CFG.dprMin, CFG.dprMax);
+  }
 
   const GOLD = '201,169,98';
   const GOLD_HI = '236,220,178';
@@ -142,6 +165,9 @@
   let raf = 0;
   const rings = [];
   let perfAcc = 0, perfN = 0, perfCooldown = 0;
+  let dprCeil = CFG.dprMax;   // aus dem Flächenbudget, s. dprForBudget()
+  let vignette = null;        // gecachter Verlauf, hängt an W/H
+  let skipBloom = false;      // Soforthilfe nach einem entgleisten Bild
   let slatePrev = '';
 
   function measure() {
@@ -149,6 +175,11 @@
     wrapTop = r.top + scrollY;
     cssW = stage.clientWidth; cssH = stage.clientHeight;
     travel = Math.max(wrap.offsetHeight - cssH, 1);
+    /* Obergrenze aus dem Flächenbudget neu bestimmen und konservativ
+       einsteigen: lieber sofort flüssig und danach aufwerten, als drei
+       Sekunden ruckeln, bis die Regelung heruntergefahren hat. */
+    dprCeil = dprForBudget(cssW, cssH);
+    dpr = Math.min(dpr || dprCeil, dprCeil);
     resize();
   }
   function resize() {
@@ -164,6 +195,21 @@
     // Brennweite an der kleineren Kante, aber im Hochformat großzügiger,
     // damit der Tunnel nicht die ganze Höhe überstrahlt.
     foc = CFG.focal * Math.min(w, h) * (w > h ? 1.15 : 1.55);
+    vignette = null;   // hängt an W/H, wird beim nächsten Bild neu gebaut
+  }
+
+  /* Der Vignetten-Verlauf war bisher eine Allokation pro Bild. Er ändert
+     sich nur mit der Puffergröße — also einmal bauen, dann wiederverwenden.
+     Die Deckkraft variiert weiter, dafür genügt globalAlpha. */
+  function vignetteFor() {
+    if (vignette) return vignette;
+    const g = vctx.createRadialGradient(
+      W * 0.5, H * 0.5, Math.min(W, H) * 0.30,
+      W * 0.5, H * 0.5, Math.max(W, H) * 0.72);
+    g.addColorStop(0, 'rgba(0,0,0,0)');
+    g.addColorStop(1, 'rgba(0,0,0,1)');
+    vignette = g;
+    return g;
   }
   function updateProgress() { p = clamp((scrollY - wrapTop) / travel, 0, 1); }
 
@@ -485,7 +531,7 @@
     vctx.drawImage(scene, 0, 0, W, H);
 
     // 2) Bloom NUR aus der frischen Szene (kein Rückkopplungs-Weißbrand)
-    if (!lowFX) {
+    if (!lowFX && !skipBloom) {
       bctx.clearRect(0, 0, bw, bh);
       bctx.drawImage(scene, 0, 0, bw, bh);
       b2ctx.clearRect(0, 0, bloom2.width, bloom2.height);
@@ -498,26 +544,41 @@
       vctx.globalAlpha = 1;
     }
 
-    // 3) Vignette
+    // 3) Vignette — Verlauf gecacht, Stärke über globalAlpha
     vctx.globalCompositeOperation = 'source-over';
-    const vg = vctx.createRadialGradient(W * 0.5, H * 0.5, Math.min(W, H) * 0.30,
-      W * 0.5, H * 0.5, Math.max(W, H) * 0.72);
-    vg.addColorStop(0, 'rgba(0,0,0,0)');
-    vg.addColorStop(1, 'rgba(0,0,0,' + (0.55 - calm * 0.2).toFixed(3) + ')');
-    vctx.fillStyle = vg;
+    vctx.globalAlpha = clamp(0.55 - calm * 0.2, 0, 1);
+    vctx.fillStyle = vignetteFor();
     vctx.fillRect(0, 0, W, H);
+    vctx.globalAlpha = 1;
 
-    // Adaptive Qualität (Warm-up nicht werten)
-    if (fxLock || time < 1.5) { perfAcc = 0; perfN = 0; }
+    /* ── Frame-Budget ──────────────────────────────────────────────────
+       Zwei Regelkreise. Der schnelle setzt für das nächste Bild den Bloom
+       aus, sobald ein einzelnes Bild entgleist — das wirkt sofort und kostet
+       nur Glanz. Der langsame verstellt Qualitätsstufe und Auflösung, aber
+       über kurze Fenster (12 Bilder statt 30) und mit kurzer Sperre, damit
+       er innerhalb der ersten Sekunde greift statt nach zwanzig.          */
+    const frameMs = dtW * 1000;
+    skipBloom = frameMs > CFG.degradeMs * 2;
+
+    if (fxLock || time < 0.6) { perfAcc = 0; perfN = 0; }
     else {
-      perfAcc += Math.min(dtW, 0.25); perfN++;
-      if (perfN >= 30) {
+      perfAcc += Math.min(frameMs, 250); perfN++;
+      if (perfN >= 12) {
         const avg = perfAcc / perfN; perfAcc = 0; perfN = 0;
         if (time > perfCooldown) {
-          if (avg > 0.030 && !lowFX) { lowFX = true; perfCooldown = time + 3; }
-          else if (avg > 0.030 && dpr > 1.0) { dpr = Math.max(1.0, dpr - 0.25); resize(); perfCooldown = time + 3; }
-          else if (avg < 0.016 && lowFX) { lowFX = false; perfCooldown = time + 4; }
-          else if (avg < 0.014 && dpr < CFG.dprMax) { dpr = Math.min(CFG.dprMax, dpr + 0.25); resize(); perfCooldown = time + 4; }
+          if (avg > CFG.degradeMs) {
+            // Erst den Glanz, dann die Auflösung — in dieser Reihenfolge
+            // bleibt die Komposition am längsten erhalten.
+            if (!lowFX) { lowFX = true; perfCooldown = time + 1.2; }
+            else if (dpr > CFG.dprMin) {
+              dpr = Math.max(CFG.dprMin, dpr - 0.2); resize(); perfCooldown = time + 1.2;
+            }
+          } else if (avg < CFG.upgradeMs) {
+            // Headroom vorhanden: Auflösung zuerst, Glanz zuletzt.
+            if (dpr < dprCeil) {
+              dpr = Math.min(dprCeil, dpr + 0.15); resize(); perfCooldown = time + 2;
+            } else if (lowFX) { lowFX = false; perfCooldown = time + 2; }
+          }
         }
       }
     }
