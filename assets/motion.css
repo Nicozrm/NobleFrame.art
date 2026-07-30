@@ -1,0 +1,32 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   NobleFrame — Bewegungssystem
+
+   Zwei Dauern, eine Kurve. Mehr existiert nicht. Wer eine dritte braucht,
+   schreibt dazu, welches Problem sie löst.
+
+     --nf-response   etwas antwortet auf eine Eingabe (Hover, Fokus, Klick)
+     --nf-transport  etwas bewegt sich von einem Ort zum anderen
+
+   Alles, was länger dauern will, ist keine Bewegung mehr, sondern Warten.
+   Warten ist nicht vorgesehen.
+
+   Der reduced-motion-Block unten gilt für die gesamte Seite und für jede
+   Regel, die irgendwo inline dazukommt. Er ist der Grund, warum einzelne
+   Seiten das nicht mehr selbst regeln müssen.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --nf-response: 120ms;
+  --nf-transport: 320ms;
+  --nf-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -24,6 +24,7 @@
     <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="assets/motion.css">
     <script defer src="cinematic-engine.js"></script>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
@@ -102,8 +103,8 @@
         .hero-image::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to right,transparent 70%,var(--black) 100%)}
         .hero-content{width:50%;display:flex;flex-direction:column;justify-content:center;padding:120px 80px;position:relative;z-index:10;background:var(--black)}
         .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:rgba(201,169,98,.08);border:1px solid rgba(201,169,98,.25);margin-bottom:30px;width:fit-content;animation:fadeInUp .8s ease .3s both}
-        .badge-dot{width:8px;height:8px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+        .badge-dot{width:8px;height:8px;background:var(--gold);border-radius:50%;}
+        
         .hero-badge span{font-size:.75rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase}
         .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.5vw,4rem);font-weight:300;line-height:1.15;margin-bottom:25px}
         .title-line{display:block;overflow:hidden}
@@ -130,8 +131,7 @@
         .btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
         .scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;animation:fadeInUp .8s ease 1.5s both}
         .scroll-text{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--white-subtle)}
-        .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s infinite}
-        @keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.5;transform:scaleY(.8)}}
+        .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);}
 
         /* SHOWCASE — die fünf laufenden Eigenentwicklungen.
            Bewusst vor den Leistungen: das Atelier hat gebaute, anklickbare
@@ -341,11 +341,11 @@
         [data-stagger].in>*{opacity:1;transform:none}
         /* hero photo – Ken-Burns + Parallax + Sweep + Wipe-Reveal */
         .hero-parallax{position:absolute;inset:-10%;will-change:transform;animation:heroWipe 1.5s cubic-bezier(.76,0,.24,1) 1.9s both}
-        .hero-parallax img{width:100%;height:100%;object-fit:cover;filter:brightness(.8) contrast(1.06) saturate(.95);animation:heroKen 26s ease-in-out infinite alternate;will-change:transform;transform-origin:62% 38%}
-        @keyframes heroKen{from{transform:scale(1.05)}to{transform:scale(1.18) translateY(-2%)}}
+        .hero-parallax img{width:100%;height:100%;object-fit:cover;filter:brightness(.8) contrast(1.06) saturate(.95);will-change:transform;transform-origin:62% 38%}
+        
         @keyframes heroWipe{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
-        .hero-image-sweep{position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(232,213,163,.12) 50%,transparent 58%);transform:translateX(-110%);animation:heroSweep 9s ease-in-out 3.2s infinite;pointer-events:none;z-index:2}
-        @keyframes heroSweep{0%{transform:translateX(-110%)}45%,100%{transform:translateX(120%)}}
+        .hero-image-sweep{position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(232,213,163,.12) 50%,transparent 58%);transform:translateX(-110%);pointer-events:none;z-index:2}
+        
         /* service cards elevation */
         .services-grid{counter-reset:svc}
         .service-card{position:relative;overflow:hidden}
@@ -404,11 +404,11 @@
         .cta-frame::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
         .cta-frame::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
         .cta-container{position:relative;z-index:1}
-        .magnetic{will-change:transform}
+        
         a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
         @media(max-width:1200px){.work-grid{grid-template-columns:1fr 1fr}.process-grid{grid-template-columns:1fr 1fr;gap:46px 30px}.process-grid::before{display:none}}
         @media(max-width:768px){.process{padding:80px 20px}.work-grid{grid-template-columns:1fr}.process-grid{grid-template-columns:1fr}}
-        @media(prefers-reduced-motion:reduce){.hero-parallax,.hero-parallax img,.hero-image-sweep{animation:none!important}.hero-parallax{clip-path:none!important;inset:0!important}.reveal,.reveal-left,.reveal-right,[data-stagger]>*{opacity:1!important;transform:none!important}.tech-track{animation:none!important}.title-word,.hero-badge,.hero-text,.hero-stats,.hero-ctas,.scroll-indicator,.badge-dot{animation:none!important}}
+        @media(prefers-reduced-motion:reduce){.hero-parallax,.hero-parallax img,.hero-image-sweep{animation:none!important}.hero-parallax{clip-path:none!important;inset:0!important}.reveal,.reveal-left,.reveal-right,[data-stagger]>*{opacity:1!important;transform:none!important}.title-word,.hero-badge,.hero-text,.hero-stats,.hero-ctas,.scroll-indicator,.badge-dot{animation:none!important}}
 
         /* ===== CONTENT-AUSBAU + WECHSEL-ANIMATIONEN ===== */
         .reveal-left{opacity:0;transform:translateX(-46px);transition:opacity .85s cubic-bezier(.2,.7,.3,1),transform .85s cubic-bezier(.2,.7,.3,1)}
@@ -428,12 +428,12 @@
         /* Tech-Marquee */
         .tech-strip{padding:58px 0;position:relative;z-index:10;border-top:1px solid rgba(201,169,98,.08);border-bottom:1px solid rgba(201,169,98,.08);overflow:hidden}
         .tech-strip-label{text-align:center;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--white-subtle);margin-bottom:32px}
-        .tech-marquee{position:relative;width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-        .tech-track{display:flex;align-items:center;gap:48px;width:max-content;animation:marqueeScroll 34s linear infinite}
+        .tech-marquee{position:relative;width:100%}
+        .tech-track{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:48px}
         .tech-track span{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:var(--white-muted);white-space:nowrap}
         .tech-track .t-sep{color:var(--gold);opacity:.45;font-size:1.3rem}
-        .tech-marquee:hover .tech-track{animation-play-state:paused}
-        @keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+        .tech-marquee:hover 
+        
         /* Warum NobleFrame */
         .why-section{padding:118px 60px;position:relative;z-index:10;border-top:1px solid rgba(201,169,98,.08);overflow:hidden}
         .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:1080px;margin:0 auto}
@@ -473,7 +473,7 @@
         .cine-p{margin-top:22px;font-size:clamp(.94rem,1.5vw,1.1rem);line-height:1.85;color:var(--white-muted);max-width:52ch}
         .cine-scrollhint{position:absolute;bottom:max(9.5vh,68px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px}
         .cine-scrollhint span{font-size:.66rem;letter-spacing:3px;text-transform:uppercase;color:var(--white-subtle)}
-        .cine-scrollhint i{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s infinite}
+        .cine-scrollhint i{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);}
         html.cine-live .cine-wrap{height:470vh}
         html.cine-live .cine-stage{position:sticky;top:0;height:100vh;height:100dvh;display:block;background:#000}
         html.cine-live .cine-canvas{display:block;position:absolute;inset:0;width:100%;height:100%}
@@ -677,7 +677,7 @@
                 <p class="hero-text">Digitale Plattformen für Unternehmen, die Präzision erwarten. Maßgeschneiderte E-Commerce- und Weblösungen mit messbarem Business Impact – ohne Kompromisse bei Design, Performance oder Code-Qualität.</p>
                 <div class="hero-stats">
                     <div class="hero-stat">
-                        <span class="hero-stat-number" data-count="25" data-suffix="+">25+</span>
+                        <span class="hero-stat-number">25+</span>
                         <span class="hero-stat-label">Projekte</span>
                     </div>
                     <div class="hero-stat">
@@ -685,12 +685,12 @@
                         <span class="hero-stat-label">Bis ROI</span>
                     </div>
                     <div class="hero-stat">
-                        <span class="hero-stat-number" data-count="100" data-suffix="%">100%</span>
+                        <span class="hero-stat-number">100%</span>
                         <span class="hero-stat-label">Eigener Code</span>
                     </div>
                 </div>
                 <div class="hero-ctas">
-                    <a href="kontakt.html" class="btn-primary magnetic">Projekt anfragen</a>
+                    <a href="kontakt.html" class="btn-primary">Projekt anfragen</a>
                     <a href="referenzen.html" class="btn-secondary">Referenzen ansehen</a>
                 </div>
             </div>
@@ -860,8 +860,8 @@
 
 <section class="tech-strip">
     <div class="tech-strip-label">Unser Werkzeugkasten</div>
-    <div class="tech-marquee" aria-hidden="true">
-        <div class="tech-track"><span>React</span><span class="t-sep">·</span><span>TypeScript</span><span class="t-sep">·</span><span>GSAP</span><span class="t-sep">·</span><span>Tailwind CSS</span><span class="t-sep">·</span><span>Supabase</span><span class="t-sep">·</span><span>Stripe</span><span class="t-sep">·</span><span>Cloudflare</span><span class="t-sep">·</span><span>Node.js</span><span class="t-sep">·</span><span>Figma</span><span class="t-sep">·</span><span>React</span><span class="t-sep">·</span><span>TypeScript</span><span class="t-sep">·</span><span>GSAP</span><span class="t-sep">·</span><span>Tailwind CSS</span><span class="t-sep">·</span><span>Supabase</span><span class="t-sep">·</span><span>Stripe</span><span class="t-sep">·</span><span>Cloudflare</span><span class="t-sep">·</span><span>Node.js</span><span class="t-sep">·</span><span>Figma</span><span class="t-sep">·</span></div>
+    <div class="tech-marquee">
+        <div class="tech-track"><span>React</span><span class="t-sep">·</span><span>TypeScript</span><span class="t-sep">·</span><span>GSAP</span><span class="t-sep">·</span><span>Tailwind CSS</span><span class="t-sep">·</span><span>Supabase</span><span class="t-sep">·</span><span>Stripe</span><span class="t-sep">·</span><span>Cloudflare</span><span class="t-sep">·</span><span>Node.js</span><span class="t-sep">·</span><span>Figma</span></div>
     </div>
 </section>
 
@@ -920,7 +920,7 @@
         <cite>NobleFrame</cite>
     </div>
     <div style="text-align:center;margin-top:54px">
-        <a href="referenzen.html" class="btn-primary magnetic">Alle Referenzen ansehen</a>
+        <a href="referenzen.html" class="btn-primary">Alle Referenzen ansehen</a>
     </div>
 </section>
 
@@ -961,7 +961,7 @@
         <h2 class="cta-title">Bereit für Ihr <span>Projekt</span>?</h2>
         <p class="cta-text">Vereinbaren Sie ein kurzes Gespräch. Wir prüfen gemeinsam, ob und wie wir Sie unterstützen können – ohne Verpflichtung.</p>
         <div class="cta-buttons">
-            <a href="mailto:info@nobleframe.de" class="btn-primary magnetic">
+            <a href="mailto:info@nobleframe.de" class="btn-primary">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 info@nobleframe.de
             </a>
@@ -1098,14 +1098,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
   // count-up numbers
   const fmt=new Intl.NumberFormat('de-DE');
-  const cu=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target;const t=+el.dataset.count;const suf=el.dataset.suffix||'';if(rm){el.textContent=fmt.format(t)+suf;cu.unobserve(el);return;}const dur=1200,t0=performance.now();const step=(now)=>{const p=Math.min(1,(now-t0)/dur);const ev=1-Math.pow(1-p,3);el.textContent=fmt.format(Math.round(t*ev))+suf;if(p<1)requestAnimationFrame(step);};requestAnimationFrame(step);cu.unobserve(el);}});},{threshold:.6});
-  document.querySelectorAll('[data-count]').forEach(el=>cu.observe(el));
   if(rm) return;
-  // magnetic buttons
-  document.querySelectorAll('.magnetic').forEach(btn=>{
-    btn.addEventListener('mousemove',(e)=>{const r=btn.getBoundingClientRect();const x=e.clientX-r.left-r.width/2;const y=e.clientY-r.top-r.height/2;btn.style.transform='translate('+(x*0.16)+'px,'+(y*0.26)+'px)';});
-    btn.addEventListener('mouseleave',()=>{btn.style.transform='';});
-  });
   // service card spotlight follow
   document.querySelectorAll('.service-card,.why-card').forEach(c=>{
     c.addEventListener('mousemove',(e)=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});
