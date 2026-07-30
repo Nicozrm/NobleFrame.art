@@ -12,9 +12,9 @@
     <meta property="og:site_name" content="NobleFrame">
     <meta property="og:title" content="Projekt &amp; Sales – Karriere bei NobleFrame">
     <meta property="og:url" content="https://nobleframe.de/stelle-projekt.html">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{--gold:#C9A962;--gold-light:#E8D5A3;--gold-dark:#8B7355;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.55);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%);--green:#81C784;--danger:#ef4444}
@@ -196,18 +196,6 @@
         .legal-links{display:flex;gap:30px}
         .legal-links a{color:var(--white-subtle);text-decoration:none;font-size:.8rem;transition:color .3s ease}
         .legal-links a:hover{color:var(--gold)}
-        .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);border-top:1px solid rgba(201,169,98,.2);padding:25px 40px;z-index:10000;transform:translateY(100%);transition:transform .5s cubic-bezier(.25,.46,.45,.94);backdrop-filter:blur(20px)}
-        .cookie-banner.show{transform:translateY(0)}
-        .cookie-content{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
-        .cookie-text{flex:1;min-width:300px}
-        .cookie-text h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);margin-bottom:8px}
-        .cookie-text p{color:var(--white-muted);font-size:.9rem;margin:0}
-        .cookie-text a{color:var(--gold);text-decoration:none}
-        .cookie-buttons{display:flex;gap:15px;flex-wrap:wrap}
-        .cookie-btn{padding:14px 28px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s}
-        .cookie-accept{background:var(--gold);color:var(--black)}.cookie-accept:hover{background:var(--gold-light)}
-        .cookie-decline{background:transparent;border:1px solid rgba(201,169,98,.3);color:var(--white-muted)}
-        .cookie-decline:hover{border-color:var(--gold);color:var(--gold)}
         .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
         .reveal.visible{opacity:1;transform:translateY(0)}
         @media(max-width:1366px){
@@ -233,7 +221,6 @@
             .footer{padding:60px 20px 30px}.footer-main{grid-template-columns:1fr;gap:30px}
             .footer-bottom{flex-direction:column;gap:20px;text-align:center}
             .legal-links{flex-wrap:wrap;justify-content:center;gap:15px}
-            .cookie-banner{padding:20px}.cookie-content{flex-direction:column;text-align:center}.cookie-buttons{justify-content:center;width:100%}
         }
         @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}.reveal{opacity:1;transform:none}}
         .skip-link{position:fixed;left:8px;top:-60px;z-index:3000;background:#C9A962;color:#000;padding:10px 18px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:top .2s ease}
@@ -249,9 +236,9 @@
     <script type="application/ld+json">
     {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://nobleframe.de/"}, {"@type": "ListItem", "position": 2, "name": "Karriere", "item": "https://nobleframe.de/karriere.html"}, {"@type": "ListItem", "position": 3, "name": "Projekt & Sales", "item": "https://nobleframe.de/stelle-projekt.html"}]}
     </script>
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-    <link rel="icon" href="favicon/favicon.ico" sizes="32x32">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png">
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -311,12 +298,6 @@
         </div>
     </div>
 </footer>
-<div class="cookie-banner" id="cookieBanner">
-    <div class="cookie-content">
-        <div class="cookie-text"><h4>Cookie-Einstellungen</h4><p>Wir verwenden technisch notwendige Cookies für den Betrieb dieser Website. <a href="datenschutz.html">Mehr erfahren</a></p></div>
-        <div class="cookie-buttons"><button class="cookie-btn cookie-accept" id="cookieAccept">Alle akzeptieren</button><button class="cookie-btn cookie-decline" id="cookieDecline">Nur notwendige</button></div>
-    </div>
-</div>
 <script>
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const navWrapper = document.getElementById('navWrapper');
@@ -413,10 +394,6 @@ form.addEventListener('submit', function (e) {
 });
 
 /* Cookie */
-const cookieBanner = document.getElementById('cookieBanner');
-if (!localStorage.getItem('nobleframe_cookie_consent')) setTimeout(() => cookieBanner.classList.add('show'), 2500);
-document.getElementById('cookieAccept').addEventListener('click', () => { localStorage.setItem('nobleframe_cookie_consent', 'all'); cookieBanner.classList.remove('show'); });
-document.getElementById('cookieDecline').addEventListener('click', () => { localStorage.setItem('nobleframe_cookie_consent', 'necessary'); cookieBanner.classList.remove('show'); });
 /* Newsletter */
 document.getElementById('newsletterForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -429,6 +406,5 @@ document.getElementById('newsletterForm').addEventListener('submit', function (e
     setTimeout(() => { messageEl.className = 'form-message'; }, 5000);
 });
 </script>
-<script src="nf-boot.js" defer></script>
 </body>
 </html>

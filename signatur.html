@@ -25,9 +25,9 @@
     {"@context":"https://schema.org","@type":"WebPage","name":"Signatur – NobleFrame","url":"https://nobleframe.de/signatur.html","description":"Ein interaktives, generatives Signatur-Erlebnis von NobleFrame.","isPartOf":{"@type":"WebSite","name":"NobleFrame","url":"https://nobleframe.de"},"publisher":{"@type":"Organization","name":"NobleFrame","url":"https://nobleframe.de"}}
     </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23000' width='32' height='32'/%3E%3Crect x='2' y='2' width='28' height='28' fill='none' stroke='%23C9A962' stroke-width='2'/%3E%3Crect x='8' y='8' width='16' height='16' fill='none' stroke='%23C9A962' stroke-width='1'/%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{--gold:#C9A962;--gold-light:#E8D5A3;--gold-dark:#8B7355;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.55);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%)}
@@ -585,6 +585,5 @@
         if(!reduced)raf=requestAnimationFrame(draw);
     })();
     </script>
-    <script src="nf-boot.js" defer></script>
 </body>
 </html>

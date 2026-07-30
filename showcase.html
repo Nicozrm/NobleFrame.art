@@ -13,8 +13,8 @@
     <meta property="og:description" content="Ausgewählte Projekte, im Überblick – OMEGA OS und das Atelier (NF·Engine), barrierefrei auf jedem Gerät.">
     <meta property="og:url" content="https://nobleframe.de/showcase.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta property="og:image" content="https://nobleframe.de/showcase/omega-os-preview.png">
-    <meta name="twitter:image" content="https://nobleframe.de/showcase/omega-os-preview.png">
+    <meta property="og:image" content="https://nobleframe.de/assets/img/omega-os-preview.webp">
+    <meta name="twitter:image" content="https://nobleframe.de/assets/img/omega-os-preview.webp">
     <meta name="twitter:title" content="Showcase – NobleFrame">
     <meta name="twitter:description" content="Ausgewählte Projekte, im Überblick: OMEGA OS und das Atelier (NF·Engine) – barrierefrei auf jedem Gerät.">
     <script type="application/ld+json">
@@ -27,9 +27,9 @@
     <meta property="og:title" content="Showcase – NobleFrame">
     <meta property="og:description" content="Ausgewählte Projekte, im Überblick – OMEGA OS und das Atelier (NF·Engine), barrierefrei auf jedem Gerät.">
     <meta property="og:url" content="https://nobleframe.de/showcase.html">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{--gold:#C9A962;--gold-light:#E8D5A3;--gold-dark:#8B7355;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.55);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%)}
@@ -226,21 +226,6 @@
         .legal-links a{color:var(--white-subtle);text-decoration:none;font-size:.8rem;transition:color .3s ease}
         .legal-links a:hover{color:var(--gold)}
 
-        /* COOKIE BANNER */
-        .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,10,.98);border-top:1px solid rgba(201,169,98,.2);padding:25px 40px;z-index:10000;transform:translateY(100%);transition:transform .5s cubic-bezier(.25,.46,.45,.94);backdrop-filter:blur(20px)}
-        .cookie-banner.show{transform:translateY(0)}
-        .cookie-content{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
-        .cookie-text{flex:1;min-width:300px}
-        .cookie-text h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);margin-bottom:8px}
-        .cookie-text p{color:var(--white-muted);font-size:.9rem;margin:0}
-        .cookie-text a{color:var(--gold);text-decoration:none}
-        .cookie-buttons{display:flex;gap:15px;flex-wrap:wrap}
-        .cookie-btn{padding:14px 28px;font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s}
-        .cookie-accept{background:var(--gold);color:var(--black)}
-        .cookie-accept:hover{background:var(--gold-light)}
-        .cookie-decline{background:transparent;border:1px solid rgba(201,169,98,.3);color:var(--white-muted)}
-        .cookie-decline:hover{border-color:var(--gold);color:var(--gold)}
-
         /* SCROLL REVEAL */
         .reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
         .reveal.visible{opacity:1;transform:translateY(0)}
@@ -297,9 +282,6 @@
             .footer-main{grid-template-columns:1fr;gap:30px}
             .footer-bottom{flex-direction:column;gap:20px;text-align:center}
             .legal-links{flex-wrap:wrap;justify-content:center;gap:15px}
-            .cookie-banner{padding:20px}
-            .cookie-content{flex-direction:column;text-align:center}
-            .cookie-buttons{justify-content:center;width:100%}
         }
         @media(prefers-reduced-motion:reduce){
             *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
@@ -399,9 +381,9 @@
     <script type="application/ld+json">
     {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://nobleframe.de/"}, {"@type": "ListItem", "position": 2, "name": "Showcase", "item": "https://nobleframe.de/showcase.html"}]}
     </script>
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-    <link rel="icon" href="favicon/favicon.ico" sizes="32x32">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png">
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -477,7 +459,7 @@
     <article class="sc-featured sc-flip reveal">
         <div class="sc-media">
             <span class="sc-pill sc-pill-live">Live · ohne Anmeldung</span>
-            <img src="showcase/omega-atelier-preview.png" alt="OMEGA Atelier 2.0 – Smart-Home-Planungsstudio mit interaktiver Grundriss- und 3D-Planung im Browser" loading="lazy">
+            <img src="assets/img/omega-atelier-preview.webp" alt="OMEGA Atelier 2.0 – Smart-Home-Planungsstudio mit interaktiver Grundriss- und 3D-Planung im Browser" loading="lazy">
         </div>
         <div class="sc-body">
             <span class="sc-eyebrow">Flaggschiff · Eigenentwicklung</span>
@@ -506,7 +488,7 @@
     <article class="sc-featured reveal">
         <div class="sc-media">
             <span class="sc-pill">Live-Projekt</span>
-            <img src="showcase/omega-os-preview.png" alt="OMEGA OS – noir/goldenes Desktop-Betriebssystem im Browser mit App Store, Dock und System-Widgets" loading="lazy">
+            <img src="assets/img/omega-os-preview.webp" alt="OMEGA OS – noir/goldenes Desktop-Betriebssystem im Browser mit App Store, Dock und System-Widgets" loading="lazy">
         </div>
         <div class="sc-body">
             <span class="sc-eyebrow">Zweites System · Eigenentwicklung</span>
@@ -530,7 +512,7 @@
     <article class="sc-featured sc-flip reveal">
         <div class="sc-media">
             <span class="sc-pill sc-pill-live">Live · Reparatur-Plattform</span>
-            <img src="showcase/omega-phone-preview.png" alt="OMEGA Phone – Premium-Website für Smartphone-Reparatur mit Sofortpreis-Rechner, Refurbished-Shop und Ersatzteilen" loading="lazy">
+            <img src="assets/img/omega-phone-preview.webp" alt="OMEGA Phone – Premium-Website für Smartphone-Reparatur mit Sofortpreis-Rechner, Refurbished-Shop und Ersatzteilen" loading="lazy">
         </div>
         <div class="sc-body">
             <span class="sc-eyebrow">Drittes System · Eigenentwicklung</span>
@@ -559,7 +541,7 @@
     <article class="sc-featured reveal">
         <div class="sc-media">
             <span class="sc-pill sc-pill-live">Live · Produktpräsentation</span>
-            <img src="showcase/omega-phone-produkt-preview.png" alt="OmegaPhone – Produktpräsentation der Konzeptmarke: Premium-Smartphone aus Titan, Keynote-Hero mit realistischem Gerät und Always-On-Display, interaktiver Teardown" loading="lazy">
+            <img src="assets/img/omega-phone-produkt-preview.webp" alt="OmegaPhone – Produktpräsentation der Konzeptmarke: Premium-Smartphone aus Titan, Keynote-Hero mit realistischem Gerät und Always-On-Display, interaktiver Teardown" loading="lazy">
         </div>
         <div class="sc-body">
             <span class="sc-eyebrow">Konzeptmarke · Produkt-Launch</span>
@@ -588,7 +570,7 @@
     <article class="sc-featured reveal">
         <div class="sc-media">
             <span class="sc-pill sc-pill-live">Live · Referenzprojekt</span>
-            <img src="showcase/lunara-preview.png" alt="LUNARA – Luxury-Dessous-Boutique „Curated Intimacy“ mit mondthematischer Designsprache, hell und editorial" loading="lazy">
+            <img src="assets/img/lunara-preview.webp" alt="LUNARA – Luxury-Dessous-Boutique „Curated Intimacy“ mit mondthematischer Designsprache, hell und editorial" loading="lazy">
         </div>
         <div class="sc-body">
             <span class="sc-eyebrow">Kundenprojekt · E-Commerce · Luxury</span>
@@ -736,19 +718,6 @@
     </div>
 </footer>
 
-<div class="cookie-banner" id="cookieBanner">
-    <div class="cookie-content">
-        <div class="cookie-text">
-            <h4>Cookie-Einstellungen</h4>
-            <p>Wir verwenden technisch notwendige Cookies für den Betrieb dieser Website. <a href="datenschutz.html">Mehr erfahren</a></p>
-        </div>
-        <div class="cookie-buttons">
-            <button class="cookie-btn cookie-accept" id="cookieAccept">Alle akzeptieren</button>
-            <button class="cookie-btn cookie-decline" id="cookieDecline">Nur notwendige</button>
-        </div>
-    </div>
-</div>
-
 <script>
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -787,24 +756,6 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
 
-const cookieBanner = document.getElementById('cookieBanner');
-function checkCookieConsent() {
-    if (!localStorage.getItem('nobleframe_cookie_consent')) {
-        setTimeout(() => cookieBanner.classList.add('show'), 2500);
-    }
-}
-document.getElementById('cookieAccept').addEventListener('click', () => {
-    localStorage.setItem('nobleframe_cookie_consent', 'all');
-    localStorage.setItem('nobleframe_cookie_date', new Date().toISOString());
-    cookieBanner.classList.remove('show');
-});
-document.getElementById('cookieDecline').addEventListener('click', () => {
-    localStorage.setItem('nobleframe_cookie_consent', 'necessary');
-    localStorage.setItem('nobleframe_cookie_date', new Date().toISOString());
-    cookieBanner.classList.remove('show');
-});
-checkCookieConsent();
-
 document.getElementById('newsletterForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const email = this.querySelector('input[name="email"]').value;
@@ -836,8 +787,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 })();
 
 </script>
-<script src="nf-boot.js" defer></script>
-<script src="nf-engine.js" defer></script>
 
 </body>
 </html>

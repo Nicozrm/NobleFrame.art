@@ -1,5 +1,5 @@
 /* NobleFrame – Service Worker (cache-first mit Runtime-Caching) */
-const CACHE = "nobleframe-v15";
+const CACHE = "nobleframe-v16";
 
 /* Kern-Seiten, die offline verfügbar sein sollen.
    Einzelne Fehlschläge brechen die Installation NICHT ab (allSettled).
@@ -18,9 +18,11 @@ const CORE = [
   "./impressum.html",
   "./datenschutz.html",
   "./agb.html",
-  "./nf-boot.js",
-  "./nf-engine.js",
-  "./site.webmanifest"
+  "./assets/fonts/fonts.css",
+  "./assets/fonts/outfit-latin.woff2",
+  "./assets/fonts/cormorant-garamond-latin.woff2",
+  "./assets/fonts/jetbrains-mono-latin.woff2",
+  "./manifest.json"
 ];
 
 self.addEventListener("install", (event) => {
@@ -49,6 +51,24 @@ self.addEventListener("fetch", (event) => {
   // OMEGA OS bringt eigenen Service Worker mit – dessen Subpfad NICHT abfangen.
   if (url.pathname.includes("/showcase/omega-os/")) return;
 
+  /* Seiten: network-first. Sonst friert eine einmal gecachte Seite im Browser
+     ein und Korrekturen erreichen wiederkehrende Besucher nie. */
+  if (req.mode === "navigate") {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          if (res && res.status === 200 && res.type === "basic") {
+            const copy = res.clone();
+            caches.open(CACHE).then((cache) => cache.put(req, copy)).catch(() => {});
+          }
+          return res;
+        })
+        .catch(() => caches.match(req).then((c) => c || caches.match("./index.html")))
+    );
+    return;
+  }
+
+  /* Statische Assets: cache-first (Schriften und Bilder aendern sich nicht). */
   event.respondWith(
     caches.match(req).then((cached) => {
       if (cached) return cached;
