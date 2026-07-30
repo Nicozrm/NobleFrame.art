@@ -35,9 +35,14 @@
     try {
       // Natives CSS-Smoothing abklemmen — Lenis übernimmt das Gefühl.
       document.documentElement.style.scrollBehavior = 'auto';
+      /* lerp 0.095 lief nach einem Radimpuls 771 ms nach (138 ms bis zur
+         halben Strecke) — das ist Glide, nicht Glaettung, und der Scroll
+         gehoert waehrenddessen nicht mehr der Person, die ihn ausgeloest
+         hat. 0.2 misst 50 ms / 362 ms: die Traegheit bleibt spuerbar, die
+         Eingabe bleibt direkt. */
       lenis = new Lenis({
         autoRaf: true,
-        lerp: 0.095,
+        lerp: 0.2,
         smoothWheel: true,
         wheelMultiplier: 1
       });
@@ -65,7 +70,9 @@
           if (toggle) toggle.classList.remove('active');
           document.body.style.overflow = '';
         }
-        lenis.scrollTo(target, { offset: -92, duration: 1.4 });
+        /* 1,4 s fuer einen Ankersprung ist eine Reise, keine Navigation.
+           0,7 s liest sich als Bewegung und laesst niemanden warten. */
+        lenis.scrollTo(target, { offset: -92, duration: 0.7 });
       }, true);
     } catch (_) { lenis = null; }
   }
