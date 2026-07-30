@@ -306,11 +306,11 @@
       skipBtn.style.pointerEvents = so < 0.1 ? 'none' : 'auto';
     }
     if (slateEl) {
-      const total = q * 96;
-      const mm = String(Math.floor(total / 60)).padStart(2, '0');
-      const ss = String(Math.floor(total % 60)).padStart(2, '0');
-      const ff = String(Math.floor((total % 1) * 24)).padStart(2, '0');
-      const txt = 'NF · ' + mm + ':' + ss + ':' + ff + ' · KAPITEL 0' + currentChapter(q) + ' / 04';
+      /* Der Timecode war erfunden: q * 96 ist die Scrollposition, keine
+         Laufzeit — es lief nie eine Aufnahme, die man haette stoppen koennen.
+         Die Kapitelangabe bleibt, die stimmt: sie zeigt, wo im Intro man
+         steht, und wie weit es noch ist. */
+      const txt = 'NF · KAPITEL 0' + currentChapter(q) + ' / 04';
       if (txt !== slatePrev) { slatePrev = txt; slateEl.textContent = txt; }
     }
   }

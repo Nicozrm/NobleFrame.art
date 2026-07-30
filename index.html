@@ -133,6 +133,41 @@
         .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s infinite}
         @keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.5;transform:scaleY(.8)}}
 
+        /* SHOWCASE — die fünf laufenden Eigenentwicklungen.
+           Bewusst vor den Leistungen: das Atelier hat gebaute, anklickbare
+           Systeme. Die zu zeigen wiegt schwerer, als sie zu beschreiben. */
+        .live-work{padding:140px 60px;position:relative;z-index:10;border-top:1px solid rgba(201,169,98,.08)}
+        .live-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+        /* Deckender Grund, nicht rgba: hinter der Sektion liegt der
+           Ambient-Glow, und durchscheinend wurde der Fliesstext auf der
+           hellen Stelle unlesbar. */
+        .live-card{position:relative;display:flex;flex-direction:column;background:#080708;border:1px solid rgba(201,169,98,.12);text-decoration:none;overflow:hidden;transition:border-color .4s ease}
+        .live-card:first-child{grid-column:1 / -1}
+        .live-card:hover,.live-card:focus-visible{border-color:var(--gold)}
+        .live-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+        .live-shot{position:relative;aspect-ratio:16/9;overflow:hidden;background:#050505}
+        .live-card:first-child .live-shot{aspect-ratio:21/9}
+        .live-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:brightness(.82) saturate(.9);transition:filter .5s ease}
+        .live-card:hover .live-shot img{filter:brightness(1) saturate(1)}
+        .live-shot::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),transparent 55%)}
+        /* Unten links statt oben links: dort dunkelt der Verlauf ohnehin ab,
+           und das Etikett kollidiert nicht mit der Kopfzeile des gezeigten
+           Produkts. */
+        .live-state{position:absolute;bottom:14px;left:16px;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:7px 13px;background:rgba(0,0,0,.72);border:1px solid rgba(201,169,98,.3);font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);backdrop-filter:blur(6px)}
+        .live-state i{width:6px;height:6px;border-radius:50%;background:var(--gold);font-style:normal}
+        .live-body{padding:26px 28px 28px;display:flex;flex-direction:column;flex:1}
+        .live-kicker{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--white-subtle);margin-bottom:10px}
+        .live-card h3{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:400;color:var(--white);margin-bottom:10px;line-height:1.15}
+        .live-card p{font-size:.92rem;color:var(--white-muted);line-height:1.7;margin-bottom:18px}
+        .live-stack{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+        .live-stack span{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:var(--white-subtle);border:1px solid rgba(201,169,98,.16);padding:4px 9px}
+        .live-go{margin-top:auto;display:inline-flex;align-items:center;gap:9px;font-size:.76rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+        .live-go svg{width:15px;height:15px;transition:transform .4s cubic-bezier(.65,0,.35,1)}
+        .live-card:hover .live-go svg{transform:translate(3px,-3px)}
+        .live-all{max-width:1400px;margin:44px auto 0;text-align:center}
+        @media(max-width:900px){.live-grid{grid-template-columns:1fr}.live-card:first-child .live-shot{aspect-ratio:16/9}}
+        @media(prefers-reduced-motion:reduce){.live-shot img,.live-go svg{transition:none}}
+
         /* SERVICES */
         .services-preview{padding:140px 60px;position:relative;z-index:10}
         .section-header{text-align:center;margin-bottom:80px}
@@ -689,6 +724,91 @@
                 <div><span class="ip-k">Code</span><span class="ip-v">100 % handgeschrieben</span></div>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="live-work" id="arbeiten">
+    <div class="section-header reveal">
+        <div class="section-badge">Gebaut, nicht behauptet</div>
+        <h2 class="section-title"><span>Fünf laufende Systeme</span></h2>
+        <p class="section-subtitle">Keine Fallstudien, keine Screenshots. Fünf vollständige Eigenentwicklungen – jede live, jede ohne Anmeldung benutzbar.</p>
+    </div>
+
+    <div class="live-grid reveal" data-stagger>
+        <a href="showcase/omega-atelier/" class="live-card">
+            <div class="live-shot">
+                <img src="assets/img/omega-atelier-preview.webp" alt="OMEGA Atelier: Grundriss-Editor mit Echtzeit-3D-Vorschau" loading="lazy" decoding="async" width="1400" height="600">
+                <span class="live-state"><i></i>Live · ohne Anmeldung</span>
+            </div>
+            <div class="live-body">
+                <div class="live-kicker">Flaggschiff · Eigenentwicklung</div>
+                <h3>OMEGA Atelier</h3>
+                <p>Ein komplettes Smart-Home-Planungsstudio im Browser: Grundrisse zeichnen, Räume in Echtzeit-3D begehen, Geräte aus über 30 Ökosystemen platzieren – mit PBR-Materialien, Möblierung und eigenem 3D-Export-Studio.</p>
+                <div class="live-stack"><span>React</span><span>TypeScript</span><span>Three.js / R3F</span><span>Zustand</span><span>Tailwind 4</span></div>
+                <span class="live-go">Öffnen<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+            </div>
+        </a>
+
+        <a href="showcase/omega-os/index.html" class="live-card">
+            <div class="live-shot">
+                <img src="assets/img/omega-os-preview.webp" alt="OMEGA OS: fenstergesteuerter Desktop im Browser" loading="lazy" decoding="async" width="1400" height="788">
+                <span class="live-state"><i></i>Live · offline-fähig</span>
+            </div>
+            <div class="live-body">
+                <div class="live-kicker">Zweites System · Eigenentwicklung</div>
+                <h3>OMEGA OS</h3>
+                <p>Ein vollständiges Desktop-Betriebssystem im Browser – fenstergesteuert, mit echtem App Store, eingebetteten Web-Apps und serverseitig gebundener KI. Kein Mockup: läuft live und ist installierbar.</p>
+                <div class="live-stack"><span>React</span><span>TypeScript</span><span>Web Audio</span><span>PWA</span><span>Cloudflare Functions</span></div>
+                <span class="live-go">Öffnen<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+            </div>
+        </a>
+
+        <a href="showcase/omega-phone/" class="live-card">
+            <div class="live-shot">
+                <img src="assets/img/omega-phone-preview.webp" alt="OMEGA Phone: Plattform für Smartphone-Reparatur" loading="lazy" decoding="async" width="1280" height="720">
+                <span class="live-state"><i></i>Live · Reparatur-Plattform</span>
+            </div>
+            <div class="live-body">
+                <div class="live-kicker">Drittes System · Eigenentwicklung</div>
+                <h3>OMEGA Phone</h3>
+                <p>Premium-Plattform für Reparatur, Refurbished-Geräte und Ersatzteile. Sofortpreis in unter 60 Sekunden statt Warten auf ein Angebot – vollständig statisch, offline-fähig, blitzschnell.</p>
+                <div class="live-stack"><span>Next.js 15</span><span>TypeScript</span><span>Tailwind 4</span><span>Static Export</span><span>PWA</span></div>
+                <span class="live-go">Öffnen<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+            </div>
+        </a>
+
+        <a href="showcase/omega-phone-produkt/" class="live-card">
+            <div class="live-shot">
+                <img src="assets/img/omega-phone-produkt-preview.webp" alt="OMEGA Phone: Produktpräsentation mit 3D-Teardown" loading="lazy" decoding="async" width="1280" height="720">
+                <span class="live-state"><i></i>Live · Produktpräsentation</span>
+            </div>
+            <div class="live-body">
+                <div class="live-kicker">Konzeptmarke · Produkt-Launch</div>
+                <h3>OMEGA Phone · Das Produkt</h3>
+                <p>Die Produktpräsentation zur Konzeptmarke: ein Premium-Smartphone aus Titan. Keynote-Hero mit realistischem Gerät und ein interaktiver 3D-Teardown, der es in neun Schichten zerlegt.</p>
+                <div class="live-stack"><span>HTML</span><span>CSS-3D</span><span>Vanilla JS</span><span>0 Dependencies</span></div>
+                <span class="live-go">Öffnen<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+            </div>
+        </a>
+
+        <a href="showcase/lunara/index.html" class="live-card">
+            <div class="live-shot">
+                <img src="assets/img/lunara-preview.webp" alt="Lunara: Luxury-Boutique mit Stripe-Checkout" loading="lazy" decoding="async" width="1280" height="720">
+                <span class="live-state"><i></i>Live · Referenzprojekt</span>
+            </div>
+            <div class="live-body">
+                <div class="live-kicker">E-Commerce · Luxury</div>
+                <h3>Lunara</h3>
+                <p>Luxury-Boutique mit mondthematischer Designsprache, Stripe-Checkout und vierstufigem Rewards-Programm. 21 Seiten, headless aufgebaut.</p>
+                <div class="live-stack"><span>Headless</span><span>Stripe</span><span>PWA</span><span>21 Seiten</span></div>
+                <span class="live-go">Öffnen<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+            </div>
+        </a>
+    </div>
+
+    <div class="live-all reveal">
+        <a href="showcase.html" class="btn-secondary">Alle Projekte im Detail</a>
     </div>
 </section>
 

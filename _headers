@@ -1,0 +1,36 @@
+# ── Service Worker niemals cachen (sonst kein Shell-Update) ──
+/service-worker.js
+  Cache-Control: no-cache, no-store, must-revalidate
+/showcase/omega-os/service-worker.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# ── OMEGA-OS-Shell revalidieren (kein Content-Hash; SW übernimmt Offline-Cache) ──
+/showcase/omega-os/index.html
+  Cache-Control: no-cache
+/showcase/omega-os/bundle.js
+  Cache-Control: no-cache
+
+# ── OMEGA-Atelier-Shell revalidieren (Assets sind content-gehasht und dürfen cachen) ──
+/showcase/omega-atelier/index.html
+  Cache-Control: no-cache
+/showcase/omega-atelier/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+/showcase/omega-atelier/registerSW.js
+  Cache-Control: no-cache
+/showcase/omega-atelier/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── LUNARA-Shell revalidieren (statisch, kein Content-Hash; SW übernimmt Offline-Cache) ──
+/showcase/lunara/index.html
+  Cache-Control: no-cache
+/showcase/lunara/newsletter.html
+  Cache-Control: no-cache
+/showcase/lunara/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# ── Basis-Sicherheitsheader (gesamte Seite) ──
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
