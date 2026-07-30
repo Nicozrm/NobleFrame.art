@@ -17,10 +17,14 @@
 (() => {
   'use strict';
 
-  /* ── Service Worker ─────────────────────────────────────────────────── */
+  /* ── Service Worker ─────────────────────────────────────────────────────
+     Relativ registrieren, nicht '/service-worker.js'. Der Registrierungspfad
+     bestimmt den Scope: absolut gaebe das immer den Domain-Root, auch wenn
+     die Seite unter einem Unterpfad liegt — der Worker wuerde dann entweder
+     gar nicht gefunden oder kontrollierte Seiten, die ihm nicht gehoeren. */
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
     addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+      navigator.serviceWorker.register('service-worker.js').catch(() => {});
     });
   }
 
