@@ -29,6 +29,7 @@
     <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="assets/motion.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{--gold:#C9A962;--gold-light:#E8D5A3;--gold-dark:#8B7355;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.55);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%)}
@@ -83,9 +84,9 @@
         /* HERO */
         .page-hero{padding:175px 60px 50px;text-align:center;position:relative;z-index:10}
         .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:rgba(201,169,98,.08);border:1px solid rgba(201,169,98,.25);margin-bottom:28px;animation:fadeUp .8s ease .1s both}
-        .hero-badge .dot{width:8px;height:8px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+        .hero-badge .dot{width:8px;height:8px;background:var(--gold);border-radius:50%;}
         .hero-badge span{font-size:.72rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+        
         .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5.5vw,4.4rem);font-weight:300;line-height:1.1;margin-bottom:22px;animation:fadeUp .8s ease .25s both}
         .hero-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:400}
         .hero-subtitle{color:var(--white-muted);font-size:1.1rem;max-width:680px;margin:0 auto;line-height:1.75;animation:fadeUp .8s ease .4s both}
@@ -138,14 +139,14 @@
 
         /* LUNARA visual */
         .viz-lunara{background:radial-gradient(120% 100% at 80% 0%,rgba(60,50,90,.55),transparent 55%),radial-gradient(80% 80% at 20% 100%,rgba(201,169,98,.10),transparent 60%),#06060a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
-        .moon{position:absolute;top:14%;right:16%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f4ecd8,#cdbf9a 60%,#8b7f63);box-shadow:0 0 60px rgba(244,236,216,.35);animation:moonGlow 5s ease-in-out infinite}
-        @keyframes moonGlow{0%,100%{box-shadow:0 0 50px rgba(244,236,216,.3)}50%{box-shadow:0 0 80px rgba(244,236,216,.5)}}
-        .star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.8;animation:twinkle 3s ease-in-out infinite}
+        .moon{position:absolute;top:14%;right:16%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f4ecd8,#cdbf9a 60%,#8b7f63);box-shadow:0 0 60px rgba(244,236,216,.35);}
+        
+        .star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.8;}
         .star:nth-child(2){top:24%;left:18%;animation-delay:.2s}
         .star:nth-child(3){top:60%;left:30%;animation-delay:.9s;width:2px;height:2px}
         .star:nth-child(4){top:72%;left:70%;animation-delay:1.4s}
         .star:nth-child(5){top:40%;left:58%;animation-delay:.6s;width:2px;height:2px}
-        @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.9}}
+        
         .viz-lunara .wordmark{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:10px;color:#f4ecd8;z-index:2}
         .viz-lunara .sub{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:rgba(244,236,216,.6);z-index:2}
         .viz-lunara .badge{margin-top:8px;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:#06060a;background:linear-gradient(135deg,#E8D5A3,#C9A962);padding:6px 14px;z-index:2}
@@ -162,8 +163,8 @@
         .vp-side .line.active{background:linear-gradient(90deg,var(--gold),transparent);width:80%}
         .vp-main{flex:1;padding:18px 16px;display:flex;flex-direction:column;gap:12px}
         .vp-status{display:inline-flex;align-items:center;gap:8px;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-light)}
-        .vp-status .pip{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.5);animation:pip 2s infinite}
-        @keyframes pip{0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+        .vp-status .pip{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.5);}
+        
         .vp-msg{max-width:80%;padding:10px 13px;border:1px solid rgba(201,169,98,.18);background:rgba(201,169,98,.04);font-size:.66rem;color:rgba(250,250,250,.8);border-radius:10px 10px 10px 2px}
         .vp-msg.me{align-self:flex-end;background:rgba(201,169,98,.12);border-color:rgba(201,169,98,.3);border-radius:10px 10px 2px 10px}
         .vp-file{margin-top:auto;display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid rgba(201,169,98,.15);font-size:.64rem;color:var(--white-muted)}
@@ -174,9 +175,9 @@
         .atelier-frame{position:relative;width:120px;height:120px}
         .atelier-frame svg{width:100%;height:100%;overflow:visible}
         .atelier-frame .fr{fill:none;stroke:var(--gold)}
-        .atelier-frame .o{stroke-width:2;animation:framePulse 4s ease-in-out infinite}
-        .atelier-frame .i{stroke-width:1.5;opacity:.6;animation:framePulse 4s ease-in-out infinite .5s}
-        @keyframes framePulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+        .atelier-frame .o{stroke-width:2;}
+        .atelier-frame .i{stroke-width:1.5;opacity:.6;}
+        
         .viz-atelier .wordmark{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,3vw,1.9rem);letter-spacing:9px;color:var(--white)}
         .viz-atelier .navrow{display:flex;gap:16px}
         .viz-atelier .navrow span{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--white-subtle)}
@@ -290,7 +291,7 @@
         }
         /* ===== ELEVATION: Konsistenz-Schicht ===== */
         .scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(135deg,#C9A962,#E8D5A3 50%,#C9A962);z-index:1001;transition:width .1s linear}
-        .magnetic{will-change:transform}
+        
         .visual{will-change:transform}
         .visual-wrap:hover .visual{box-shadow:0 40px 80px rgba(0,0,0,.55),0 0 50px rgba(201,169,98,.10)}
         a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C9A962;outline-offset:3px}
@@ -413,10 +414,10 @@
                 <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Safe-Exit-Mode & Privacy-First-Architektur</li>
             </ul>
             <div class="project-stats reveal-stagger">
-                <div class="pstat"><span class="pstat-num" data-count="21" data-suffix="">0</span><span class="pstat-label">Seiten</span></div>
-                <div class="pstat"><span class="pstat-num" data-count="11" data-suffix="">0</span><span class="pstat-label">JS-Module</span></div>
-                <div class="pstat"><span class="pstat-num" data-count="12" data-suffix="">0</span><span class="pstat-label">Zahlarten</span></div>
-                <div class="pstat"><span class="pstat-num" data-count="4" data-suffix="">0</span><span class="pstat-label">Reward-Tiers</span></div>
+                <div class="pstat"><span class="pstat-num">0</span><span class="pstat-label">Seiten</span></div>
+                <div class="pstat"><span class="pstat-num">0</span><span class="pstat-label">JS-Module</span></div>
+                <div class="pstat"><span class="pstat-num">0</span><span class="pstat-label">Zahlarten</span></div>
+                <div class="pstat"><span class="pstat-num">0</span><span class="pstat-label">Reward-Tiers</span></div>
             </div>
             <div class="project-tech">
                 <span class="tech-chip">JavaScript</span><span class="tech-chip">GSAP</span><span class="tech-chip">Stripe</span><span class="tech-chip">Supabase</span><span class="tech-chip">CSS Architecture</span>
@@ -497,10 +498,10 @@
                 <li><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Per Playwright auf null Broken Links geprüft</li>
             </ul>
             <div class="project-stats reveal-stagger">
-                <div class="pstat"><span class="pstat-num" data-count="18" data-suffix="">0</span><span class="pstat-label">Seiten</span></div>
-                <div class="pstat"><span class="pstat-num" data-count="0" data-suffix="">0</span><span class="pstat-label">Broken Links</span></div>
-                <div class="pstat"><span class="pstat-num" data-count="100" data-suffix="%">0</span><span class="pstat-label">DSGVO</span></div>
-                <div class="pstat"><span class="pstat-num" data-count="100" data-suffix="%">0</span><span class="pstat-label">Custom Code</span></div>
+                <div class="pstat"><span class="pstat-num">0</span><span class="pstat-label">Seiten</span></div>
+                <div class="pstat"><span class="pstat-num">0</span><span class="pstat-label">Broken Links</span></div>
+                <div class="pstat"><span class="pstat-num">0</span><span class="pstat-label">DSGVO</span></div>
+                <div class="pstat"><span class="pstat-num">0</span><span class="pstat-label">Custom Code</span></div>
             </div>
             <div class="project-tech">
                 <span class="tech-chip">GSAP</span><span class="tech-chip">Vanilla JS</span><span class="tech-chip">PWA</span><span class="tech-chip">Cloudflare Pages</span><span class="tech-chip">Playwright</span>
@@ -515,7 +516,7 @@
         <h2 class="cta-title">Ihr Projekt als <span>nächste Referenz</span>?</h2>
         <p class="cta-text">Erzählen Sie uns von Ihrer Idee. In einem kurzen Gespräch finden wir gemeinsam heraus, was möglich ist – unverbindlich.</p>
         <div class="cta-buttons">
-            <a href="kontakt.html" class="btn-primary magnetic">Projekt anfragen</a>
+            <a href="kontakt.html" class="btn-primary">Projekt anfragen</a>
             <a href="leistungen.html" class="btn-ghost">Leistungen ansehen</a>
         </div>
     </div>
@@ -691,7 +692,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   const os=()=>{const h=document.documentElement;const m=h.scrollHeight-h.clientHeight;sp.style.width=(m>0?h.scrollTop/m*100:0)+'%';};
   window.addEventListener('scroll',os,{passive:true});os();
   if(rm)return;
-  document.querySelectorAll('.magnetic').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.16)+'px,'+((e.clientY-r.top-r.height/2)*0.26)+'px)';});b.addEventListener('mouseleave',()=>{b.style.transform='';});});
   // 3D-Tilt auf Projekt-Mockups (perspective ist bereits gesetzt)
   document.querySelectorAll('.visual-wrap').forEach(wrap=>{
     const v=wrap.querySelector('.visual'); if(!v)return;

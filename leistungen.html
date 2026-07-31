@@ -29,6 +29,7 @@
     <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="assets/motion.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{--gold:#C9A962;--gold-light:#E8D5A3;--gold-dark:#8B7355;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.55);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%)}
@@ -87,9 +88,9 @@
         /* HERO */
         .page-hero{padding:180px 60px 90px;text-align:center;position:relative;z-index:10;overflow:hidden}
         .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:rgba(201,169,98,.08);border:1px solid rgba(201,169,98,.25);margin-bottom:30px;animation:fadeUp .8s ease .1s both}
-        .hero-badge .dot{width:8px;height:8px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+        .hero-badge .dot{width:8px;height:8px;background:var(--gold);border-radius:50%;}
         .hero-badge span{font-size:.72rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+        
         .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5.5vw,4.4rem);font-weight:300;line-height:1.12;margin-bottom:28px;animation:fadeUp .8s ease .25s both}
         .hero-title .accent{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:400}
         .hero-type-line{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,2.6vw,2rem);font-weight:300;color:var(--white-muted);margin-bottom:30px;min-height:1.4em;animation:fadeUp .8s ease .4s both}
@@ -289,7 +290,7 @@
         .service-card::before{content:'';position:absolute;width:320px;height:320px;background:radial-gradient(circle,rgba(201,169,98,.14),transparent 65%);top:var(--my,50%);left:var(--mx,50%);transform:translate(-50%,-50%);opacity:0;transition:opacity .4s ease;pointer-events:none;z-index:0}
         .service-card:hover::before{opacity:1}
         .service-card>*{position:relative;z-index:1}
-        .magnetic{will-change:transform}
+        
         a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C9A962;outline-offset:3px}
         .skip-link{position:fixed;left:8px;top:-60px;z-index:3000;background:#C9A962;color:#000;padding:10px 18px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:top .2s ease}
         .skip-link:focus{top:8px;outline:2px solid #000;outline-offset:2px}
@@ -377,7 +378,7 @@
     <p class="hero-type-line">Heute zum Beispiel: <span class="hero-type" id="typeTarget"></span><span class="hero-caret"></span></p>
     <p class="hero-subtitle">Von der ersten Idee bis zum Launch und darüber hinaus. Entdecken Sie, was sich mit NobleFrame umsetzen lässt – und was Sie in Auftrag geben können.</p>
     <div class="hero-cta-row">
-        <a href="kontakt.html" class="btn-primary magnetic">Projekt anfragen</a>
+        <a href="kontakt.html" class="btn-primary">Projekt anfragen</a>
         <a href="#leistungen" class="btn-ghost">Leistungen entdecken</a>
     </div>
 </section>
@@ -519,19 +520,19 @@
 <section class="proof">
     <div class="proof-grid reveal">
         <div class="proof-item">
-            <span class="proof-number" data-count="25" data-suffix="+">0</span>
+            <span class="proof-number">0</span>
             <span class="proof-label">Projekte</span>
         </div>
         <div class="proof-item">
-            <span class="proof-number" data-count="98" data-suffix="%">0</span>
+            <span class="proof-number">0</span>
             <span class="proof-label">Zufriedenheit</span>
         </div>
         <div class="proof-item">
-            <span class="proof-number" data-count="8" data-suffix="">0</span>
+            <span class="proof-number">0</span>
             <span class="proof-label">Leistungsfelder</span>
         </div>
         <div class="proof-item">
-            <span class="proof-number" data-count="20" data-suffix="+">0</span>
+            <span class="proof-number">0</span>
             <span class="proof-label">Technologien</span>
         </div>
     </div>
@@ -605,7 +606,7 @@
         <h2 class="cta-title">Bereit, etwas zu <span>erschaffen</span>?</h2>
         <p class="cta-text">Erzählen Sie uns von Ihrer Idee. In einem kurzen Gespräch prüfen wir gemeinsam, was möglich ist – unverbindlich.</p>
         <div class="cta-buttons">
-            <a href="kontakt.html" class="btn-primary magnetic">Projekt anfragen</a>
+            <a href="kontakt.html" class="btn-primary">Projekt anfragen</a>
             <a href="referenzen.html" class="btn-ghost">Referenzen ansehen</a>
         </div>
     </div>
@@ -793,7 +794,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   const os=()=>{const h=document.documentElement;const m=h.scrollHeight-h.clientHeight;sp.style.width=(m>0?h.scrollTop/m*100:0)+'%';};
   window.addEventListener('scroll',os,{passive:true});os();
   if(rm)return;
-  document.querySelectorAll('.magnetic').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.16)+'px,'+((e.clientY-r.top-r.height/2)*0.26)+'px)';});b.addEventListener('mouseleave',()=>{b.style.transform='';});});
   document.querySelectorAll('.service-card').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});});
 })();
 
