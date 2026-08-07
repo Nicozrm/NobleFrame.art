@@ -1,0 +1,801 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   NobleFrame — Design-System
+
+   Eine Datei. Vorher lag dasselbe CSS neunzehnmal inline in den Seiten,
+   jedes Exemplar leicht anders. Was hier steht, gilt überall; was eine
+   Seite darüber hinaus braucht, steht in dieser Seite — und nur dort.
+
+   Aufbau
+     1. Marken   — Farben, Maße, Kurven
+     2. Grund    — Reset, Dokument, Auswahl, Fokus
+     3. Schrift  — drei Stimmen, eine Skala
+     4. Fläche   — Bahn, Raster, Trennlinien
+     5. Teile    — Knöpfe, Marken, Karten, Tafeln, Formulare
+     6. Rahmen   — Navigation, Mobilmenü, Fußzeile
+     7. Lauf     — Reveals, Staggers, Seitenwechsel
+
+   Der Rauch ist weg: keine weichgezeichneten Lichtkreise, kein WebGL-Netz
+   über dem Text, kein Vorhang vor dem Inhalt, kein Raster-Overlay. Was
+   Tiefe erzeugt, sind Kante, Fläche und Abstand.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+
+/* ─── 1. Marken ────────────────────────────────────────────────────────
+
+   Papier statt Bühne. Der Grund ist ein warmer Bogen, die Schrift ist
+   Tinte, und es gibt genau ein Signal: Kobalt. Es markiert, was anklickbar
+   oder gerade lebendig ist — nie Dekoration. Ember ist der zweite Ton und
+   bleibt den Zuständen vorbehalten, die wirklich heiß sind (live, neu).
+
+   Die Vorschaubilder der Projekte sind dunkel. Auf Papier liegen sie wie
+   Tafeln in einem Bildband — das ist der eigentliche Grund für den
+   Wechsel. Dunkel auf dunkel war ein Nebel, in dem die Arbeit verschwand.
+   ─────────────────────────────────────────────────────────────────────── */
+:root{
+  color-scheme: light dark;
+
+  /* Flächen */
+  --paper:    #F1EFE9;   /* Seitengrund                            */
+  --paper-2:  #FBFAF7;   /* erhoben: Karten, Tafeln, Eingaben      */
+  --paper-3:  #E5E2D9;   /* gesenkt: Streifen, gefüllte Zellen     */
+  --plate:    #131316;   /* Bildtafeln, invertierte Bänder         */
+
+  /* Tinte */
+  --ink:      #16161A;   /* Fließtext, Überschriften               */
+  --ink-2:    #55555F;   /* Sekundärtext                           */
+  --ink-3:    #86868F;   /* Metadaten, Marginalien                 */
+  --on-plate: #F3F1EC;   /* Text auf --plate                       */
+
+  /* Linien */
+  --line:     #D6D2C7;   /* Haarlinie, sichtbar                    */
+  --line-2:   #E4E1D8;   /* Haarlinie, zurückgenommen              */
+
+  /* Signal */
+  --signal:      #2C3FE0;
+  --signal-deep: #1F2DA8;
+  --signal-tint: #E7E9FC;
+  --on-signal:   #FFFFFF;
+
+  /* Zustand */
+  --ember:      #D93E12;
+  --ember-tint: #FBE7E0;
+
+  /* Maße — eine Skala, geometrisch, keine Zwischengrößen */
+  --s1: .25rem;  --s2: .5rem;   --s3: .75rem;  --s4: 1rem;
+  --s5: 1.5rem;  --s6: 2rem;    --s7: 3rem;    --s8: 4rem;
+  --s9: 6rem;    --s10: 8rem;
+
+  --bahn: 1240px;        /* Textbreite der Hauptbahn */
+  --rand: clamp(1.25rem, 5vw, 4rem);
+  --nav-h: 68px;
+
+  /* Bewegung — zwei Dauern, eine Kurve. Siehe assets/motion.css. */
+  --nf-response:  120ms;
+  --nf-transport: 320ms;
+  --nf-ease: cubic-bezier(.22, 1, .36, 1);
+  --nf-out:  cubic-bezier(.32, .72, 0, 1);
+}
+
+/* Dunkel. Kein zweites Design, dieselbe Seite bei anderem Licht.
+   Kobalt wird angehoben, sonst fällt es auf dunklem Grund zusammen. */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:    #0D0D0F;
+    --paper-2:  #151519;
+    --paper-3:  #1D1D22;
+    --plate:    #000000;
+
+    --ink:      #ECEAE3;
+    --ink-2:    #A2A1AB;
+    --ink-3:    #74737D;
+    --on-plate: #ECEAE3;
+
+    --line:     #2C2C33;
+    --line-2:   #212127;
+
+    --signal:      #7C88FF;
+    --signal-deep: #A3ACFF;
+    --signal-tint: #191A2E;
+    --on-signal:   #0D0D0F;
+
+    --ember:      #FF7043;
+    --ember-tint: #2A1710;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:    #0D0D0F;
+  --paper-2:  #151519;
+  --paper-3:  #1D1D22;
+  --plate:    #000000;
+
+  --ink:      #ECEAE3;
+  --ink-2:    #A2A1AB;
+  --ink-3:    #74737D;
+  --on-plate: #ECEAE3;
+
+  --line:     #2C2C33;
+  --line-2:   #212127;
+
+  --signal:      #7C88FF;
+  --signal-deep: #A3ACFF;
+  --signal-tint: #191A2E;
+  --on-signal:   #0D0D0F;
+
+  --ember:      #FF7043;
+  --ember-tint: #2A1710;
+}
+
+
+/* ─── 2. Grund ─────────────────────────────────────────────────────────── */
+*, *::before, *::after{ margin:0; padding:0; box-sizing:border-box }
+
+html{
+  background: var(--paper);
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--nav-h) + var(--s5));
+}
+
+body{
+  font-family:'Outfit', system-ui, sans-serif;
+  font-size: clamp(1rem, .96rem + .2vw, 1.0625rem);
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-variant-numeric: tabular-nums;
+}
+
+img, svg, video{ display:block; max-width:100% }
+img{ height:auto }
+
+::selection{ background: var(--signal); color: var(--on-signal) }
+
+:focus-visible{
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+:focus:not(:focus-visible){ outline: none }
+
+.skip-link{
+  position:absolute; left:var(--s4); top:-100px; z-index:2000;
+  padding:var(--s3) var(--s5);
+  background: var(--ink); color: var(--paper);
+  font-size:.8rem; letter-spacing:.08em; text-transform:uppercase;
+  text-decoration:none;
+  transition: top var(--nf-response) var(--nf-ease);
+}
+.skip-link:focus{ top: var(--s4) }
+
+/* Nur für Screenreader */
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; overflow:hidden;
+  clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; border:0;
+}
+
+
+/* ─── 3. Schrift ───────────────────────────────────────────────────────
+
+   Drei Stimmen, klar getrennte Aufgaben:
+
+     Cormorant Garamond  nur groß. Ab etwa 2.5rem trägt sie; darunter
+                         wird sie zur Hochzeitseinladung. Deshalb steht
+                         sie hier ausschließlich in .display und h1/h2.
+     Outfit              alles, was gelesen wird.
+     JetBrains Mono      alles, was ausgezeichnet wird: Nummern, Labels,
+                         Kennwerte, Dateipfade. Immer klein, immer weit.
+   ─────────────────────────────────────────────────────────────────────── */
+.display, h1, h2{
+  font-family:'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -.015em;
+  text-wrap: balance;
+}
+
+h1, .t-xxl{ font-size: clamp(2.75rem, 1.6rem + 5.2vw, 6.5rem) }
+h2, .t-xl { font-size: clamp(2.1rem, 1.4rem + 3.2vw, 4.25rem) }
+
+h3, .t-l{
+  font-family:'Outfit', system-ui, sans-serif;
+  font-size: clamp(1.25rem, 1.1rem + .7vw, 1.65rem);
+  font-weight: 500; line-height: 1.25; letter-spacing: -.01em;
+}
+h4, .t-m{
+  font-family:'Outfit', system-ui, sans-serif;
+  font-size: 1.05rem; font-weight: 500; line-height: 1.35;
+}
+
+p{ text-wrap: pretty }
+
+/* Auszeichnung. Der einzige Ort, an dem Versalien erlaubt sind. */
+.mono, .eyebrow, .tag, .spec-k, .num{
+  font-family:'JetBrains Mono', ui-monospace, monospace;
+  font-variant-ligatures: none;
+}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:var(--s2);
+  font-size:.6875rem; font-weight:500;
+  letter-spacing:.18em; text-transform:uppercase;
+  color: var(--ink-3);
+}
+.eyebrow--signal{ color: var(--signal) }
+
+/* Lauftext in Lesebreite */
+.lead{
+  font-size: clamp(1.0625rem, 1rem + .45vw, 1.3125rem);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 62ch;
+}
+.prose{ max-width: 68ch }
+.prose p + p{ margin-top: var(--s4) }
+.prose h3{ margin: var(--s7) 0 var(--s3) }
+.prose ul, .prose ol{ margin: var(--s4) 0; padding-left: var(--s5) }
+.prose li{ margin-bottom: var(--s2); color: var(--ink-2) }
+.prose a{ color: var(--signal) }
+
+.muted{ color: var(--ink-2) }
+.subtle{ color: var(--ink-3) }
+
+a{ color: inherit; text-decoration-thickness: 1px; text-underline-offset: .18em }
+
+/* Textlink mit Unterstrich, der aus der Kante wächst */
+.link{
+  position:relative; color: var(--ink); text-decoration:none;
+  background-image: linear-gradient(var(--signal), var(--signal));
+  background-size: 0% 1px; background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--nf-transport) var(--nf-ease),
+              color var(--nf-response) linear;
+}
+.link:hover{ background-size: 100% 1px; color: var(--signal) }
+
+
+/* ─── 4. Fläche ────────────────────────────────────────────────────────── */
+.wrap{
+  width:100%; max-width: var(--bahn);
+  margin-inline:auto; padding-inline: var(--rand);
+}
+.wrap--wide{ max-width: 1560px }
+
+section{ position: relative }
+.band{ padding-block: clamp(var(--s8), 9vw, var(--s10)) }
+.band--tight{ padding-block: clamp(var(--s7), 6vw, var(--s9)) }
+
+/* Invertiertes Band — der einzige „dunkle" Moment, und er ist eine
+   Fläche, kein Nebel. */
+.band--plate{
+  background: var(--plate); color: var(--on-plate);
+  --ink: var(--on-plate);
+  --ink-2: #A9A7A0;
+  --ink-3: #76747E;
+  --line: #2A2A31;
+  --line-2: #1E1E24;
+  --paper-2: #1A1A1F;
+  --signal: #8B96FF;
+}
+
+.rule{ height:1px; background: var(--line); border:0 }
+
+/* Kopf einer Sektion: Nummer, Titel, Beisatz — immer gleich aufgebaut. */
+.head{
+  display:grid; gap: var(--s4);
+  padding-bottom: var(--s5);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(var(--s6), 5vw, var(--s8));
+}
+@media (min-width: 900px){
+  .head{
+    grid-template-columns: minmax(0,1fr) minmax(0,26rem);
+    align-items: end; gap: var(--s7);
+  }
+  .head > .lead{ padding-bottom: .35rem }
+}
+.head h2{ margin: 0 }
+
+.grid{ display:grid; gap: clamp(var(--s4), 2.2vw, var(--s6)) }
+.grid--2{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)) }
+.grid--3{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)) }
+.grid--4{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)) }
+
+
+/* ─── 5. Teile ─────────────────────────────────────────────────────────── */
+
+/* Knöpfe. Rechteckig, ohne Verlauf, ohne Schlagschatten. Der Unterschied
+   zwischen den beiden ist Füllung gegen Kante, mehr braucht es nicht. */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap: var(--s2);
+  padding: .95rem 1.6rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.75rem; font-weight:500;
+  letter-spacing:.12em; text-transform:uppercase;
+  text-decoration:none; white-space:nowrap;
+  border:1px solid transparent; cursor:pointer;
+  transition: background-color var(--nf-response) linear,
+              color var(--nf-response) linear,
+              border-color var(--nf-response) linear,
+              transform var(--nf-response) var(--nf-ease);
+}
+.btn:active{ transform: translateY(1px) }
+.btn svg{ width:1em; height:1em; stroke-width:2 }
+
+.btn--primary{ background: var(--ink); color: var(--paper); border-color: var(--ink) }
+.btn--primary:hover{ background: var(--signal); border-color: var(--signal); color: var(--on-signal) }
+
+.btn--signal{ background: var(--signal); color: var(--on-signal); border-color: var(--signal) }
+.btn--signal:hover{ background: var(--signal-deep); border-color: var(--signal-deep) }
+
+.btn--ghost{ background: transparent; color: var(--ink); border-color: var(--line) }
+.btn--ghost:hover{ border-color: var(--ink); background: var(--paper-2) }
+
+.btn--wide{ width:100% }
+
+/* Altnamen aus den migrierten Seiten. Die alten Regeln dafür sind
+   entfallen, die Elemente stehen aber noch im Markup — ohne diese beiden
+   Zeilen wären es unterstrichene Textlinks statt Knöpfe. */
+.btn-primary{ /* wie .btn.btn--primary */
+  display:inline-flex; align-items:center; justify-content:center; gap: var(--s2);
+  padding: .95rem 1.6rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.75rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+  text-decoration:none; white-space:nowrap; cursor:pointer;
+  background: var(--ink); color: var(--paper); border:1px solid var(--ink);
+  transition: background-color var(--nf-response) linear,
+              border-color var(--nf-response) linear;
+}
+.btn-primary:hover{ background: var(--signal); border-color: var(--signal); color: var(--on-signal) }
+
+.btn-secondary{ /* wie .btn.btn--ghost */
+  display:inline-flex; align-items:center; justify-content:center; gap: var(--s2);
+  padding: .95rem 1.6rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.75rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+  text-decoration:none; white-space:nowrap; cursor:pointer;
+  background: transparent; color: var(--ink); border:1px solid var(--line);
+  transition: border-color var(--nf-response) linear, background-color var(--nf-response) linear;
+}
+.btn-secondary:hover{ border-color: var(--ink); background: var(--paper-2) }
+
+/* Marke / Chip — Metadaten, die man überfliegt */
+.tag{
+  display:inline-flex; align-items:center; gap:.4em;
+  padding: .3rem .6rem;
+  font-size:.6875rem; letter-spacing:.06em;
+  color: var(--ink-2);
+  border:1px solid var(--line);
+  background: var(--paper-2);
+}
+.tags{ display:flex; flex-wrap:wrap; gap: var(--s2) }
+
+/* Zustandspunkt: lebt gerade */
+.dot{
+  width:6px; height:6px; flex:none; border-radius:50%;
+  background: var(--ember);
+  box-shadow: 0 0 0 3px var(--ember-tint);
+}
+.state{
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.6875rem; letter-spacing:.1em; text-transform:uppercase;
+  color: var(--ink-2);
+}
+
+/* Karte. Eine Kante, eine Fläche. Beim Zeigen hebt sie sich um zwei
+   Pixel und die Kante wird Signal — das ist die ganze Reaktion. */
+.card{
+  display:flex; flex-direction:column; gap: var(--s3);
+  padding: var(--s5);
+  background: var(--paper-2);
+  border:1px solid var(--line);
+  text-decoration:none;
+  transition: border-color var(--nf-response) linear,
+              transform var(--nf-transport) var(--nf-ease);
+}
+a.card:hover{ border-color: var(--signal); transform: translateY(-2px) }
+.card__n{
+  font-family:'JetBrains Mono', monospace;
+  font-size:.6875rem; letter-spacing:.14em; color: var(--ink-3);
+}
+.card p{ color: var(--ink-2); font-size:.95rem }
+
+/* Bildtafel. Dunkler Grund, damit die dunklen Aufnahmen der Projekte
+   nicht auf hellem Papier ausfransen. */
+.plate{
+  position:relative; overflow:hidden;
+  background: var(--plate);
+  border:1px solid var(--line);
+  aspect-ratio: 16 / 9;
+}
+.plate img{
+  width:100%; height:100%; object-fit:cover;
+  transition: transform 620ms var(--nf-ease);
+}
+.plate--tall{ aspect-ratio: 4 / 3 }
+
+/* Kennwert-Tabelle: Schlüssel links, Wert rechts, Haarlinie dazwischen. */
+.spec{ border-top:1px solid var(--line) }
+.spec__row{
+  display:grid; grid-template-columns: minmax(7.5rem, 12rem) 1fr;
+  gap: var(--s4);
+  padding: var(--s3) 0;
+  border-bottom:1px solid var(--line-2);
+  align-items: baseline;
+}
+.spec-k{
+  font-size:.6875rem; letter-spacing:.12em; text-transform:uppercase;
+  color: var(--ink-3);
+}
+.spec__row > span:last-child{ font-size:.95rem; color: var(--ink) }
+@media (max-width: 560px){
+  .spec__row{ grid-template-columns: 1fr; gap: var(--s1) }
+}
+
+/* Kennzahl */
+.num{
+  display:block;
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  font-weight: 400; line-height:1; letter-spacing:-.03em;
+  color: var(--ink);
+}
+.num + .num-label{
+  display:block; margin-top: var(--s2);
+  font-family:'JetBrains Mono', monospace;
+  font-size:.6875rem; letter-spacing:.12em; text-transform:uppercase;
+  color: var(--ink-3);
+}
+
+/* Formulare */
+.field{ display:flex; flex-direction:column; gap: var(--s2); margin-bottom: var(--s4) }
+.field label{
+  font-family:'JetBrains Mono', monospace;
+  font-size:.6875rem; letter-spacing:.12em; text-transform:uppercase;
+  color: var(--ink-3);
+}
+input[type=text], input[type=email], input[type=tel], input[type=url],
+select, textarea{
+  width:100%; padding: .85rem 1rem;
+  font-family:'Outfit', sans-serif; font-size:1rem;
+  color: var(--ink); background: var(--paper-2);
+  border:1px solid var(--line); border-radius:0;
+  transition: border-color var(--nf-response) linear;
+}
+input:focus, select:focus, textarea:focus{ border-color: var(--signal) }
+textarea{ resize:vertical; min-height:8rem }
+::placeholder{ color: var(--ink-3) }
+
+
+/* ─── 6. Rahmen ────────────────────────────────────────────────────────
+
+   Die Navigation ist das einzige Objekt, das jeden Seitenwechsel
+   überdauert (siehe assets/motion.css). Sie ist eine Leiste auf Papier
+   mit einer Haarlinie darunter — keine Glasscheibe, kein Weichzeichner.
+   ─────────────────────────────────────────────────────────────────────── */
+.nav-wrapper{
+  position: sticky; top:0; z-index:900;
+  background: var(--paper);
+  border-bottom:1px solid transparent;
+  transition: border-color var(--nf-response) linear;
+}
+.nav-wrapper.scrolled{ border-bottom-color: var(--line) }
+
+.nav-main{
+  display:flex; align-items:center; gap: var(--s5);
+  height: var(--nav-h);
+  max-width: 1560px; margin-inline:auto;
+  padding-inline: var(--rand);
+}
+
+.logo{ display:flex; align-items:center; gap:.65rem; text-decoration:none; flex:none }
+.logo-mark{ width:22px; height:22px; flex:none }
+.logo-mark rect{ fill:none; stroke: var(--ink); stroke-width:6 }
+.logo-mark rect + rect{ stroke: var(--signal) }
+.logo-text{
+  font-family:'JetBrains Mono', monospace;
+  font-size:.8125rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color: var(--ink);
+}
+
+.nav-links{ display:flex; align-items:center; gap:0; list-style:none; margin-left:auto }
+.nav-links a{
+  display:block; padding: .5rem .8rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+  color: var(--ink-2); text-decoration:none;
+  transition: color var(--nf-response) linear;
+}
+.nav-links a:hover{ color: var(--ink) }
+.nav-links a.active{ color: var(--signal) }
+
+.nav-cta{
+  flex:none; padding:.6rem 1.1rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+  color: var(--paper); background: var(--ink);
+  border:1px solid var(--ink); text-decoration:none;
+  transition: background-color var(--nf-response) linear,
+              border-color var(--nf-response) linear;
+}
+.nav-cta:hover{ background: var(--signal); border-color: var(--signal); color: var(--on-signal) }
+
+.nav-toggle{
+  display:none; flex:none;
+  width:44px; height:44px; margin-left:auto;
+  align-items:center; justify-content:center;
+  background:transparent; border:1px solid var(--line); cursor:pointer;
+}
+.nav-toggle span{
+  display:block; position:relative;
+  width:18px; height:1px; background: var(--ink);
+  transition: transform var(--nf-transport) var(--nf-ease),
+              opacity var(--nf-response) linear;
+}
+.nav-toggle span::before, .nav-toggle span::after{
+  content:''; position:absolute; left:0; width:18px; height:1px; background: var(--ink);
+  transition: transform var(--nf-transport) var(--nf-ease);
+}
+.nav-toggle span::before{ top:-6px }
+.nav-toggle span::after{ top:6px }
+.nav-toggle[aria-expanded="true"] span{ background:transparent }
+.nav-toggle[aria-expanded="true"] span::before{ transform: translateY(6px) rotate(45deg) }
+.nav-toggle[aria-expanded="true"] span::after{ transform: translateY(-6px) rotate(-45deg) }
+
+.mobile-menu{
+  position:fixed; inset: var(--nav-h) 0 0; z-index:890;
+  display:flex; flex-direction:column; gap: var(--s5);
+  padding: var(--s6) var(--rand) var(--s7);
+  background: var(--paper);
+  overflow-y:auto;
+  opacity:0; visibility:hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--nf-transport) var(--nf-ease),
+              transform var(--nf-transport) var(--nf-ease),
+              visibility 0s linear var(--nf-transport);
+}
+.mobile-menu.open{
+  opacity:1; visibility:visible; transform:none;
+  transition-delay: 0s;
+}
+.mobile-menu h5{
+  font-family:'JetBrains Mono', monospace;
+  font-size:.6875rem; letter-spacing:.16em; text-transform:uppercase;
+  color: var(--ink-3);
+  padding-bottom: var(--s3); border-bottom:1px solid var(--line);
+  margin-bottom: var(--s3);
+}
+.mobile-nav{ display:flex; flex-direction:column; counter-reset: m }
+.mobile-nav a{
+  position:relative; display:flex; align-items:center; gap: var(--s4);
+  padding: var(--s3) 0; min-height:48px;
+  font-family:'Cormorant Garamond', serif; font-size:1.75rem; font-weight:300;
+  color: var(--ink); text-decoration:none;
+  border-bottom:1px solid var(--line-2);
+}
+.mobile-nav a::before{
+  counter-increment: m; content: counter(m, decimal-leading-zero);
+  font-family:'JetBrains Mono', monospace; font-size:.6875rem;
+  letter-spacing:.1em; color: var(--ink-3);
+}
+.mobile-nav a.active{ color: var(--signal) }
+.mobile-nav a.active::before{ color: var(--signal) }
+.mobile-links{ display:flex; flex-direction:column; gap: var(--s2) }
+.mobile-links a{ color: var(--ink-2); text-decoration:none; padding:.4rem 0 }
+.mobile-menu .btn{ margin-top:auto }
+
+/* Fußzeile */
+.footer{
+  border-top:1px solid var(--line);
+  padding-block: clamp(var(--s7), 6vw, var(--s9)) var(--s6);
+}
+.footer-main{
+  display:grid; gap: var(--s6);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  padding-bottom: var(--s7);
+}
+.footer-brand{ grid-column: 1 / -1 }
+@media (min-width: 900px){ .footer-brand{ grid-column: span 2 } }
+.footer h4{
+  font-family:'JetBrains Mono', monospace;
+  font-size:.6875rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase;
+  color: var(--ink-3); margin-bottom: var(--s4);
+}
+.footer-links{ list-style:none; display:flex; flex-direction:column; gap:.6rem }
+.footer-links a{
+  color: var(--ink-2); text-decoration:none; font-size:.9rem;
+  transition: color var(--nf-response) linear;
+}
+.footer-links a:hover{ color: var(--signal) }
+/* Newsletter. Steht in der Fußzeile jeder Seite und wird von nf-motion.js
+   bedient — vorher trug jede Seite ihr eigenes Exemplar samt eigenem
+   Absende-Skript. */
+.footer-news{ grid-column: 1 / -1 }
+@media (min-width: 900px){ .footer-news{ grid-column: span 2 } }
+.footer-news p{ font-size:.9rem; color: var(--ink-2); margin-bottom: var(--s4) }
+.news-row{ display:flex; gap:0; margin-bottom: var(--s3) }
+.news-row input{ flex:1; min-width:0; border-right:0 }
+.news-row button{ flex:none; padding-inline: 1.1rem }
+.news-check{
+  display:flex; align-items:flex-start; gap:.55rem;
+  font-size:.8rem; color: var(--ink-3); cursor:pointer;
+}
+.news-check input{ width:auto; margin-top:.25rem; accent-color: var(--signal) }
+.news-check a{ color: var(--signal) }
+.form-message{ margin-top: var(--s3); font-size:.85rem; color: var(--ink-2); min-height:1.2em }
+.form-message.success{ color: var(--signal) }
+
+.footer-bottom{
+  display:flex; flex-wrap:wrap; gap: var(--s4);
+  justify-content:space-between; align-items:center;
+  padding-top: var(--s5); border-top:1px solid var(--line-2);
+  font-size:.8rem; color: var(--ink-3);
+}
+.footer-bottom a{ color: var(--ink-3); text-decoration:none }
+.footer-bottom a:hover{ color: var(--signal) }
+.legal-links{ display:flex; flex-wrap:wrap; gap: var(--s4) }
+
+@media (max-width: 980px){
+  .nav-links, .nav-cta{ display:none }
+  .nav-toggle{ display:flex }
+}
+
+
+/* ─── 7. Lauf ──────────────────────────────────────────────────────────
+
+   Reveals sind Transform und Opazität, sonst nichts — beides läuft auf
+   dem Compositor und kostet kein Layout. Der Versatz ist knapp (14px):
+   die Seite soll ankommen, nicht anreisen.
+
+   `.reveal` ohne JavaScript sichtbar zu lassen ist Absicht. Erst wenn
+   nf-motion.js läuft, setzt es `data-motion` auf das Dokument und die
+   Startzustände greifen. Fällt das Skript aus, steht der Inhalt da.
+   ─────────────────────────────────────────────────────────────────────── */
+[data-motion] .reveal{
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition: opacity 460ms var(--nf-out),
+              transform 560ms var(--nf-out);
+  transition-delay: var(--d, 0ms);
+}
+[data-motion] .reveal.in{ opacity:1; transform:none }
+
+/* Stagger: die Kinder laufen nacheinander los, 55ms Abstand. */
+[data-motion] [data-stagger] > *{
+  opacity:0; transform: translate3d(0, 16px, 0);
+  transition: opacity 420ms var(--nf-out), transform 520ms var(--nf-out);
+}
+[data-motion] [data-stagger].in > *{ opacity:1; transform:none }
+[data-motion] [data-stagger].in > *:nth-child(1){ transition-delay: 0ms }
+[data-motion] [data-stagger].in > *:nth-child(2){ transition-delay: 55ms }
+[data-motion] [data-stagger].in > *:nth-child(3){ transition-delay: 110ms }
+[data-motion] [data-stagger].in > *:nth-child(4){ transition-delay: 165ms }
+[data-motion] [data-stagger].in > *:nth-child(5){ transition-delay: 220ms }
+[data-motion] [data-stagger].in > *:nth-child(6){ transition-delay: 275ms }
+[data-motion] [data-stagger].in > *:nth-child(n+7){ transition-delay: 330ms }
+
+/* Linie, die sich aufzieht. Der einzige „Effekt", der bleiben darf,
+   weil er die Struktur zeigt statt sie zu überdecken. */
+[data-motion] .draw{ transform: scaleX(0); transform-origin: left }
+[data-motion] .draw.in{
+  transform: scaleX(1);
+  transition: transform 700ms var(--nf-out);
+}
+
+@media (prefers-reduced-motion: reduce){
+  [data-motion] .reveal,
+  [data-motion] [data-stagger] > *,
+  [data-motion] .draw{
+    opacity:1 !important; transform:none !important; transition:none !important;
+  }
+  .plate img{ transition:none }
+}
+
+
+/* ─── 8. Befehlsleiste und Fortschritt ─────────────────────────────────
+
+   Beides wird von nf-motion.js in den Body gehängt und existiert im
+   Markup der Seiten nicht. Deshalb steht es hier und nicht bei den
+   Teilen: die Seiten wissen nichts davon.
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* Lesefortschritt — eine Haarlinie, kein Balken. */
+.nf-progress{
+  position: fixed; top:0; left:0; z-index:950;
+  width:100%; height:2px;
+  background: var(--signal);
+  transform: scaleX(0); transform-origin: 0 50%;
+  pointer-events:none;
+}
+
+/* ⌘K. Ein Kasten auf einer ruhigen Fläche, keine Glasscheibe. */
+.nf-cmd{ position:fixed; inset:0; z-index:1400 }
+.nf-cmd[hidden]{ display:none }
+
+.nf-cmd__scrim{
+  position:absolute; inset:0;
+  background: color-mix(in srgb, var(--plate) 55%, transparent);
+  opacity:0;
+  transition: opacity 160ms linear;
+}
+.nf-cmd.on .nf-cmd__scrim{ opacity:1 }
+
+.nf-cmd__box{
+  position:relative;
+  width: min(34rem, calc(100% - 2rem));
+  margin: clamp(4rem, 14vh, 9rem) auto 0;
+  background: var(--paper-2);
+  border:1px solid var(--line);
+  box-shadow: 0 24px 60px -24px rgba(0,0,0,.35);
+  opacity:0; transform: translateY(-8px) scale(.985);
+  transition: opacity 160ms var(--nf-out), transform 220ms var(--nf-out);
+}
+.nf-cmd.on .nf-cmd__box{ opacity:1; transform:none }
+
+.nf-cmd__field{
+  display:flex; align-items:center; gap:.7rem;
+  padding: .9rem 1rem;
+  border-bottom:1px solid var(--line);
+}
+.nf-cmd__prompt{
+  font-family:'JetBrains Mono', monospace;
+  color: var(--signal); font-size:1.1rem; line-height:1;
+}
+.nf-cmd__input{
+  flex:1; border:0; padding:0; background:transparent;
+  font-family:'Outfit', sans-serif; font-size:1rem; color: var(--ink);
+}
+.nf-cmd__input:focus{ outline:none }
+.nf-cmd__kbd{
+  font-family:'JetBrains Mono', monospace; font-size:.625rem;
+  letter-spacing:.1em; text-transform:uppercase; color: var(--ink-3);
+  padding:.2rem .4rem; border:1px solid var(--line);
+}
+
+.nf-cmd__list{ list-style:none; max-height: 20rem; overflow-y:auto; padding:.35rem }
+.nf-cmd__list a{
+  display:flex; align-items:baseline; justify-content:space-between; gap:var(--s4);
+  padding:.6rem .75rem; text-decoration:none; color: var(--ink);
+}
+.nf-cmd__list li.on a{ background: var(--signal-tint); color: var(--signal) }
+.nf-cmd__t{ font-size:.95rem }
+.nf-cmd__g{
+  font-family:'JetBrains Mono', monospace; font-size:.625rem;
+  letter-spacing:.12em; text-transform:uppercase; color: var(--ink-3);
+}
+.nf-cmd__empty{ padding: var(--s5); text-align:center; color: var(--ink-3); font-size:.9rem }
+
+/* Der Auslöser in der Navigation. Auf schmalen Geräten gibt es keine
+   Tastatur mit ⌘ — dort verschwindet er mit den übrigen Nav-Elementen. */
+.nav-search{
+  display:flex; align-items:center; gap:.5rem;
+  padding:.45rem .7rem .45rem .8rem;
+  background: transparent; border:1px solid var(--line);
+  font-family:'JetBrains Mono', monospace; font-size:.7rem;
+  letter-spacing:.06em; color: var(--ink-3); cursor:pointer;
+  transition: border-color var(--nf-response) linear, color var(--nf-response) linear;
+}
+.nav-search:hover{ border-color: var(--ink-3); color: var(--ink) }
+.nav-search kbd{ font: inherit; color: var(--ink-3) }
+
+/* Hell/Dunkel-Schalter: zwei Pfade, einer sichtbar. */
+.theme-toggle{
+  display:flex; align-items:center; justify-content:center; flex:none;
+  width:34px; height:34px;
+  background:transparent; border:1px solid var(--line); cursor:pointer;
+  color: var(--ink-2);
+  transition: border-color var(--nf-response) linear, color var(--nf-response) linear;
+}
+.theme-toggle:hover{ border-color: var(--ink-3); color: var(--ink) }
+.theme-toggle svg{ width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:1.6 }
+.theme-toggle .i-moon{ display:none }
+:root[data-theme="dark"] .theme-toggle .i-sun{ display:none }
+:root[data-theme="dark"] .theme-toggle .i-moon{ display:block }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .theme-toggle .i-sun{ display:none }
+  :root:not([data-theme="light"]) .theme-toggle .i-moon{ display:block }
+}
+@media (max-width: 980px){ .nav-search{ display:none } }

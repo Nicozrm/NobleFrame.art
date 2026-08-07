@@ -1,12 +1,12 @@
 {
   "name": "NobleFrame – Premium Digital Atelier",
   "short_name": "NobleFrame",
-  "description": "Premium Digital Atelier für Websites, Apps & Growth Solutions.",
+  "description": "Digitales Atelier für Websites, Shops und Systeme.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#F1EFE9",
+  "theme_color": "#F1EFE9",
   "lang": "de",
   "icons": [
     {

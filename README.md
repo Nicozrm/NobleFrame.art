@@ -1,54 +1,103 @@
 # NobleFrame
 
-Premium Digital Atelier — statische Website inklusive der eigenen
+Digitales Atelier — statische Website inklusive der eigenen
 Showcase-Systeme unter `/showcase/`.
 
 **Live:** https://nobleframe.de
 
 ## Aufbau
 
-Kein Build, kein Framework. Jede Seite ist eigenständiges HTML mit
-inline-kritischem CSS; alles Weitere ist additiv und darf ausfallen, ohne
-dass die Seite ihre Funktion verliert.
+Kein Build, kein Framework. Jede Seite ist eigenständiges HTML. Das
+Gemeinsame liegt seit dem Redesign in einer Datei statt neunzehnmal
+inline.
 
 ```
 *.html                  Seiten (Root)
+assets/css/nf.css       Design-System: Farben, Schrift, Teile, Rahmen, Lauf
+assets/motion.css       Bewegungssystem + seitenübergreifende View Transitions
 assets/fonts/           selbst gehostete Variable Fonts + fonts.css
 assets/img/             Vorschaubilder der Showcase-Projekte (WebP)
 favicon/                Favicons und PWA-Icons
-vendor/                 Fremdbibliotheken (Lenis, Three.js, Vanta)
-cinematic-engine.js     Canvas2D-Intro der Startseite
-nf-interactions.js      Reveals, Zähler, Mobilmenü
-nf-tech.js              Lenis, bedarfsgesteuertes Vanta, Glow-Parallax
-nf-shader.js            WebGL-Akzent
+nf-motion.js            Rahmen, Reveals, Zähler, Licht, Befehlsleiste, Register
 service-worker.js       network-first für Seiten, SWR für Assets
 _headers, wrangler.toml Cloudflare-Pages-Konfiguration
 docs/NOBLEFRAME-2032.md Design-Dossier: Analyse, Vision, Architektur
 ```
 
+Seiten-eigenes CSS steht weiterhin in der jeweiligen Seite — aber nur
+das, was es genau dort gibt. Alles, was auf mehr als einer Seite
+vorkommt, gehört nach `assets/css/nf.css`.
+
+## Gestaltung
+
+**Papier statt Bühne.** Der Grund ist ein warmer Bogen, die Schrift ist
+Tinte, und es gibt genau ein Signal: Kobalt. Es markiert, was anklickbar
+oder gerade lebendig ist — nie Dekoration. Ember (`--ember`) bleibt den
+Zuständen vorbehalten, die wirklich heiß sind: live, neu.
+
+Der Wechsel von Schwarz/Gold auf Papier hat einen praktischen Grund. Die
+Vorschaubilder der Projekte sind dunkel; auf hellem Grund liegen sie wie
+Tafeln in einem Bildband. Dunkel auf dunkel war ein Nebel, in dem die
+Arbeit verschwand.
+
+**Drei Stimmen.** Cormorant Garamond nur groß (ab ~2.5rem trägt sie,
+darunter wird sie zur Hochzeitseinladung). Outfit für alles, was gelesen
+wird. JetBrains Mono für alles, was ausgezeichnet wird: Nummern, Labels,
+Kennwerte — immer klein, immer weit.
+
+**Hell und dunkel.** Die Seite folgt dem System, bis jemand über den
+Schalter in der Navigation widerspricht; der Widerspruch wird in
+`localStorage` gemerkt. Ohne ihn steht kein `data-theme`, und
+`prefers-color-scheme` entscheidet weiter.
+
 ## Grundsätze
 
-Diese vier Regeln sind der Grund, warum die Seite so aussieht, wie sie
-aussieht. Sie stehen ausführlich in `docs/NOBLEFRAME-2032.md`.
+Diese fünf Regeln sind der Grund, warum die Seite so aussieht, wie sie
+aussieht. Die ersten vier stehen ausführlich in
+`docs/NOBLEFRAME-2032.md`.
 
 **Keine Aussage ohne Deckung.** Keine erfundenen Kundenlogos, keine
 Kennzahl ohne Bezugsgröße, kein Ladebalken, der nichts lädt, keine
 angekündigte Technologie, die nicht läuft. Wenn eine Zahl auf der Seite
 steht, muss sie überprüfbar sein.
 
-**Die Seite funktioniert, bevor die Zugaben laden.** WebGL, Vanta und
-Smooth Scrolling sind Schichten über einem vollständigen Dokument, nie
-dessen Voraussetzung. Fällt eine Schicht aus, bleibt die Seite intakt.
+**Die Seite funktioniert, bevor die Zugaben laden.** `nf-motion.js` ist
+eine Schicht über einem vollständigen Dokument, nie dessen Voraussetzung.
+Die Reveal-Startzustände greifen erst, wenn das Skript `data-motion` auf
+`<html>` gesetzt hat — fällt es aus, steht der Inhalt da.
 
 **Keine Drittanbieter zur Laufzeit.** Schriften werden lokal
 ausgeliefert, es gibt kein Tracking und keine einwilligungspflichtigen
 Dienste — deshalb braucht die Seite keinen Cookie-Banner. Einzige
-Ausnahme sind einige Bilder von Unsplash auf `about.html`; sie sind in
-der Datenschutzerklärung genannt.
+Ausnahme sind einige Bilder von Unsplash auf `about.html` und
+`kontakt.html`; sie sind in der Datenschutzerklärung genannt.
 
 **Alle Pfade relativ.** Die Seite muss auf einer Root-Domain und unter
 einem Unterpfad laufen. Das gilt auch für den Service Worker: absolute
 Pfade lassen den Offline-Cache still ins Leere zeigen.
+
+**Kein Rauch.** Keine weichgezeichneten Lichtkreise, kein WebGL-Netz über
+dem Text, kein Vorhang vor dem Inhalt, kein Raster-Overlay, keine
+Cursor-Aura, keine Klick-Schockwellen. Was Tiefe erzeugt, sind Kante,
+Fläche und Abstand. Wer eine Ausnahme braucht, schreibt dazu, welches
+Problem sie löst.
+
+## Bedienung
+
+Über die Maus hinaus:
+
+| Taste       | Wirkung                                        |
+|-------------|------------------------------------------------|
+| `⌘K` / `^K` | Befehlsleiste: jede Seite, jedes Projekt       |
+| `/`         | dasselbe, wenn der Fokus nicht im Feld steht   |
+| `↑` `↓`     | durch die Treffer                              |
+| `⏎`         | öffnen                                         |
+| `Esc`       | schließen (auch das Mobilmenü)                 |
+
+Das Verzeichnis der Befehlsleiste steht als `INDEX` in `nf-motion.js` —
+bewusst dort und nicht im HTML: es ist auf jeder Seite identisch, und
+eine Kopie pro Seite wäre wieder das Problem, das dieses Redesign
+beseitigt hat. Neue Seite anlegen heißt: dort eine Zeile ergänzen.
 
 ## Entwickeln
 
@@ -64,9 +113,6 @@ ist er absichtlich inaktiv, damit kein Cache die Entwicklung stört. Nach
 Änderungen an Dateien aus der `CORE`-Liste die Konstante `CACHE` in
 `service-worker.js` hochzählen, sonst sehen wiederkehrende Besucher
 weiter den alten Stand.
-
-Debug-Schalter der Intro-Engine: `?cinefx=max` erzwingt volle Qualität
-und schaltet die adaptive Regelung ab.
 
 ## Deploy
 
@@ -85,6 +131,12 @@ for f in *.html; do grep -oE 'href="[^"#?:]+\.html' "$f" | sed 's/href="//' |
 grep -ohE '(src|href)="[^"h#][^":]*\.(js|css|png|jpg|webp|svg|ico|woff2|json)"' *.html |
   sed -E 's/^(src|href)="//;s/"$//' | sort -u |
   while read -r p; do [ -e "$p" ] || echo "fehlt: $p"; done
+
+# kein Rauch zurueckgekehrt
+grep -rn 'ambient-glow\|bg-effects\|grid-overlay\|curtain-overlay' *.html
 ```
 
-Beides muss leer bleiben.
+Der erste Befehl meldet `showcase/lunara/index.html` und
+`showcase/omega-os/index.html`: die Showcase-Systeme liegen nicht im
+Repository, sondern werden getrennt nach `/showcase/` deployed. Die
+übrigen zwei Ausgaben müssen leer bleiben.

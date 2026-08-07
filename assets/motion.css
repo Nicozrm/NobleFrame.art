@@ -45,14 +45,16 @@
    ═══════════════════════════════════════════════════════════════════════ */
 @view-transition{ navigation: auto; }
 
-/* Der Rahmen ist die Navigation: fix positioniert, immer im Blick, auf
-   jeder inhaltlichen Seite genau einmal vorhanden.
+/* Der Rahmen ist die Navigation: klebend am oberen Rand, immer im Blick,
+   auf jeder Seite genau einmal vorhanden.
 
-   Die Fußzeile bekommt bewusst keinen Namen. Sie fehlt auf den
-   Rechtsseiten, und ein benannter Bereich ohne Gegenstück auf der
-   Zielseite bliebe die volle Dauer stehen und verschwände dann schlagartig.
-   Sie zieht deshalb mit dem Inhalt — was ohnehin richtig ist, weil sie beim
-   Seitenwechsel fast nie im Blick liegt. */
+   Die Fußzeile bekommt weiterhin bewusst keinen Namen — obwohl sie seit
+   dem Redesign auf jeder Seite steht, auch auf den Rechtsseiten. Ein
+   benannter Bereich wird für die Dauer des Wechsels aus dem Fluss gehoben;
+   bei einem Element, das je nach Seitenlänge an ganz anderer Stelle sitzt,
+   ergäbe das einen Sprung statt einer Ruhe. Sie zieht deshalb mit dem
+   Inhalt, was ohnehin richtig ist: beim Seitenwechsel liegt sie fast nie
+   im Blick. */
 .nav-wrapper{ view-transition-name: nf-rahmen; }
 
 /* Nicht ein- und ausblenden, sondern stehen bleiben. Bei deckungsgleichem

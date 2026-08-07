@@ -1,599 +1,925 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="https://nobleframe.de/showcase.html">
-    <meta name="theme-color" content="#000000">
-    <title>Showcase – NobleFrame | Ausgewählte Projekte, live erlebbar</title>
-    <meta name="description" content="Showcase von NobleFrame – ausgewählte Projekte, jedes live und in voller Tiefe. Erster Showcase: OMEGA OS, ein vollständiges Desktop-Betriebssystem im Browser.">
-    <meta name="robots" content="index, follow">
-    <meta property="og:site_name" content="NobleFrame">
-    <meta property="og:locale" content="de_DE">
-    <meta property="og:description" content="Ausgewählte Projekte, live erlebbar – erster Showcase: OMEGA OS.">
-    <meta property="og:url" content="https://nobleframe.de/showcase.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="og:image" content="https://nobleframe.de/assets/img/omega-os-preview.webp">
-    <meta name="twitter:image" content="https://nobleframe.de/assets/img/omega-os-preview.webp">
-    <meta name="twitter:title" content="Showcase – NobleFrame">
-    <meta name="twitter:description" content="Ausgewählte Projekte, live erlebbar. Erster Showcase: OMEGA OS.">
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"CollectionPage","name":"Showcase – NobleFrame","url":"https://nobleframe.de/showcase.html","description":"Ausgewählte Projekte von NobleFrame, jedes live erlebbar.","hasPart":{"@type":"CreativeWork","name":"OMEGA OS","description":"Vollständiges noir/goldenes Desktop-Betriebssystem im Browser mit App Store, eingebetteten Web-Apps und serverseitig gebundener KI.","url":"https://nobleframe.de/showcase/omega-os/","creator":{"@type":"Organization","name":"NobleFrame"}}}
-    </script>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="NobleFrame">
-    <meta property="og:locale" content="de_DE">
-    <meta property="og:title" content="Showcase – NobleFrame">
-    <meta property="og:description" content="Ausgewählte Projekte, live erlebbar – erster Showcase: OMEGA OS.">
-    <meta property="og:url" content="https://nobleframe.de/showcase.html">
-    <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="assets/fonts/fonts.css">
-    <link rel="stylesheet" href="assets/motion.css">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        :root{--gold:#C9A962;--gold-light:#E8D5A3;--gold-dark:#8B7355;--black:#000;--white:#FAFAFA;--white-muted:rgba(250,250,250,.75);--white-subtle:rgba(250,250,250,.55);--gradient:linear-gradient(135deg,#C9A962 0%,#E8D5A3 50%,#C9A962 100%)}
-        html{scroll-behavior:smooth;background:#000;color-scheme:dark}
-        body{font-family:'Outfit',sans-serif;background:#000;color:var(--white);overflow-x:hidden;line-height:1.6;min-height:100vh}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Showcase – NobleFrame | Fünf laufende Systeme, im Detail</title>
+<meta name="description" content="Fünf vollständige Eigenentwicklungen – Smart-Home-Studio, Browser-Betriebssystem, Reparatur-Plattform, Produkt-Keynote und Luxury-Boutique. Jedes live, jedes mit ausführlichem Bericht.">
+<link rel="canonical" href="https://nobleframe.de/showcase.html">
+<meta name="theme-color" content="#F1EFE9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D0D0F" media="(prefers-color-scheme: dark)">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NobleFrame">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Showcase – Fünf laufende Systeme, im Detail">
+<meta property="og:description" content="Keine Fallstudien-Prosa: fünf Eigenentwicklungen mit Aufbau, Stack und den Stellen, an denen es schwierig wurde.">
+<meta property="og:url" content="https://nobleframe.de/showcase.html">
+<meta property="og:image" content="https://nobleframe.de/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Showcase – Fünf laufende Systeme, im Detail">
+<meta name="twitter:description" content="Fünf vollständige Eigenentwicklungen, jede live und mit ausführlichem Bericht.">
+<meta name="twitter:image" content="https://nobleframe.de/og-image.png">
 
-        /* BACKGROUND */
-        .bg-effects{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-        .ambient-glow{position:absolute;border-radius:50%;filter:blur(120px)}
-        .glow-1{width:500px;height:500px;background:rgba(201,169,98,.06);top:-200px;right:-100px}
-        .glow-2{width:400px;height:400px;background:rgba(201,169,98,.04);bottom:-150px;left:-100px}
-        .grid-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(201,169,98,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,98,.012) 1px,transparent 1px);background-size:80px 80px}
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+<link rel="icon" href="favicon/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
 
-        /* NAVIGATION */
-        .nav-wrapper{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(0,0,0,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,98,.1);transition:all .4s ease}
-        .nav-wrapper.scrolled{background:rgba(0,0,0,.96)}
-        .nav-main{display:flex;justify-content:space-between;align-items:center;padding:20px 60px}
-        .logo{display:flex;align-items:center;gap:15px;text-decoration:none}
-        .logo-icon{width:45px;height:45px}
-        .logo-icon svg{width:100%;height:100%}
-        .logo-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:8px;color:var(--white);text-transform:uppercase}
-        .nav-links{display:flex;gap:4px;list-style:none}
-        .nav-links>li{position:relative}
-        .nav-links>li>a{position:relative;display:flex;align-items:center;padding:12px 16px;color:var(--white-muted);text-decoration:none;font-size:.82rem;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;transition:color .35s ease,letter-spacing .35s ease}
-        .nav-links>li>a::after{content:'';position:absolute;left:16px;right:16px;bottom:7px;height:1px;background:var(--gradient);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.65,0,.35,1)}
-        .nav-links>li>a:hover{color:var(--gold-light);letter-spacing:2px}
-        .nav-links>li>a:hover::after{transform:scaleX(1)}
-        .nav-links>li>a.active{color:var(--gold-light)}
-        .nav-links>li>a.active::after{transform:scaleX(1)}
-        .nav-cta{display:flex;align-items:center;gap:8px;padding:13px 26px;background:var(--gold);color:var(--black);font-size:.78rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;text-decoration:none;transition:all .4s ease;border:1px solid var(--gold)}
-        .nav-cta:hover{background:transparent;color:var(--gold)}
-        .nav-mobile-toggle{display:none;flex-direction:column;gap:5px;padding:12px;background:transparent;border:1px solid rgba(201,169,98,.3);cursor:pointer;min-height:44px;min-width:44px;justify-content:center;align-items:center}
-        .nav-mobile-toggle span{width:24px;height:2px;background:var(--gold);transition:all .3s ease}
-        .nav-mobile-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-        .nav-mobile-toggle.active span:nth-child(2){opacity:0}
-        .nav-mobile-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-        .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,.98);z-index:999;display:flex;flex-direction:column;padding:100px 40px 40px;opacity:0;visibility:hidden;transition:all .4s ease;overflow-y:auto}
-        .mobile-menu.active{opacity:1;visibility:visible}
-        .mobile-menu-section{margin-bottom:30px}
-        .mobile-menu-section h5{font-size:.7rem;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid rgba(201,169,98,.15)}
-        .mobile-menu-nav{counter-reset:m;display:flex;flex-direction:column}
-        .mobile-menu-nav a{position:relative;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--white);text-decoration:none;padding:14px 0 14px 44px;transition:all .3s ease;border-left:2px solid transparent;display:flex;align-items:center;min-height:44px}
-        .mobile-menu-nav a::before{counter-increment:m;content:counter(m,decimal-leading-zero);position:absolute;left:14px;font-family:'Outfit',sans-serif;font-size:.7rem;letter-spacing:1px;color:var(--gold);opacity:.6;top:50%;transform:translateY(-50%)}
-        .mobile-menu-nav a::after{content:'→';margin-left:auto;color:var(--gold);opacity:0;transform:translateX(-8px);transition:all .3s ease}
-        .mobile-menu-nav a:hover,.mobile-menu-nav a.active{color:var(--gold);border-left-color:var(--gold);padding-left:50px}
-        .mobile-menu-nav a:hover::after,.mobile-menu-nav a.active::after{opacity:1;transform:translateX(0)}
-        .mobile-menu-links{display:flex;flex-direction:column;gap:8px}
-        .mobile-menu-links a{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--white);text-decoration:none;padding:10px 0;transition:color .3s ease}
-        .mobile-menu-links a:hover{color:var(--gold)}
-        .mobile-menu-cta{margin-top:auto;padding:18px 35px;background:var(--gold);color:var(--black);font-size:.9rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center}
+<link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/css/nf.css">
+<link rel="stylesheet" href="assets/motion.css">
 
-        /* PAGE HERO */
-        .page-hero{min-height:46vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:10;padding:180px 60px 70px;text-align:center;overflow:hidden}
-        .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:rgba(201,169,98,.08);border:1px solid rgba(201,169,98,.25);margin-bottom:28px;animation:fadeUp .8s ease .1s both}
-        .hero-badge .dot{width:8px;height:8px;background:var(--gold);border-radius:50%;}
-        .hero-badge span{font-size:.72rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase}
-        
-        .page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,6vw,4.6rem);font-weight:300;line-height:1.1;margin-bottom:22px;animation:fadeUp .8s ease .25s both}
-        .page-title .accent{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:400}
-        .page-subtitle{font-size:1.1rem;color:var(--white-muted);max-width:640px;margin:0 auto;line-height:1.75;animation:fadeUp .8s ease .4s both}
-        @keyframes fadeUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"NobleFrame Showcase","description":"Fünf vollständige Eigenentwicklungen von NobleFrame, jede live benutzbar.","url":"https://nobleframe.de/showcase.html","isPartOf":{"@type":"WebSite","name":"NobleFrame","url":"https://nobleframe.de"},"hasPart":[{"@type":"SoftwareApplication","name":"OMEGA Atelier","applicationCategory":"DesignApplication","operatingSystem":"Web","description":"Smart-Home-Planungsstudio im Browser mit Echtzeit-3D."},{"@type":"SoftwareApplication","name":"OMEGA OS","applicationCategory":"WebApplication","operatingSystem":"Web","description":"Fenstergesteuertes Desktop-Betriebssystem im Browser mit App Store."},{"@type":"SoftwareApplication","name":"OMEGA Phone","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Plattform für Smartphone-Reparatur, Refurbished-Geräte und Ersatzteile."},{"@type":"WebSite","name":"OMEGA Phone · Das Produkt","description":"Produktpräsentation mit interaktivem 3D-Teardown."},{"@type":"WebSite","name":"Lunara","description":"Luxury-Boutique mit Stripe-Checkout und Rewards-Programm."}]}
+</script>
 
-        /* SECTION HEADER */
-        .section-header{text-align:center;margin-bottom:60px}
-        .section-eyebrow{display:inline-block;font-size:.7rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase;padding:8px 16px;border:1px solid rgba(201,169,98,.2);background:rgba(201,169,98,.05);margin-bottom:20px}
-        .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:15px}
-        .section-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .section-sub{color:var(--white-muted);font-size:1rem;max-width:620px;margin:0 auto}
+<style>
+/* ── Showcase — nur was es sonst nirgends gibt ───────────────────────────
 
-        /* MANIFESTO */
-        .manifesto{padding:95px 60px;position:relative;z-index:10;text-align:center}
-        .manifesto-inner{max-width:920px;margin:0 auto}
-        .manifesto-rule{width:52px;height:1px;background:var(--gradient);margin:0 auto 26px}
-        .manifesto-eyebrow{display:inline-block;font-size:.7rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px}
-        .manifesto-line{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.7vw,3rem);font-weight:300;line-height:1.3;margin-bottom:26px}
-        .manifesto-line span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:400}
-        .manifesto-sub{color:var(--white-muted);font-size:1.05rem;line-height:1.85;max-width:660px;margin:0 auto}
+   Zwei Bauteile: das Register (Liste links, Tafel rechts) und der Bericht
+   (Tafel oben, Kennwerte und Text darunter). Alles andere kommt aus
+   assets/css/nf.css.
+   ───────────────────────────────────────────────────────────────────────── */
 
-        /* STORY */
-        .story-section{padding:100px 60px;position:relative;z-index:10}
-        .story-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-        .story-images{position:relative;height:500px}
-        .story-img{position:absolute;border:1px solid rgba(201,169,98,.2);overflow:hidden;transition:all .5s ease}
-        .story-img:hover{border-color:rgba(201,169,98,.45);z-index:10}
-        .story-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-        .story-img:hover img{transform:scale(1.06)}
-        .story-img-1{width:280px;height:350px;top:0;left:0}
-        .story-img-2{width:250px;height:300px;bottom:0;right:0}
-        .story-img-3{width:180px;height:220px;top:50%;left:50%;transform:translate(-50%,-50%);}
-        
-        .story-content h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:28px}
-        .story-content h2 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .story-content p{color:var(--white-muted);font-size:1.05rem;line-height:1.9;margin-bottom:20px}
-        .story-content .highlight{color:var(--gold);font-weight:500}
+/* Kopf: die Zahl ist das Argument, nicht der Superlativ. */
+.sc-hero{ padding-block: clamp(var(--s8), 11vw, var(--s10)) var(--s7) }
+.sc-hero h1{ margin: var(--s5) 0 var(--s5); max-width: 16ch }
+.sc-hero .lead{ max-width: 54ch }
 
-        /* LEADERSHIP / GESCHÄFTSFÜHRUNG */
-        .leadership{padding:110px 60px;position:relative;z-index:10;background:rgba(201,169,98,.02);border-top:1px solid rgba(201,169,98,.1);border-bottom:1px solid rgba(201,169,98,.1)}
-        .leader-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.08fr .92fr;gap:64px;align-items:center}
-        .leader-photo{position:relative;padding:16px;max-width:600px;justify-self:center;width:100%}
-        .leader-frame{position:relative;overflow:hidden;border:1px solid rgba(201,169,98,.3);aspect-ratio:3/4}
-        .leader-frame img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block;transform:scale(1.06);transition:transform 1s cubic-bezier(.2,.7,.3,1)}
-        .leader-photo.visible .leader-frame img{transform:scale(1)}
-        .leader-frame:hover img{transform:scale(1.04)}
-        .leader-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(0,0,0,.55) 100%);pointer-events:none}
-        .leader-photo::before,.leader-photo::after{content:'';position:absolute;width:48px;height:48px;border:1px solid var(--gold);opacity:.55;transition:all .55s ease;z-index:2}
-        .leader-photo::before{top:0;left:0;border-right:none;border-bottom:none}
-        .leader-photo::after{bottom:0;right:0;border-left:none;border-top:none}
-        .leader-photo.visible::before,.leader-photo.visible::after{opacity:.9;width:62px;height:62px}
-        .leader-role{display:inline-block;font-size:.72rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase;padding:8px 16px;border:1px solid rgba(201,169,98,.2);background:rgba(201,169,98,.05);margin-bottom:24px}
-        .leader-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.3rem,4.2vw,3.4rem);font-weight:300;line-height:1.05}
-        .leader-sign{width:64px;height:2px;background:var(--gradient);margin:18px 0 26px}
-        .leader-quote{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;font-style:italic;color:var(--gold-light);line-height:1.5;margin-bottom:26px;position:relative;padding-left:22px;border-left:2px solid rgba(201,169,98,.4)}
-        .leader-info>p{color:var(--white-muted);font-size:1.02rem;line-height:1.85;margin-bottom:18px}
-        .leader-tags{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 30px}
-        .leader-tag{font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--white-subtle);padding:9px 15px;border:1px solid rgba(201,169,98,.16);transition:all .3s ease}
-        .leader-tag:hover{border-color:var(--gold);color:var(--gold-light)}
-        .leader-contact{display:flex;gap:26px;flex-wrap:wrap}
-        .leader-link{display:inline-flex;align-items:center;gap:9px;color:var(--gold);text-decoration:none;font-size:.86rem;letter-spacing:1px;border-bottom:1px solid transparent;padding-bottom:3px;transition:all .3s ease}
-        .leader-link svg{width:17px;height:17px;stroke:var(--gold)}
-        .leader-link:hover{border-bottom-color:var(--gold);color:var(--gold-light)}
+.sc-facts{
+  display:flex; flex-wrap:wrap; gap: var(--s7);
+  margin-top: clamp(var(--s6), 5vw, var(--s8));
+  padding-top: var(--s5);
+  border-top:1px solid var(--line);
+}
 
-        /* VALUES */
-        .values-section{padding:100px 60px;position:relative;z-index:10}
-        .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1200px;margin:0 auto}
-        .value-card{text-align:center;padding:44px 26px;border:1px solid rgba(201,169,98,.1);background:rgba(201,169,98,.02);transition:transform .45s cubic-bezier(.2,.7,.3,1),border-color .45s ease,box-shadow .45s ease;position:relative;overflow:hidden}
-        .value-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);transform:scaleX(0);transform-origin:left;transition:transform .45s ease}
-        .value-card:hover{border-color:rgba(201,169,98,.4);transform:translateY(-8px);box-shadow:0 22px 55px rgba(0,0,0,.5),0 0 36px rgba(201,169,98,.05)}
-        .value-card:hover::before{transform:scaleX(1)}
-        .value-icon{width:62px;height:62px;margin:0 auto 26px;border:1px solid rgba(201,169,98,.3);display:flex;align-items:center;justify-content:center;transition:all .4s ease}
-        .value-card:hover .value-icon{background:rgba(201,169,98,.08);border-color:var(--gold)}
-        .value-icon svg{width:28px;height:28px;stroke:var(--gold)}
-        .value-card h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;color:var(--white);margin-bottom:15px}
-        .value-card p{color:var(--white-muted);font-size:.9rem;line-height:1.7}
+/* ── Register ──────────────────────────────────────────────────────────
+   Ein Inhaltsverzeichnis, kein Karussell. Links stehen fünf Zeilen wie
+   in einem Werkverzeichnis; rechts liegt die Tafel und zeigt, worauf der
+   Zeiger gerade steht. Ohne Maus funktioniert es genauso: die Zeilen sind
+   Links, der Fokus schaltet die Tafel weiter.
+   ───────────────────────────────────────────────────────────────────────── */
+.register{ display:grid; gap: var(--s6); align-items:start }
+@media (min-width: 1000px){
+  .register{ grid-template-columns: minmax(0, 1fr) minmax(0, 30rem); gap: var(--s8) }
+}
 
-        /* PHILOSOPHY */
-        .philosophy-section{padding:100px 60px;position:relative;z-index:10;background:rgba(201,169,98,.02);border-top:1px solid rgba(201,169,98,.1);border-bottom:1px solid rgba(201,169,98,.1)}
-        .philosophy-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-        .philosophy-content h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:28px}
-        .philosophy-content h2 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .philosophy-content p{color:var(--white-muted);font-size:1.05rem;line-height:1.9;margin-bottom:20px}
-        .philosophy-image{position:relative;aspect-ratio:4/3;border:1px solid rgba(201,169,98,.2);overflow:hidden}
-        .philosophy-image img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-        .philosophy-image:hover img{transform:scale(1.05)}
-        .philosophy-image::before{content:'';position:absolute;top:15px;left:15px;right:15px;bottom:15px;border:1px solid rgba(201,169,98,.15);z-index:1;pointer-events:none}
+.reg-list{ list-style:none; border-top:1px solid var(--line) }
 
-        /* CTA */
-        .cta-section{text-align:center;padding:120px 60px;position:relative;z-index:10;background:linear-gradient(180deg,transparent,rgba(201,169,98,.03))}
-        .cta-container{max-width:720px;margin:0 auto}
-        .cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;margin-bottom:22px}
-        .cta-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .cta-text{color:var(--white-muted);font-size:1.1rem;margin:0 auto 42px;line-height:1.8}
-        .cta-buttons{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
-        .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:16px 38px;background:var(--gold);color:var(--black);font-size:.85rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);transition:all .4s ease}
-        .btn-primary:hover{background:transparent;color:var(--gold)}
-        .btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:16px 38px;background:transparent;color:var(--white);font-size:.85rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid rgba(201,169,98,.3);transition:all .4s ease}
-        .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.reg-row{
+  position:relative; display:block;
+  padding: clamp(var(--s4), 2.4vw, var(--s5)) 0;
+  border-bottom:1px solid var(--line);
+  text-decoration:none; color: inherit;
+  transition: padding-left var(--nf-transport) var(--nf-ease);
+}
+/* Die Signalkante wächst aus dem linken Rand — das ist die ganze Reaktion. */
+.reg-row::before{
+  content:''; position:absolute; left:calc(var(--s4) * -1); top:0; bottom:0;
+  width:2px; background: var(--signal);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform var(--nf-transport) var(--nf-ease);
+}
+.reg-row:hover, .reg-row:focus-visible, .reg-row.lit{ padding-left: var(--s3) }
+.reg-row:hover::before, .reg-row:focus-visible::before, .reg-row.lit::before{ transform: scaleY(1) }
 
-        /* FOOTER (konsistent zur Index) */
-        .footer{padding:100px 60px 40px;border-top:1px solid rgba(201,169,98,.1);position:relative;z-index:10}
-        .footer-container{max-width:1400px;margin:0 auto}
-        .footer-main{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:60px;margin-bottom:60px}
-        .footer-brand{max-width:300px}
-        .footer-logo{display:flex;align-items:center;gap:15px;margin-bottom:20px}
-        .footer-logo-icon{width:40px;height:40px}
-        .footer-logo-icon svg{width:100%;height:100%}
-        .footer-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;letter-spacing:6px;color:var(--white)}
-        .footer-tagline{color:var(--white-muted);font-size:.9rem;line-height:1.7}
-        .footer-section h4{font-size:.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:25px;font-weight:500}
-        .footer-links{list-style:none;display:flex;flex-direction:column;gap:14px}
-        .footer-links a{color:var(--white-muted);text-decoration:none;font-size:.9rem;transition:all .3s ease;display:inline-block}
-        .footer-links a:hover{color:var(--gold);transform:translateX(5px)}
-        .newsletter-section h4{font-size:.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:15px;font-weight:500}
-        .newsletter-desc{color:var(--white-muted);font-size:.85rem;margin-bottom:20px}
-        .newsletter-form{display:flex;flex-direction:column;gap:15px}
-        .newsletter-input{background:rgba(201,169,98,.05);border:1px solid rgba(201,169,98,.2);padding:14px 18px;color:var(--white);font-family:'Outfit',sans-serif;font-size:.9rem;transition:all .3s ease}
-        .newsletter-input:focus{outline:none;border-color:var(--gold)}
-        .newsletter-input::placeholder{color:var(--white-subtle)}
-        .checkbox-wrapper{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
-        .checkbox-wrapper input{display:none}
-        .custom-checkbox{width:18px;height:18px;border:1px solid rgba(201,169,98,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s ease}
-        .checkbox-wrapper input:checked+.custom-checkbox{background:var(--gold);border-color:var(--gold)}
-        .custom-checkbox svg{width:12px;height:12px;stroke:var(--black);opacity:0;transition:opacity .2s ease}
-        .checkbox-wrapper input:checked+.custom-checkbox svg{opacity:1}
-        .checkbox-label{font-size:.8rem;color:var(--white-muted);line-height:1.4}
-        .checkbox-label a{color:var(--gold);text-decoration:none}
-        .newsletter-btn{padding:14px 30px;background:var(--gold);color:var(--black);font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold);cursor:pointer;transition:all .4s ease}
-        .newsletter-btn:hover{background:transparent;color:var(--gold)}
-        .form-message{padding:12px 15px;font-size:.85rem;margin-top:10px;display:none}
-        .form-message.success{display:block;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#22c55e}
-        .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:40px;border-top:1px solid rgba(201,169,98,.1)}
-        .copyright{color:var(--white-subtle);font-size:.85rem}
-        .copyright span{color:var(--gold)}
-        .legal-links{display:flex;gap:30px}
-        .legal-links a{color:var(--white-subtle);text-decoration:none;font-size:.8rem;transition:color .3s ease}
-        .legal-links a:hover{color:var(--gold)}
+/* Kein Umbruch auf Flex-Ebene: „OMEGA Phone · Produkt" ist laenger als die
+   uebrigen Namen und schob „Bericht →" sonst in die naechste Zeile, wo es
+   linksbuendig unter der Nummer landete. Der Name darf schrumpfen und
+   intern umbrechen — die rechte Spalte bleibt, wo sie hingehoert. */
+.reg-top{ display:flex; align-items:baseline; gap: var(--s4); flex-wrap:nowrap }
+.reg-n{
+  font-family:'JetBrains Mono', monospace;
+  font-size:.6875rem; letter-spacing:.14em; color: var(--ink-3);
+  flex:none; width: 2.5rem;
+}
+.reg-row:hover .reg-n, .reg-row.lit .reg-n{ color: var(--signal) }
+.reg-name{
+  font-family:'Cormorant Garamond', serif; font-weight:300;
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem); line-height:1.05;
+  letter-spacing:-.015em; flex:1 1 auto; min-width:0;
+}
+.reg-go{
+  font-family:'JetBrains Mono', monospace; font-size:.6875rem;
+  letter-spacing:.12em; text-transform:uppercase; color: var(--ink-3);
+  flex:none;
+}
+.reg-row:hover .reg-go, .reg-row.lit .reg-go{ color: var(--signal) }
+.reg-meta{
+  display:flex; flex-wrap:wrap; gap: var(--s2) var(--s4);
+  margin-top: var(--s2); padding-left: calc(2.5rem + var(--s4));
+  font-family:'JetBrains Mono', monospace; font-size:.6875rem;
+  letter-spacing:.06em; color: var(--ink-3);
+}
+@media (max-width: 620px){ .reg-meta{ padding-left:0 } }
 
-        .cookie-text h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);margin-bottom:8px}
-        .cookie-text p{color:var(--white-muted);font-size:.9rem;margin:0}
-        .cookie-text a{color:var(--gold);text-decoration:none}
+/* Die Tafel. Auf schmalen Geräten gibt es keinen Zeiger, der etwas
+   auswählen könnte — dort entfällt sie ersatzlos, statt als totes Bild
+   Platz zu kosten. */
+.reg-stage{
+  position: sticky; top: calc(var(--nav-h) + var(--s5));
+  aspect-ratio: 16 / 10; overflow:hidden;
+  background: var(--plate); border:1px solid var(--line);
+}
+.reg-stage img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  opacity:0; transform: scale(1.02);
+  transition: opacity 320ms var(--nf-out), transform 620ms var(--nf-out);
+}
+.reg-stage img.on{ opacity:1; transform:none }
+@media (max-width: 999px){ .reg-stage{ display:none } }
 
-        /* SCROLL REVEAL */
-        .reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
-        .reveal.visible{opacity:1;transform:translateY(0)}
-        .reveal-stagger>*{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
-        .reveal-stagger.visible>*{opacity:1;transform:translateY(0)}
+/* ── Bericht ───────────────────────────────────────────────────────────
+   Immer derselbe Aufbau: Tafel, Kopf, Kennwerte, Text, Kanten, Zugang.
+   Wer den zweiten Bericht liest, weiß schon, wo er suchen muss.
+   ───────────────────────────────────────────────────────────────────────── */
+.report{ padding-block: clamp(var(--s8), 8vw, var(--s10)) }
+.report + .report{ border-top:1px solid var(--line) }
 
-        @media(max-width:1366px){
-            .nav-main{padding:18px 36px}
-            .nav-links{gap:0}
-            .nav-links>li>a{padding:11px 11px;font-size:.78rem;letter-spacing:.8px}
-            .nav-links>li>a::after{left:11px;right:11px}
-            .nav-links>li>a:hover{letter-spacing:1.1px}
-            .nav-cta{padding:12px 20px;letter-spacing:1.5px}
-            .logo-text{letter-spacing:5px}
-        }
-        @media(max-width:1100px){
-            .leader-grid{grid-template-columns:1fr;gap:50px}
-            .leader-photo{max-width:520px}
-            .leader-info{text-align:center}
-            .leader-sign{margin-left:auto;margin-right:auto}
-            .leader-quote{text-align:left}
-            .leader-tags,.leader-contact{justify-content:center}
-        }
-        @media(max-width:1024px){
-            .nav-links,.nav-cta{display:none}
-            .nav-mobile-toggle{display:flex}
-            .nav-main{padding:15px 30px}
-            .page-hero{padding:150px 40px 60px}
-            .manifesto{padding:75px 40px}
-            .story-section,.values-section,.philosophy-section,.leadership{padding:80px 40px}
-            .story-container,.philosophy-container{grid-template-columns:1fr;gap:50px}
-            .story-images{height:420px}
-            .values-grid{grid-template-columns:repeat(2,1fr)}
-            .cta-section{padding:90px 40px}
-        }
-        @media(max-width:768px){
-            .nav-main{padding:15px 20px}
-            .logo-icon{width:35px;height:35px}
-            .logo-text{font-size:1.1rem;letter-spacing:4px}
-            .page-hero{padding:130px 22px 50px}
-            .manifesto{padding:60px 20px}
-            .manifesto-line{font-size:1.7rem}
-            .story-section,.values-section,.philosophy-section,.leadership{padding:60px 20px}
-            .story-images{height:360px}
-            .story-img-1{width:200px;height:260px}
-            .story-img-2{width:175px;height:215px}
-            .story-img-3{width:140px;height:170px}
-            .values-grid{grid-template-columns:1fr;gap:20px}
-            .leader-quote{font-size:1.2rem}
-            .cta-section{padding:70px 20px}
-            .cta-buttons{flex-direction:column}
-            .btn-primary,.btn-ghost{justify-content:center}
-            .footer{padding:60px 20px 30px}
-            .footer-main{grid-template-columns:1fr;gap:30px}
-            .footer-bottom{flex-direction:column;gap:20px;text-align:center}
-            .legal-links{flex-wrap:wrap;justify-content:center;gap:15px}
+.rep-plate{
+  position:relative; overflow:hidden;
+  background: var(--plate); border:1px solid var(--line);
+  margin-bottom: clamp(var(--s5), 4vw, var(--s7));
+}
+.rep-plate img{ width:100%; height:auto }
+.rep-state{
+  position:absolute; left:0; bottom:0;
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.55rem .85rem;
+  background: var(--paper); border-top:1px solid var(--line); border-right:1px solid var(--line);
+  font-family:'JetBrains Mono', monospace; font-size:.625rem;
+  letter-spacing:.12em; text-transform:uppercase; color: var(--ink-2);
+}
 
-        }
-        @media(prefers-reduced-motion:reduce){
-            *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
-            .reveal,.reveal-stagger>*{opacity:1;transform:none}
-            .story-img-3{animation:none}
-            .leader-frame img{transform:none}
-        }
-        /* ===== ELEVATION: Konsistenz-Schicht ===== */
-        .scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(135deg,#C9A962,#E8D5A3 50%,#C9A962);z-index:1001;transition:width .1s linear}
-        
-        /* Duotone Noir/Gold – ausschliesslich Stock-Bilder, NICHT das Gruenderportraet */
-        .story-img img,.philosophy-image img{filter:grayscale(.45) contrast(1.06) brightness(.82) sepia(.22) saturate(.9);transition:filter .6s ease,transform .6s ease}
-        .story-img:hover img,.philosophy-image:hover img{filter:grayscale(.12) contrast(1.05) brightness(.96) sepia(.08)}
-        .leader-photo:hover .leader-frame{box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 50px rgba(201,169,98,.12)}
-        a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C9A962;outline-offset:3px}
-        /* ===== INSIGHTS ===== */
-        .insights-wrap{max-width:1200px;margin:0 auto;padding:30px 60px 100px;position:relative;z-index:10}
-        .ins-featured{position:relative;overflow:hidden;border:1px solid rgba(201,169,98,.22);padding:60px 56px;margin-bottom:30px;background:linear-gradient(135deg,rgba(201,169,98,.05),transparent 60%)}
-        .ins-featured::before{content:'';position:absolute;width:340px;height:340px;background:radial-gradient(circle,rgba(201,169,98,.14),transparent 65%);top:-60px;right:-60px;pointer-events:none}
-        .ins-featured>*{position:relative;z-index:1}
-        .ins-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,169,98,.3);padding:5px 12px;margin-bottom:22px}
-        .ins-featured h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2rem,4vw,3.1rem);line-height:1.12;margin-bottom:20px;max-width:760px}
-        .ins-featured h2 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:400}
-        .ins-featured p{color:var(--white-muted);font-size:1.06rem;line-height:1.85;max-width:720px;margin-bottom:16px}
-        .ins-meta{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:2px;color:var(--white-subtle);text-transform:uppercase;margin-top:24px}
-        .ins-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:26px}
-        .ins-card{position:relative;overflow:hidden;border:1px solid rgba(201,169,98,.16);padding:38px 34px;background:rgba(255,255,255,.012);transition:transform .4s ease,border-color .4s ease}
-        .ins-card::before{content:'';position:absolute;width:260px;height:260px;background:radial-gradient(circle,rgba(201,169,98,.12),transparent 65%);top:var(--my,50%);left:var(--mx,50%);transform:translate(-50%,-50%);opacity:0;transition:opacity .4s ease;pointer-events:none}
-        .ins-card:hover::before{opacity:1}
-        .ins-card:hover{transform:translateY(-5px);border-color:rgba(201,169,98,.4)}
-        .ins-card>*{position:relative;z-index:1}
-        .ins-card .ins-tag{margin-bottom:18px;font-size:.64rem;padding:4px 10px}
-        .ins-card h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.7rem;line-height:1.2;margin-bottom:14px}
-        .ins-card p{color:var(--white-muted);font-size:.96rem;line-height:1.75}
-        .ins-card .ins-rt{display:block;margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:2px;color:var(--white-subtle);text-transform:uppercase}
-        .ins-news{max-width:1200px;margin:0 auto 0;padding:0 60px 110px;position:relative;z-index:10}
-        .ins-news-inner{border:1px solid rgba(201,169,98,.22);padding:60px 50px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(201,169,98,.04),transparent 70%)}
-        .ins-news-inner h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.9rem,3.5vw,2.7rem);margin-bottom:16px}
-        .ins-news-inner h2 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:400}
-        .ins-news-inner p{color:var(--white-muted);max-width:520px;margin:0 auto 30px;line-height:1.8}
-        @media(max-width:768px){.insights-wrap{padding:20px 22px 70px}.ins-featured{padding:42px 26px}.ins-news{padding:0 22px 80px}.ins-news-inner{padding:44px 24px}}
-        /* ===== SHOWCASE (OMEGA OS) ===== */
-        .showcase-wrap{max-width:1200px;margin:0 auto;padding:30px 60px 90px;position:relative;z-index:10}
-        .sc-featured{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;border:1px solid rgba(201,169,98,.2);padding:40px;background:linear-gradient(135deg,rgba(201,169,98,.05),transparent 60%);position:relative;overflow:hidden}
-        .sc-featured::before{content:'';position:absolute;width:380px;height:380px;background:radial-gradient(circle,rgba(201,169,98,.12),transparent 65%);top:-80px;right:-80px;pointer-events:none}
-        .sc-featured>*{position:relative;z-index:1}
-        .sc-media{position:relative;border:1px solid rgba(201,169,98,.18);overflow:hidden;border-radius:4px;box-shadow:0 30px 70px rgba(0,0,0,.5)}
-        .sc-media img{display:block;width:100%;height:auto}
-        .sc-pill{position:absolute;top:14px;left:14px;z-index:2;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:#000;background:var(--gold);padding:5px 11px;border-radius:3px}
-        .sc-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px}
-        .sc-body h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.05;margin-bottom:18px}
-        .sc-body h2 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:400}
-        .sc-lead{color:var(--white-muted);font-size:1.04rem;line-height:1.8;margin-bottom:22px}
-        .sc-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
-        .sc-tags span{font-family:'JetBrains Mono',monospace;font-size:.64rem;letter-spacing:1px;text-transform:uppercase;color:var(--gold-light);border:1px solid rgba(201,169,98,.28);padding:5px 10px}
-        .sc-points{list-style:none;margin:0 0 30px;padding:0;display:grid;gap:11px}
-        .sc-points li{position:relative;padding-left:22px;color:var(--white-muted);font-size:.95rem;line-height:1.6}
-        .sc-points li::before{content:'';position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
-        .sc-actions{display:flex;gap:14px;flex-wrap:wrap}
-        .sc-more{display:flex;align-items:center;gap:14px;justify-content:center;margin-top:42px;color:var(--white-subtle);font-size:.92rem;text-align:center}
-        .sc-more-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);opacity:.6;flex-shrink:0}
-        @media(max-width:768px){.showcase-wrap{padding:20px 22px 70px}.sc-featured{grid-template-columns:1fr;gap:26px;padding:22px}}
-        .skip-link{position:fixed;left:8px;top:-60px;z-index:3000;background:#C9A962;color:#000;padding:10px 18px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:top .2s ease}
-        .skip-link:focus{top:8px;outline:2px solid #000;outline-offset:2px}
-    </style>
-    <script type="application/ld+json">
-    {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://nobleframe.de/"}, {"@type": "ListItem", "position": 2, "name": "Showcase", "item": "https://nobleframe.de/showcase.html"}]}
-    </script>
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-    <link rel="icon" href="favicon/favicon.ico" sizes="32x32">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="manifest" href="manifest.json">
-    <script defer src="nf-interactions.js"></script>
-    <script defer src="vendor/lenis.min.js"></script>
-    <script defer src="nf-tech.js"></script>
-    <script defer src="nf-shader.js"></script>
+.rep-head{
+  display:grid; gap: var(--s4);
+  padding-bottom: var(--s5); margin-bottom: var(--s6);
+  border-bottom:1px solid var(--line);
+}
+@media (min-width: 900px){
+  .rep-head{ grid-template-columns: minmax(0,1fr) minmax(0,24rem); align-items:end; gap: var(--s7) }
+}
+.rep-n{
+  font-family:'JetBrains Mono', monospace; font-size:.6875rem;
+  letter-spacing:.16em; color: var(--signal); display:block; margin-bottom: var(--s3);
+}
+.rep-head h2{ margin:0 }
+
+/* Text und Kennwerte nebeneinander: der Bericht liest sich in einer
+   Spalte, die Fakten stehen daneben und unterbrechen ihn nicht. */
+.rep-body{ display:grid; gap: clamp(var(--s6), 5vw, var(--s8)) }
+@media (min-width: 900px){
+  .rep-body{ grid-template-columns: minmax(0, 1fr) minmax(0, 21rem) }
+}
+.rep-aside{ position: sticky; top: calc(var(--nav-h) + var(--s5)); align-self:start }
+@media (max-width: 899px){ .rep-aside{ position:static } }
+
+.rep-sec + .rep-sec{ margin-top: var(--s7) }
+.rep-sec h3{
+  display:flex; align-items:baseline; gap: var(--s3);
+  margin-bottom: var(--s4);
+  font-family:'JetBrains Mono', monospace;
+  font-size:.6875rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color: var(--ink-3);
+}
+.rep-sec h3::after{
+  content:''; flex:1; height:1px; background: var(--line);
+}
+.rep-sec p{ color: var(--ink-2); max-width: 64ch }
+.rep-sec p + p{ margin-top: var(--s4) }
+
+/* Bauteilliste: nummeriert, weil die Reihenfolge etwas bedeutet. */
+.parts{ list-style:none; counter-reset: p; border-top:1px solid var(--line-2) }
+.parts li{
+  counter-increment: p;
+  display:grid; grid-template-columns: 2rem 1fr; gap: var(--s3);
+  padding: var(--s3) 0; border-bottom:1px solid var(--line-2);
+  color: var(--ink-2); font-size:.95rem;
+}
+.parts li::before{
+  content: counter(p, decimal-leading-zero);
+  font-family:'JetBrains Mono', monospace; font-size:.625rem;
+  letter-spacing:.1em; color: var(--ink-3); padding-top:.35rem;
+}
+.parts b{ color: var(--ink); font-weight:500 }
+
+/* „Kanten" — die Stellen, an denen es schwierig wurde. Der Abschnitt, den
+   Agentur-Fallstudien weglassen, und der einzige, der etwas beweist. */
+.edge{
+  border-left:2px solid var(--signal);
+  padding: var(--s4) 0 var(--s4) var(--s5);
+  background: var(--signal-tint);
+}
+.edge p{ color: var(--ink-2); font-size:.95rem; max-width:60ch }
+.edge p + p{ margin-top: var(--s3) }
+
+.rep-actions{
+  display:flex; flex-wrap:wrap; gap: var(--s3);
+  margin-top: var(--s7); padding-top: var(--s5);
+  border-top:1px solid var(--line);
+}
+
+/* Schluss */
+.sc-end{ text-align:center; padding-block: clamp(var(--s8), 8vw, var(--s10)) }
+.sc-end h2{ margin: var(--s4) auto var(--s5); max-width: 18ch }
+.sc-end .lead{ margin-inline:auto; text-align:center }
+.sc-end .rep-actions{ justify-content:center; border:0; margin-top: var(--s6); padding:0 }
+</style>
 </head>
 <body>
-    <a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
 
-<div class="bg-effects">
-    <div class="ambient-glow glow-1"></div>
-    <div class="ambient-glow glow-2"></div>
-    <div class="grid-overlay"></div>
-</div>
+<a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
 
-<div class="nav-wrapper" id="navWrapper">
-    <nav class="nav-main">
-        <a href="index.html" class="logo">
-            <div class="logo-icon">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/>
-                    <rect x="25" y="25" width="50" height="50" fill="none" stroke="#C9A962" stroke-width="1.5" opacity="0.6"/>
-                    <line x1="50" y1="5" x2="50" y2="95" stroke="#C9A962" stroke-width="0.5" opacity="0.4"/>
-                    <line x1="5" y1="50" x2="95" y2="50" stroke="#C9A962" stroke-width="0.5" opacity="0.4"/>
-                </svg>
-            </div>
-            <span class="logo-text">NobleFrame</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="leistungen.html">Leistungen</a></li>
-            <li><a href="referenzen.html">Referenzen</a></li>
-            <li><a href="showcase.html" class="active" aria-current="page">Showcase</a></li>
-            <li><a href="tools.html">Tools</a></li>
-            <li><a href="about.html">Über Uns</a></li>
-            <li><a href="kontakt.html">Kontakt</a></li>
-        </ul>
-        <a href="kontakt.html" class="nav-cta">Projekt anfragen</a>
-        <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Menü">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
+<div class="nav-wrapper">
+  <nav class="nav-main" aria-label="Hauptnavigation">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="4" y="4" width="92" height="92"/><rect x="30" y="30" width="40" height="40"/>
+      </svg>
+      <span class="logo-text">NobleFrame</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Start</a></li>
+      <li><a href="showcase.html" class="active" aria-current="page">Showcase</a></li>
+      <li><a href="leistungen.html">Leistungen</a></li>
+      <li><a href="referenzen.html">Referenzen</a></li>
+      <li><a href="about.html">Atelier</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <button class="nav-search" data-cmd-open type="button">
+      <span>Suchen</span><kbd>⌘K</kbd>
+    </button>
+    <button class="theme-toggle" data-theme-toggle type="button" aria-pressed="false" aria-label="Design wechseln">
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+    </button>
+    <a href="kontakt.html" class="nav-cta">Projekt anfragen</a>
+    <button class="nav-toggle" type="button" aria-label="Menü öffnen"><span></span></button>
+  </nav>
 </div>
 
 <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-section">
-        <h5>Navigation</h5>
-        <div class="mobile-menu-nav">
-            <a href="index.html">Home</a>
-            <a href="leistungen.html">Leistungen</a>
-            <a href="referenzen.html">Referenzen</a>
-            <a href="showcase.html" class="active" aria-current="page">Showcase</a>
-            <a href="tools.html">Tools</a>
-            <a href="about.html">Über Uns</a>
-            <a href="kontakt.html">Kontakt</a>
-        </div>
+  <div>
+    <h5>Navigation</h5>
+    <div class="mobile-nav">
+      <a href="index.html">Start</a>
+      <a href="showcase.html" class="active" aria-current="page">Showcase</a>
+      <a href="leistungen.html">Leistungen</a>
+      <a href="referenzen.html">Referenzen</a>
+      <a href="about.html">Atelier</a>
+      <a href="tools.html">Tools</a>
+      <a href="kontakt.html">Kontakt</a>
     </div>
-    <div class="mobile-menu-section">
-        <h5>Direkt erreichen</h5>
-        <div class="mobile-menu-links">
-            <a href="tel:+4915292612795">+49 152 92612795</a>
-            <a href="mailto:info@nobleframe.de">info@nobleframe.de</a>
-        </div>
+  </div>
+  <div>
+    <h5>Direkt erreichen</h5>
+    <div class="mobile-links">
+      <a href="tel:+4915292612795">+49 152 92612795</a>
+      <a href="mailto:info@nobleframe.de">info@nobleframe.de</a>
     </div>
-    <a href="kontakt.html" class="mobile-menu-cta">Projekt anfragen</a>
+  </div>
+  <a href="kontakt.html" class="btn btn--primary btn--wide">Projekt anfragen</a>
 </div>
 
-<header class="page-hero" id="hauptinhalt" tabindex="-1">
+<main id="hauptinhalt" tabindex="-1">
+
+<!-- ═══ Kopf ═══════════════════════════════════════════════════════════ -->
+<header class="sc-hero wrap">
+  <span class="eyebrow eyebrow--signal reveal"><span class="dot"></span>Werkverzeichnis</span>
+  <h1 class="reveal" style="--d:60ms">Fünf Systeme.<br>Alle laufen.</h1>
+  <p class="lead reveal" style="--d:120ms">
+    Kein Portfolio-Karussell und keine Fallstudien-Prosa. Fünf vollständige
+    Eigenentwicklungen, jede ohne Anmeldung benutzbar — und zu jeder ein
+    Bericht, der auch die Stellen benennt, an denen es schwierig wurde.
+  </p>
+
+  <div class="sc-facts reveal" data-stagger style="--d:180ms">
     <div>
-        <div class="hero-badge"><span class="dot"></span><span>Showcase</span></div>
-        <h1 class="page-title">Ausgewählte <span class="accent">Projekte</span>, live erlebbar</h1>
-        <p class="page-subtitle">Kein Portfolio-Karussell. Ausgewählte Projekte – jedes live, begehbar und kompromisslos gebaut. Den Anfang macht ein vollständiges Betriebssystem im Browser.</p>
+      <span class="num" data-count="5">0</span>
+      <span class="num-label">laufende Systeme</span>
     </div>
+    <div>
+      <span class="num" data-count="0" data-suffix="">0</span>
+      <span class="num-label">Anmeldungen nötig</span>
+    </div>
+    <div>
+      <span class="num" data-count="100" data-suffix="&thinsp;%">0</span>
+      <span class="num-label">selbst gebaut</span>
+    </div>
+  </div>
 </header>
 
-<section class="showcase-wrap">
-    <article class="sc-featured reveal">
-        <div class="sc-media">
-            <span class="sc-pill">Live-Projekt</span>
-            <img src="assets/img/omega-os-preview.webp" alt="OMEGA OS – noir/goldenes Desktop-Betriebssystem im Browser mit App Store, Dock und System-Widgets" loading="lazy">
-        </div>
-        <div class="sc-body">
-            <span class="sc-eyebrow">Erster Showcase · Eigenentwicklung</span>
-            <h2>OMEGA <span>OS</span></h2>
-            <p class="sc-lead">Ein vollständiges Desktop-Betriebssystem im Browser – noir/gold, fenstergesteuert, mit echtem App Store, eingebetteten Web-Apps und einer serverseitig gebundenen KI. Kein Mockup: läuft live, ist offline-fähig und installierbar.</p>
-            <div class="sc-tags">
-                <span>React</span><span>TypeScript</span><span>Electron</span><span>Web Audio</span><span>PWA / Offline</span><span>Cloudflare Functions</span>
-            </div>
-            <ul class="sc-points">
-                <li>Fenster-Manager mit Fokus, Stacking und Dock</li>
-                <li>App Store mit live installierbaren Apps – Paint, Synth Pad, 2048 und mehr</li>
-                <li>Eingebetteter Browser, Terminal und Datei-Ablage</li>
-                <li>„Egregore" – serverseitig gebundene KI, der Schlüssel verlässt nie den Server</li>
-            </ul>
-            <div class="sc-actions">
-                <a href="showcase/omega-os/index.html" class="btn-primary" target="_blank" rel="noopener">OMEGA OS live öffnen ↗</a>
-            </div>
-        </div>
-    </article>
+<!-- ═══ Register ═══════════════════════════════════════════════════════
+     Die Liste ist die Navigation durch diese Seite. Jede Zeile springt zu
+     ihrem Bericht; die Tafel rechts zeigt, was einen dort erwartet.
+     ════════════════════════════════════════════════════════════════════ -->
+<section class="band--tight wrap" aria-labelledby="register-titel">
+  <div class="head reveal">
+    <h2 id="register-titel">Das Verzeichnis</h2>
+    <p class="lead">Fünf Zeilen, fünf Berichte. Zeigen Sie auf eine Zeile — die Tafel folgt.</p>
+  </div>
 
-    <div class="sc-more reveal">
-        <span class="sc-more-dot"></span>
-        <p>Weitere Showcases folgen – ausgewählte Projekte, jeweils live und in voller Tiefe.</p>
-    </div>
+  <div class="register" data-register>
+    <ul class="reg-list reveal" data-stagger>
+      <li>
+        <a class="reg-row" href="#omega-atelier" data-preview="assets/img/omega-atelier-preview.webp">
+          <span class="reg-top">
+            <span class="reg-n">01</span>
+            <span class="reg-name">OMEGA Atelier</span>
+            <span class="reg-go">Bericht →</span>
+          </span>
+          <span class="reg-meta">
+            <span>Smart-Home-Planung</span><span>React · R3F · Zustand</span><span>Flaggschiff</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="reg-row" href="#omega-os" data-preview="assets/img/omega-os-preview.webp">
+          <span class="reg-top">
+            <span class="reg-n">02</span>
+            <span class="reg-name">OMEGA OS</span>
+            <span class="reg-go">Bericht →</span>
+          </span>
+          <span class="reg-meta">
+            <span>Betriebssystem im Browser</span><span>React · PWA · Workers</span><span>offline-fähig</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="reg-row" href="#omega-phone" data-preview="assets/img/omega-phone-preview.webp">
+          <span class="reg-top">
+            <span class="reg-n">03</span>
+            <span class="reg-name">OMEGA Phone</span>
+            <span class="reg-go">Bericht →</span>
+          </span>
+          <span class="reg-meta">
+            <span>Reparatur-Plattform</span><span>Next.js 15 · Static Export</span><span>Sofortpreis</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="reg-row" href="#omega-phone-produkt" data-preview="assets/img/omega-phone-produkt-preview.webp">
+          <span class="reg-top">
+            <span class="reg-n">04</span>
+            <span class="reg-name">OMEGA Phone · Produkt</span>
+            <span class="reg-go">Bericht →</span>
+          </span>
+          <span class="reg-meta">
+            <span>Produkt-Keynote</span><span>CSS-3D · 0 Dependencies</span><span>Teardown</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="reg-row" href="#lunara" data-preview="assets/img/lunara-preview.webp">
+          <span class="reg-top">
+            <span class="reg-n">05</span>
+            <span class="reg-name">Lunara</span>
+            <span class="reg-go">Bericht →</span>
+          </span>
+          <span class="reg-meta">
+            <span>Luxury-Boutique</span><span>Headless · Stripe</span><span>21 Seiten</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="reg-stage" data-register-stage aria-hidden="true"></div>
+  </div>
 </section>
 
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-main">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <div class="footer-logo-icon">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/>
-                            <rect x="25" y="25" width="50" height="50" fill="none" stroke="#C9A962" stroke-width="1.5" opacity="0.7"/>
-                        </svg>
-                    </div>
-                    <span class="footer-logo-text">NOBLEFRAME</span>
-                </div>
-                <p class="footer-tagline">Premium Digital Atelier für Websites, Apps & Growth Solutions.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Navigation</h4>
-                <ul class="footer-links">
-                    <li><a href="leistungen.html">Leistungen</a></li>
-                    <li><a href="referenzen.html">Referenzen</a></li>
-                    <li><a href="about.html">Über Uns</a></li>
-                    <li><a href="kontakt.html">Kontakt</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Mehr</h4>
-                <ul class="footer-links">
-                    <li><a href="showcase.html">Showcase</a></li>
-                    <li><a href="tools.html">Tools</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="karriere.html">Karriere</a></li>
-                </ul>
-            </div>
-            <div class="newsletter-section">
-                <h4>Newsletter</h4>
-                <p class="newsletter-desc">Exklusive Insights und Updates zu unseren Projekten.</p>
-                <form class="newsletter-form" id="newsletterForm">
-                    <input type="email" name="email" class="newsletter-input" placeholder="ihre@email.de" required>
-                    <label class="checkbox-wrapper">
-                        <input type="checkbox" name="privacy" required>
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                        </span>
-                        <span class="checkbox-label">Ich akzeptiere die <a href="datenschutz.html">Datenschutzerklärung</a></span>
-                    </label>
-                    <button type="submit" class="newsletter-btn">Newsletter abonnieren</button>
-                    <div class="form-message" id="newsletterMessage"></div>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p class="copyright">© 2026 <span>NobleFrame</span>. Alle Rechte vorbehalten.</p>
-            <div class="legal-links">
-                <a href="impressum.html">Impressum</a>
-                <a href="datenschutz.html">Datenschutz</a>
-                <a href="agb.html">AGB</a>
-            </div>
-        </div>
+<!-- ═══ 01 — OMEGA Atelier ═════════════════════════════════════════════ -->
+<article class="report wrap" id="omega-atelier">
+  <div class="rep-plate reveal">
+    <img src="assets/img/omega-atelier-preview.webp"
+         alt="OMEGA Atelier: Grundriss-Editor mit Echtzeit-3D-Vorschau, Geräteliste und Materialpalette"
+         loading="lazy" decoding="async" width="1400" height="600">
+    <span class="rep-state"><span class="dot"></span>Live · ohne Anmeldung</span>
+  </div>
+
+  <div class="rep-head reveal">
+    <div>
+      <span class="rep-n">Bericht 01 · Flaggschiff</span>
+      <h2>OMEGA Atelier</h2>
     </div>
+    <p class="lead">Ein komplettes Smart-Home-Planungsstudio, das im Browser läuft — zeichnen, begehen, ausstatten, exportieren.</p>
+  </div>
+
+  <div class="rep-body">
+    <div>
+      <section class="rep-sec reveal">
+        <h3>Aufgabe</h3>
+        <p>
+          Wer ein Smart Home plant, arbeitet heute in drei getrennten Werkzeugen: ein
+          Grundriss entsteht im CAD, die Geräteauswahl in Tabellen, die Vorstellung vom
+          Ergebnis im Kopf. Zwischen diesen Schritten geht das verloren, worauf es
+          ankommt — ob der Bewegungsmelder im Flur die Treppe wirklich erfasst und ob
+          das Licht im Wohnzimmer abends so aussieht, wie man es sich vorgestellt hat.
+        </p>
+        <p>
+          Das Atelier führt die drei Schritte zusammen: Grundriss zeichnen, Räume in
+          Echtzeit-3D begehen, Geräte platzieren — im selben Dokument, ohne Export
+          dazwischen und ohne Installation.
+        </p>
+      </section>
+
+      <section class="rep-sec reveal">
+        <h3>Was drin steckt</h3>
+        <ul class="parts">
+          <li><span><b>Grundriss-Editor</b> — Wände, Türen und Fenster mit Maßführung; der Plan ist die Datenquelle, nicht ein Bild davon.</span></li>
+          <li><span><b>Echtzeit-3D</b> — derselbe Grundriss, begehbar. Kein Rendern im Hintergrund, kein Warten auf ein Ergebnis.</span></li>
+          <li><span><b>Über 30 Ökosysteme</b> — Geräte aus den verbreiteten Smart-Home-Welten, platzierbar an der Stelle, an der sie später hängen.</span></li>
+          <li><span><b>PBR-Materialien</b> — Oberflächen mit physikalisch begründeten Kennwerten statt eingefärbter Flächen.</span></li>
+          <li><span><b>Möblierung</b> — Einrichtung als Maßstab: ein Raum ohne Möbel lässt sich nicht beurteilen.</span></li>
+          <li><span><b>3D-Export-Studio</b> — die Planung verlässt das Werkzeug wieder, statt darin gefangen zu bleiben.</span></li>
+        </ul>
+      </section>
+
+      <section class="rep-sec reveal">
+        <h3>Kanten</h3>
+        <div class="edge">
+          <p>
+            <b>Zwei Darstellungen, ein Zustand.</b> Grundriss und 3D-Ansicht zeigen
+            dasselbe Modell aus zwei Richtungen. Sobald beide ihre eigene Kopie halten,
+            driften sie auseinander — und der Fehler fällt erst auf, wenn jemand einen
+            gelöschten Raum noch in 3D stehen sieht. Deshalb liegt der Zustand einmal
+            in einem Zustand-Store, und beide Ansichten sind reine Leser darauf.
+          </p>
+          <p>
+            <b>Echtzeit heißt Budget.</b> Eine 3D-Szene im Browser hat pro Bild etwa
+            sechzehn Millisekunden. Das ist keine Zielgröße, sondern eine Obergrenze:
+            was nicht hineinpasst, muss weg — nicht schöner gerechnet werden.
+          </p>
+        </div>
+      </section>
+
+      <div class="rep-actions reveal">
+        <a href="showcase/omega-atelier/" class="btn btn--primary" target="_blank" rel="noopener">Atelier öffnen ↗</a>
+        <a href="#omega-os" class="btn btn--ghost">Nächster Bericht</a>
+      </div>
+    </div>
+
+    <aside class="rep-aside reveal">
+      <div class="spec">
+        <div class="spec__row"><span class="spec-k">Rolle</span><span>Eigenentwicklung</span></div>
+        <div class="spec__row"><span class="spec-k">Gattung</span><span>Planungswerkzeug</span></div>
+        <div class="spec__row"><span class="spec-k">Zustand</span><span>Live, ohne Anmeldung</span></div>
+        <div class="spec__row"><span class="spec-k">Darstellung</span><span>Echtzeit-3D im Browser</span></div>
+        <div class="spec__row"><span class="spec-k">Ökosysteme</span><span>über 30</span></div>
+        <div class="spec__row"><span class="spec-k">Stack</span><span>React · TypeScript · Three.js / R3F · Zustand · Tailwind 4</span></div>
+      </div>
+      <div class="tags" style="margin-top:var(--s5)">
+        <span class="tag">React</span><span class="tag">TypeScript</span>
+        <span class="tag">Three.js / R3F</span><span class="tag">Zustand</span>
+        <span class="tag">Tailwind 4</span>
+      </div>
+    </aside>
+  </div>
+</article>
+
+<!-- ═══ 02 — OMEGA OS ══════════════════════════════════════════════════ -->
+<article class="report wrap" id="omega-os">
+  <div class="rep-plate reveal">
+    <img src="assets/img/omega-os-preview.webp"
+         alt="OMEGA OS: fenstergesteuerter Desktop im Browser mit App Store, Dock und System-Widgets"
+         loading="lazy" decoding="async" width="1400" height="788">
+    <span class="rep-state"><span class="dot"></span>Live · offline-fähig · installierbar</span>
+  </div>
+
+  <div class="rep-head reveal">
+    <div>
+      <span class="rep-n">Bericht 02 · Zweites System</span>
+      <h2>OMEGA OS</h2>
+    </div>
+    <p class="lead">Ein vollständiges Desktop-Betriebssystem im Browser. Fenster, App Store, Terminal — und eine KI, deren Schlüssel den Server nie verlässt.</p>
+  </div>
+
+  <div class="rep-body">
+    <div>
+      <section class="rep-sec reveal">
+        <h3>Aufgabe</h3>
+        <p>
+          Ein Betriebssystem im Browser ist als Demo schnell gebaut: ein paar
+          verschiebbare Kästen, ein Dock, fertig. Interessant wird es an der Stelle, an
+          der es aufhört, eine Nachahmung zu sein — wenn Fenster wirklich um den Fokus
+          konkurrieren, wenn Programme nachinstalliert werden können, die beim ersten
+          Laden noch nicht existierten, und wenn das Ganze ohne Netz weiterläuft.
+        </p>
+        <p>
+          Genau dort setzt OMEGA OS an. Es ist kein Mockup eines Systems, sondern ein
+          System: es startet, es verwaltet, es merkt sich, und es lässt sich wie eine
+          native Anwendung installieren.
+        </p>
+      </section>
+
+      <section class="rep-sec reveal">
+        <h3>Was drin steckt</h3>
+        <ul class="parts">
+          <li><span><b>Fenster-Manager</b> — Fokus, Stapelreihenfolge und Dock. Die drei Dinge, an denen sich ein echtes Fenstersystem von verschiebbaren Kästen unterscheidet.</span></li>
+          <li><span><b>App Store</b> — Programme werden zur Laufzeit installiert: Paint, Synth Pad, 2048 und weitere.</span></li>
+          <li><span><b>Eingebetteter Browser</b> — ein Fenster, das fremde Seiten zeigt, innerhalb eines Systems, das selbst in einer Seite läuft.</span></li>
+          <li><span><b>Terminal und Datei-Ablage</b> — die beiden Werkzeuge, ohne die ein Desktop eine Oberfläche ohne Unterbau bleibt.</span></li>
+          <li><span><b>„Egregore"</b> — eine KI als Systemdienst. Die Anfrage geht an eine eigene Server-Funktion, der Schlüssel liegt dort und wird nie ausgeliefert.</span></li>
+          <li><span><b>Offline und installierbar</b> — nach dem ersten Besuch läuft das System ohne Verbindung weiter.</span></li>
+        </ul>
+      </section>
+
+      <section class="rep-sec reveal">
+        <h3>Kanten</h3>
+        <div class="edge">
+          <p>
+            <b>Ein Schlüssel gehört nicht ins Frontend.</b> Eine KI-Funktion im Browser
+            ist trivial, solange man den API-Schlüssel mitliefert — und damit verschenkt.
+            Die Anfragen laufen deshalb über eine serverseitige Funktion: der Browser
+            kennt die Adresse des Dienstes, nicht das Geheimnis dahinter.
+          </p>
+          <p>
+            <b>Zwei Service Worker im selben Ursprung.</b> OMEGA OS bringt einen eigenen
+            Worker mit, die Hauptseite ebenfalls. Ohne saubere Trennung fängt einer die
+            Anfragen des anderen ab und beide liefern still den falschen Stand aus.
+            Der Worker der Website lässt den Showcase-Pfad deshalb ausdrücklich in Ruhe.
+          </p>
+        </div>
+      </section>
+
+      <div class="rep-actions reveal">
+        <a href="showcase/omega-os/index.html" class="btn btn--primary" target="_blank" rel="noopener">OMEGA OS öffnen ↗</a>
+        <a href="#omega-phone" class="btn btn--ghost">Nächster Bericht</a>
+      </div>
+    </div>
+
+    <aside class="rep-aside reveal">
+      <div class="spec">
+        <div class="spec__row"><span class="spec-k">Rolle</span><span>Eigenentwicklung</span></div>
+        <div class="spec__row"><span class="spec-k">Gattung</span><span>Desktop-System</span></div>
+        <div class="spec__row"><span class="spec-k">Zustand</span><span>Live · offline-fähig</span></div>
+        <div class="spec__row"><span class="spec-k">Installation</span><span>als PWA möglich</span></div>
+        <div class="spec__row"><span class="spec-k">KI</span><span>serverseitig gebunden</span></div>
+        <div class="spec__row"><span class="spec-k">Stack</span><span>React · TypeScript · Web Audio · PWA · Cloudflare Functions</span></div>
+      </div>
+      <div class="tags" style="margin-top:var(--s5)">
+        <span class="tag">React</span><span class="tag">TypeScript</span>
+        <span class="tag">Web Audio</span><span class="tag">PWA</span>
+        <span class="tag">Cloudflare Functions</span>
+      </div>
+    </aside>
+  </div>
+</article>
+
+<!-- ═══ 03 — OMEGA Phone ═══════════════════════════════════════════════ -->
+<article class="report wrap" id="omega-phone">
+  <div class="rep-plate reveal">
+    <img src="assets/img/omega-phone-preview.webp"
+         alt="OMEGA Phone: Plattform für Smartphone-Reparatur mit Sofortpreis-Rechner"
+         loading="lazy" decoding="async" width="1280" height="720">
+    <span class="rep-state"><span class="dot"></span>Live · Reparatur-Plattform</span>
+  </div>
+
+  <div class="rep-head reveal">
+    <div>
+      <span class="rep-n">Bericht 03 · Drittes System</span>
+      <h2>OMEGA Phone</h2>
+    </div>
+    <p class="lead">Reparatur, Refurbished-Geräte und Ersatzteile. Der Preis steht in unter einer Minute — nicht nach drei Tagen Rückruf.</p>
+  </div>
+
+  <div class="rep-body">
+    <div>
+      <section class="rep-sec reveal">
+        <h3>Aufgabe</h3>
+        <p>
+          Die Branche arbeitet mit dem Kontaktformular: Gerät angeben, Schaden
+          beschreiben, auf ein Angebot warten. Für den Anbieter ist das bequem, für den
+          Kunden ist es die Stelle, an der er abspringt — weil er in dem Moment, in dem
+          sein Display gesprungen ist, wissen will, was es kostet, und nicht, wann sich
+          jemand meldet.
+        </p>
+        <p>
+          Die Plattform dreht das um: Modell und Schaden auswählen, Preis steht. Unter
+          sechzig Sekunden, ohne Rückfrage, ohne Formular.
+        </p>
+      </section>
+
+      <section class="rep-sec reveal">
+        <h3>Was drin steckt</h3>
+        <ul class="parts">
+          <li><span><b>Sofortpreis</b> — Auswahl statt Freitext. Der Preis ist das Ergebnis der Auswahl, kein Versprechen auf ein späteres Angebot.</span></li>
+          <li><span><b>Drei Geschäftszweige</b> — Reparatur, Refurbished-Geräte und Ersatzteile unter einem Dach, ohne dass sich die Wege kreuzen.</span></li>
+          <li><span><b>Vollständig statisch</b> — Next.js 15 mit statischem Export: ausgeliefert werden fertige Dateien, kein Server rechnet beim Aufruf.</span></li>
+          <li><span><b>Offline-fähig</b> — die Preisliste liegt nach dem ersten Besuch auf dem Gerät.</span></li>
+        </ul>
+      </section>
+
+      <section class="rep-sec reveal">
+        <h3>Kanten</h3>
+        <div class="edge">
+          <p>
+            <b>Statisch und trotzdem rechnend.</b> Ein Sofortpreis klingt nach Backend.
+            Er ist aber eine Funktion über einer Preistabelle — und die kann mit
+            ausgeliefert werden. Damit fällt der Server weg, den man sonst absichern,
+            überwachen und bezahlen müsste, und die Antwort kommt ohne Netzweg.
+          </p>
+          <p>
+            <b>Ein Preis ist eine Zusage.</b> Sobald eine Zahl ohne Rückfrage auf dem
+            Schirm steht, muss die Tabelle dahinter stimmen. Die Verantwortung
+            verschiebt sich vom Verkaufsgespräch in die Datenpflege — das ist der
+            eigentliche Preis dieser Entscheidung, und er ist es wert.
+          </p>
+        </div>
+      </section>
+
+      <div class="rep-actions reveal">
+        <a href="showcase/omega-phone/" class="btn btn--primary" target="_blank" rel="noopener">Plattform öffnen ↗</a>
+        <a href="#omega-phone-produkt" class="btn btn--ghost">Nächster Bericht</a>
+      </div>
+    </div>
+
+    <aside class="rep-aside reveal">
+      <div class="spec">
+        <div class="spec__row"><span class="spec-k">Rolle</span><span>Eigenentwicklung</span></div>
+        <div class="spec__row"><span class="spec-k">Gattung</span><span>Dienstleistungs-Plattform</span></div>
+        <div class="spec__row"><span class="spec-k">Zustand</span><span>Live</span></div>
+        <div class="spec__row"><span class="spec-k">Preisauskunft</span><span>unter 60 Sekunden</span></div>
+        <div class="spec__row"><span class="spec-k">Auslieferung</span><span>statischer Export</span></div>
+        <div class="spec__row"><span class="spec-k">Stack</span><span>Next.js 15 · TypeScript · Tailwind 4 · PWA</span></div>
+      </div>
+      <div class="tags" style="margin-top:var(--s5)">
+        <span class="tag">Next.js 15</span><span class="tag">TypeScript</span>
+        <span class="tag">Tailwind 4</span><span class="tag">Static Export</span>
+        <span class="tag">PWA</span>
+      </div>
+    </aside>
+  </div>
+</article>
+
+<!-- ═══ 04 — OMEGA Phone · Produkt ═════════════════════════════════════ -->
+<article class="report wrap" id="omega-phone-produkt">
+  <div class="rep-plate reveal">
+    <img src="assets/img/omega-phone-produkt-preview.webp"
+         alt="OMEGA Phone: Produktpräsentation mit realistischem Titan-Gerät und interaktivem 3D-Teardown"
+         loading="lazy" decoding="async" width="1280" height="720">
+    <span class="rep-state"><span class="dot"></span>Live · Produktpräsentation</span>
+  </div>
+
+  <div class="rep-head reveal">
+    <div>
+      <span class="rep-n">Bericht 04 · Konzeptmarke</span>
+      <h2>OMEGA Phone · Das Produkt</h2>
+    </div>
+    <p class="lead">Eine Keynote-Seite für ein Smartphone aus Titan — und ein Teardown, der es in neun Schichten zerlegt. Ohne eine einzige Abhängigkeit.</p>
+  </div>
+
+  <div class="rep-body">
+    <div>
+      <section class="rep-sec reveal">
+        <h3>Aufgabe</h3>
+        <p>
+          Produktseiten dieser Art werden üblicherweise mit einer 3D-Bibliothek gebaut:
+          ein Modell wird geladen, eine Szene aufgesetzt, ein Renderer gestartet. Das
+          funktioniert — und kostet mehrere hundert Kilobyte, bevor das erste Bild steht.
+        </p>
+        <p>
+          Hier war die Frage eine andere: Wie weit trägt das, was der Browser ohnehin
+          kann? Die Antwort ist diese Seite. Der Hero zeigt ein Gerät, das plastisch
+          wirkt, der Teardown zerlegt es in neun Ebenen — beides aus Elementen, die
+          jeder Browser seit Jahren beherrscht.
+        </p>
+      </section>
+
+      <section class="rep-sec reveal">
+        <h3>Was drin steckt</h3>
+        <ul class="parts">
+          <li><span><b>Keynote-Hero</b> — das Gerät als Bühnenobjekt, aufgebaut aus gestapelten Flächen im Raum statt aus einem geladenen Modell.</span></li>
+          <li><span><b>Teardown in neun Schichten</b> — Display, Rahmen, Platine, Akku und die übrigen Ebenen, einzeln ansteuerbar.</span></li>
+          <li><span><b>Titan als Material</b> — Metall entsteht hier aus Verlaufskanten und Lichtführung, nicht aus einer Textur.</span></li>
+          <li><span><b>Null Abhängigkeiten</b> — HTML, CSS-3D und Vanilla JavaScript. Nichts, was veralten, brechen oder nachgeladen werden müsste.</span></li>
+        </ul>
+      </section>
+
+      <section class="rep-sec reveal">
+        <h3>Kanten</h3>
+        <div class="edge">
+          <p>
+            <b>CSS-3D kennt keinen Tiefenpuffer.</b> Eine 3D-Bibliothek entscheidet pro
+            Bildpunkt, was vorne liegt. CSS entscheidet pro Element — und zwar anhand
+            der Reihenfolge im Dokument. Die neun Schichten mussten deshalb so gebaut
+            werden, dass sie sich aus jedem gezeigten Winkel korrekt überdecken. Das ist
+            der eigentliche Aufwand dieser Seite, und man sieht ihn ihr nicht an.
+          </p>
+          <p>
+            <b>Der Verzicht ist die Entscheidung.</b> Eine Bibliothek hätte das Problem
+            gelöst und dafür jedes Gerät belastet, das die Seite öffnet. Der Weg ohne
+            sie war schwieriger zu bauen — und ist billiger zu benutzen. Bei einer
+            Produktseite, die überzeugen soll, bevor jemand weitergescrollt hat, ist
+            das der richtige Tausch.
+          </p>
+        </div>
+      </section>
+
+      <div class="rep-actions reveal">
+        <a href="showcase/omega-phone-produkt/" class="btn btn--primary" target="_blank" rel="noopener">Produktseite öffnen ↗</a>
+        <a href="#lunara" class="btn btn--ghost">Nächster Bericht</a>
+      </div>
+    </div>
+
+    <aside class="rep-aside reveal">
+      <div class="spec">
+        <div class="spec__row"><span class="spec-k">Rolle</span><span>Konzeptmarke</span></div>
+        <div class="spec__row"><span class="spec-k">Gattung</span><span>Produkt-Keynote</span></div>
+        <div class="spec__row"><span class="spec-k">Zustand</span><span>Live</span></div>
+        <div class="spec__row"><span class="spec-k">Teardown</span><span>9 Schichten</span></div>
+        <div class="spec__row"><span class="spec-k">Abhängigkeiten</span><span>keine</span></div>
+        <div class="spec__row"><span class="spec-k">Stack</span><span>HTML · CSS-3D · Vanilla JS</span></div>
+      </div>
+      <div class="tags" style="margin-top:var(--s5)">
+        <span class="tag">HTML</span><span class="tag">CSS-3D</span>
+        <span class="tag">Vanilla JS</span><span class="tag">0 Dependencies</span>
+      </div>
+    </aside>
+  </div>
+</article>
+
+<!-- ═══ 05 — Lunara ════════════════════════════════════════════════════ -->
+<article class="report wrap" id="lunara">
+  <div class="rep-plate reveal">
+    <img src="assets/img/lunara-preview.webp"
+         alt="Lunara: Luxury-Boutique mit mondthematischer Designsprache und Stripe-Checkout"
+         loading="lazy" decoding="async" width="1280" height="720">
+    <span class="rep-state"><span class="dot"></span>Live · Referenzprojekt</span>
+  </div>
+
+  <div class="rep-head reveal">
+    <div>
+      <span class="rep-n">Bericht 05 · E-Commerce</span>
+      <h2>Lunara</h2>
+    </div>
+    <p class="lead">Eine Luxury-Boutique mit mondthematischer Designsprache, echtem Checkout und einem Treueprogramm über vier Stufen. 21 Seiten, headless gebaut.</p>
+  </div>
+
+  <div class="rep-body">
+    <div>
+      <section class="rep-sec reveal">
+        <h3>Aufgabe</h3>
+        <p>
+          Im Luxussegment verkauft nicht der Warenkorb, sondern die Haltung davor. Ein
+          Shop, der aussieht wie jeder andere Shop, macht das Produkt austauschbar —
+          und je hochwertiger die Ware, desto teurer wird dieser Fehler.
+        </p>
+        <p>
+          Lunara bekam deshalb eine eigene Bildsprache statt eines Themes: der Mond in
+          seinen Phasen als durchgehendes Motiv, über 21 Seiten hinweg konsequent
+          durchgehalten — bis in den Checkout, wo die meisten Shops ihre Gestaltung
+          aufgeben.
+        </p>
+      </section>
+
+      <section class="rep-sec reveal">
+        <h3>Was drin steckt</h3>
+        <ul class="parts">
+          <li><span><b>21 Seiten</b> — Katalog, Produkt, Redaktion und Konto als ein Auftritt, nicht als Shop mit angehängten Seiten.</span></li>
+          <li><span><b>Stripe-Checkout</b> — echte Zahlungsabwicklung. Kartendaten berühren den Shop nie.</span></li>
+          <li><span><b>Rewards über vier Stufen</b> — ein Treueprogramm mit Aufstieg, kein Punktezähler.</span></li>
+          <li><span><b>Headless</b> — Inhalte und Darstellung getrennt: das Sortiment ändert sich, ohne dass jemand ein Template anfasst.</span></li>
+          <li><span><b>Als PWA installierbar</b> — der Shop lässt sich auf den Startbildschirm legen.</span></li>
+        </ul>
+      </section>
+
+      <section class="rep-sec reveal">
+        <h3>Kanten</h3>
+        <div class="edge">
+          <p>
+            <b>Der Checkout ist die Belastungsprobe.</b> Bis zum Warenkorb gestaltet man
+            frei; ab dort gibt der Zahlungsdienstleister die Struktur vor. Die
+            Designsprache musste sich in diesen Rahmen einfügen, ohne die Prüfschritte
+            zu verändern, an denen die Sicherheit hängt — Gestaltung bis zur Grenze,
+            und keinen Schritt darüber.
+          </p>
+          <p>
+            <b>Vier Stufen sind vier Zustände.</b> Ein Treueprogramm mit Aufstieg heißt,
+            dass jede Preisangabe, jeder Versandhinweis und jeder Vorteilstext in vier
+            Fassungen existiert. Das ist keine Design-Frage, sondern eine Frage der
+            Datenhaltung — und sie wird an dem Tag teuer, an dem man sie zu spät stellt.
+          </p>
+        </div>
+      </section>
+
+      <div class="rep-actions reveal">
+        <a href="showcase/lunara/index.html" class="btn btn--primary" target="_blank" rel="noopener">Lunara öffnen ↗</a>
+        <a href="#omega-atelier" class="btn btn--ghost">Zurück zu Bericht 01</a>
+      </div>
+    </div>
+
+    <aside class="rep-aside reveal">
+      <div class="spec">
+        <div class="spec__row"><span class="spec-k">Rolle</span><span>Referenzprojekt</span></div>
+        <div class="spec__row"><span class="spec-k">Gattung</span><span>E-Commerce · Luxury</span></div>
+        <div class="spec__row"><span class="spec-k">Zustand</span><span>Live</span></div>
+        <div class="spec__row"><span class="spec-k">Umfang</span><span>21 Seiten</span></div>
+        <div class="spec__row"><span class="spec-k">Zahlung</span><span>Stripe</span></div>
+        <div class="spec__row"><span class="spec-k">Treueprogramm</span><span>4 Stufen</span></div>
+        <div class="spec__row"><span class="spec-k">Stack</span><span>Headless · Stripe · PWA</span></div>
+      </div>
+      <div class="tags" style="margin-top:var(--s5)">
+        <span class="tag">Headless</span><span class="tag">Stripe</span>
+        <span class="tag">PWA</span><span class="tag">21 Seiten</span>
+      </div>
+    </aside>
+  </div>
+</article>
+
+<!-- ═══ Schluss ════════════════════════════════════════════════════════ -->
+<section class="band--plate">
+  <div class="sc-end wrap">
+    <span class="eyebrow reveal">Ihr Projekt</span>
+    <h2 class="reveal" style="--d:60ms">Das nächste System steht hier noch nicht.</h2>
+    <p class="lead reveal" style="--d:120ms">
+      Alles auf dieser Seite ist ohne Auftrag entstanden — weil wir wissen wollten,
+      ob es geht. Was mit Auftrag entsteht, bekommt denselben Maßstab.
+    </p>
+    <div class="rep-actions reveal" style="--d:180ms">
+      <a href="kontakt.html" class="btn btn--signal">Projekt anfragen</a>
+      <a href="leistungen.html" class="btn btn--ghost">Leistungen ansehen</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="margin-bottom:var(--s4)">
+          <svg class="logo-mark" viewBox="0 0 100 100" aria-hidden="true">
+            <rect x="4" y="4" width="92" height="92"/><rect x="30" y="30" width="40" height="40"/>
+          </svg>
+          <span class="logo-text">NobleFrame</span>
+        </a>
+        <p class="muted" style="max-width:32ch;font-size:.9rem">
+          Digitales Atelier aus Steinfurt. Websites, Shops und Systeme,
+          von Grund auf gebaut.
+        </p>
+      </div>
+      <div>
+        <h4>Arbeit</h4>
+        <ul class="footer-links">
+          <li><a href="showcase.html">Showcase</a></li>
+          <li><a href="referenzen.html">Referenzen</a></li>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="tools.html">Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Atelier</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">Über uns</a></li>
+          <li><a href="karriere.html">Karriere</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Direkt</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:info@nobleframe.de">info@nobleframe.de</a></li>
+          <li><a href="tel:+4915292612795">+49 152 92612795</a></li>
+        </ul>
+      </div>
+      <div class="footer-news">
+        <h4>Newsletter</h4>
+        <p>Einblicke in laufende Projekte. Selten, daf&uuml;r mit Inhalt.</p>
+        <form class="newsletter-form" id="newsletterForm" novalidate>
+          <div class="news-row">
+            <label class="sr-only" for="newsletterEmail">E-Mail-Adresse</label>
+            <input type="email" id="newsletterEmail" name="email" placeholder="ihre@email.de" required>
+            <button type="submit" class="btn btn--primary">Abonnieren</button>
+          </div>
+          <label class="news-check">
+            <input type="checkbox" name="privacy" required>
+            <span>Ich akzeptiere die <a href="datenschutz.html">Datenschutzerkl&auml;rung</a>.</span>
+          </label>
+          <p class="form-message" id="newsletterMessage" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 NobleFrame</p>
+      <div class="legal-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
-<script>
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-const navWrapper = document.getElementById('navWrapper');
-window.addEventListener('scroll', () => {
-    navWrapper.classList.toggle('scrolled', window.scrollY > 50);
-});
-
-const navMobileToggle = document.getElementById('navMobileToggle');
-const mobileMenu = document.getElementById('mobileMenu');
-navMobileToggle.addEventListener('click', () => {
-    navMobileToggle.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-});
-mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMobileToggle.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-    });
-});
-
-const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        el.classList.add('visible');
-        if (el.classList.contains('reveal-stagger')) {
-            [...el.children].forEach((child, i) => {
-                child.style.transitionDelay = (reduceMotion ? 0 : i * 0.08) + 's';
-            });
-        }
-        io.unobserve(el);
-    });
-}, { threshold: 0.15 });
-document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
-
-document.getElementById('newsletterForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const email = this.querySelector('input[name="email"]').value;
-    const messageEl = document.getElementById('newsletterMessage');
-    const subject = encodeURIComponent('Newsletter Anmeldung - NobleFrame');
-    const body = encodeURIComponent(`Newsletter Anmeldung\n==================\n\nE-Mail: ${email}\nDatum: ${new Date().toLocaleString('de-DE')}\nQuelle: Über-Uns-Seite\n\n---\nDiese Anmeldung wurde über die NobleFrame Website gesendet.`);
-    window.location.href = `mailto:info@nobleframe.de?subject=${subject}&body=${body}`;
-    messageEl.textContent = 'Vielen Dank! Bitte senden Sie die E-Mail ab, um die Anmeldung zu bestätigen.';
-    messageEl.className = 'form-message success';
-    this.reset();
-    setTimeout(() => { messageEl.className = 'form-message'; }, 5000);
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-    });
-});
-
-/* ===== ELEVATION JS (Konsistenz) ===== */
-(function(){
-  const rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const sp=document.createElement('div');sp.className='scroll-progress';document.body.appendChild(sp);
-  const os=()=>{const h=document.documentElement;const m=h.scrollHeight-h.clientHeight;sp.style.width=(m>0?h.scrollTop/m*100:0)+'%';};
-  window.addEventListener('scroll',os,{passive:true});os();
-  if(rm)return;
-})();
-
-</script>
-
+<script defer src="nf-motion.js"></script>
 </body>
 </html>

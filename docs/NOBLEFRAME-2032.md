@@ -614,3 +614,78 @@ Das ist kein Slogan. Es hat Konsequenzen, und dies sind sie:
 Der Unterschied zwischen einer Website und einem Produkt ist keine Technologie. Es ist die Frage, ob jemand dafür verantwortlich ist, dass jede einzelne Aussage darin stimmt.
 
 **Das ist die eigentliche Arbeit. Alles in Phase 3 und 4 ist erst danach relevant.**
+
+---
+
+# Phase 6 — Der Anstrich fällt weg
+
+*Nachtrag zum Redesign. Die Phasen 0–5 beschreiben die Seite, wie sie war,
+und die Vorstellung, auf die sie zulief. Dieser Teil beschreibt, was davon
+Bestand hatte und was nicht.*
+
+## Der Befund, in einem Satz
+
+Die Seite war dunkel und golden und wollte teuer wirken — und genau
+deshalb wirkte sie billig. Nicht wegen der Farben, sondern wegen der
+Mittel: weichgezeichnete Lichtkreise, ein WebGL-Netz über dem Text, ein
+Vorhang vor dem Inhalt, ein Raster-Overlay, eine Gold-Aura am Cursor,
+Ringe bei jedem Klick, ein magnetischer Knopf in der Navigation. Sieben
+Schichten, die alle dasselbe taten: Aufmerksamkeit einfordern, ohne etwas
+zu erklären.
+
+Phase 1.3 hatte danach gefragt — „Was wirkt billig?" — und die Antwort
+war die ganze Zeit im Repository sichtbar: eine 52 KB große, von keiner
+Seite eingebundene Stylesheet-Leiche, die dreimal hintereinander
+`@keyframes smokeFloat` und `.smoke-particle` definierte.
+
+## Was entfernt wurde
+
+| Weg | Warum |
+|---|---|
+| `CFNetworkDownload_BaQAbR.css` | Von keiner Seite eingebunden. Enthielt den Gold-Rauch — dreimal. |
+| `cinematic-engine.js` | Canvas-Intro mit Nebel und Glyphen. Beschäftigte den ersten Bildaufbau, bevor der erste Satz lesbar war. |
+| `nf-interactions.js` | Cursor-Aura, Klick-Schockwellen, magnetischer Knopf. Drei Antworten auf Fragen, die niemand gestellt hat. |
+| `nf-tech.js` + `vendor/vanta.net.min.js` + `vendor/three.min.js` | Ein WebGL-Netz im Hero. 590 KB Three.js für einen Hintergrund. |
+| `nf-shader.js` | WebGL-Akzent. Siehe oben. |
+| `vendor/lenis.min.js` | Geglättetes Scrollen. Der Zeiger sagt eins, die Seite tut es einen Moment später. |
+
+Zusammen 748 KB, die niemand angefordert hat.
+
+Dass zwei dieser Entscheidungen — Lenis und die Bewegungsschicht — schon
+in Phase 5 von der Bewertungsinstanz gestrichen worden waren und trotzdem
+noch im Auslieferungsstand lagen, ist der eigentliche Befund. Eine
+Prüfung, deren Ergebnis nicht umgesetzt wird, ist eine Präsentation.
+
+## Was an ihre Stelle trat
+
+**Papier statt Bühne.** Phase 3 hielt fest: „Gold ist eine Lichtfarbe,
+keine Anstrichfarbe." Der Satz stimmt — nur trug die Seite es als
+Anstrich. Jetzt ist der Grund ein warmer Bogen, die Schrift Tinte, und es
+gibt genau ein Signal.
+
+Der praktische Grund wiegt schwerer als der ästhetische: die
+Vorschaubilder der fünf Systeme sind dunkel. Auf hellem Grund liegen sie
+wie Tafeln in einem Bildband. Dunkel auf dunkel war ein Nebel, in dem die
+eigene Arbeit verschwand — bei einem Atelier, dessen stärkstes Argument
+diese Arbeit ist, war das der teuerste Fehler der alten Seite.
+
+**Eine Datei statt neunzehn.** Rund 250 KB Inline-CSS lagen in neunzehn
+Kopien in den Seiten, jede leicht anders. Was auf mehr als einer Seite
+vorkommt, steht jetzt in `assets/css/nf.css`. Was eine Seite darüber
+hinaus braucht, steht in dieser Seite — und nur dort.
+
+**Der Bericht als Format.** Das Showcase zeigte ein Projekt. Vier weitere
+existierten, liefen live, und ihre Vorschaubilder lagen ungenutzt im
+Repository. Jetzt stehen alle fünf dort, jedes mit Aufgabe, Bauteilliste,
+Kennwerten — und einem Abschnitt „Kanten": die Stellen, an denen es
+schwierig wurde. Das ist der Abschnitt, den Agentur-Fallstudien weglassen,
+und der einzige, der etwas beweist.
+
+## Die Regel, die dazukam
+
+> **Kein Rauch.** Was Tiefe erzeugt, sind Kante, Fläche und Abstand. Wer
+> eine Ausnahme braucht, schreibt dazu, welches Problem sie löst.
+
+Sie steht bewusst als Verbot da und nicht als Empfehlung. Die alte Seite
+ist nicht durch eine große Entscheidung entstanden, sondern durch sieben
+kleine, von denen jede für sich vertretbar war.

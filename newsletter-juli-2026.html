@@ -12,68 +12,68 @@
     <link rel="stylesheet" href="assets/motion.css">
 <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Outfit',-apple-system,'Segoe UI',sans-serif;line-height:1.7;color:rgba(250,250,250,.82);background:#070707;-webkit-font-smoothing:antialiased}
-    a{color:#C9A962;text-decoration:none}
-    .wrap{max-width:680px;margin:0 auto;background:#0b0b0b;border:1px solid rgba(201,169,98,.12)}
+    body{font-family:'Outfit',-apple-system,'Segoe UI',sans-serif;line-height:1.7;color:#55555F;background:#F1EFE9;-webkit-font-smoothing:antialiased}
+    a{color:#2C3FE0;text-decoration:none}
+    .wrap{max-width:680px;margin:0 auto;background:#F1EFE9;border:1px solid #D6D2C7}
     .pad{padding:0 44px}
     /* preheader */
     .preheader{display:none!important;visibility:hidden;opacity:0;height:0;width:0;overflow:hidden}
     /* top bar */
-    .topbar{padding:14px 44px;border-bottom:1px solid rgba(201,169,98,.1);display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:2px;text-transform:uppercase;color:rgba(250,250,250,.4)}
-    .topbar a{color:rgba(250,250,250,.4)}
+    .topbar{padding:14px 44px;border-bottom:1px solid #D6D2C7;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:2px;text-transform:uppercase;color:#86868F}
+    .topbar a{color:#86868F}
     /* header */
-    .header{text-align:center;padding:54px 44px 40px;border-bottom:1px solid rgba(201,169,98,.1);position:relative}
+    .header{text-align:center;padding:54px 44px 40px;border-bottom:1px solid #D6D2C7;position:relative}
     .logo-mark{width:52px;height:52px;margin:0 auto 22px}
     .logo-mark svg{width:100%;height:100%}
-    .logo-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;letter-spacing:10px;color:#FAFAFA;text-transform:uppercase}
-    .issue{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:#C9A962;margin-top:14px}
+    .logo-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;letter-spacing:10px;color:#16161A;text-transform:uppercase}
+    .issue{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:#2C3FE0;margin-top:14px}
     /* hero */
     .hero{padding:50px 44px 16px}
-    .eyebrow{font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;color:#C9A962;margin-bottom:16px}
-    .hero h1{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;line-height:1.15;color:#FAFAFA;margin-bottom:20px}
-    .hero h1 b{font-weight:500;background:linear-gradient(135deg,#C9A962,#E8D5A3 50%,#C9A962);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero p{font-size:1.02rem;color:rgba(250,250,250,.72);line-height:1.8}
-    .rule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,98,.35),transparent);margin:42px 44px}
+    .eyebrow{font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;color:#2C3FE0;margin-bottom:16px}
+    .hero h1{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;line-height:1.15;color:#16161A;margin-bottom:20px}
+    .hero h1 b{font-weight:500;background:linear-gradient(135deg,#2C3FE0,#2C3FE0 50%,#2C3FE0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{font-size:1.02rem;color:#55555F;line-height:1.8}
+    .rule{height:1px;background:linear-gradient(90deg,transparent,#2C3FE0,transparent);margin:42px 44px}
     /* feature card */
-    .feature{margin:0 44px;border:1px solid rgba(201,169,98,.18);background:linear-gradient(160deg,rgba(201,169,98,.07),transparent);padding:36px}
-    .feature .tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:#000;background:linear-gradient(135deg,#E8D5A3,#C9A962);padding:5px 12px;margin-bottom:18px}
-    .feature h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:#FAFAFA;margin-bottom:12px;line-height:1.25}
-    .feature p{font-size:.95rem;color:rgba(250,250,250,.72);margin-bottom:22px;line-height:1.8}
-    .btn{display:inline-block;padding:13px 28px;background:#C9A962;color:#000;font-size:.76rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border:1px solid #C9A962}
-    .btn.ghost{background:transparent;color:#C9A962}
+    .feature{margin:0 44px;border:1px solid #D6D2C7;background:linear-gradient(160deg,#E7E9FC,transparent);padding:36px}
+    .feature .tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:#16161A;background:linear-gradient(135deg,#2C3FE0,#2C3FE0);padding:5px 12px;margin-bottom:18px}
+    .feature h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:#16161A;margin-bottom:12px;line-height:1.25}
+    .feature p{font-size:.95rem;color:#55555F;margin-bottom:22px;line-height:1.8}
+    .btn{display:inline-block;padding:13px 28px;background:#2C3FE0;color:#16161A;font-size:.76rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border:1px solid #2C3FE0}
+    .btn.ghost{background:transparent;color:#2C3FE0}
     /* section */
     .section{padding:0 44px}
-    .section-eyebrow{font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:#C9A962;margin-bottom:14px}
-    .section h3{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:400;color:#FAFAFA;margin-bottom:14px}
-    .section p{font-size:.95rem;color:rgba(250,250,250,.72);line-height:1.8;margin-bottom:14px}
+    .section-eyebrow{font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:#2C3FE0;margin-bottom:14px}
+    .section h3{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:400;color:#16161A;margin-bottom:14px}
+    .section p{font-size:.95rem;color:#55555F;line-height:1.8;margin-bottom:14px}
     /* spotlight */
-    .spotlight{display:flex;gap:24px;align-items:center;margin:0 44px;border:1px solid rgba(201,169,98,.14);background:rgba(201,169,98,.02);padding:28px}
-    .spot-visual{width:120px;height:120px;flex-shrink:0;border:1px solid rgba(201,169,98,.25);background:radial-gradient(120% 100% at 75% 15%,rgba(60,50,90,.6),transparent 55%),radial-gradient(80% 80% at 25% 100%,rgba(201,169,98,.12),transparent 60%),#06060a;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .spotlight{display:flex;gap:24px;align-items:center;margin:0 44px;border:1px solid #D6D2C7;background:#E7E9FC;padding:28px}
+    .spot-visual{width:120px;height:120px;flex-shrink:0;border:1px solid #D6D2C7;background:radial-gradient(120% 100% at 75% 15%,rgba(60,50,90,.6),transparent 55%),radial-gradient(80% 80% at 25% 100%,#E7E9FC,transparent 60%),#06060a;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
     .spot-visual .moon{position:absolute;top:16px;right:18px;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f4ecd8,#cdbf9a 60%,#8b7f63);box-shadow:0 0 22px rgba(244,236,216,.4)}
     .spot-visual span{font-family:'Cormorant Garamond',serif;font-size:.95rem;letter-spacing:5px;color:#f4ecd8;position:relative}
-    .spot-body h4{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:#FAFAFA;margin-bottom:6px}
-    .spot-body .meta{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:1px;color:#C9A962;text-transform:uppercase;margin-bottom:10px}
-    .spot-body p{font-size:.9rem;color:rgba(250,250,250,.7);line-height:1.7;margin:0}
+    .spot-body h4{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:#16161A;margin-bottom:6px}
+    .spot-body .meta{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:1px;color:#2C3FE0;text-transform:uppercase;margin-bottom:10px}
+    .spot-body p{font-size:.9rem;color:#55555F;line-height:1.7;margin:0}
     /* tips */
     .tips{list-style:none;margin:6px 44px 0;padding:0}
-    .tips li{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(201,169,98,.1)}
+    .tips li{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #D6D2C7}
     .tips li:last-child{border-bottom:none}
-    .tips .n{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:#C9A962;flex-shrink:0;padding-top:2px}
-    .tips .t{font-size:.93rem;color:rgba(250,250,250,.78);line-height:1.7}
-    .tips .t b{color:#FAFAFA;font-weight:500}
+    .tips .n{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:#2C3FE0;flex-shrink:0;padding-top:2px}
+    .tips .t{font-size:.93rem;color:#55555F;line-height:1.7}
+    .tips .t b{color:#16161A;font-weight:500}
     /* cta band */
-    .cta{margin:50px 0 0;padding:52px 44px;text-align:center;background:linear-gradient(180deg,rgba(201,169,98,.05),transparent);border-top:1px solid rgba(201,169,98,.12)}
-    .cta h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#FAFAFA;margin-bottom:14px}
-    .cta h2 b{font-weight:500;color:#C9A962}
-    .cta p{font-size:.96rem;color:rgba(250,250,250,.7);margin-bottom:28px}
+    .cta{margin:50px 0 0;padding:52px 44px;text-align:center;background:linear-gradient(180deg,#E7E9FC,transparent);border-top:1px solid #D6D2C7}
+    .cta h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#16161A;margin-bottom:14px}
+    .cta h2 b{font-weight:500;color:#2C3FE0}
+    .cta p{font-size:.96rem;color:#55555F;margin-bottom:28px}
     /* footer */
-    .footer{padding:40px 44px;border-top:1px solid rgba(201,169,98,.1);text-align:center}
-    .footer .fname{font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:6px;color:#FAFAFA;text-transform:uppercase;margin-bottom:10px}
-    .footer .contact{font-size:.82rem;color:rgba(250,250,250,.55);line-height:1.9;margin-bottom:18px}
+    .footer{padding:40px 44px;border-top:1px solid #D6D2C7;text-align:center}
+    .footer .fname{font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:6px;color:#16161A;text-transform:uppercase;margin-bottom:10px}
+    .footer .contact{font-size:.82rem;color:#55555F;line-height:1.9;margin-bottom:18px}
     .footer .social{margin-bottom:20px}
-    .footer .social a{display:inline-block;margin:0 8px;font-size:.74rem;letter-spacing:1px;text-transform:uppercase;color:#C9A962}
-    .footer .legal{font-size:.72rem;color:rgba(250,250,250,.4);line-height:1.8}
-    .footer .legal a{color:rgba(250,250,250,.55)}
+    .footer .social a{display:inline-block;margin:0 8px;font-size:.74rem;letter-spacing:1px;text-transform:uppercase;color:#2C3FE0}
+    .footer .legal{font-size:.72rem;color:#86868F;line-height:1.8}
+    .footer .legal a{color:#55555F}
     @media(max-width:600px){
         .pad,.hero,.section,.header,.cta,.footer{padding-left:24px;padding-right:24px}
         .topbar{padding-left:24px;padding-right:24px}
@@ -86,7 +86,7 @@
 </style>
 </head>
 <body>
-<div class="preheader">Neu: Analysieren Sie Ihre Website in 30 Sekunden – plus ein Blick auf LUNARA und 3 Essentials für 2026.</div>
+<div class="preheader">Neu:Analysieren Sie Ihre Website in 30 Sekunden – plus ein Blick auf LUNARA und 3 Essentials für 2026.</div>
 <div class="wrap">
 
     <div class="topbar">
@@ -96,7 +96,7 @@
 
     <div class="header">
         <div class="logo-mark">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#C9A962" stroke-width="2"/><rect x="25" y="25" width="50" height="50" fill="none" stroke="#C9A962" stroke-width="1.5" opacity="0.6"/><line x1="50" y1="5" x2="50" y2="95" stroke="#C9A962" stroke-width="0.5" opacity="0.4"/><line x1="5" y1="50" x2="95" y2="50" stroke="#C9A962" stroke-width="0.5" opacity="0.4"/></svg>
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#2C3FE0" stroke-width="2"/><rect x="25" y="25" width="50" height="50" fill="none" stroke="#2C3FE0" stroke-width="1.5" opacity="0.6"/><line x1="50" y1="5" x2="50" y2="95" stroke="#2C3FE0" stroke-width="0.5" opacity="0.4"/><line x1="5" y1="50" x2="95" y2="50" stroke="#2C3FE0" stroke-width="0.5" opacity="0.4"/></svg>
         </div>
         <div class="logo-name">NobleFrame</div>
         <div class="issue">Newsletter · Ausgabe Juli 2026</div>
@@ -105,7 +105,7 @@
     <div class="hero">
         <div class="eyebrow">Editorial</div>
         <h1>Sommer ist die beste Zeit für den <b>digitalen Feinschliff</b></h1>
-        <p>Während andere in den Urlaub starten, schaffen Sie Vorsprung: Diesen Monat geben wir Ihnen ein Werkzeug an die Hand, mit dem Sie Ihre Website in Sekunden auf den Prüfstand stellen – und zeigen, wie aus Anspruch ein Ergebnis wird.</p>
+        <p>Während andere in den Urlaub starten, schaffen Sie Vorsprung:Diesen Monat geben wir Ihnen ein Werkzeug an die Hand, mit dem Sie Ihre Website in Sekunden auf den Prüfstand stellen – und zeigen, wie aus Anspruch ein Ergebnis wird.</p>
     </div>
 
     <div class="rule"></div>
@@ -113,7 +113,7 @@
     <div class="feature">
         <span class="tag">Neu &amp; kostenlos</span>
         <h2>Ihre Website in 30 Sekunden analysiert</h2>
-        <p>Unser neues Analyse-Tool prüft Ihre Seite mit echten Lighthouse-Daten von Google: Performance, SEO, Barrierefreiheit und Best Practices – inklusive konkreter Empfehlungen und einem Report, den Sie als PDF speichern können. Kein Login, keine Kosten.</p>
+        <p>Unser neues Analyse-Tool prüft Ihre Seite mit echten Lighthouse-Daten von Google:Performance, SEO, Barrierefreiheit und Best Practices – inklusive konkreter Empfehlungen und einem Report, den Sie als PDF speichern können. Kein Login, keine Kosten.</p>
         <a href="https://nobleframe.de/tools.html" class="btn">Jetzt analysieren</a>
     </div>
 
