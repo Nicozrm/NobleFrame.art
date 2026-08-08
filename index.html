@@ -6,8 +6,8 @@
 <title>NobleFrame – Digitales Atelier für Websites, Shops und Systeme</title>
 <meta name="description" content="Wir bauen digitale Plattformen von Grund auf – kein Baukasten, kein Template. Fünf eigene Systeme laufen live und ohne Anmeldung. Atelier aus Steinfurt.">
 <link rel="canonical" href="https://nobleframe.de/">
-<meta name="theme-color" content="#F1EFE9" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0D0D0F" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ECE0C6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0A0B" media="(prefers-color-scheme: dark)">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NobleFrame">
@@ -34,7 +34,7 @@
 <link rel="manifest" href="manifest.json">
 
 <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/css/nf.css">
@@ -134,7 +134,7 @@
 .stance{ display:grid; gap: clamp(var(--s6), 5vw, var(--s8)) }
 @media (min-width: 900px){ .stance{ grid-template-columns: minmax(0,1fr) minmax(0,1fr) } }
 .stance blockquote{
-  font-family:'Cormorant Garamond', serif; font-weight:300;
+  font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase;
   font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3rem);
   line-height:1.12; letter-spacing:-.015em; text-wrap:balance;
 }
@@ -278,25 +278,15 @@
   </div>
 </header>
 
-<!-- Ein Farbfeld über die volle Breite. Die Zahlen sind das Argument —
-     also bekommen sie die Größe eines Arguments. -->
-<section class="slab slab--signal" aria-label="Kennzahlen">
-  <div class="wrap">
-    <div class="figs reveal" data-stagger>
-      <div><span class="mega" data-count="5">0</span><span class="mega-label">Systeme, live</span></div>
-      <div><span class="mega" data-count="0">0</span><span class="mega-label">Anmeldungen nötig</span></div>
-      <div><span class="mega" data-count="100" data-suffix="%">0</span><span class="mega-label">handgeschrieben</span></div>
-      <div><span class="mega" data-count="0">0</span><span class="mega-label">Tracker Dritter</span></div>
-    </div>
-  </div>
-</section>
-
-<div class="marquee" aria-label="Werkzeug">
+<!-- Scharnier zwischen Behauptung und Beweis. Ein Farbfeld über die volle
+     Breite, in Displaygröße — man kann es nicht überlesen, und das ist
+     die einzige Aufgabe, die es hat. -->
+<div class="marquee marquee--giant" aria-label="Leitsatz">
   <div class="marquee__track">
-    <span>React</span><span>TypeScript</span><span>Next.js</span><span>Three.js</span><span>Tailwind</span><span>Supabase</span><span>Stripe</span><span>Cloudflare</span><span>Node.js</span><span>Figma</span>
+    <span>Gebaut, nicht behauptet</span><span>Fünf Systeme, alle live</span>
   </div>
   <div class="marquee__track" aria-hidden="true">
-    <span>React</span><span>TypeScript</span><span>Next.js</span><span>Three.js</span><span>Tailwind</span><span>Supabase</span><span>Stripe</span><span>Cloudflare</span><span>Node.js</span><span>Figma</span>
+    <span>Gebaut, nicht behauptet</span><span>Fünf Systeme, alle live</span>
   </div>
 </div>
 
@@ -420,11 +410,19 @@
 <!-- ═══ Haltung ════════════════════════════════════════════════════════ -->
 <section class="band--plate">
   <div class="band wrap">
+    <span class="eyebrow" style="margin-bottom:var(--s6);display:block">Sec. 03 — Haltung</span>
+    <!-- Der Satz steht vollständig im Dokument; nf-motion.js zerlegt ihn
+         und bindet die Deckung der Wörter an die Scrollposition. Ohne
+         Skript liest man ihn ganz normal. -->
+    <p class="scrub" style="margin-bottom:clamp(var(--s7),6vw,var(--s9))">
+      Ein Atelier, kein Baukasten. Jedes Projekt entsteht handwerklich — durchdacht
+      in der Strategie, kompromisslos im Design, sauber im Code.
+    </p>
+
     <div class="stance">
       <figure class="reveal">
         <blockquote>
-          Ein Atelier, kein Baukasten. Jedes Projekt entsteht handwerklich —
-          durchdacht in der Strategie, kompromisslos im Design, sauber im Code.
+          Wir liefern keine Behauptung ab. Wir liefern etwas, das läuft.
         </blockquote>
         <figcaption>NobleFrame · Steinfurt</figcaption>
       </figure>
@@ -445,40 +443,59 @@
   </div>
 </section>
 
-<!-- ═══ Leistungen ═════════════════════════════════════════════════════ -->
-<section class="band wrap" aria-labelledby="leistungen-titel">
-  <div class="head reveal">
-    <h2 id="leistungen-titel" class="wipe">Was wir machen</h2>
-    <p class="lead">Vier Felder. Sie greifen ineinander — deshalb kommt alles aus einer Hand.</p>
+<!-- ═══ Leistungen — warme Bänder ══════════════════════════════════════ -->
+<section aria-labelledby="leistungen-titel">
+  <div class="wrap band--tight">
+    <div class="head reveal">
+      <h2 id="leistungen-titel" class="wipe">Was wir machen</h2>
+      <p class="lead">Vier Felder. Sie greifen ineinander — deshalb kommt alles aus einer Hand.</p>
+    </div>
   </div>
 
-  <div class="svc reveal" data-stagger>
-    <a class="svc-item" href="leistungen.html">
-      <span class="svc-n">01</span>
-      <span class="svc-name">Web Development</span>
-      <p>Maßgeschneiderte Websites und Web-Applikationen mit sauberem, wartbarem Code und hoher Performance.</p>
-      <span class="svc-go">Mehr →</span>
+  <div class="bands">
+    <a class="band-row" href="leistungen.html">
+      <span class="band-inner">
+        <span class="band-n">01</span>
+        <span class="band-name">Web Development</span>
+        <p>Maßgeschneiderte Websites und Web-Applikationen mit sauberem, wartbarem Code und hoher Performance.</p>
+        <span class="band-go">Mehr →</span>
+      </span>
     </a>
-    <a class="svc-item" href="leistungen.html">
-      <span class="svc-n">02</span>
-      <span class="svc-name">E-Commerce</span>
-      <p>Shop-Plattformen mit Headless-Architektur — stabil, skalierbar und auf Abschluss gebaut.</p>
-      <span class="svc-go">Mehr →</span>
+    <a class="band-row" href="leistungen.html">
+      <span class="band-inner">
+        <span class="band-n">02</span>
+        <span class="band-name">E-Commerce</span>
+        <p>Shop-Plattformen mit Headless-Architektur — stabil, skalierbar und auf Abschluss gebaut.</p>
+        <span class="band-go">Mehr →</span>
+      </span>
     </a>
-    <a class="svc-item" href="leistungen.html">
-      <span class="svc-n">03</span>
-      <span class="svc-name">UX/UI Design</span>
-      <p>Nutzerzentriertes Design, das Verhalten versteht und Conversion systematisch steigert.</p>
-      <span class="svc-go">Mehr →</span>
+    <a class="band-row" href="leistungen.html">
+      <span class="band-inner">
+        <span class="band-n">03</span>
+        <span class="band-name">UX/UI Design</span>
+        <p>Nutzerzentriertes Design, das Verhalten versteht und Conversion systematisch steigert.</p>
+        <span class="band-go">Mehr →</span>
+      </span>
     </a>
-    <a class="svc-item" href="leistungen.html">
-      <span class="svc-n">04</span>
-      <span class="svc-name">Digital Growth</span>
-      <p>SEO, CRO und Analytics, die nicht nur Traffic, sondern profitables Wachstum liefern.</p>
-      <span class="svc-go">Mehr →</span>
+    <a class="band-row" href="leistungen.html">
+      <span class="band-inner">
+        <span class="band-n">04</span>
+        <span class="band-name">Digital Growth</span>
+        <p>SEO, CRO und Analytics, die nicht nur Traffic, sondern profitables Wachstum liefern.</p>
+        <span class="band-go">Mehr →</span>
+      </span>
     </a>
   </div>
+</section>
 
+<!-- ═══ Zahlen ═════════════════════════════════════════════════════════ -->
+<section class="band wrap" aria-label="Kennzahlen">
+  <div class="figs reveal" data-stagger>
+    <div><span class="mega" data-count="5">0</span><span class="mega-label">Systeme, live</span></div>
+    <div><span class="mega" data-count="0">0</span><span class="mega-label">Anmeldungen nötig</span></div>
+    <div><span class="mega" data-count="100" data-suffix="%">0</span><span class="mega-label">handgeschrieben</span></div>
+    <div><span class="mega" data-count="0">0</span><span class="mega-label">Tracker Dritter</span></div>
+  </div>
 </section>
 
 <!-- ═══ Vorgehen ═══════════════════════════════════════════════════════ -->

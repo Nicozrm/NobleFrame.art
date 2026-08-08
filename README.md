@@ -15,7 +15,7 @@ inline.
 *.html                  Seiten (Root)
 assets/css/nf.css       Design-System: Farben, Schrift, Teile, Rahmen, Lauf
 assets/motion.css       Bewegungssystem + seitenübergreifende View Transitions
-assets/fonts/           selbst gehostete Variable Fonts + fonts.css
+assets/fonts/           selbst gehostete Schriften (Anton, Outfit, JetBrains Mono)
 assets/img/             Vorschaubilder der Showcase-Projekte (WebP)
 favicon/                Favicons und PWA-Icons
 nf-motion.js            Rahmen, Reveals, Zähler, Licht, Befehlsleiste, Register
@@ -30,20 +30,28 @@ vorkommt, gehört nach `assets/css/nf.css`.
 
 ## Gestaltung
 
-**Papier statt Bühne.** Der Grund ist ein warmer Bogen, die Schrift ist
-Tinte, und es gibt genau ein Signal: Kobalt. Es markiert, was anklickbar
-oder gerade lebendig ist — nie Dekoration. Ember (`--ember`) bleibt den
-Zuständen vorbehalten, die wirklich heiß sind: live, neu.
+**Papier statt Bühne.** Der Grund ist ein warmer Bogen — Cream
+`#ECE0C6` —, die Schrift ist Tinte `#1D1D1D`, und es gibt genau ein
+Signal: Coral `#F4583D`. Es markiert, was anklickbar oder gerade lebendig
+ist — nie Dekoration. Dazu ein warmes Bandset (Gold, Terra, Amber) für
+die Leistungsliste: vier flache Farbfelder, ein Klima. Flächen, keine
+Verläufe.
 
 Der Wechsel von Schwarz/Gold auf Papier hat einen praktischen Grund. Die
 Vorschaubilder der Projekte sind dunkel; auf hellem Grund liegen sie wie
 Tafeln in einem Bildband. Dunkel auf dunkel war ein Nebel, in dem die
 Arbeit verschwand.
 
-**Drei Stimmen.** Cormorant Garamond nur groß (ab ~2.5rem trägt sie,
-darunter wird sie zur Hochzeitseinladung). Outfit für alles, was gelesen
-wird. JetBrains Mono für alles, was ausgezeichnet wird: Nummern, Labels,
-Kennwerte — immer klein, immer weit.
+**Drei Stimmen.** Anton für alles Große und ausschließlich versal — die
+Displaystimme. Sie bringt ihre Enge mit, positives Tracking ist deshalb
+verboten. Outfit für alles, was gelesen wird. JetBrains Mono für alles,
+was ausgezeichnet wird: Nummern, Labels, Kennwerte — immer klein, immer
+weit.
+
+Ein Hinweis für deutschen Satz: Anton läuft mit Zeilenhöhe unter 1, und
+Ä/Ö/Ü ragen über die Versalhöhe hinaus. Wo eine Displayzeile in einer
+überlaufend beschnittenen Maske sitzt (`.rise`, `.marquee--giant`),
+braucht sie oben Luft — sonst wird aus „VORFÜHREN" ein „VORFUHREN".
 
 **Hell und dunkel.** Die Seite folgt dem System, bis jemand über den
 Schalter in der Navigation widerspricht; der Widerspruch wird in
@@ -81,6 +89,13 @@ dem Text, kein Vorhang vor dem Inhalt, kein Raster-Overlay, keine
 Cursor-Aura, keine Klick-Schockwellen. Was Tiefe erzeugt, sind Kante,
 Fläche und Abstand. Wer eine Ausnahme braucht, schreibt dazu, welches
 Problem sie löst.
+
+Lautstärke entsteht über Maßstab, Fläche und Farbe: Displayzeilen bis
+12rem, randlose Farbblöcke (`.slab`), warme Bänder (`.bands`), ein
+Laufband in Displaygröße (`.marquee--giant`), Wischblenden (`.wipe`) und
+ein scrollgebundener Wort-Scrub (`.scrub`). Alles davon ist Transform,
+Opazität oder ein flaches Farbfeld — nichts davon ist ein Effekt über
+dem Inhalt.
 
 ## Bedienung
 

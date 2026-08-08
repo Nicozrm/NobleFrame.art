@@ -182,6 +182,56 @@
   });
 
 
+  /* ── 3b. Wort-Scrub ───────────────────────────────────────────────────
+     Die Wörter einer großen Aussage gehen nacheinander auf volle Deckung,
+     gebunden an die Scrollposition — nicht an einen Timer. Wer zurück
+     scrollt, sieht es rückwärts; das ist der Unterschied zwischen einer
+     Animation und einer Anzeige.
+
+     Der Satz wird beim Start in <w>-Elemente zerlegt. Das steht bewusst
+     nicht im Markup: dort soll ein lesbarer Satz stehen, keine Wortwolke
+     aus Spans. */
+  $$('.scrub').forEach((el) => {
+    const text = el.textContent.trim();
+    el.textContent = '';
+    text.split(/\s+/).forEach((word, i, all) => {
+      const w = document.createElement('w');
+      w.textContent = word;
+      el.appendChild(w);
+      if (i < all.length - 1) el.appendChild(document.createTextNode(' '));
+    });
+
+    const words = $$('w', el);
+    if (reduced.matches) { words.forEach((w) => w.classList.add('on')); return; }
+
+    let tick = false;
+    const paint = () => {
+      tick = false;
+      const r = el.getBoundingClientRect();
+      /* Fortschritt von „unterer Bildrand berührt den Block" bis
+         „Block sitzt im oberen Drittel". */
+      const span = innerHeight * 0.75;
+      const p = Math.min(Math.max((innerHeight - r.top - innerHeight * 0.25) / span, 0), 1);
+      const upto = Math.round(p * words.length);
+      words.forEach((w, i) => w.classList.toggle('on', i < upto));
+    };
+    addEventListener('scroll', () => {
+      if (!tick) { tick = true; requestAnimationFrame(paint); }
+    }, { passive: true });
+    paint();
+  });
+
+  /* Rahmen-Ecken: das Signet in Bildschirmgröße. Rein dekorativ, deshalb
+     hier erzeugt und nicht im Markup jeder Seite. */
+  if (!$('.frame-ticks')) {
+    const ticks = document.createElement('div');
+    ticks.className = 'frame-ticks';
+    ticks.setAttribute('aria-hidden', 'true');
+    ticks.innerHTML = '<i></i><i></i><i></i><i></i>';
+    document.body.appendChild(ticks);
+  }
+
+
   /* ── 4b. Newsletter ───────────────────────────────────────────────────
      Steht in jeder Fußzeile und wird hier einmal bedient. Vorher trug
      jede Seite eine eigene Kopie dieses Handlers.

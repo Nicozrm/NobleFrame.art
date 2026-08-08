@@ -22,10 +22,12 @@
 
 /* ─── 1. Marken ────────────────────────────────────────────────────────
 
-   Papier statt Bühne. Der Grund ist ein warmer Bogen, die Schrift ist
-   Tinte, und es gibt genau ein Signal: Kobalt. Es markiert, was anklickbar
-   oder gerade lebendig ist — nie Dekoration. Ember ist der zweite Ton und
-   bleibt den Zuständen vorbehalten, die wirklich heiß sind (live, neu).
+   Papier statt Bühne. Der Grund ist ein warmer Bogen (Cream), die Schrift
+   ist Tinte, und es gibt genau ein Signal: Coral. Es markiert, was
+   anklickbar oder gerade lebendig ist — nie Dekoration.
+
+   Dazu ein warmes Bandset (Gold, Terra, Amber) für die Leistungsliste:
+   vier flache Farbfelder, ein Klima. Flächen, keine Verläufe.
 
    Die Vorschaubilder der Projekte sind dunkel. Auf Papier liegen sie wie
    Tafeln in einem Bildband — das ist der eigentliche Grund für den
@@ -34,31 +36,36 @@
 :root{
   color-scheme: light dark;
 
-  /* Flächen */
-  --paper:    #F1EFE9;   /* Seitengrund                            */
-  --paper-2:  #FBFAF7;   /* erhoben: Karten, Tafeln, Eingaben      */
-  --paper-3:  #E5E2D9;   /* gesenkt: Streifen, gefüllte Zellen     */
-  --plate:    #131316;   /* Bildtafeln, invertierte Bänder         */
+  /* Flächen — Cream als Grund, Void als Gegenstück */
+  --paper:    #ECE0C6;   /* Seitengrund, warmer Bogen              */
+  --paper-2:  #F2E9D6;   /* erhoben: Karten, Tafeln, Eingaben      */
+  --paper-3:  #E2D3B4;   /* gesenkt: Streifen, gefüllte Zellen     */
+  --plate:    #0A0A0B;   /* Bildtafeln, invertierte Bänder         */
 
   /* Tinte */
-  --ink:      #16161A;   /* Fließtext, Überschriften               */
-  --ink-2:    #55555F;   /* Sekundärtext                           */
-  --ink-3:    #86868F;   /* Metadaten, Marginalien                 */
-  --on-plate: #F3F1EC;   /* Text auf --plate                       */
+  --ink:      #1D1D1D;   /* Fließtext, Überschriften               */
+  --ink-2:    rgba(29,29,29,.62);
+  --ink-3:    rgba(29,29,29,.42);
+  --on-plate: #ECE0C6;   /* Text auf --plate                       */
 
   /* Linien */
-  --line:     #D6D2C7;   /* Haarlinie, sichtbar                    */
-  --line-2:   #E4E1D8;   /* Haarlinie, zurückgenommen              */
+  --line:     rgba(29,29,29,.16);
+  --line-2:   rgba(29,29,29,.09);
 
-  /* Signal */
-  --signal:      #2C3FE0;
-  --signal-deep: #1F2DA8;
-  --signal-tint: #E7E9FC;
-  --on-signal:   #FFFFFF;
+  /* Signal — Coral. Nur Handlung und Zustand, nie Fläche zur Zierde. */
+  --signal:      #F4583D;
+  --signal-deep: #D8402A;
+  --signal-tint: #F8DCD3;
+  --on-signal:   #ECE0C6;
+
+  /* Warme Bänder — die Leistungsliste. Vier Töne, ein Klima. */
+  --gold:   #E99C1E;
+  --terra:  #E1654F;
+  --amber:  #F5CE84;
 
   /* Zustand */
-  --ember:      #D93E12;
-  --ember-tint: #FBE7E0;
+  --ember:      #E99C1E;
+  --ember-tint: #F8ECD3;
 
   /* Maße — eine Skala, geometrisch, keine Zwischengrößen */
   --s1: .25rem;  --s2: .5rem;   --s3: .75rem;  --s4: 1rem;
@@ -77,52 +84,52 @@
 }
 
 /* Dunkel. Kein zweites Design, dieselbe Seite bei anderem Licht.
-   Kobalt wird angehoben, sonst fällt es auf dunklem Grund zusammen. */
+   Coral wird angehoben, sonst fällt es auf dunklem Grund zusammen. */
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --paper:    #0D0D0F;
-    --paper-2:  #151519;
-    --paper-3:  #1D1D22;
+    --paper:    #0A0A0B;
+    --paper-2:  #131315;
+    --paper-3:  #1B1B1E;
     --plate:    #000000;
 
-    --ink:      #ECEAE3;
-    --ink-2:    #A2A1AB;
-    --ink-3:    #74737D;
-    --on-plate: #ECEAE3;
+    --ink:      #ECE0C6;
+    --ink-2:    rgba(236,224,198,.62);
+    --ink-3:    rgba(236,224,198,.4);
+    --on-plate: #ECE0C6;
 
-    --line:     #2C2C33;
-    --line-2:   #212127;
+    --line:     rgba(236,224,198,.16);
+    --line-2:   rgba(236,224,198,.09);
 
-    --signal:      #7C88FF;
-    --signal-deep: #A3ACFF;
-    --signal-tint: #191A2E;
-    --on-signal:   #0D0D0F;
+    --signal:      #FF6B4F;
+    --signal-deep: #FF8A72;
+    --signal-tint: #2A1410;
+    --on-signal:   #0A0A0B;
 
-    --ember:      #FF7043;
-    --ember-tint: #2A1710;
+    --ember:      #F5CE84;
+    --ember-tint: #2A2113;
   }
 }
 :root[data-theme="dark"]{
-  --paper:    #0D0D0F;
-  --paper-2:  #151519;
-  --paper-3:  #1D1D22;
+  --paper:    #0A0A0B;
+  --paper-2:  #131315;
+  --paper-3:  #1B1B1E;
   --plate:    #000000;
 
-  --ink:      #ECEAE3;
-  --ink-2:    #A2A1AB;
-  --ink-3:    #74737D;
-  --on-plate: #ECEAE3;
+  --ink:      #ECE0C6;
+  --ink-2:    rgba(236,224,198,.62);
+  --ink-3:    rgba(236,224,198,.4);
+  --on-plate: #ECE0C6;
 
-  --line:     #2C2C33;
-  --line-2:   #212127;
+  --line:     rgba(236,224,198,.16);
+  --line-2:   rgba(236,224,198,.09);
 
-  --signal:      #7C88FF;
-  --signal-deep: #A3ACFF;
-  --signal-tint: #191A2E;
-  --on-signal:   #0D0D0F;
+  --signal:      #FF6B4F;
+  --signal-deep: #FF8A72;
+  --signal-tint: #2A1410;
+  --on-signal:   #0A0A0B;
 
-  --ember:      #FF7043;
-  --ember-tint: #2A1710;
+  --ember:      #F5CE84;
+  --ember-tint: #2A2113;
 }
 
 
@@ -181,27 +188,32 @@ img{ height:auto }
 
    Drei Stimmen, klar getrennte Aufgaben:
 
-     Cormorant Garamond  nur groß. Ab etwa 2.5rem trägt sie; darunter
-                         wird sie zur Hochzeitseinladung. Deshalb steht
-                         sie hier ausschließlich in .display und h1/h2.
+     Anton               nur groß und nur versal. Die Displaystimme.
+                         Positives Tracking ist verboten — sie bringt
+                         ihre Enge mit.
      Outfit              alles, was gelesen wird.
      JetBrains Mono      alles, was ausgezeichnet wird: Nummern, Labels,
                          Kennwerte, Dateipfade. Immer klein, immer weit.
    ─────────────────────────────────────────────────────────────────────── */
+/* Anton, versal, schmal. Die vorherige Fassung stand in Cormorant
+   Garamond — elegant, aber bei jeder Größe zurückhaltend. Eine Marke, die
+   sagt „wir bauen das, was andere vorführen", kann das nicht flüstern.
+
+   Anton bringt bereits eine enge Laufweite mit; positives Tracking ist
+   deshalb ausdrücklich verboten. Die Zeilenhöhe geht unter 1, weil
+   Versalien keine Unterlängen haben und normale Durchschüsse die Zeilen
+   sonst auseinanderreißen. */
 .display, h1, h2{
-  font-family:'Cormorant Garamond', Georgia, serif;
-  font-weight: 300;
-  line-height: .9;
-  letter-spacing: -.03em;
+  font-family:'Anton', 'Arial Narrow', Impact, sans-serif;
+  font-weight: 400;
+  line-height: .88;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
   text-wrap: balance;
 }
 
-/* Groß heißt groß. Eine Displayzeile, die nur anderthalbmal so hoch ist
-   wie der Fließtext, ist keine Ansage, sondern eine Überschrift. Hier
-   füllt sie die Bahn — deshalb auch die enge Laufweite: bei dieser Größe
-   reißen normale Abstände die Wörter auseinander. */
-h1, .t-xxl{ font-size: clamp(3.25rem, 1rem + 10.5vw, 11rem) }
-h2, .t-xl { font-size: clamp(2.5rem, 1rem + 5.6vw, 6rem) }
+h1, .t-xxl{ font-size: clamp(3rem, 1rem + 11vw, 12rem) }
+h2, .t-xl { font-size: clamp(2.5rem, 1rem + 6.4vw, 7rem) }
 
 h3, .t-l{
   font-family:'Outfit', system-ui, sans-serif;
@@ -577,7 +589,8 @@ textarea{ resize:vertical; min-height:8rem }
 .mobile-nav a{
   position:relative; display:flex; align-items:center; gap: var(--s4);
   padding: var(--s3) 0; min-height:48px;
-  font-family:'Cormorant Garamond', serif; font-size:1.75rem; font-weight:300;
+  font-family:'Anton', sans-serif; font-size:1.75rem; font-weight:400;
+  text-transform:uppercase; letter-spacing:-.01em;
   color: var(--ink); text-decoration:none;
   border-bottom:1px solid var(--line-2);
 }
@@ -881,7 +894,7 @@ textarea{ resize:vertical; min-height:8rem }
   user-select:none;
 }
 .marquee__track{
-  display:flex; flex:none; gap: var(--s6);
+  display:flex; flex:none; align-items:center; gap: var(--s6);
   padding-right: var(--s6);
   animation: nf-marquee 38s linear infinite;
 }
@@ -893,6 +906,29 @@ textarea{ resize:vertical; min-height:8rem }
   white-space:nowrap; color: var(--ink-2);
 }
 .marquee__track > span::after{ content:'·'; margin-left: var(--s6); color: var(--signal) }
+
+/* Das große Laufband: Displaygröße statt Fußnote, auf Coral. Es ist ein
+   Scharnier zwischen zwei Abschnitten, kein Schmuckstreifen — deshalb
+   randlos und deshalb so groß, dass man es nicht überliest. */
+.marquee--giant{
+  border:0; padding-block: clamp(var(--s4), 2vw, var(--s6));
+  background: var(--signal); color: var(--on-signal);
+}
+.marquee--giant .marquee__track{
+  gap: clamp(2rem, 5vw, 5rem); padding-right: clamp(2rem, 5vw, 5rem);
+  animation-duration: 26s;
+}
+.marquee--giant .marquee__track > span{
+  font-family:'Anton', sans-serif;
+  font-size: clamp(3rem, 10vw, 9rem);
+  /* Zeilenhöhe über 1: das Laufband ist ebenfalls überlaufend
+     beschnitten, und „FÜNF" verlöre sonst seine Punkte. */
+  line-height:1.06; letter-spacing:-.04em; text-transform:uppercase;
+  color: var(--on-signal);
+}
+.marquee--giant .marquee__track > span::after{
+  content:'—'; margin-left: clamp(2rem, 5vw, 5rem); color: var(--on-signal); opacity:.5;
+}
 @keyframes nf-marquee{ to{ transform: translate3d(-100%, 0, 0) } }
 @media (prefers-reduced-motion: reduce){
   .marquee{ overflow-x:auto }
@@ -911,7 +947,14 @@ textarea{ resize:vertical; min-height:8rem }
 
 /* Zeilen, die von unten hochfahren. Voller Zeilenversatz statt 14px —
    bei Displaygrößen ist ein kleiner Versatz nicht zu sehen. */
-.rise{ display:block; overflow:hidden }
+/* Die Maske braucht Luft nach oben, sonst schneidet sie die Umlautpunkte
+   ab: Anton läuft mit Zeilenhöhe unter 1, und Ä/Ö/Ü ragen über die
+   Versalhöhe hinaus. „VORFÜHREN" las sich dadurch als „VORFUHREN".
+
+   Das Innenmaß bleibt stehen und wird NICHT per negativem Außenabstand
+   zurückgeholt — genau das ließ die Punkte des Ü in die Zeile darüber
+   stoßen. Der Zeilenabstand ergibt sich aus Zeilenhöhe plus diesem Maß. */
+.rise{ display:block; overflow:hidden; padding-top:.18em }
 .rise > span{ display:block }
 [data-motion] .rise > span{
   transform: translate3d(0, 105%, 0);
@@ -927,3 +970,94 @@ textarea{ resize:vertical; min-height:8rem }
   [data-motion] .wipe{ clip-path:none !important; transition:none !important }
   [data-motion] .rise > span{ transform:none !important; transition:none !important }
 }
+
+/* ── Warme Bänder ────────────────────────────────────────────────────
+   Die Leistungsliste als vier vollflächige Zeilen. Jede Zeile ein Ton,
+   alle im selben Klima. Beim Zeigen wächst die Zeile — sie öffnet sich,
+   statt zu leuchten.
+   ─────────────────────────────────────────────────────────────────────── */
+.bands{ display:flex; flex-direction:column }
+.band-row{
+  display:block; text-decoration:none; color: var(--band-ink, #1D1D1D);
+  background: var(--band);
+  padding-block: clamp(var(--s5), 3.5vw, var(--s7));
+  transition: padding-block var(--nf-transport) var(--nf-ease);
+}
+.band-row:nth-child(1){ --band: var(--gold) }
+.band-row:nth-child(2){ --band: var(--terra) }
+.band-row:nth-child(3){ --band: var(--amber) }
+.band-row:nth-child(4){ --band: var(--paper-3) }
+.band-row:hover, .band-row:focus-visible{
+  padding-block: clamp(var(--s6), 5vw, var(--s9));
+}
+.band-inner{
+  display:grid; gap: var(--s3) var(--s5); align-items:baseline;
+  width:100%; max-width: var(--bahn); margin-inline:auto;
+  padding-inline: var(--rand);
+}
+@media (min-width: 860px){
+  .band-inner{ grid-template-columns: 4rem minmax(0,1fr) minmax(0,22rem) 6rem }
+}
+.band-n, .band-go{
+  font-family:'JetBrains Mono', monospace; font-size:.6875rem;
+  letter-spacing:.14em; text-transform:uppercase; opacity:.65;
+}
+.band-go{ text-align:right }
+.band-row:hover .band-go, .band-row:focus-visible .band-go{ opacity:1 }
+.band-name{
+  font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase;
+  font-size: clamp(1.9rem, 1rem + 3.4vw, 4rem);
+  line-height:.9; letter-spacing:-.02em;
+}
+.band-row p{ font-size:.95rem; opacity:.75; max-width:44ch }
+
+/* ── Rolltext ────────────────────────────────────────────────────────
+   Beim Zeigen fährt die Beschriftung nach oben aus und eine Kopie von
+   unten nach. Der Knopf ändert nicht die Farbe, er bewegt sich — das
+   liest sich als Mechanik statt als Anstrich.
+   ─────────────────────────────────────────────────────────────────────── */
+.roll{ position:relative; overflow:hidden; display:inline-flex }
+.roll__in{ display:block; transition: transform .4s cubic-bezier(.16,.03,.08,1.55) }
+.roll__out{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  transform: translateY(110%);
+  transition: transform .4s cubic-bezier(.16,.03,.08,1.55);
+}
+.roll:hover .roll__in, .roll:focus-visible .roll__in{ transform: translateY(-110%) }
+.roll:hover .roll__out, .roll:focus-visible .roll__out{ transform: translateY(0) }
+@media (prefers-reduced-motion: reduce){
+  .roll__in, .roll__out{ transition:none }
+  .roll__out{ display:none }
+}
+
+/* ── Rahmen-Ecken ────────────────────────────────────────────────────
+   Vier Haarwinkel in den Bildschirmecken. Bei einer Marke, die
+   NobleFrame heißt und einen Rahmen im Zeichen führt, ist das kein
+   Zierrat, sondern das Signet in Großform. Rein dekorativ, deshalb
+   aria-hidden und pointer-events:none.
+   ─────────────────────────────────────────────────────────────────────── */
+.frame-ticks{ position:fixed; inset:0; z-index:800; pointer-events:none }
+.frame-ticks i{
+  position:absolute; width:22px; height:22px;
+  border:0 solid var(--ink); opacity:.28;
+}
+.frame-ticks i:nth-child(1){ top:16px; left:16px; border-top-width:1px; border-left-width:1px }
+.frame-ticks i:nth-child(2){ top:16px; right:16px; border-top-width:1px; border-right-width:1px }
+.frame-ticks i:nth-child(3){ bottom:16px; left:16px; border-bottom-width:1px; border-left-width:1px }
+.frame-ticks i:nth-child(4){ bottom:16px; right:16px; border-bottom-width:1px; border-right-width:1px }
+@media (max-width: 700px){ .frame-ticks{ display:none } }
+
+/* ── Wort-Scrub ──────────────────────────────────────────────────────
+   Eine große Aussage, deren Wörter beim Scrollen nacheinander auf volle
+   Deckung gehen. Kein Einblenden des Blocks: der Satz steht vollständig
+   da und wird gelesen, während man ihn passiert.
+   ─────────────────────────────────────────────────────────────────────── */
+.scrub{
+  font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase;
+  font-size: clamp(1.75rem, 1rem + 4vw, 4.5rem);
+  line-height: 1.02; letter-spacing:-.02em;
+}
+.scrub w{ display:inline-block; opacity:.18; transition: opacity 260ms linear }
+.scrub w.on{ opacity:1 }
+@media (prefers-reduced-motion: reduce){ .scrub w{ opacity:1 } }
