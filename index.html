@@ -79,6 +79,59 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
 }
 
+/* ── Scharnier ───────────────────────────────────────────────────────── */
+.hinge{
+  border-block:1px solid var(--ink);
+  padding-block: clamp(var(--s7), 7vw, var(--s9));
+}
+.hinge-satz{
+  font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase;
+  font-size: clamp(2.5rem, 1rem + 7vw, 7.5rem);
+  /* Nicht enger als 1: die erste Zeile endet auf einem Komma, und dessen
+     Unterlänge stieß bei .92 in das B der Folgezeile. Versalien allein
+     vertragen engere Durchschüsse — Satzzeichen nicht. */
+  line-height:1.02; letter-spacing:-.02em;
+  margin-bottom: var(--s6);
+}
+.hinge .dim{ max-width: 46rem }
+
+/* ── Stückliste — die Leistungen ─────────────────────────────────────
+   Vorher standen hier vier warme Farbbänder. Die waren laut, stammten
+   aber eins zu eins aus derselben Trendliste wie das Laufband. Eine
+   Stückliste ist das, was in einer Zeichnung an dieser Stelle steht:
+   Position, Benennung, Ausführung, Verweis. Sie ist nüchterner — und
+   sie gehört zu dieser Seite statt zu jeder anderen.
+   ───────────────────────────────────────────────────────────────────── */
+.stueck{ border-top:2px solid var(--ink) }
+.stueck-row{
+  display:grid; gap: var(--s2) var(--s5); align-items:baseline;
+  padding-block: clamp(var(--s5), 3vw, var(--s6));
+  border-bottom:1px solid var(--line);
+  text-decoration:none; color:inherit;
+  transition: background-color var(--nf-response) linear;
+}
+@media (min-width: 900px){
+  .stueck-row{ grid-template-columns: 4rem minmax(0,17rem) minmax(0,1fr) 7rem }
+}
+.stueck-row:hover, .stueck-row:focus-visible{ background: var(--signal-tint) }
+.stueck-pos{
+  font-family:'JetBrains Mono', monospace; font-size:.6875rem;
+  letter-spacing:.14em; color: var(--ink-3);
+}
+.stueck-row:hover .stueck-pos{ color: var(--signal) }
+.stueck-name{
+  font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase;
+  font-size: clamp(1.5rem, 1rem + 1.8vw, 2.5rem);
+  line-height:.95; letter-spacing:-.02em;
+}
+.stueck-row p{ font-size:.95rem; color: var(--ink-2) }
+.stueck-go{
+  font-family:'JetBrains Mono', monospace; font-size:.6875rem;
+  letter-spacing:.14em; text-transform:uppercase; color: var(--ink-3);
+}
+@media (min-width: 900px){ .stueck-go{ text-align:right } }
+.stueck-row:hover .stueck-go{ color: var(--signal) }
+
 /* ── Systeme ─────────────────────────────────────────────────────────────
    Fünf Karten, aber nicht fünf gleiche. Die erste liegt quer über die
    volle Breite: sie ist das Flaggschiff, und ein Raster, das das
@@ -257,7 +310,7 @@
 
 <!-- ═══ Hero ═══════════════════════════════════════════════════════════ -->
 <header class="hero wrap reveal">
-  <span class="eyebrow eyebrow--signal"><span class="dot"></span>Digitales Atelier · Steinfurt</span>
+  <span class="koord">Blatt A/01 — Start</span>
 
   <h1>
     <span class="rise"><span style="--d:60ms">Wir bauen das,</span></span>
@@ -276,19 +329,30 @@
       <a href="kontakt.html" class="btn btn--ghost">Projekt anfragen</a>
     </div>
   </div>
+
+  <!-- Anmerkung im Rotstift. Es steht ausschließlich Nachprüfbares darin:
+       die fünf Systeme sind verlinkt, die Ladeliste ist im Netzwerk-Tab
+       nachzuzählen. -->
+  <p class="note" style="margin-top:var(--s7)">
+    Anm.: Diese Seite lädt drei Stylesheets, ein Skript und drei Schriften.
+    Kein Tracker, kein Framework, kein Cookie-Banner. Nachzählbar im
+    Netzwerk-Tab.
+  </p>
 </header>
 
-<!-- Scharnier zwischen Behauptung und Beweis. Ein Farbfeld über die volle
-     Breite, in Displaygröße — man kann es nicht überlesen, und das ist
-     die einzige Aufgabe, die es hat. -->
-<div class="marquee marquee--giant" aria-label="Leitsatz">
-  <div class="marquee__track">
-    <span>Gebaut, nicht behauptet</span><span>Fünf Systeme, alle live</span>
+<!-- Scharnier zwischen Behauptung und Beweis.
+
+     Hier stand ein durchlaufendes Riesen-Laufband. Es war laut, aber es
+     ist derzeit das meistkopierte Element im Netz — und ein Satz, der
+     ununterbrochen davonläuft, kann man schlecht lesen. Jetzt steht er
+     still, in Schnittschraffur, mit einer Maßlinie darunter, die eine
+     echte Zahl trägt. -->
+<section class="hinge hatch" aria-label="Leitsatz">
+  <div class="wrap">
+    <p class="hinge-satz reveal">Gebaut,<br>nicht behauptet.</p>
+    <div class="dim reveal" style="--d:120ms"><span>5 Systeme · 0 Anmeldungen · Stand 08.2026</span></div>
   </div>
-  <div class="marquee__track" aria-hidden="true">
-    <span>Gebaut, nicht behauptet</span><span>Fünf Systeme, alle live</span>
-  </div>
-</div>
+</section>
 
 <!-- ═══ Systeme ════════════════════════════════════════════════════════ -->
 <section class="band wrap" id="arbeiten" aria-labelledby="systeme-titel">
@@ -452,39 +516,33 @@
     </div>
   </div>
 
-  <div class="bands">
-    <a class="band-row" href="leistungen.html">
-      <span class="band-inner">
-        <span class="band-n">01</span>
-        <span class="band-name">Web Development</span>
+  <div class="wrap">
+    <div class="stueck reveal" data-stagger>
+      <a class="stueck-row" href="leistungen.html">
+        <span class="stueck-pos">Pos. 01</span>
+        <span class="stueck-name">Web Development</span>
         <p>Maßgeschneiderte Websites und Web-Applikationen mit sauberem, wartbarem Code und hoher Performance.</p>
-        <span class="band-go">Mehr →</span>
-      </span>
-    </a>
-    <a class="band-row" href="leistungen.html">
-      <span class="band-inner">
-        <span class="band-n">02</span>
-        <span class="band-name">E-Commerce</span>
+        <span class="stueck-go">Blatt →</span>
+      </a>
+      <a class="stueck-row" href="leistungen.html">
+        <span class="stueck-pos">Pos. 02</span>
+        <span class="stueck-name">E-Commerce</span>
         <p>Shop-Plattformen mit Headless-Architektur — stabil, skalierbar und auf Abschluss gebaut.</p>
-        <span class="band-go">Mehr →</span>
-      </span>
-    </a>
-    <a class="band-row" href="leistungen.html">
-      <span class="band-inner">
-        <span class="band-n">03</span>
-        <span class="band-name">UX/UI Design</span>
+        <span class="stueck-go">Blatt →</span>
+      </a>
+      <a class="stueck-row" href="leistungen.html">
+        <span class="stueck-pos">Pos. 03</span>
+        <span class="stueck-name">UX/UI Design</span>
         <p>Nutzerzentriertes Design, das Verhalten versteht und Conversion systematisch steigert.</p>
-        <span class="band-go">Mehr →</span>
-      </span>
-    </a>
-    <a class="band-row" href="leistungen.html">
-      <span class="band-inner">
-        <span class="band-n">04</span>
-        <span class="band-name">Digital Growth</span>
+        <span class="stueck-go">Blatt →</span>
+      </a>
+      <a class="stueck-row" href="leistungen.html">
+        <span class="stueck-pos">Pos. 04</span>
+        <span class="stueck-name">Digital Growth</span>
         <p>SEO, CRO und Analytics, die nicht nur Traffic, sondern profitables Wachstum liefern.</p>
-        <span class="band-go">Mehr →</span>
-      </span>
-    </a>
+        <span class="stueck-go">Blatt →</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -602,6 +660,21 @@
         </form>
       </div>
     </div>
+    <!-- Schriftfeld. In jeder technischen Zeichnung steht unten ein Kasten
+         mit Projekt, Blatt, Maßstab und Stand. Jede Angabe darin ist echt:
+         die Blattzahl ist die Zahl der HTML-Dateien, der Stand das Datum
+         des letzten Umbaus. -->
+    <div class="schriftfeld">
+      <div class="sf-zelle"><span class="sf-k">Projekt</span><span class="sf-v">NobleFrame</span></div>
+      <div class="sf-zelle"><span class="sf-k">Blätter</span><span class="sf-v">19</span></div>
+      <div class="sf-zelle"><span class="sf-k">Maßstab</span><span class="sf-v">1:1</span></div>
+      <div class="sf-zelle"><span class="sf-k">Stand</span><span class="sf-v">08.2026</span></div>
+      <div class="sf-zelle"><span class="sf-k">Ort</span><span class="sf-v">Steinfurt, DE</span></div>
+      <div class="sf-zelle"><span class="sf-k">Aufbau</span><span class="sf-v">statisch, buildfrei</span></div>
+      <div class="sf-zelle"><span class="sf-k">Fremdcode</span><span class="sf-v">keiner</span></div>
+      <div class="sf-zelle"><span class="sf-k">Gezeichnet</span><span class="sf-v">im Haus</span></div>
+    </div>
+
     <div class="footer-bottom">
       <p>© 2026 NobleFrame</p>
       <div class="legal-links">

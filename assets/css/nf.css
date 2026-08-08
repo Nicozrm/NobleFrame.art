@@ -52,11 +52,20 @@
   --line:     rgba(29,29,29,.16);
   --line-2:   rgba(29,29,29,.09);
 
-  /* Signal — Coral. Nur Handlung und Zustand, nie Fläche zur Zierde. */
-  --signal:      #F4583D;
-  --signal-deep: #D8402A;
-  --signal-tint: #F8DCD3;
-  --on-signal:   #ECE0C6;
+  /* Signal — Rotstift, nicht Coral.
+     Coral ist eine Posterfarbe: weich, warm, und seit drei Jahren auf
+     jeder Agenturseite. Der Rotstift ist etwas anderes — die Farbe, mit
+     der jemand in eine Zeichnung hineinschreibt, was noch nicht stimmt.
+     Er markiert Handlung und Anmerkung, nie Fläche zur Zierde. */
+  --signal:      #D8261C;
+  --signal-deep: #A81A12;
+  --signal-tint: #F4DDD9;
+  --on-signal:   #F4F1E8;
+
+  /* Graphit — der Mittelton der Zeichnung. Maßlinien, Konstruktions-
+     kreuze, Schraffur: alles, was Hilfslinie ist und nicht Inhalt. */
+  --graphit:     rgba(29,29,29,.34);
+  --graphit-2:   rgba(29,29,29,.13);
 
   /* Warme Bänder — die Leistungsliste. Vier Töne, ein Klima. */
   --gold:   #E99C1E;
@@ -100,10 +109,13 @@
     --line:     rgba(236,224,198,.16);
     --line-2:   rgba(236,224,198,.09);
 
-    --signal:      #FF6B4F;
-    --signal-deep: #FF8A72;
-    --signal-tint: #2A1410;
+    --signal:      #FF4438;
+    --signal-deep: #FF6A5E;
+    --signal-tint: #2A100D;
     --on-signal:   #0A0A0B;
+
+    --graphit:     rgba(236,224,198,.32);
+    --graphit-2:   rgba(236,224,198,.12);
 
     --ember:      #F5CE84;
     --ember-tint: #2A2113;
@@ -123,10 +135,13 @@
   --line:     rgba(236,224,198,.16);
   --line-2:   rgba(236,224,198,.09);
 
-  --signal:      #FF6B4F;
-  --signal-deep: #FF8A72;
-  --signal-tint: #2A1410;
+  --signal:      #FF4438;
+  --signal-deep: #FF6A5E;
+  --signal-tint: #2A100D;
   --on-signal:   #0A0A0B;
+
+  --graphit:     rgba(236,224,198,.32);
+  --graphit-2:   rgba(236,224,198,.12);
 
   --ember:      #F5CE84;
   --ember-tint: #2A2113;
@@ -1061,3 +1076,149 @@ textarea{ resize:vertical; min-height:8rem }
 .scrub w{ display:inline-block; opacity:.18; transition: opacity 260ms linear }
 .scrub w.on{ opacity:1 }
 @media (prefers-reduced-motion: reduce){ .scrub w{ opacity:1 } }
+
+
+/* ─── 10. Werkzeichnung ────────────────────────────────────────────────
+
+   Die Fassung davor war laut, aber austauschbar: Cream, schmale Versalien,
+   Coral, Laufband, warme Bänder — das ist der Standardauftritt von 2025,
+   und er sieht auf jeder zweiten Agenturseite gleich aus. Lautstärke
+   allein macht keine Handschrift.
+
+   Diese Schicht gibt der Seite eine Ordnung statt eines weiteren
+   Anstrichs: sie liest sich als technische Zeichnung. Das kommt nicht aus
+   einer Trendliste, sondern aus dem Namen — ein Rahmen ist eine
+   Zeichnungskonvention — und aus dem, was das Atelier über sich sagt:
+   Fundament vor Pixel, alles überprüfbar, nichts behauptet.
+
+   Eine Zeichnung zeigt ihre Konstruktion. Deshalb sind Maße, Koordinaten,
+   Blattangaben und Anmerkungen hier sichtbarer Inhalt und keine Zierde:
+   jede Zahl darin ist echt.
+
+   Alle Bauteile sind Haarlinien und Flächen. Nichts leuchtet, nichts ist
+   weichgezeichnet — die Regel aus Abschnitt 9 gilt unverändert.
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* Maßlinie. Eine Hilfslinie mit Endanschlägen und einem Maß darüber, wie
+   in einer Bemaßung. Sie steht dort, wo eine Angabe wirklich etwas misst
+   — sonst wäre sie Dekoration, und Dekoration ist hier verboten. */
+.dim{
+  display:flex; align-items:center; gap: var(--s3);
+  font-family:'JetBrains Mono', monospace;
+  font-size:.625rem; letter-spacing:.14em; text-transform:uppercase;
+  color: var(--ink-3);
+}
+.dim::before, .dim::after{
+  content:''; flex:1; height:1px; background: var(--graphit);
+  position:relative;
+}
+/* Endanschläge: kurze Querstriche an den Enden der Maßlinie. */
+.dim::before{ box-shadow: 0 -3px 0 -1px var(--graphit), 0 3px 0 -1px var(--graphit) }
+.dim--left::after{ display:none }
+.dim--left::before{ flex:0 0 3rem }
+
+/* Blattkoordinate. Steht am Kopf eines Abschnitts, links außen. */
+.koord{
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.625rem; letter-spacing:.16em; text-transform:uppercase;
+  color: var(--signal);
+}
+.koord::before{
+  content:''; width:9px; height:9px; flex:none;
+  border:1px solid currentColor;
+}
+
+/* Konstruktionskreuz — die Marke, mit der in einer Zeichnung ein Punkt
+   festgelegt wird. Rein zeichnerisch, deshalb aria-hidden im Markup. */
+.kreuz{
+  position:relative; display:block; width:11px; height:11px; flex:none;
+}
+.kreuz::before, .kreuz::after{
+  content:''; position:absolute; background: var(--graphit);
+}
+.kreuz::before{ left:50%; top:0; bottom:0; width:1px; transform:translateX(-.5px) }
+.kreuz::after{ top:50%; left:0; right:0; height:1px; transform:translateY(-.5px) }
+
+/* Schraffur. Ein Schnitt durch Material wird in einer Zeichnung
+   schraffiert, nicht gefüllt. Reine Wiederholung eines Farbverlaufs mit
+   harten Stopps — es entsteht kein Verlauf, sondern ein Linienraster. */
+.hatch{
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--graphit-2) 0, var(--graphit-2) 1px,
+    transparent 1px, transparent 7px);
+}
+
+/* Rotstift-Anmerkung. Was in einer Zeichnung nachträglich hineingeschrieben
+   wird, steht in Rot und hat eine Fahne zum Bezugspunkt. Hier steht darin
+   ausschließlich Nachprüfbares. */
+.note{
+  position:relative;
+  padding-left: var(--s5);
+  font-family:'JetBrains Mono', monospace;
+  font-size:.6875rem; line-height:1.5; letter-spacing:.02em;
+  color: var(--signal);
+  max-width: 34ch;
+}
+.note::before{
+  content:''; position:absolute; left:0; top:.45em; bottom:.2em;
+  width:1px; background: var(--signal);
+}
+.note::after{
+  content:''; position:absolute; left:0; top:.45em;
+  width: var(--s3); height:1px; background: var(--signal);
+}
+
+/* Schriftfeld. In jeder technischen Zeichnung steht unten rechts ein
+   Kasten mit Projekt, Blatt, Maßstab und Stand. Das ist der Ort, an dem
+   ein Dokument sagt, was es ist — und der Grund, warum diese Seite nicht
+   aussieht wie eine Kampagne, sondern wie ein Arbeitsstand. */
+.schriftfeld{
+  border:1px solid var(--ink);
+  display:grid; grid-template-columns: repeat(2, 1fr);
+  margin-top: var(--s7);
+}
+@media (min-width: 760px){ .schriftfeld{ grid-template-columns: repeat(4, 1fr) } }
+.sf-zelle{
+  padding: var(--s3) var(--s4);
+  border-right:1px solid var(--ink); border-bottom:1px solid var(--ink);
+}
+.sf-zelle:nth-child(2n){ border-right:0 }
+@media (min-width: 760px){
+  .sf-zelle{ border-right:1px solid var(--ink) }
+  .sf-zelle:nth-child(2n){ border-right:1px solid var(--ink) }
+  .sf-zelle:nth-child(4n), .sf-zelle:last-child{ border-right:0 }
+}
+.sf-zelle:nth-last-child(-n+2){ border-bottom:0 }
+@media (min-width: 760px){ .sf-zelle:nth-last-child(-n+4){ border-bottom:0 } }
+.sf-k{
+  display:block;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.5625rem; letter-spacing:.18em; text-transform:uppercase;
+  color: var(--ink-3); margin-bottom:.35rem;
+}
+.sf-v{
+  display:block;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.8125rem; letter-spacing:.04em; color: var(--ink);
+}
+
+/* Randleiste. Links außen läuft eine schmale Spalte mit der
+   Blattnummerierung mit — wie der beschriftete Rand eines Planblatts. */
+.blatt{ position:relative }
+@media (min-width: 1200px){
+  .blatt{ padding-left: 4.5rem }
+  .blatt > .blatt-rand{
+    position:absolute; left:0; top:0; bottom:0; width:3rem;
+    border-right:1px solid var(--graphit-2);
+    display:flex; align-items:flex-start; justify-content:center;
+    padding-top:.35rem;
+  }
+  .blatt-rand span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.625rem; letter-spacing:.16em; color: var(--ink-3);
+    writing-mode: vertical-rl; text-orientation: mixed;
+  }
+}
+@media (max-width: 1199px){ .blatt-rand{ display:none } }
