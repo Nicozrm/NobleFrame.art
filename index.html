@@ -48,44 +48,35 @@
    bevor der erste Satz lesbar wurde. Jetzt steht der Satz sofort da.
    ───────────────────────────────────────────────────────────────────────── */
 .hero{
-  padding-block: clamp(var(--s8), 13vh, var(--s10)) clamp(var(--s7), 8vh, var(--s9));
+  padding-block: clamp(var(--s7), 9vh, var(--s9)) clamp(var(--s7), 8vh, var(--s9));
 }
-.hero h1{
-  margin: var(--s5) 0;
-  max-width: 15ch;
-}
-/* Die Zeilen laufen nacheinander los. Overflow-hidden, damit sie von
-   unten in ihre eigene Zeile schieben statt über die darüber zu wischen. */
-.hero-line{ display:block; overflow:hidden }
-.hero-line > span{ display:block }
+/* Die Zeile darf die Bahn füllen. `max-width` in Zeichen wäre hier falsch:
+   der Umbruch ist gesetzt, nicht berechnet. */
+.hero h1{ margin: var(--s6) 0 var(--s7) }
+
 /* Der Hero trägt `reveal` nur, damit der Observer ihn beobachtet und `.in`
-   setzt — die Bewegung machen die Zeilen selbst. Ohne diese Zeile liefe
-   beides übereinander: der Block schöbe sich hoch, während die Zeilen es
-   noch einmal täten. */
+   setzt — die Bewegung machen die Zeilen selbst (.rise aus nf.css). Ohne
+   diese Zeile liefe beides übereinander: der Block schöbe sich hoch,
+   während die Zeilen es noch einmal täten. */
 [data-motion] .hero.reveal{ opacity:1; transform:none; transition:none }
-[data-motion] .hero-line > span{
-  transform: translate3d(0, 100%, 0);
-  transition: transform 760ms var(--nf-out);
-  transition-delay: var(--d, 0ms);
-}
-[data-motion] .hero.in .hero-line > span{ transform:none }
+
+/* Das zweite Wort trägt die Farbe. Ein Signal, groß gesetzt, ist die
+   ganze Zierde, die dieser Hero braucht. */
+.hero h1 em{ font-style:normal; color: var(--signal) }
 
 .hero-sub{
   display:grid; gap: var(--s5);
-  padding-top: var(--s5); border-top:1px solid var(--line);
+  padding-top: var(--s5); border-top:3px solid var(--ink);
 }
 @media (min-width: 860px){
   .hero-sub{ grid-template-columns: minmax(0,1fr) auto; align-items:start; gap: var(--s7) }
 }
 .hero-actions{ display:flex; flex-wrap:wrap; gap: var(--s3) }
 
-/* Laufband der Zahlen unter dem Hero */
-.hero-figs{
-  display:grid; gap: var(--s5);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
-  padding-block: var(--s6);
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
+/* Kennzahlen im Farbblock, randlos über die volle Breite. */
+.figs{
+  display:grid; gap: var(--s7) var(--s5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
 }
 
 /* ── Systeme ─────────────────────────────────────────────────────────────
@@ -200,14 +191,6 @@
 .svc-go{ font-family:'JetBrains Mono', monospace; font-size:.6875rem; letter-spacing:.12em; text-transform:uppercase; color: var(--ink-3) }
 .svc-item:hover .svc-go{ color: var(--signal) }
 
-/* ── Werkzeug ────────────────────────────────────────────────────────── */
-.tools-strip{
-  display:flex; flex-wrap:wrap; gap: var(--s3) var(--s5);
-  padding-top: var(--s5); border-top:1px solid var(--line);
-  font-family:'JetBrains Mono', monospace; font-size:.75rem;
-  letter-spacing:.08em; color: var(--ink-2);
-}
-
 /* ── Schluss ─────────────────────────────────────────────────────────── */
 .close{ text-align:center }
 .close h2{ margin: var(--s4) auto var(--s5); max-width: 16ch }
@@ -277,9 +260,9 @@
   <span class="eyebrow eyebrow--signal"><span class="dot"></span>Digitales Atelier · Steinfurt</span>
 
   <h1>
-    <span class="hero-line"><span style="--d:80ms">Wir bauen das,</span></span>
-    <span class="hero-line"><span style="--d:180ms">was andere</span></span>
-    <span class="hero-line"><span style="--d:280ms">vorführen.</span></span>
+    <span class="rise"><span style="--d:60ms">Wir bauen das,</span></span>
+    <span class="rise"><span style="--d:150ms">was andere</span></span>
+    <span class="rise"><span style="--d:240ms"><em>vorführen.</em></span></span>
   </h1>
 
   <div class="hero-sub">
@@ -295,19 +278,32 @@
   </div>
 </header>
 
-<div class="wrap">
-  <div class="hero-figs reveal" data-stagger>
-    <div><span class="num" data-count="5">0</span><span class="num-label">Systeme, live</span></div>
-    <div><span class="num" data-count="0">0</span><span class="num-label">Anmeldungen nötig</span></div>
-    <div><span class="num" data-count="100" data-suffix="&thinsp;%">0</span><span class="num-label">handgeschrieben</span></div>
-    <div><span class="num" data-count="0">0</span><span class="num-label">Tracker Dritter</span></div>
+<!-- Ein Farbfeld über die volle Breite. Die Zahlen sind das Argument —
+     also bekommen sie die Größe eines Arguments. -->
+<section class="slab slab--signal" aria-label="Kennzahlen">
+  <div class="wrap">
+    <div class="figs reveal" data-stagger>
+      <div><span class="mega" data-count="5">0</span><span class="mega-label">Systeme, live</span></div>
+      <div><span class="mega" data-count="0">0</span><span class="mega-label">Anmeldungen nötig</span></div>
+      <div><span class="mega" data-count="100" data-suffix="%">0</span><span class="mega-label">handgeschrieben</span></div>
+      <div><span class="mega" data-count="0">0</span><span class="mega-label">Tracker Dritter</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-label="Werkzeug">
+  <div class="marquee__track">
+    <span>React</span><span>TypeScript</span><span>Next.js</span><span>Three.js</span><span>Tailwind</span><span>Supabase</span><span>Stripe</span><span>Cloudflare</span><span>Node.js</span><span>Figma</span>
+  </div>
+  <div class="marquee__track" aria-hidden="true">
+    <span>React</span><span>TypeScript</span><span>Next.js</span><span>Three.js</span><span>Tailwind</span><span>Supabase</span><span>Stripe</span><span>Cloudflare</span><span>Node.js</span><span>Figma</span>
   </div>
 </div>
 
 <!-- ═══ Systeme ════════════════════════════════════════════════════════ -->
 <section class="band wrap" id="arbeiten" aria-labelledby="systeme-titel">
   <div class="head reveal">
-    <h2 id="systeme-titel">Gebaut, nicht behauptet</h2>
+    <h2 id="systeme-titel" class="wipe">Gebaut, nicht behauptet</h2>
     <p class="lead">
       Fünf Eigenentwicklungen. Jede live, jede ohne Anmeldung benutzbar,
       jede mit einem Bericht, der auch die schwierigen Stellen benennt.
@@ -452,7 +448,7 @@
 <!-- ═══ Leistungen ═════════════════════════════════════════════════════ -->
 <section class="band wrap" aria-labelledby="leistungen-titel">
   <div class="head reveal">
-    <h2 id="leistungen-titel">Was wir machen</h2>
+    <h2 id="leistungen-titel" class="wipe">Was wir machen</h2>
     <p class="lead">Vier Felder. Sie greifen ineinander — deshalb kommt alles aus einer Hand.</p>
   </div>
 
@@ -483,18 +479,12 @@
     </a>
   </div>
 
-  <div class="tools-strip reveal" style="margin-top:var(--s7)">
-    <span class="subtle">Werkzeug</span>
-    <span>React</span><span>TypeScript</span><span>Next.js</span><span>Three.js</span>
-    <span>Tailwind</span><span>Supabase</span><span>Stripe</span><span>Cloudflare</span>
-    <span>Node.js</span><span>Figma</span>
-  </div>
 </section>
 
 <!-- ═══ Vorgehen ═══════════════════════════════════════════════════════ -->
 <section class="band--tight wrap" aria-labelledby="vorgehen-titel">
   <div class="head reveal">
-    <h2 id="vorgehen-titel">Wie wir arbeiten</h2>
+    <h2 id="vorgehen-titel" class="wipe">Wie wir arbeiten</h2>
     <p class="lead">Vier Schritte, jeder mit Ihnen abgestimmt. Keine Blackbox zwischen Auftrag und Launch.</p>
   </div>
 

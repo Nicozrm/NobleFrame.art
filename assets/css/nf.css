@@ -191,13 +191,17 @@ img{ height:auto }
 .display, h1, h2{
   font-family:'Cormorant Garamond', Georgia, serif;
   font-weight: 300;
-  line-height: 1.02;
-  letter-spacing: -.015em;
+  line-height: .9;
+  letter-spacing: -.03em;
   text-wrap: balance;
 }
 
-h1, .t-xxl{ font-size: clamp(2.75rem, 1.6rem + 5.2vw, 6.5rem) }
-h2, .t-xl { font-size: clamp(2.1rem, 1.4rem + 3.2vw, 4.25rem) }
+/* Groß heißt groß. Eine Displayzeile, die nur anderthalbmal so hoch ist
+   wie der Fließtext, ist keine Ansage, sondern eine Überschrift. Hier
+   füllt sie die Bahn — deshalb auch die enge Laufweite: bei dieser Größe
+   reißen normale Abstände die Wörter auseinander. */
+h1, .t-xxl{ font-size: clamp(3.25rem, 1rem + 10.5vw, 11rem) }
+h2, .t-xl { font-size: clamp(2.5rem, 1rem + 5.6vw, 6rem) }
 
 h3, .t-l{
   font-family:'Outfit', system-ui, sans-serif;
@@ -285,7 +289,9 @@ section{ position: relative }
 .head{
   display:grid; gap: var(--s4);
   padding-bottom: var(--s5);
-  border-bottom: 1px solid var(--line);
+  /* Fett statt haarfein: der Sektionskopf ist ein Einschnitt, keine
+     Andeutung. Haarlinien trennen Zeilen, nicht Kapitel. */
+  border-bottom: 3px solid var(--ink);
   margin-bottom: clamp(var(--s6), 5vw, var(--s8));
 }
 @media (min-width: 900px){
@@ -799,3 +805,125 @@ textarea{ resize:vertical; min-height:8rem }
   :root:not([data-theme="light"]) .theme-toggle .i-moon{ display:block }
 }
 @media (max-width: 980px){ .nav-search{ display:none } }
+
+
+/* ─── 9. Laut ──────────────────────────────────────────────────────────
+
+   Der erste Entwurf war zu leise. Zurückhaltung ist kein Selbstzweck —
+   wer nichts zu verstecken hat, darf laut werden.
+
+   Die Regel bleibt trotzdem: laut über Maßstab, Fläche und Farbe, nicht
+   über Effekte. Nichts hier ist weichgezeichnet, nichts leuchtet, nichts
+   liegt über dem Text. Was hier passiert, ist groß — nicht diffus.
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* Vollflächige Blöcke. Randlos, gesättigt, ohne Verlauf. Ein Farbfeld,
+   das die ganze Breite nimmt, wirkt stärker als jeder Lichteffekt. */
+.slab{
+  padding-block: clamp(var(--s8), 10vw, var(--s10));
+  border-block: 1px solid transparent;
+}
+.slab--signal{
+  background: var(--signal); color: var(--on-signal);
+  --ink: var(--on-signal);
+  --ink-2: color-mix(in srgb, var(--on-signal) 78%, transparent);
+  --ink-3: color-mix(in srgb, var(--on-signal) 58%, transparent);
+  --line: color-mix(in srgb, var(--on-signal) 28%, transparent);
+  --line-2: color-mix(in srgb, var(--on-signal) 16%, transparent);
+}
+.slab--ink{
+  background: var(--ink); color: var(--paper);
+  --ink-2: color-mix(in srgb, var(--paper) 70%, transparent);
+  --ink-3: color-mix(in srgb, var(--paper) 48%, transparent);
+  --line: color-mix(in srgb, var(--paper) 24%, transparent);
+  --line-2: color-mix(in srgb, var(--paper) 12%, transparent);
+  --ink: var(--paper);
+}
+.slab--ember{
+  background: var(--ember); color: #fff;
+  --ink: #fff;
+  --ink-2: rgba(255,255,255,.8);
+  --ink-3: rgba(255,255,255,.6);
+  --line: rgba(255,255,255,.3);
+}
+
+/* Kennzahlen in Plakatgröße. Die kleine Variante (.num) bleibt für
+   Fließsatz; das hier ist für Blöcke, die von allein tragen sollen. */
+/* Die Größe ist an der breitesten Zahl bemessen, die vorkommt („100 %",
+   vier Zeichen). Größer gesetzt lief sie in die Nachbarspalte und
+   verdeckte deren Wert — bei einem Kennzahlenblock ist das kein
+   Schönheitsfehler, sondern eine falsche Angabe. */
+.mega{
+  display:block; min-width:0;
+  font-family:'JetBrains Mono', monospace;
+  font-size: clamp(2.75rem, 1rem + 5vw, 6rem);
+  font-weight: 500; line-height: .85; letter-spacing: -.055em;
+  font-variant-numeric: tabular-nums;
+}
+.mega + .mega-label{
+  display:block; margin-top: var(--s4);
+  padding-top: var(--s3); border-top:1px solid var(--line);
+  font-family:'JetBrains Mono', monospace;
+  font-size:.6875rem; letter-spacing:.16em; text-transform:uppercase;
+  color: var(--ink-3);
+}
+
+/* Fette Regel — das laute Gegenstück zur Haarlinie. */
+.rule-fat{ height:3px; background: currentColor; border:0 }
+
+/* Laufband. Ein einziger, langsamer Durchlauf pro Zyklus, Transform-only.
+   Der Inhalt steht doppelt im Markup, damit die Kante nie sichtbar wird;
+   die Kopie ist aria-hidden, sonst liest ein Screenreader alles zweimal. */
+.marquee{
+  display:flex; overflow:hidden;
+  border-block:1px solid var(--line);
+  padding-block: var(--s4);
+  user-select:none;
+}
+.marquee__track{
+  display:flex; flex:none; gap: var(--s6);
+  padding-right: var(--s6);
+  animation: nf-marquee 38s linear infinite;
+}
+.marquee:hover .marquee__track{ animation-play-state: paused }
+.marquee__track > span{
+  font-family:'JetBrains Mono', monospace;
+  font-size: clamp(.8rem, .7rem + .5vw, 1rem);
+  letter-spacing:.14em; text-transform:uppercase;
+  white-space:nowrap; color: var(--ink-2);
+}
+.marquee__track > span::after{ content:'·'; margin-left: var(--s6); color: var(--signal) }
+@keyframes nf-marquee{ to{ transform: translate3d(-100%, 0, 0) } }
+@media (prefers-reduced-motion: reduce){
+  .marquee{ overflow-x:auto }
+  .marquee__track{ animation:none }
+}
+
+/* Wischblende. Der Text steht von Anfang an im Dokument und wird nur
+   freigelegt — kein Einblenden, kein Schweben. Das liest sich härter und
+   ist billiger als jede Opazitätsanimation über großen Flächen. */
+[data-motion] .wipe{
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 820ms var(--nf-out);
+  transition-delay: var(--d, 0ms);
+}
+[data-motion] .wipe.in{ clip-path: inset(0 0 0 0) }
+
+/* Zeilen, die von unten hochfahren. Voller Zeilenversatz statt 14px —
+   bei Displaygrößen ist ein kleiner Versatz nicht zu sehen. */
+.rise{ display:block; overflow:hidden }
+.rise > span{ display:block }
+[data-motion] .rise > span{
+  transform: translate3d(0, 105%, 0);
+  transition: transform 880ms var(--nf-out);
+  transition-delay: var(--d, 0ms);
+}
+/* Nachfahre, nicht Kind: die Zeilen stehen im h1, das `.in` steht am
+   Abschnitt darüber. Mit `>` blieb der Hero leer. */
+[data-motion] .in .rise > span,
+[data-motion] .rise.in > span{ transform:none }
+
+@media (prefers-reduced-motion: reduce){
+  [data-motion] .wipe{ clip-path:none !important; transition:none !important }
+  [data-motion] .rise > span{ transform:none !important; transition:none !important }
+}

@@ -49,15 +49,14 @@
    ───────────────────────────────────────────────────────────────────────── */
 
 /* Kopf: die Zahl ist das Argument, nicht der Superlativ. */
-.sc-hero{ padding-block: clamp(var(--s8), 11vw, var(--s10)) var(--s7) }
-.sc-hero h1{ margin: var(--s5) 0 var(--s5); max-width: 16ch }
-.sc-hero .lead{ max-width: 54ch }
+.sc-hero{ padding-block: clamp(var(--s7), 9vw, var(--s9)) var(--s8) }
+.sc-hero h1{ margin: var(--s6) 0 var(--s7) }
+.sc-hero h1 em{ font-style:normal; color: var(--signal) }
+.sc-hero .lead{ max-width: 54ch; padding-top: var(--s5); border-top:3px solid var(--ink) }
 
 .sc-facts{
-  display:flex; flex-wrap:wrap; gap: var(--s7);
-  margin-top: clamp(var(--s6), 5vw, var(--s8));
-  padding-top: var(--s5);
-  border-top:1px solid var(--line);
+  display:grid; gap: var(--s7) var(--s5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
 }
 
 /* ── Register ──────────────────────────────────────────────────────────
@@ -68,7 +67,7 @@
    ───────────────────────────────────────────────────────────────────────── */
 .register{ display:grid; gap: var(--s6); align-items:start }
 @media (min-width: 1000px){
-  .register{ grid-template-columns: minmax(0, 1fr) minmax(0, 30rem); gap: var(--s8) }
+  .register{ grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); gap: var(--s7) }
 }
 
 .reg-list{ list-style:none; border-top:1px solid var(--line) }
@@ -103,9 +102,14 @@
 .reg-row:hover .reg-n, .reg-row.lit .reg-n{ color: var(--signal) }
 .reg-name{
   font-family:'Cormorant Garamond', serif; font-weight:300;
-  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem); line-height:1.05;
-  letter-spacing:-.015em; flex:1 1 auto; min-width:0;
+  /* Obergrenze an der längsten Zeile bemessen: „OMEGA Phone · Produkt"
+     soll noch in eine Zeile passen, sonst zerfällt das Verzeichnis in
+     unterschiedlich hohe Blöcke. */
+  font-size: clamp(1.9rem, 1rem + 2.6vw, 3.4rem); line-height:.98;
+  letter-spacing:-.03em; flex:1 1 auto; min-width:0;
+  transition: color var(--nf-response) linear;
 }
+.reg-row:hover .reg-name, .reg-row.lit .reg-name{ color: var(--signal) }
 .reg-go{
   font-family:'JetBrains Mono', monospace; font-size:.6875rem;
   letter-spacing:.12em; text-transform:uppercase; color: var(--ink-3);
@@ -294,28 +298,26 @@
 <!-- ═══ Kopf ═══════════════════════════════════════════════════════════ -->
 <header class="sc-hero wrap">
   <span class="eyebrow eyebrow--signal reveal"><span class="dot"></span>Werkverzeichnis</span>
-  <h1 class="reveal" style="--d:60ms">Fünf Systeme.<br>Alle laufen.</h1>
-  <p class="lead reveal" style="--d:120ms">
+  <h1 class="reveal" style="--d:60ms">
+    <span class="rise"><span style="--d:60ms">Fünf Systeme.</span></span>
+    <span class="rise"><span style="--d:150ms"><em>Alle laufen.</em></span></span>
+  </h1>
+  <p class="lead reveal" style="--d:220ms">
     Kein Portfolio-Karussell und keine Fallstudien-Prosa. Fünf vollständige
     Eigenentwicklungen, jede ohne Anmeldung benutzbar — und zu jeder ein
     Bericht, der auch die Stellen benennt, an denen es schwierig wurde.
   </p>
+</header>
 
-  <div class="sc-facts reveal" data-stagger style="--d:180ms">
-    <div>
-      <span class="num" data-count="5">0</span>
-      <span class="num-label">laufende Systeme</span>
-    </div>
-    <div>
-      <span class="num" data-count="0" data-suffix="">0</span>
-      <span class="num-label">Anmeldungen nötig</span>
-    </div>
-    <div>
-      <span class="num" data-count="100" data-suffix="&thinsp;%">0</span>
-      <span class="num-label">selbst gebaut</span>
+<section class="slab slab--ink" aria-label="Kennzahlen">
+  <div class="wrap">
+    <div class="sc-facts reveal" data-stagger>
+      <div><span class="mega" data-count="5">0</span><span class="mega-label">laufende Systeme</span></div>
+      <div><span class="mega" data-count="0">0</span><span class="mega-label">Anmeldungen nötig</span></div>
+      <div><span class="mega" data-count="100" data-suffix="%">0</span><span class="mega-label">selbst gebaut</span></div>
     </div>
   </div>
-</header>
+</section>
 
 <!-- ═══ Register ═══════════════════════════════════════════════════════
      Die Liste ist die Navigation durch diese Seite. Jede Zeile springt zu
@@ -323,7 +325,7 @@
      ════════════════════════════════════════════════════════════════════ -->
 <section class="band--tight wrap" aria-labelledby="register-titel">
   <div class="head reveal">
-    <h2 id="register-titel">Das Verzeichnis</h2>
+    <h2 id="register-titel" class="wipe">Das Verzeichnis</h2>
     <p class="lead">Fünf Zeilen, fünf Berichte. Zeigen Sie auf eine Zeile — die Tafel folgt.</p>
   </div>
 
