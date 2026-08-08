@@ -19,6 +19,7 @@ assets/fonts/           selbst gehostete Schriften (Anton, Outfit, JetBrains Mon
 assets/img/             Vorschaubilder der Showcase-Projekte (WebP)
 favicon/                Favicons und PWA-Icons
 nf-motion.js            Rahmen, Reveals, Zähler, Licht, Befehlsleiste, Register
+nf-messwerk.js          Messwerk (Selbstvermessung) + Rasterwerk (Layer, G)
 service-worker.js       network-first für Seiten, SWR für Assets
 _headers, wrangler.toml Cloudflare-Pages-Konfiguration
 docs/NOBLEFRAME-2032.md Design-Dossier: Analyse, Vision, Architektur
@@ -107,7 +108,35 @@ dem Inhalt.
 | `/`         | dasselbe, wenn der Fokus nicht im Feld steht   |
 | `↑` `↓`     | durch die Treffer                              |
 | `⏎`         | öffnen                                         |
-| `Esc`       | schließen (auch das Mobilmenü)                 |
+| `Esc`       | schließen (auch das Mobilmenü und der Layer)   |
+| `G`         | Konstruktionslayer: Raster, Ränder, Koordinate |
+
+### Die beiden Triebwerke
+
+`nf-messwerk.js` ist Instrumentierung, nicht Bedienung — deshalb eine
+eigene Datei. Wer sie weglässt, verliert nichts als die Messung.
+
+**Messwerk.** Die Seite vermisst sich selbst und schreibt das Ergebnis in
+ihr eigenes Schriftfeld: Anfragen, übertragene Bytes, größter Inhalt
+(LCP). Verfügbar sind außerdem `knoten`, `schriften`, `cls` und
+`bildrate`. Eine Zelle fragt über `data-mess="bytes"` danach; bis ein Wert
+vorliegt, steht dort ein Gedankenstrich und keine Platzhalterzahl.
+
+Damit wird „keine Aussage ohne Deckung" wörtlich: diese Zahlen tippt
+niemand ein. Sie werden bei jedem Aufruf gemessen, auf diesem Gerät. Wird
+eine davon schlechter, sieht der Besucher es vor uns. `transferSize` ist
+beim zweiten Besuch 0 — dann steht dort „aus Cache", was die Wahrheit
+über diesen Aufruf ist.
+
+**Rasterwerk.** Taste `G` blendet den Konstruktionslayer ein: das
+Zwölf-Spalten-Raster, die Ränder und ein Fadenkreuz mit Koordinate. Er
+liest `--bahn` und `--rand` aus dem System aus, statt sie nachzubauen —
+verschiebt jemand die Bahn, verschiebt sich das Raster mit. Ein Raster,
+das die eigene Vorgabe nicht kennt, wäre eine hübsche Lüge.
+
+Der Layer ist die einzige Schicht auf dieser Seite, die über dem Inhalt
+liegt. Er darf es, weil er bewusst zugeschaltet wird, Konstruktion statt
+Stimmung zeigt und mit derselben Taste wieder weg ist.
 
 Das Verzeichnis der Befehlsleiste steht als `INDEX` in `nf-motion.js` —
 bewusst dort und nicht im HTML: es ist auf jeder Seite identisch, und

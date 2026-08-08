@@ -1222,3 +1222,89 @@ textarea{ resize:vertical; min-height:8rem }
   }
 }
 @media (max-width: 1199px){ .blatt-rand{ display:none } }
+
+
+/* ─── 11. Messwerk und Rasterwerk ──────────────────────────────────────
+
+   Die beiden Triebwerke aus nf-messwerk.js. Das eine schreibt gemessene
+   Werte in das Schriftfeld, das andere blendet den Konstruktionslayer
+   ein.
+
+   Der Layer ist der einzige Ort auf dieser Seite, an dem etwas über dem
+   Inhalt liegt. Er ist auch der einzige, der es darf: er wird bewusst
+   zugeschaltet, er zeigt Konstruktion statt Stimmung, und er ist mit
+   derselben Taste wieder weg.
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* Gemessene Werte. Bis das Skript liefert, steht ein Strich da — keine
+   Platzhalterzahl, die aussähe wie eine Messung. */
+[data-mess]{ font-variant-numeric: tabular-nums }
+
+.nf-raster{
+  position: fixed; inset: 0; z-index: 1200;
+  pointer-events: none;
+  opacity: 0; visibility: hidden;
+  transition: opacity 160ms linear, visibility 0s linear 160ms;
+}
+.nf-raster.on{ opacity: 1; visibility: visible; transition-delay: 0s }
+
+/* Die Bahn übernimmt Breite und Rand aus dem System — sie zeigt das
+   tatsächliche Raster, nicht ein nachgebautes. */
+.nf-raster__bahn{
+  position: absolute; inset: 0;
+  width: 100%; max-width: var(--bahn);
+  margin-inline: auto; padding-inline: var(--rand);
+  display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px;
+}
+.nf-raster__bahn i{ background: var(--signal); opacity: .06 }
+.nf-raster__bahn::before,
+.nf-raster__bahn::after{
+  content: ''; position: absolute; top: 0; bottom: 0;
+  width: 1px; background: var(--signal); opacity: .3;
+}
+.nf-raster__bahn::before{ left: var(--rand) }
+.nf-raster__bahn::after{ right: var(--rand) }
+
+/* Fadenkreuz mit Koordinate — folgt dem Zeiger über translate3d, damit
+   kein Layout neu gerechnet wird. */
+.nf-raster__kreuz{ position: absolute; top: 0; left: 0; will-change: transform }
+.nf-raster__x, .nf-raster__y{ position: absolute; background: var(--signal); opacity: .55 }
+.nf-raster__x{ left: -50vw; width: 100vw; height: 1px }
+.nf-raster__y{ top: -50vh; height: 100vh; width: 1px }
+.nf-raster__koord{
+  position: absolute; left: 10px; top: 10px;
+  padding: .25rem .45rem;
+  background: var(--signal); color: var(--on-signal);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .625rem; letter-spacing: .1em; white-space: nowrap;
+}
+
+.nf-raster__fahne{
+  position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%);
+  padding: .4rem .8rem;
+  background: var(--ink); color: var(--paper);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .625rem; letter-spacing: .14em; text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Ohne Zeigegerät gibt es kein Fadenkreuz zu führen; das Raster allein
+   bleibt sinnvoll. */
+@media (pointer: coarse){ .nf-raster__kreuz{ display: none } }
+
+@media (prefers-reduced-motion: reduce){
+  .nf-raster{ transition: none }
+}
+
+/* Der Schalter für den Konstruktionslayer. Er sieht aus wie Text, weil er
+   in der Fußzeile in einem Satz steht — ein Knopf mit Rahmen wäre dort
+   ein Fremdkörper. Die Tastenbelegung steht daneben, weil sie der
+   eigentliche Weg ist. */
+.raster-btn{
+  background:none; border:0; padding:0; cursor:pointer;
+  font: inherit; color: var(--ink-3);
+  text-decoration: underline; text-decoration-style: dotted;
+  text-underline-offset: .2em;
+}
+.raster-btn:hover{ color: var(--signal) }
+.raster-btn[aria-pressed="true"]{ color: var(--signal) }

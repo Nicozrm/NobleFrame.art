@@ -334,9 +334,10 @@
        die fünf Systeme sind verlinkt, die Ladeliste ist im Netzwerk-Tab
        nachzuzählen. -->
   <p class="note" style="margin-top:var(--s7)">
-    Anm.: Diese Seite lädt drei Stylesheets, ein Skript und drei Schriften.
-    Kein Tracker, kein Framework, kein Cookie-Banner. Nachzählbar im
-    Netzwerk-Tab.
+    Anm.: Diese Seite lädt drei Stylesheets, zwei Skripte und drei
+    Schriften. Kein Tracker, kein Framework, kein Cookie-Banner — die
+    Zahlen im Schriftfeld unten misst die Seite bei jedem Aufruf selbst.
+    Taste <b>G</b> blendet den Konstruktionslayer ein.
   </p>
 </header>
 
@@ -670,9 +671,9 @@
       <div class="sf-zelle"><span class="sf-k">Maßstab</span><span class="sf-v">1:1</span></div>
       <div class="sf-zelle"><span class="sf-k">Stand</span><span class="sf-v">08.2026</span></div>
       <div class="sf-zelle"><span class="sf-k">Ort</span><span class="sf-v">Steinfurt, DE</span></div>
-      <div class="sf-zelle"><span class="sf-k">Aufbau</span><span class="sf-v">statisch, buildfrei</span></div>
-      <div class="sf-zelle"><span class="sf-k">Fremdcode</span><span class="sf-v">keiner</span></div>
-      <div class="sf-zelle"><span class="sf-k">Gezeichnet</span><span class="sf-v">im Haus</span></div>
+      <div class="sf-zelle"><span class="sf-k">Anfragen</span><span class="sf-v" data-mess="anfragen">–</span></div>
+      <div class="sf-zelle"><span class="sf-k">Übertragen</span><span class="sf-v" data-mess="bytes">–</span></div>
+      <div class="sf-zelle"><span class="sf-k">Größter Inhalt</span><span class="sf-v" data-mess="lcp">–</span></div>
     </div>
 
     <div class="footer-bottom">
@@ -687,5 +688,6 @@
 </footer>
 
 <script defer src="nf-motion.js"></script>
+<script defer src="nf-messwerk.js"></script>
 </body>
 </html>
