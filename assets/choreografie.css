@@ -1,0 +1,363 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   NobleFrame — Choreografie
+
+   Die Bewegungsschicht, die aus einer Seite eine Strecke macht: gepinnte
+   Horizontalfahrt, Wort-Scrub, geschwindigkeitsreaktives Laufband,
+   Rollentext, Sektionsmarken, Bandzeilen, Korn.
+
+   Zwei Regeln, die hier ueberall gelten:
+
+   1. Ohne JavaScript ist jede Sektion vollstaendig lesbar. Alles, was die
+      Choreografie versteckt, versteckt sie erst, nachdem sie sich als
+      lauffaehig erwiesen hat (html.nf-choreo). Ein Ausfall der Schicht ist
+      damit kein Ausfall der Seite.
+   2. Dauern und Kurve kommen aus motion.css. Hier entsteht keine dritte.
+
+   Bei prefers-reduced-motion setzt die Engine html.nf-statisch: die
+   Horizontalfahrt wird zur Liste, der Scrub ist voll ausgeleuchtet, das
+   Laufband steht. Nichts davon ist ein Sonderfall im Layout — es ist
+   dasselbe Markup ohne Transport.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  --nf-haarlinie: rgba(201, 169, 98, .22);
+  --nf-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --nf-roll-ease: cubic-bezier(.16, .03, .08, 1.55);
+}
+
+/* ═══ Sektionsmarke ══════════════════════════════════════════════════════
+   Der instrumentierte Rand: links die Koordinate, rechts der Name. Die
+   Haarlinie zieht sich von links auf, wenn die Sektion in den Blick kommt —
+   ein Strich, kein Effekt. */
+.nf-marke{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto clamp(32px, 5vw, 54px);
+  padding-bottom: 14px;
+  position: relative;
+  font-family: var(--nf-mono);
+  font-size: .68rem;
+  font-weight: 400;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 250, .42);
+}
+.nf-marke::after{
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--nf-haarlinie);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .8s var(--nf-ease);
+}
+.nf-marke.in::after{ transform: scaleX(1); }
+.nf-marke > span{
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--nf-transport) var(--nf-ease),
+              transform var(--nf-transport) var(--nf-ease);
+}
+.nf-marke.in > span{ opacity: 1; transform: none; }
+.nf-marke.in > span + span{ transition-delay: .1s; }
+.nf-marke b{ color: var(--gold); font-weight: 400; }
+@media(max-width: 640px){
+  .nf-marke{ font-size: .62rem; letter-spacing: .1em; }
+  .nf-marke > span + span{ display: none; }
+}
+
+/* ═══ Maskierte Zeile ════════════════════════════════════════════════════
+   Ueberschriften steigen aus ihrer eigenen Kante auf statt einzublenden.
+   Das Padding faengt Unterlaengen ab, die der Maskenrand sonst abschneidet. */
+.nf-maske{
+  display: block;
+  overflow: hidden;
+  padding-bottom: .14em;
+  margin-bottom: -.14em;
+}
+.nf-maske > .nf-maske-i{
+  display: block;
+  transform: translateY(110%);
+  transition: transform .9s var(--nf-ease);
+}
+.nf-maske.in > .nf-maske-i{ transform: none; }
+html:not(.nf-choreo) .nf-maske > .nf-maske-i{ transform: none; }
+
+/* ═══ Wort-Scrub ═════════════════════════════════════════════════════════
+   Ein Satz, der sich beim Lesen aufhellt: jedes Wort haengt an der
+   Scrollposition seines Blocks. Die Ausgangshelligkeit setzt erst die
+   Engine — ohne sie steht der Satz voll da. */
+html.nf-choreo .nf-scrub .nf-wort{
+  opacity: .16;
+  transition: opacity .18s linear, color .4s var(--nf-ease);
+}
+html.nf-choreo .nf-scrub .nf-wort.nf-schluessel.hell{ color: var(--gold-light); }
+html.nf-statisch .nf-scrub .nf-wort{ opacity: 1 !important; }
+
+/* ═══ Gepinnte Horizontalfahrt ═══════════════════════════════════════════
+   Die Sektion wird hoch, die Buehne bleibt stehen, die Bahn faehrt seitlich
+   durch — 1:1 am Scroll, ohne Feder. Wer scrollt, schiebt selbst.
+
+   Unterhalb von 1025px und bei reduzierter Bewegung gibt es keine Fahrt:
+   dieselben Karten, untereinander. */
+.nf-pin-stage{ position: relative; }
+
+@media(min-width: 1025px){
+  html.nf-choreo:not(.nf-statisch) .nf-pin{ position: relative; }
+  html.nf-choreo:not(.nf-statisch) .nf-pin-stage{
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+  html.nf-choreo:not(.nf-statisch) .nf-bahn{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    align-self: flex-start;   /* sonst zieht die Spalte die Bahn auf Viewportbreite */
+    flex: 0 0 auto;
+    gap: 36px;
+    padding: 0 clamp(24px, 5vw, 72px);
+    will-change: transform;
+  }
+  /* Feste Kartenhoehe, und das Bild nimmt, was der Text uebrig laesst.
+     Umgekehrt — Bild nach Seitenverhaeltnis, Karte nach Inhalt — waere die
+     Karte mal hoeher als die Buehne und der Text unten abgeschnitten. */
+  html.nf-choreo:not(.nf-statisch) .nf-bahn > .live-card{
+    flex: 0 0 min(66vw, 980px);
+    height: 72dvh;
+    grid-column: auto;
+  }
+  html.nf-choreo:not(.nf-statisch) .nf-bahn > .live-card .live-shot{
+    flex: 1 1 auto;
+    min-height: 120px;
+    aspect-ratio: auto;
+  }
+  html.nf-choreo:not(.nf-statisch) .nf-bahn > .live-card .live-body{
+    flex: 0 0 auto;
+  }
+  /* Das Bild faehrt gegen die Bahn: die Karte wird zum Fenster, nicht zum
+     Aufkleber. Der Versatz kommt aus der Engine (--nf-gegen). */
+  html.nf-choreo:not(.nf-statisch) .nf-bahn .live-shot img{
+    transform: translateX(var(--nf-gegen, 0));
+    transform-origin: center;
+    scale: 1.12;
+  }
+  html.nf-choreo:not(.nf-statisch) .nf-bahn .live-card:first-child .live-shot{
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Der Endstein der Bahn: keine sechste Arbeit, sondern der Ausgang. */
+.nf-endkarte{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px;
+  background: #080708;
+  border: 1px solid var(--nf-haarlinie);
+  text-decoration: none;
+  transition: border-color var(--nf-transport) var(--nf-ease);
+}
+.nf-endkarte:hover, .nf-endkarte:focus-visible{ border-color: var(--gold); }
+.nf-endkarte-titel{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 2.3vw, 2.1rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--gold);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.nf-endkarte-meta{
+  font-family: var(--nf-mono);
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 250, .42);
+}
+@media(min-width: 1025px){
+  html.nf-choreo:not(.nf-statisch) .nf-bahn > .nf-endkarte{
+    flex: 0 0 min(34vw, 460px);
+    height: 72dvh;
+  }
+}
+@media(max-width: 1024px){
+  .nf-endkarte{ align-items: flex-start; }
+}
+
+/* Der Fahrtstand: wie weit die Bahn ist, in Ziffern statt in einem Balken. */
+.nf-bahn-kopf{
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 0 clamp(24px, 5vw, 72px) 22px;
+  font-family: var(--nf-mono);
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 250, .42);
+}
+.nf-bahn-kopf b{ color: var(--gold); font-weight: 400; }
+@media(max-width: 1024px){ .nf-bahn-kopf{ display: none; } }
+
+/* ═══ Bandzeilen ═════════════════════════════════════════════════════════
+   Vier Schritte, die nicht mehr als vier numerierte Kaertchen auftreten,
+   sondern als Zeilen eines Registers: Nummer, Titel, und der Text erst,
+   wenn jemand hinsieht. */
+.nf-baender{
+  max-width: 1200px;
+  margin: clamp(40px, 6vw, 64px) auto 0;
+}
+.nf-band{
+  display: grid;
+  grid-template-columns: 2.6rem minmax(0, 1fr) minmax(0, 22rem);
+  gap: clamp(14px, 3vw, 44px);
+  align-items: start;
+  padding: clamp(22px, 3vw, 32px) clamp(4px, 1.5vw, 20px);
+  border-top: 1px solid var(--nf-haarlinie);
+  transition: background-color var(--nf-transport) var(--nf-ease);
+}
+.nf-baender > .nf-band:last-child{ border-bottom: 1px solid var(--nf-haarlinie); }
+.nf-band:hover, .nf-band:focus-within{ background: rgba(201, 169, 98, .045); }
+.nf-band-nr{
+  font-family: var(--nf-mono);
+  font-size: .7rem;
+  letter-spacing: .1em;
+  color: var(--gold);
+  opacity: .7;
+  padding-top: .55em;
+}
+.nf-band-titel{
+  position: relative;
+  /* Rasterkinder werden blockifiziert — inline-block allein zoege den Titel
+     (und damit seine Unterlinie) auf die volle Spaltenbreite. */
+  justify-self: start;
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 3.4vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.12;
+  color: var(--white);
+}
+.nf-band-titel::after{
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -8px;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--nf-transport) var(--nf-ease);
+}
+.nf-band:hover .nf-band-titel::after,
+.nf-band:focus-within .nf-band-titel::after{ transform: scaleX(1); }
+/* 0fr → 1fr blendet eine unbekannte Hoehe auf, ohne sie zu messen. */
+.nf-band-text{
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows var(--nf-transport) var(--nf-ease),
+              opacity var(--nf-transport) var(--nf-ease);
+}
+.nf-band-text > p{
+  overflow: hidden;
+  margin: 0;
+  font-size: .88rem;
+  line-height: 1.75;
+  color: var(--white-muted);
+}
+.nf-band:hover .nf-band-text,
+.nf-band:focus-within .nf-band-text{ grid-template-rows: 1fr; opacity: 1; }
+/* Ohne Zeigegeraet gibt es kein Hover — dort steht der Text von Anfang an. */
+@media(hover: none), (max-width: 860px){
+  .nf-band-text{ grid-template-rows: 1fr; opacity: 1; }
+}
+@media(max-width: 860px){
+  .nf-band{ grid-template-columns: 2.2rem minmax(0, 1fr); }
+  .nf-band-text{ grid-column: 2; }
+}
+
+/* ═══ Rollentext ═════════════════════════════════════════════════════════
+   Die Beschriftung eines Links wird beim Hover nicht heller — sie wird
+   ausgetauscht. Zwei Zeilen in einer Maske, eine geht, eine kommt. */
+.nf-roll{
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.nf-roll > span{
+  display: block;
+  transition: transform var(--nf-transport) var(--nf-roll-ease);
+}
+.nf-roll > .nf-roll-b{
+  position: absolute;
+  left: 0; top: 0;
+  transform: translateY(110%);
+}
+:hover > .nf-roll > .nf-roll-a,
+:focus-visible > .nf-roll > .nf-roll-a{ transform: translateY(-110%); }
+:hover > .nf-roll > .nf-roll-b,
+:focus-visible > .nf-roll > .nf-roll-b{ transform: translateY(0); }
+
+/* ═══ Laufband ═══════════════════════════════════════════════════════════
+   Das Werkzeugband laeuft nicht mehr in eigener Zeit, sondern in deiner:
+   Grunddrift, dazu die Scrollgeschwindigkeit mit Vorzeichen. Steht der
+   Scroll, bleibt die Drift. */
+html.nf-choreo:not(.nf-statisch) .tech-marquee{
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+html.nf-choreo:not(.nf-statisch) .tech-track{
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: max-content;
+  will-change: transform;
+}
+
+/* ═══ Korn ═══════════════════════════════════════════════════════════════
+   Flaechen aus reinem Schwarz banden auf schlechten Panels. Ein Hauch
+   Rauschen darueber ist billiger als ein Verlauf und ehrlicher als eine
+   Textur. */
+.nf-korn{
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: .045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ═══ Fahrtanzeige ═══════════════════════════════════════════════════════
+   Der duenne Goldbalken oben sagt, dass es weitergeht. Diese Ziffer sagt,
+   wie weit. */
+.nf-readout{
+  position: fixed;
+  right: 18px;
+  bottom: 14px;
+  z-index: 1000;
+  pointer-events: none;
+  font-family: var(--nf-mono);
+  font-size: .64rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 250, .38);
+  font-variant-numeric: tabular-nums;
+  transition: opacity var(--nf-transport) var(--nf-ease);
+}
+.nf-readout b{ color: var(--gold); font-weight: 400; }
+@media(max-width: 767px){ .nf-readout{ display: none; } }
