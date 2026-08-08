@@ -25,6 +25,7 @@
     <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/motion.css">
+    <link rel="stylesheet" href="assets/choreografie.css">
     <script defer src="cinematic-engine.js"></script>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
@@ -334,7 +335,6 @@
             .hero-stat-number{font-size:1.4rem}
         }
             /* ============ ELEVATION ADD-ONS ============ */
-        .scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--gradient);z-index:1001;transition:width .1s linear}
         .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
         .reveal.in{opacity:1;transform:none}
         [data-stagger]>*{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
@@ -547,6 +547,7 @@
     <script defer src="vendor/lenis.min.js"></script>
     <script defer src="nf-tech.js"></script>
     <script defer src="nf-shader.js"></script>
+    <script defer src="nf-choreografie.js"></script>
 </head>
 <body>
     <a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
@@ -568,6 +569,8 @@
     </div>
 </div>
 
+<div class="nf-korn" aria-hidden="true"></div>
+
 <div class="bg-effects">
     <div class="ambient-glow glow-1"></div>
     <div class="ambient-glow glow-2"></div>
@@ -588,15 +591,15 @@
             <span class="logo-text">NobleFrame</span>
         </a>
         <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="leistungen.html">Leistungen</a></li>
-            <li><a href="referenzen.html">Referenzen</a></li>
-            <li><a href="showcase.html">Showcase</a></li>
-            <li><a href="tools.html">Tools</a></li>
-            <li><a href="about.html">Über Uns</a></li>
-            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="index.html" class="active" data-nf-roll>Home</a></li>
+            <li><a href="leistungen.html" data-nf-roll>Leistungen</a></li>
+            <li><a href="referenzen.html" data-nf-roll>Referenzen</a></li>
+            <li><a href="showcase.html" data-nf-roll>Showcase</a></li>
+            <li><a href="tools.html" data-nf-roll>Tools</a></li>
+            <li><a href="about.html" data-nf-roll>Über Uns</a></li>
+            <li><a href="kontakt.html" data-nf-roll>Kontakt</a></li>
         </ul>
-        <a href="kontakt.html" class="nav-cta">Projekt anfragen</a>
+        <a href="kontakt.html" class="nav-cta" data-nf-roll>Projekt anfragen</a>
         <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Menü">
             <span></span><span></span><span></span>
         </button>
@@ -710,6 +713,7 @@
 </section>
 
 <section class="intro-band">
+    <div class="nf-marke"><span>Sek. 01 — Wer wir sind</span><span>Premium Digital Atelier</span></div>
     <div class="intro-inner">
         <div class="intro-lead reveal-left">
             <div class="section-eyebrow">Wer wir sind</div>
@@ -729,13 +733,20 @@
 
 <!-- SHOWCASE -->
 <section class="live-work" id="arbeiten">
+    <div class="nf-marke"><span>Sek. 02 — Laufende Systeme</span><span>Steinfurt · 52.1500° N, 7.3333° O</span></div>
     <div class="section-header reveal">
         <div class="section-badge">Gebaut, nicht behauptet</div>
-        <h2 class="section-title"><span>Fünf laufende Systeme</span></h2>
+        <h2 class="section-title" data-nf-maske><span>Fünf laufende Systeme</span></h2>
         <p class="section-subtitle">Keine Fallstudien, keine Screenshots. Fünf vollständige Eigenentwicklungen – jede live, jede ohne Anmeldung benutzbar.</p>
     </div>
 
-    <div class="live-grid reveal" data-stagger>
+<div class="nf-pin" data-nf-pin>
+  <div class="nf-pin-stage">
+    <div class="nf-bahn-kopf" aria-hidden="true">
+        <span>Eigenentwicklungen 2024 — 2026</span>
+        <span><b data-nf-stand>01</b> / 06</span>
+    </div>
+    <div class="live-grid nf-bahn reveal" data-nf-bahn data-stagger>
         <a href="showcase/omega-atelier/" class="live-card">
             <div class="live-shot">
                 <img src="assets/img/omega-atelier-preview.webp" alt="OMEGA Atelier: Grundriss-Editor mit Echtzeit-3D-Vorschau" loading="lazy" decoding="async" width="1400" height="600">
@@ -805,17 +816,21 @@
                 <span class="live-go">Öffnen<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
             </div>
         </a>
+        <a href="showcase.html" class="nf-endkarte">
+            <span class="nf-endkarte-meta">Ende der Bahn</span>
+            <span class="nf-endkarte-titel">Alle Projekte im Detail&nbsp;↗</span>
+            <span class="nf-endkarte-meta">5 Systeme · jedes live · ohne Anmeldung</span>
+        </a>
     </div>
-
-    <div class="live-all reveal">
-        <a href="showcase.html" class="btn-secondary">Alle Projekte im Detail</a>
-    </div>
+  </div>
+</div>
 </section>
 
 <section class="services-preview">
+    <div class="nf-marke"><span>Sek. 03 — Leistungen</span><span>Vier Felder, ein Atelier</span></div>
     <div class="section-header reveal">
         <div class="section-badge">Was wir tun</div>
-        <h2 class="section-title"><span>Leistungen</span></h2>
+        <h2 class="section-title" data-nf-maske><span>Leistungen</span></h2>
         <p class="section-subtitle">Ganzheitliche digitale Lösungen für Unternehmen, die mehr wollen als nur eine Website.</p>
     </div>
     <div class="services-grid reveal" data-stagger>
@@ -861,28 +876,46 @@
 <section class="tech-strip">
     <div class="tech-strip-label">Unser Werkzeugkasten</div>
     <div class="tech-marquee">
-        <div class="tech-track"><span>React</span><span class="t-sep">·</span><span>TypeScript</span><span class="t-sep">·</span><span>GSAP</span><span class="t-sep">·</span><span>Tailwind CSS</span><span class="t-sep">·</span><span>Supabase</span><span class="t-sep">·</span><span>Stripe</span><span class="t-sep">·</span><span>Cloudflare</span><span class="t-sep">·</span><span>Node.js</span><span class="t-sep">·</span><span>Figma</span></div>
+        <div class="tech-track" data-nf-laufband><span>React</span><span class="t-sep">·</span><span>TypeScript</span><span class="t-sep">·</span><span>GSAP</span><span class="t-sep">·</span><span>Tailwind CSS</span><span class="t-sep">·</span><span>Supabase</span><span class="t-sep">·</span><span>Stripe</span><span class="t-sep">·</span><span>Cloudflare</span><span class="t-sep">·</span><span>Node.js</span><span class="t-sep">·</span><span>Figma</span></div>
     </div>
 </section>
 
 <section class="process">
+    <div class="nf-marke"><span>Sek. 04 — Vorgehen</span><span>Vier Zeilen, kein Diagramm</span></div>
     <div class="section-header reveal">
         <div class="section-badge">Wie wir arbeiten</div>
-        <h2 class="section-title">Unser <span>Vorgehen</span></h2>
+        <h2 class="section-title" data-nf-maske>Unser <span>Vorgehen</span></h2>
         <p class="section-subtitle">Ein klarer, transparenter Prozess – von der ersten Idee bis zum messbaren Ergebnis.</p>
     </div>
-    <div class="process-grid reveal" data-stagger>
-        <div class="process-step"><div class="ps-num">1</div><h3>Discovery</h3><p>Wir verstehen Ihr Geschäft, Ihre Ziele und Ihre Nutzer – bevor die erste Zeile Code entsteht.</p></div>
-        <div class="process-step"><div class="ps-num">2</div><h3>Konzept &amp; Design</h3><p>Strategie, Informationsarchitektur und ein maßgeschneidertes Design in „Brutale Eleganz".</p></div>
-        <div class="process-step"><div class="ps-num">3</div><h3>Umsetzung</h3><p>Sauberer, performanter Code – skalierbar, wartbar und bis ins Detail durchdacht.</p></div>
-        <div class="process-step"><div class="ps-num">4</div><h3>Launch &amp; Growth</h3><p>Go-live, Monitoring und kontinuierliche Optimierung für nachhaltiges Wachstum.</p></div>
+    <div class="nf-baender reveal">
+        <div class="nf-band" tabindex="0">
+            <span class="nf-band-nr">01</span>
+            <span class="nf-band-titel">Discovery</span>
+            <div class="nf-band-text"><p>Wir verstehen Ihr Geschäft, Ihre Ziele und Ihre Nutzer – bevor die erste Zeile Code entsteht.</p></div>
+        </div>
+        <div class="nf-band" tabindex="0">
+            <span class="nf-band-nr">02</span>
+            <span class="nf-band-titel">Konzept &amp; Design</span>
+            <div class="nf-band-text"><p>Strategie, Informationsarchitektur und ein maßgeschneidertes Design in „Brutale Eleganz".</p></div>
+        </div>
+        <div class="nf-band" tabindex="0">
+            <span class="nf-band-nr">03</span>
+            <span class="nf-band-titel">Umsetzung</span>
+            <div class="nf-band-text"><p>Sauberer, performanter Code – skalierbar, wartbar und bis ins Detail durchdacht.</p></div>
+        </div>
+        <div class="nf-band" tabindex="0">
+            <span class="nf-band-nr">04</span>
+            <span class="nf-band-titel">Launch &amp; Growth</span>
+            <div class="nf-band-text"><p>Go-live, Monitoring und kontinuierliche Optimierung für nachhaltiges Wachstum.</p></div>
+        </div>
     </div>
 </section>
 
 <section class="referenzen-teaser">
+    <div class="nf-marke"><span>Sek. 05 — Erfolgsgeschichten</span><span>Auszug aus dem Portfolio</span></div>
     <div class="section-header reveal">
         <div class="section-badge">Ausgewählte Arbeiten</div>
-        <h2 class="section-title"><span>Erfolgsgeschichten</span></h2>
+        <h2 class="section-title" data-nf-maske><span>Erfolgsgeschichten</span></h2>
         <p class="section-subtitle">Ergebnisse, die für sich sprechen – ein Auszug aus unserem Portfolio.</p>
     </div>
     <div class="work-grid reveal" data-stagger>
@@ -892,7 +925,7 @@
                 <span class="work-cat">E-Commerce · Luxury</span>
                 <h3>LUNARA</h3>
                 <p>Luxury-Lingerie-Plattform mit mondthematischer Designsprache, Stripe-Checkout und 4-Tier-Rewards.</p>
-                <div class="work-result"><div><b>21</b><span>Seiten</span></div><div><b>Headless</b><span>Architektur</span></div></div>
+                <div class="work-result"><div><b data-nf-zaehl>21</b><span>Seiten</span></div><div><b>Headless</b><span>Architektur</span></div></div>
             </div>
         </a>
         <a href="referenzen.html" class="work-card">
@@ -910,13 +943,13 @@
                 <span class="work-cat">Branding · Web</span>
                 <h3>Digital Atelier</h3>
                 <p>Das digitale Schaufenster von NobleFrame – kompromisslose Umsetzung der „Brutale Eleganz".</p>
-                <div class="work-result"><div><b>18</b><span>Seiten</span></div><div><b>PWA</b><span>Ready</span></div></div>
+                <div class="work-result"><div><b data-nf-zaehl>18</b><span>Seiten</span></div><div><b>PWA</b><span>Ready</span></div></div>
             </div>
         </a>
     </div>
     <div class="pull-quote reveal">
         <div class="pq-mark">&ldquo;</div>
-        <blockquote>Wir bauen keine Websites. Wir bauen den digitalen Anspruch einer Marke – kompromisslos in Design, Code und Wirkung.</blockquote>
+        <blockquote data-nf-scrub data-nf-schluessel="anspruch,kompromisslos,wirkung">Wir bauen keine Websites. Wir bauen den digitalen Anspruch einer Marke – kompromisslos in Design, Code und Wirkung.</blockquote>
         <cite>NobleFrame</cite>
     </div>
     <div style="text-align:center;margin-top:54px">
@@ -925,9 +958,10 @@
 </section>
 
 <section class="why-section">
+    <div class="nf-marke"><span>Sek. 06 — Der Unterschied</span><span>Vier Überzeugungen</span></div>
     <div class="section-header reveal">
         <div class="section-badge">Warum NobleFrame</div>
-        <h2 class="section-title">Der <span>Unterschied</span> liegt im Anspruch</h2>
+        <h2 class="section-title" data-nf-maske>Der <span>Unterschied</span> liegt im Anspruch</h2>
         <p class="section-subtitle">Vier Überzeugungen, die in jedem Projekt sichtbar werden.</p>
     </div>
     <div class="why-grid reveal" data-stagger>
@@ -1087,9 +1121,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 (function(){
   const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // scroll progress bar
-  const sp=document.createElement('div'); sp.className='scroll-progress'; document.body.appendChild(sp);
-  const onScroll=()=>{const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;sp.style.width=(max>0?(h.scrollTop/max*100):0)+'%';};
-  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  /* Der Fortschrittsbalken kommt aus nf-interactions.js (site-weit). Hier
+     lag ein zweiter, deckungsgleich darueber — ein Balken, zweimal gezeichnet. */
   // reveal on scroll
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.reveal,.reveal-left,.reveal-right,[data-stagger]').forEach(el=>{
