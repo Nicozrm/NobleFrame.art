@@ -70,6 +70,31 @@
     eintritt.observe(el);
   });
 
+  /* ═══ 1b. Sucherrahmen ════════════════════════════════════════════════
+     Vier Haarlinien-Ecken, die nur ueber den dunklen Abschnitten stehen —
+     der Kinosequenz und dem Feld. Dort ist der Blick ein Sucher. Auf
+     Cream waere derselbe Rahmen eine Verzierung, deshalb geht er dort aus.
+
+     Ein eigener Beobachter, weil dieser mehrfach schaltet: der obige
+     meldet jedes Ziel genau einmal und gibt es dann frei. */
+  const rahmenEl = document.getElementById('nfRahmen');
+  const dunkel = alle('.cine-wrap, .nf-feld');
+  if (rahmenEl && dunkel.length){
+    const drin = new Set();
+    const wache = new IntersectionObserver((eintraege) => {
+      eintraege.forEach((e) => {
+        if (e.isIntersecting) drin.add(e.target); else drin.delete(e.target);
+      });
+      const imDunkeln = drin.size > 0;
+      rahmenEl.classList.toggle('an', imDunkeln);
+      /* Das Feld bringt eine eigene Anzeige mit (die Uniform-Werte). Die
+         Fahrtanzeige stuende an derselben Ecke und saehe aus wie ein
+         zweiter Zaehler ueber demselben Wert. Sie tritt zurueck. */
+      wurzel.classList.toggle('nf-dunkel', imDunkeln);
+    }, { threshold: .35 });
+    dunkel.forEach((el) => wache.observe(el));
+  }
+
   /* ═══ 2. Wort-Scrub ═══════════════════════════════════════════════════
      Der Satz wird in Woerter zerlegt. Jedes Wort bekommt ein eigenes
      Fenster auf der Scrollstrecke des Blocks, leicht gegeneinander
@@ -165,6 +190,38 @@
       b.oben = b.huelle.getBoundingClientRect().top + scrollY;
     });
   };
+
+  /* ═══ 3b. Tiefe ═══════════════════════════════════════════════════════
+     Bis hierher hatte die Seite zwei Stellen, an denen Scrollen etwas
+     bewegt — die Kinosequenz und die Bahn. Dazwischen blendete Inhalt
+     einmal ein und stand dann still, waehrend man daran vorbeizog. Das
+     ist der Unterschied zwischen einer Seite, die reagiert, und einer,
+     die nur Zustaende hat.
+
+     Diese Schicht koppelt Elemente durchgehend an den Scroll. Zwei
+     Angaben genuegen:
+
+       data-nf-tiefe="0.14"   senkrechter Versatz, Anteil der Elementhoehe
+       data-nf-zug="0.5"      waagerechter Versatz, Anteil der Breite
+
+     Das Vorzeichen ist die Tiefe: positiv zieht schneller als die Seite
+     (naeher), negativ langsamer (weiter weg). Dass beide Werte relativ
+     sind, ist wichtig — ein fester Pixelwert waere auf einem Telefon ein
+     Sprung und auf einem grossen Schirm unsichtbar.
+
+     Gemessen wird der Fortschritt eines Elements durch das Fenster:
+     0, wenn seine Oberkante gerade unten hereinkommt, 1, wenn seine
+     Unterkante oben verschwindet. Der Versatz ist darauf zentriert, damit
+     jedes Element auf halber Strecke exakt dort steht, wo es im Layout
+     steht — sonst verschoebe die Tiefe das Design statt es zu beleben. */
+  const tiefen = [];
+  alle('[data-nf-tiefe], [data-nf-zug]').forEach((el) => {
+    tiefen.push({
+      el,
+      y: parseFloat(el.dataset.nfTiefe) || 0,
+      x: parseFloat(el.dataset.nfZug) || 0
+    });
+  });
 
   /* ═══ 4. Laufband ═════════════════════════════════════════════════════
      Das Band braucht doppelten Inhalt, damit der Ruecksprung an der
@@ -307,6 +364,18 @@
         const soll = String(nr).padStart(2, '0');
         if (b.stand.textContent !== soll) b.stand.textContent = soll;
       }
+    }
+
+    // Tiefe: durchgehende Kopplung an den Scroll.
+    for (let i = 0; i < tiefen.length; i++) {
+      const t = tiefen[i];
+      const r = t.el.getBoundingClientRect();
+      if (r.bottom < -120 || r.top > hoehe + 120) continue;
+      /* -0.5 .. +0.5 ueber die gesamte Durchfahrt, 0 in der Mitte. */
+      const p = ((hoehe - r.top) / (hoehe + r.height)) - 0.5;
+      const dy = t.y ? (-p * t.y * r.height).toFixed(2) : 0;
+      const dx = t.x ? (-p * t.x * r.width).toFixed(2) : 0;
+      t.el.style.transform = 'translate3d(' + dx + 'px,' + dy + 'px,0)';
     }
 
     // Laufband: Grunddrift plus Scrollgeschwindigkeit mit Vorzeichen.

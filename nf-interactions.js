@@ -30,8 +30,8 @@
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = matchMedia('(pointer: fine)').matches;
-  const GOLD = '201,169,98';
-  const GOLD_HI = '236,220,178';
+  const GOLD = '244,88,61';
+  const GOLD_HI = '196,63,38';
 
   /* ── Styles (einmalig injiziert, keine Selektoren auf Seiten-DOM) ───── */
   const css = document.createElement('style');

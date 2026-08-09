@@ -1,0 +1,253 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   NobleFrame — Palette
+
+   Cream, Ink, Coral. Warme Baender als Register. Flaechen sind flach.
+
+   Diese Datei loest das Lichtsystem ab, das hier vorher stand. Das war
+   kein Fehler, den man wegräumt, sondern eine andere Antwort auf dieselbe
+   Frage: Gold ist eine Lichtfarbe, also wurde es zu Licht gemacht. Coral
+   ist keine. Es ist ein Pigment — ein flaches, sattes Feld, das neben
+   Cream steht und nicht auf ihm leuchtet. Ein Verlauf darauf waere genau
+   der Glanz, den diese Sprache nicht hat.
+
+   Deshalb gilt hier: flache Farbfelder, ein Korn darueber, sonst nichts.
+   Keine Verlaeufe auf Flaechen, keine gestapelten Schatten, kein Glas.
+
+   Die Datei laedt nach dem Seiten-Stylesheet und korrigiert das, was eine
+   reine Wertersetzung nicht treffen kann: Stellen, an denen die alte
+   Gestaltung von einem dunklen Grund ausging — Glut, Schleier, Blendmodi,
+   Kontraste auf Bildern.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* ── Grund ──────────────────────────────────────────────────────────── */
+  --cream:      #ECE0C6;   /* Grundflaeche */
+  --cream-auf:  #F3EAD8;   /* angehobene Flaeche: Karten */
+  --cream-ab:   #E2D3B4;   /* abgesenkte Flaeche: Felder, Eingaben */
+  --ink:        #1D1D1D;   /* Schrift */
+  --void:       #0A0A0B;   /* der eine dunkle Abschnitt: die Kinosequenz */
+
+  /* ── Akzent ─────────────────────────────────────────────────────────── */
+  --coral:      #F4583D;
+  --coral-tief: #C43F26;
+
+  /* ── Warme Baender ──────────────────────────────────────────────────── */
+  --band-gold:  #E99C1E;
+  --band-terra: #E1654F;
+  --band-amber: #F5CE84;
+
+  /* ── Struktur ───────────────────────────────────────────────────────── */
+  --haar:       rgba(29, 29, 29, .16);
+  --haar-stark: rgba(29, 29, 29, .32);
+  --gedaempft:  rgba(29, 29, 29, .62);
+  --leise:      rgba(29, 29, 29, .45);
+
+  /* Die alten Namen zeigen auf die neuen Rollen, damit die rund tausend
+     Fundstellen, die aus ihnen lesen, weiter stimmen. */
+  --gold:       var(--coral);
+  --gold-light: var(--coral);
+  --gold-dark:  var(--coral-tief);
+  --black:      var(--cream);
+  --white:      var(--ink);
+  --white-muted: var(--gedaempft);
+  --white-subtle: var(--leise);
+
+  /* Der 135°-Sweep ist ersatzlos weg. Ein Wort, das in drei Helligkeiten
+     desselben Tons schimmert, ist Metallik-Schrift — und Metallik ist
+     genau das, was diese Palette nicht will. Akzentwoerter stehen jetzt
+     flach in Coral. */
+  --gradient:   var(--coral);
+}
+
+::selection{ background: var(--coral); color: var(--cream); }
+
+/* ═══ Grund ══════════════════════════════════════════════════════════════ */
+html, body{ background: var(--cream); color: var(--ink); }
+
+/* Akzentwoerter in Ueberschriften wurden per background-clip aus dem
+   Verlauf gestanzt. Ohne Verlauf ist der Text sonst unsichtbar: die
+   Fuellfarbe steht dort auf transparent.
+
+   Das :not() ist kein Feinschliff, sondern noetig: die Choreografie packt
+   maskierte Ueberschriften in ein eigenes <span>. Ohne die Ausnahme faerbt
+   diese Regel die ganze Zeile ein statt nur das Akzentwort. */
+.title-accent,
+.section-title span:not(.nf-maske-i),
+.cta-title span:not(.nf-maske-i),
+.teaser-content h2 span:not(.nf-maske-i),
+.intro-lead h2 span:not(.nf-maske-i),
+.hero-stat-number,
+.teaser-stat-number{
+  background: none !important;
+  -webkit-text-fill-color: var(--coral) !important;
+  color: var(--coral) !important;
+}
+
+/* ═══ Was von einem dunklen Grund ausging ════════════════════════════════
+   Die Umgebungsglut war ein Goldschein im Schwarz. Auf Cream ist ein
+   Lichtfleck nichts — es gibt nichts aufzuhellen. Sie geht aus, und mit
+   ihr das Raster, das nur dazu da war, die Leere zu strukturieren. */
+.bg-effects,
+.ambient-glow,
+.grid-overlay,
+.cta-glow{ display: none !important; }
+
+/* Das Korn multipliziert auf hellem Grund, statt zu ueberlagern —
+   sonst hellt es auf, was es aufrauhen soll. */
+.nf-korn{ mix-blend-mode: multiply; opacity: .08; }
+
+/* ═══ Flaechen ═══════════════════════════════════════════════════════════
+   Karten stehen leicht ueber dem Grund und haben eine Haarlinie ringsum.
+   Gleich hell auf allen Seiten — kein Licht, keine Kante im Anschnitt. */
+.live-card,
+.nf-endkarte,
+.service-card,
+.why-card,
+.work-card,
+.pull-quote,
+.process-step{
+  background: var(--cream-auf);
+  border-color: var(--haar);
+}
+.live-card:hover, .live-card:focus-visible,
+.nf-endkarte:hover, .nf-endkarte:focus-visible,
+.service-card:hover, .service-card:focus-visible,
+.why-card:hover, .why-card:focus-visible,
+.work-card:hover, .work-card:focus-visible{
+  border-color: var(--coral);
+}
+
+/* ═══ Schaltflaechen ═════════════════════════════════════════════════════
+   Flaches Coral, Cream-Schrift. Die Lichtebene des Vorgaengers ist weg —
+   ein Verlauf auf einer Schaltflaeche ist der Glanz, der hier nicht
+   vorkommt. Beim Hover wird die Flaeche gedeckter, nicht heller. */
+.nav-cta,
+.btn-primary,
+.newsletter-btn,
+.mobile-menu-cta,
+.cta-buttons .btn-primary{
+  position: static;
+  isolation: auto;
+  background: var(--coral);
+  border: 1px solid var(--coral);
+  color: var(--cream);
+  transition: background-color var(--nf-response) var(--nf-ease),
+              border-color var(--nf-response) var(--nf-ease),
+              color var(--nf-response) var(--nf-ease);
+}
+.nav-cta::before,
+.btn-primary::before,
+.newsletter-btn::before,
+.mobile-menu-cta::before,
+.cta-buttons .btn-primary::before{ content: none; }
+.nav-cta:hover, .nav-cta:focus-visible,
+.btn-primary:hover, .btn-primary:focus-visible,
+.newsletter-btn:hover, .newsletter-btn:focus-visible,
+.mobile-menu-cta:hover, .mobile-menu-cta:focus-visible,
+.cta-buttons .btn-primary:hover, .cta-buttons .btn-primary:focus-visible{
+  background: var(--coral-tief);
+  border-color: var(--coral-tief);
+  color: var(--cream);
+}
+.btn-primary{ display: inline-flex; align-items: center; justify-content: center; }
+
+/* Der zweite Knopf traegt keine Flaeche, nur eine Linie. */
+.btn-secondary{
+  background: transparent;
+  border: 1px solid var(--haar-stark);
+  color: var(--ink);
+}
+.btn-secondary:hover, .btn-secondary:focus-visible{
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+/* ═══ Marken und Punkte ══════════════════════════════════════════════════ */
+.section-badge{
+  background: transparent;
+  border-color: var(--haar-stark);
+  color: var(--coral);
+}
+.badge-dot,
+.live-state i{ background: var(--coral); box-shadow: none; }
+
+/* Das Etikett auf den Bildschirmfotos liegt weiter auf einem dunklen
+   Verlauf — dort ist Cream-Schrift richtig, nicht Ink. */
+.live-state{
+  background: rgba(10, 10, 11, .72);
+  border-color: rgba(236, 224, 198, .3);
+  color: var(--cream);
+}
+
+/* Bildschirmfotos waren abgedunkelt und liefen unten in einen schwarzen
+   Verlauf aus, damit sie sich in den schwarzen Grund einfuegten. Auf
+   Cream muessen sie das nicht mehr — und der Verlauf waere dort ein
+   heller Schleier ueber dem unteren Drittel des gezeigten Produkts.
+   Beides faellt weg; das Etikett bringt seinen Grund selbst mit. */
+.live-shot img{ filter: none; }
+.live-shot{ background: var(--cream-ab); }
+.live-shot::after{ content: none; }
+
+/* ═══ Navigation ═════════════════════════════════════════════════════════ */
+.nav-wrapper{ border-bottom: 1px solid var(--haar); }
+.nav-links > li > a{ color: var(--ink); }
+.nav-links > li > a:hover,
+.nav-links > li > a.active{ color: var(--coral); }
+.nav-links > li > a::after{ background: var(--coral); }
+.nav-mobile-toggle span{ background: var(--ink); }
+
+/* ═══ Choreografie auf hellem Grund ══════════════════════════════════════ */
+:root{ --nf-haarlinie: var(--haar); }
+.nf-marke{ color: var(--leise); }
+.nf-marke b{ color: var(--coral); }
+.nf-readout{ color: var(--leise); }
+.nf-readout b{ color: var(--coral); }
+.nf-band-nr{ color: var(--coral); opacity: 1; }
+.nf-band-titel{ color: var(--ink); }
+.nf-band-titel::after{ background: var(--coral); }
+.nf-bahn-kopf{ color: var(--leise); }
+.nf-bahn-kopf b{ color: var(--coral); }
+.nf-endkarte-titel{ color: var(--coral); }
+.nf-endkarte-meta{ color: var(--leise); }
+html.nf-choreo .nf-scrub .nf-wort.nf-schluessel.hell{ color: var(--coral); }
+
+/* Die vier Verfahrenszeilen sind das warme Register der Vorlage: jede
+   Zeile ein eigenes Feld, Ink auf allen. Beim Hover vertieft sich das
+   Feld um eine Stufe — kein neuer Farbton. */
+.nf-baender > .nf-band:nth-child(1){ background: var(--band-gold); }
+.nf-baender > .nf-band:nth-child(2){ background: var(--band-terra); }
+.nf-baender > .nf-band:nth-child(3){ background: var(--band-amber); }
+.nf-baender > .nf-band:nth-child(4){ background: var(--cream-ab); }
+.nf-baender > .nf-band{ border-top-color: rgba(29, 29, 29, .22); }
+.nf-band:hover, .nf-band:focus-within{ filter: brightness(.94); }
+.nf-band-nr{ color: rgba(29, 29, 29, .55); }
+.nf-baender > .nf-band .nf-band-text > p{ color: rgba(29, 29, 29, .72); }
+
+/* ═══ Die Kinosequenz bleibt dunkel ══════════════════════════════════════
+   Ein Film ist dunkel. Das ist der eine Abschnitt, der seine Tiefe
+   behaelt — und der Uebergang von dort nach Cream ist der Schnitt, mit
+   dem die Seite anfaengt. */
+.cine-wrap{ background: var(--void); }
+
+/* ═══ Formulare ══════════════════════════════════════════════════════════ */
+input, textarea, select{
+  background: var(--cream-ab);
+  border-color: var(--haar);
+  color: var(--ink);
+}
+input::placeholder, textarea::placeholder{ color: var(--leise); }
+input:focus, textarea:focus, select:focus{ border-color: var(--coral); outline-color: var(--coral); }
+:focus-visible{ outline-color: var(--coral); }
+
+/* ═══ Fusszeile ══════════════════════════════════════════════════════════
+   Sie war der dunkelste Block der Seite. Auf Cream ist sie eine
+   abgesenkte Flaeche mit einer Haarlinie darueber. */
+.footer{ background: var(--cream-ab); border-top: 1px solid var(--haar); }
+
+/* Die Beschriftung im Referenz-Visual war cremefarben, weil dort frueher
+   immer ein dunkler Grund lag. Zwei der drei Visuals sind nach der
+   Umfaerbung hell — dort stand sie unsichtbar auf ihrem eigenen Grund.
+   :has() fragt den Grund ab, statt die Karten durchzuzaehlen; eine
+   Positionsregel waere beim naechsten Umsortieren wieder falsch. */
+.work-visual:has(.wv-portal) .wname,
+.work-visual:has(.wv-atelier) .wname{ color: rgba(29, 29, 29, .55); }

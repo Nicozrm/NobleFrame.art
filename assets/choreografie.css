@@ -20,7 +20,7 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root{
-  --nf-haarlinie: rgba(201, 169, 98, .22);
+  --nf-haarlinie: rgba(29, 29, 29, .16);
   --nf-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --nf-roll-ease: cubic-bezier(.16, .03, .08, 1.55);
 }
@@ -43,7 +43,7 @@
   font-weight: 400;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: rgba(250, 250, 250, .42);
+  color: rgba(29, 29, 29, .45);
 }
 .nf-marke::after{
   content: '';
@@ -162,7 +162,7 @@ html.nf-statisch .nf-scrub .nf-wort{ opacity: 1 !important; }
   justify-content: center;
   gap: 14px;
   padding: 40px;
-  background: #080708;
+  background: #F3EAD8;
   border: 1px solid var(--nf-haarlinie);
   text-decoration: none;
   transition: border-color var(--nf-transport) var(--nf-ease);
@@ -182,7 +182,7 @@ html.nf-statisch .nf-scrub .nf-wort{ opacity: 1 !important; }
   font-size: .68rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: rgba(250, 250, 250, .42);
+  color: rgba(29, 29, 29, .45);
 }
 @media(min-width: 1025px){
   html.nf-choreo:not(.nf-statisch) .nf-bahn > .nf-endkarte{
@@ -207,7 +207,7 @@ html.nf-statisch .nf-scrub .nf-wort{ opacity: 1 !important; }
   font-size: .68rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: rgba(250, 250, 250, .42);
+  color: rgba(29, 29, 29, .45);
 }
 .nf-bahn-kopf b{ color: var(--gold); font-weight: 400; }
 @media(max-width: 1024px){ .nf-bahn-kopf{ display: none; } }
@@ -230,7 +230,7 @@ html.nf-statisch .nf-scrub .nf-wort{ opacity: 1 !important; }
   transition: background-color var(--nf-transport) var(--nf-ease);
 }
 .nf-baender > .nf-band:last-child{ border-bottom: 1px solid var(--nf-haarlinie); }
-.nf-band:hover, .nf-band:focus-within{ background: rgba(201, 169, 98, .045); }
+.nf-band:hover, .nf-band:focus-within{ background: rgba(29, 29, 29, .045); }
 .nf-band-nr{
   font-family: var(--nf-mono);
   font-size: .7rem;
@@ -355,9 +355,14 @@ html.nf-choreo:not(.nf-statisch) .tech-track{
   font-size: .64rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: rgba(250, 250, 250, .38);
+  color: rgba(29, 29, 29, .45);
   font-variant-numeric: tabular-nums;
   transition: opacity var(--nf-transport) var(--nf-ease);
 }
 .nf-readout b{ color: var(--gold); font-weight: 400; }
 @media(max-width: 767px){ .nf-readout{ display: none; } }
+
+/* Ueber den dunklen Abschnitten tritt die Fahrtanzeige zurueck: dort
+   steht bereits eine Anzeige (die Uniform-Werte des Feldes), und zwei
+   Zaehler in derselben Ecke lesen sich als Fehler, nicht als Instrument. */
+html.nf-dunkel .nf-readout{ opacity: 0; }
