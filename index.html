@@ -537,6 +537,7 @@
     </style>
     <link rel="stylesheet" href="assets/palette.css">
     <link rel="stylesheet" href="assets/feld.css">
+    <link rel="stylesheet" href="assets/vorlage.css">
 
     <meta property="og:image" content="https://nobleframe.de/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -552,6 +553,7 @@
     <script defer src="nf-sphaere.js"></script>
     <script defer src="nf-choreografie.js"></script>
     <script defer src="nf-feld.js"></script>
+    <script defer src="nf-dreher.js"></script>
 </head>
 <body>
     <a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
@@ -679,8 +681,10 @@
                     <span>Premium Digital Atelier</span>
                 </div>
                 <h1 class="hero-title">
-                    <span class="title-line"><span class="title-word">E-Commerce</span></span>
-                    <span class="title-line"><span class="title-word title-accent">& Web-Entwicklung</span></span>
+                    <span class="title-line"><span class="title-word">Wir bauen</span></span>
+                    <span class="title-line"><span class="nf-schacht" data-nf-dreher
+                        data-worte="Shader,Motion,Scroll,WebGL"><span class="nf-wort-alt">Shader</span></span></span>
+                    <span class="title-line"><span class="title-word">Erlebnisse<span class="title-accent"> ↗</span></span></span>
                 </h1>
                 <p class="hero-text">Digitale Plattformen für Unternehmen, die Präzision erwarten. Maßgeschneiderte E-Commerce- und Weblösungen mit messbarem Business Impact – ohne Kompromisse bei Design, Performance oder Code-Qualität.</p>
                 <div class="hero-stats">
@@ -741,7 +745,7 @@
 </div>
 
 <!-- SHOWCASE -->
-<section class="live-work" id="arbeiten">
+<section class="live-work" id="arbeiten" data-grund="tief">
     <div class="nf-marke"><span>Sek. 02 — Laufende Systeme</span><span>Steinfurt · 52.1500° N, 7.3333° O</span></div>
     <div class="section-header reveal">
         <div class="section-badge">Gebaut, nicht behauptet</div>
@@ -843,42 +847,38 @@
         <h2 class="section-title" data-nf-maske><span>Leistungen</span></h2>
         <p class="section-subtitle">Ganzheitliche digitale Lösungen für Unternehmen, die mehr wollen als nur eine Website.</p>
     </div>
-    <div class="services-grid reveal" data-stagger>
-        <a href="leistungen.html" class="service-card" data-nf-tiefe="0.07">
-            <span class="svc-num"></span>
-            <div class="service-icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    <div class="nf-baender" data-nf-baender>
+        <a class="nf-band" data-ton="gold" href="leistungen.html">
+            <span class="nf-band-nr">01</span>
+            <h3 class="nf-band-titel">Web Development</h3>
+            <div class="nf-band-rechts">
+                <div class="nf-band-text"><p>Maßgeschneiderte Websites und Web-Applikationen mit sauberem, wartbarem Code und hoher Performance.</p></div>
+                <span class="nf-band-marken"><span>React</span><span>TypeScript</span><span>Performance</span></span>
             </div>
-            <h3>Web Development</h3>
-            <p>Maßgeschneiderte Websites und Web-Applikationen mit sauberem, wartbarem Code und hoher Performance.</p>
-            <span class="svc-arrow">Mehr erfahren <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
         </a>
-        <a href="leistungen.html#ecommerce" class="service-card" data-nf-tiefe="-0.05">
-            <span class="svc-num"></span>
-            <div class="service-icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        <a class="nf-band" data-ton="terra" href="leistungen.html#ecommerce">
+            <span class="nf-band-nr">02</span>
+            <h3 class="nf-band-titel">E-Commerce</h3>
+            <div class="nf-band-rechts">
+                <div class="nf-band-text"><p>High-Performance E-Commerce-Plattformen mit Headless-Architektur – stabil, skalierbar und conversion-stark.</p></div>
+                <span class="nf-band-marken"><span>Headless</span><span>Stripe</span><span>Supabase</span></span>
             </div>
-            <h3>E-Commerce</h3>
-            <p>High-Performance E-Commerce-Plattformen mit Headless-Architektur – stabil, skalierbar und conversion-stark.</p>
-            <span class="svc-arrow">Mehr erfahren <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
         </a>
-        <a href="leistungen.html#ux" class="service-card" data-nf-tiefe="0.10">
-            <span class="svc-num"></span>
-            <div class="service-icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+        <a class="nf-band" data-ton="amber" href="leistungen.html#ux">
+            <span class="nf-band-nr">03</span>
+            <h3 class="nf-band-titel">UX/UI Design</h3>
+            <div class="nf-band-rechts">
+                <div class="nf-band-text"><p>Nutzerzentriertes Design, das Verhalten versteht und Conversion systematisch steigert.</p></div>
+                <span class="nf-band-marken"><span>Figma</span><span>Research</span><span>Systeme</span></span>
             </div>
-            <h3>UX/UI Design</h3>
-            <p>Nutzerzentriertes Design, das Verhalten versteht und Conversion systematisch steigert.</p>
-            <span class="svc-arrow">Mehr erfahren <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
         </a>
-        <a href="leistungen.html#growth" class="service-card" data-nf-tiefe="-0.03">
-            <span class="svc-num"></span>
-            <div class="service-icon">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+        <a class="nf-band" data-ton="cream" href="leistungen.html#growth">
+            <span class="nf-band-nr">04</span>
+            <h3 class="nf-band-titel">Digital Growth</h3>
+            <div class="nf-band-rechts">
+                <div class="nf-band-text"><p>SEO, CRO und Analytics, die nicht nur Traffic, sondern profitables Wachstum liefern.</p></div>
+                <span class="nf-band-marken"><span>SEO</span><span>CRO</span><span>Analytics</span></span>
             </div>
-            <h3>Digital Growth</h3>
-            <p>SEO, CRO und Analytics, die nicht nur Traffic, sondern profitables Wachstum liefern.</p>
-            <span class="svc-arrow">Mehr erfahren <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></span>
         </a>
     </div>
 </section>
@@ -935,7 +935,7 @@
     </div>
 </section>
 
-<section class="referenzen-teaser">
+<section class="referenzen-teaser" data-grund="tief">
     <span class="nf-riese" aria-hidden="true" data-nf-zug="0.6" style="top:40%">Referenzen · Referenzen</span>
     <div class="nf-marke"><span>Sek. 05 — Erfolgsgeschichten</span><span>Auszug aus dem Portfolio</span></div>
     <div class="section-header reveal">
@@ -1030,7 +1030,7 @@
     </div>
 </section>
 
-<footer class="footer" data-nf-sphaere>
+<footer class="footer" data-nf-sphaere data-grund="tief">
     <div class="footer-container">
         <div class="footer-main">
             <div class="footer-brand">

@@ -1,0 +1,310 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   NobleFrame — Vorlage
+
+   Diese Datei bringt die Seite auf die Gestaltung der Referenz: Anton als
+   kondensierte Versal-Anzeige, Archivo als ruhige Grotesk, JetBrains Mono
+   als technische Beschriftung — und den Farbbogen, der die Seite von Cream
+   ueber Coral nach Tiefe und zurueck fuehrt.
+
+   Warum eine eigene Datei statt Aenderungen in den bestehenden:
+   palette.css hat die Farben getauscht, ohne die Form anzufassen. Hier
+   wird die Form getauscht, ohne die Farben neu zu erfinden. Beide Schichten
+   bleiben einzeln zurueckdrehbar — man nimmt die eine Zeile aus dem <head>
+   und die Seite steht wieder auf dem Stand davor. Bei rund tausend
+   Fundstellen ist das der Unterschied zwischen einer Entscheidung und
+   einer Einbahnstrasse.
+
+   Reihenfolge im <head>: als LETZTES Stylesheet, nach feld.css.
+
+   Das ist kein Geschmack, sondern eine Korrektur: zuerst stand diese Datei
+   vor feld.css, und die Coral-Bahn blieb in der alten Serifenschrift
+   stehen — feld.css setzt sie mit derselben Spezifitaet und gewann durch
+   die spaetere Position. Wer hier eine Zeile nach oben schiebt, dreht
+   genau das wieder zurueck.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  --anzeige: 'Anton', 'Arial Narrow', Impact, sans-serif;
+  --lauf:    'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --nf-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Die Kurven der Vorlage. Namen statt Zahlen, weil eine Kurve eine
+     Haltung ist und kein Wert: „aussen weich" liest sich an der
+     Aufrufstelle richtig, `cubic-bezier(.16,1,.3,1)` nicht. */
+  --e-aus:     cubic-bezier(.16, 1, .3, 1);
+  --e-vorhang: cubic-bezier(.76, 0, .24, 1);
+  --e-rolle:   cubic-bezier(.16, .03, .08, 1.55);
+}
+
+/* ═══ 1. Die drei Stimmen ════════════════════════════════════════════════
+   Anton hat bereits enge Weiten eingebaut. Positives Tracking darauf ist
+   der haeufigste Fehler mit dieser Schrift — sie ist als Block gezeichnet,
+   und wer ihn auseinanderzieht, bekommt Luecken statt Luft. Deshalb steht
+   ueberall ein negativer Wert. */
+body,
+p, li, td, th, input, textarea, select, button{
+  font-family: var(--lauf);
+}
+
+h1, h2, h3, h4,
+.hero-title, .page-title, .section-title,
+.cine-wordmark, .cine-h,
+.service-card h3, .footer-logo-text, .wname,
+.hero-stat-number, .nf-riese{
+  font-family: var(--anzeige);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -.02em;
+  line-height: .95;
+  font-style: normal;
+}
+
+/* Anton kennt keine Kursive und keine Strichstaerken. Wo die alte
+   Serifenschrift beides genutzt hat, wuerde der Browser sonst synthetisch
+   schraegstellen oder fetten — beides sieht bei einer Display-Schrift wie
+   ein Druckfehler aus. */
+h1 em, h2 em, h3 em, .hero-title em,
+h1 i, h2 i, h3 i{ font-style: normal; }
+h1 b, h2 b, h3 b, h1 strong, h2 strong, h3 strong{ font-weight: 400; }
+
+/* Groessen nach der Vorlage. clamp() statt Umbruchpunkten: die Anzeige
+   soll mit dem Fenster wachsen, nicht in Stufen springen. */
+.hero-title{ font-size: clamp(4rem, 12.5vw, 13rem); line-height: .92; }
+.page-title{ font-size: clamp(3rem, 9vw, 8rem); }
+.section-title{ font-size: clamp(2.6rem, 7.5vw, 7rem); }
+.cine-wordmark{ font-size: clamp(3rem, 10vw, 9rem); letter-spacing: -.03em; }
+.cine-h{ font-size: clamp(2rem, 5.5vw, 4.5rem); }
+.service-card h3{ font-size: clamp(1.4rem, 2.6vw, 2.2rem); }
+.hero-stat-number{ font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.03em; }
+.footer-logo-text{ font-size: 1.35rem; letter-spacing: .02em; }
+
+/* Fliesstext bleibt gemischt gesetzt — die Versalregel oben gilt nur fuer
+   die Anzeige. Archivo bei 15–18px, grosszuegige Zeile. */
+body{
+  font-size: clamp(.95rem, .9vw + .4rem, 1.125rem);
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+.section-subtitle, .page-subtitle, .cine-p, .footer-tagline{
+  font-family: var(--lauf);
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.6;
+}
+
+/* Beschriftungen: Mono, klein, weit gesperrt. Das ist die Stimme, die die
+   Seite instrumentiert wirken laesst — Koordinaten, Indizes, Zustaende. */
+.section-badge, .section-eyebrow, .nf-marke, .cine-kicker, .cine-num,
+.svc-num, .tech-strip-label, .footer-section h4{
+  font-family: var(--nf-mono);
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* ═══ 2. Farbbogen ═══════════════════════════════════════════════════════
+   Cream (Auftakt) → Coral (Scharnier) → Tiefe (Manifest + Arbeiten) →
+   warme Baender → Tiefe (Feld) → Cream (Zahlen) → Tiefe (Fuss).
+
+   Die dunklen Abschnitte sind nicht „auch mal dunkel", sie sind die
+   Mitte der Erzaehlung: die Seite taucht ein und kommt wieder heraus.
+   Ohne diesen Bogen ist die Choreografie eine Abfolge von Effekten auf
+   einer einzigen Flaeche. */
+[data-grund="tief"]{
+  background: var(--void);
+  color: var(--cream);
+}
+[data-grund="tief"] h1, [data-grund="tief"] h2, [data-grund="tief"] h3,
+[data-grund="tief"] .section-title{ color: var(--cream); }
+[data-grund="tief"] .section-subtitle,
+[data-grund="tief"] p{ color: rgba(236, 224, 198, .55); }
+[data-grund="tief"] .nf-marke,
+[data-grund="tief"] .section-badge{ color: rgba(236, 224, 198, .55); }
+[data-grund="tief"] .nf-marke{ border-color: rgba(236, 224, 198, .16); }
+
+/* Haarlinien und Karten kehren sich auf Tiefe um. Ohne diese Regel stehen
+   die Trennlinien der hellen Flaeche unsichtbar auf dem dunklen Grund —
+   der haeufigste Rest, den ein Farbwechsel liegen laesst. */
+[data-grund="tief"] hr,
+[data-grund="tief"] .work-card,
+[data-grund="tief"] .service-card,
+[data-grund="tief"] .live-card{
+  border-color: rgba(236, 224, 198, .16);
+  background: var(--void-2, #131315);
+}
+[data-grund="tief"] a{ color: var(--cream); }
+[data-grund="tief"] a:hover{ color: var(--coral); }
+
+/* ═══ 3. Das Scharnier ═══════════════════════════════════════════════════
+   Die Coral-Bahn steht schon (feld.css). Was fehlte, war ihre Stimme:
+   in der Vorlage ist die Schrift dunkel auf Coral und die Sterne sind
+   cremefarben — nicht umgekehrt. Der Unterschied ist nicht kosmetisch:
+   Cream auf Coral hat zu wenig Abstand und franst bei grossen Graden
+   sichtbar aus, Tiefe auf Coral steht. */
+.nf-band-spur > span{
+  font-family: var(--anzeige);
+  font-weight: 400;
+  font-size: clamp(4rem, 13vw, 12rem);
+  letter-spacing: -.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--void);
+}
+.nf-band-spur > .nf-band-stern{
+  color: var(--cream);
+  font-size: clamp(1.6rem, 4vw, 4rem);
+}
+
+/* ═══ 4. Warme Baender ═══════════════════════════════════════════════════
+   Die Bandzeile gibt es schon: choreografie.css baut sie fuer das Vorgehen —
+   Nummer, Titel, Text, der erst beim Hinsehen aufklappt (0fr → 1fr), und
+   eine Unterlinie, die gezogen wird. Dieses Bauteil hier noch einmal zu
+   schreiben waere doppelte Arbeit und, schlimmer, doppelte Wahrheit.
+
+   Deshalb ergaenzt dieser Abschnitt nur, was die Vorlage zusaetzlich hat:
+   ein warmer Grund je Zeile, Ink statt Cream als Schrift, die kondensierte
+   Anzeige im Titel und eine Markenzeile rechts.
+
+   Alles haengt an [data-nf-baender]. Das ist keine Vorsicht, sondern eine
+   Notwendigkeit: ungescopt haette die clip-path-Regel unten die
+   Vorgehen-Zeilen dauerhaft verborgen, weil ihnen niemand `.in` setzt.
+   Ein Register, das man nicht mehr sieht, waere ein hoher Preis fuer vier
+   Hintergrundfarben. */
+[data-nf-baender]{ max-width: none; margin-top: clamp(40px, 6vw, 64px); }
+
+[data-nf-baender] .nf-band{
+  grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 22rem);
+  padding: clamp(22px, 3vw, 38px) clamp(20px, 3.3vw, 40px);
+  min-height: 128px;
+  color: var(--ink);
+  border-top-color: rgba(29, 29, 29, .18);
+  text-decoration: none;
+  transition: background-color .5s var(--e-vorhang), min-height .5s var(--e-vorhang);
+}
+[data-nf-baender] > .nf-band:last-child{ border-bottom-color: rgba(29, 29, 29, .18); }
+[data-nf-baender] .nf-band[data-ton="gold"]{  background: var(--band-gold); }
+[data-nf-baender] .nf-band[data-ton="terra"]{ background: var(--band-terra); }
+[data-nf-baender] .nf-band[data-ton="amber"]{ background: var(--band-amber); }
+[data-nf-baender] .nf-band[data-ton="cream"]{ background: var(--cream); }
+
+/* Der Grund traegt die Farbe, also darf das Hover sie nicht noch einmal
+   abdunkeln — die Regel aus choreografie.css wird hier zurueckgenommen. */
+[data-nf-baender] .nf-band:hover,
+[data-nf-baender] .nf-band:focus-within{ background-color: revert-layer; }
+[data-nf-baender] .nf-band[data-ton="gold"]:hover,
+[data-nf-baender] .nf-band[data-ton="gold"]:focus-within{  background: var(--band-gold); }
+[data-nf-baender] .nf-band[data-ton="terra"]:hover,
+[data-nf-baender] .nf-band[data-ton="terra"]:focus-within{ background: var(--band-terra); }
+[data-nf-baender] .nf-band[data-ton="amber"]:hover,
+[data-nf-baender] .nf-band[data-ton="amber"]:focus-within{ background: var(--band-amber); }
+[data-nf-baender] .nf-band[data-ton="cream"]:hover,
+[data-nf-baender] .nf-band[data-ton="cream"]:focus-within{ background: var(--cream); }
+[data-nf-baender] .nf-band:hover,
+[data-nf-baender] .nf-band:focus-within{ min-height: 200px; }
+
+[data-nf-baender] .nf-band-nr{ color: var(--ink); opacity: .55; }
+[data-nf-baender] .nf-band:hover .nf-band-nr,
+[data-nf-baender] .nf-band:focus-within .nf-band-nr{ color: var(--coral-tief); opacity: 1; }
+
+[data-nf-baender] .nf-band-titel{
+  font-family: var(--anzeige);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 4.5vw, 4rem);
+  line-height: .95;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+[data-nf-baender] .nf-band-titel::after{ background: var(--ink); height: 3px; bottom: -.1em; }
+
+[data-nf-baender] .nf-band-text > p{ color: rgba(29, 29, 29, .72); font-size: .95rem; }
+
+[data-nf-baender] .nf-band-rechts{ justify-self: end; text-align: right; }
+[data-nf-baender] .nf-band-marken{
+  display: flex; flex-wrap: wrap; gap: 6px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+[data-nf-baender] .nf-band-marken span{
+  font-family: var(--nf-mono);
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(29, 29, 29, .32);
+  border-radius: 999px;
+  padding: 5px 11px;
+}
+
+/* Eintritt: die Zeilen wischen von oben herein, gestaffelt ueber den
+   Beobachter in nf-choreografie.js. Ohne JavaScript bleibt html.nf-choreo
+   aus — dann steht das Register sofort vollstaendig da. */
+html.nf-choreo [data-nf-baender] .nf-band{
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path .7s var(--e-vorhang), background-color .5s var(--e-vorhang), min-height .5s var(--e-vorhang);
+}
+html.nf-choreo [data-nf-baender] .nf-band.in{ clip-path: inset(0 0 0 0); }
+html.nf-statisch [data-nf-baender] .nf-band{ clip-path: none; transition: none; }
+
+@media (max-width: 860px){
+  [data-nf-baender] .nf-band{ grid-template-columns: 2.2rem minmax(0, 1fr); }
+  [data-nf-baender] .nf-band-rechts{ grid-column: 2; justify-self: start; text-align: left; }
+  [data-nf-baender] .nf-band-marken{ justify-content: flex-start; }
+}
+
+/* ═══ 5. Rollentext ══════════════════════════════════════════════════════
+   Beschriftungen werden getauscht, nicht aufgehellt: das Original faehrt
+   nach oben weg, das Duplikat kommt von unten nach. Der leichte Ueberschwung
+   in --e-rolle ist der ganze Trick — ohne ihn wirkt der Tausch mechanisch. */
+[data-nf-roll]{
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+[data-nf-roll] .nf-roll-i{
+  display: inline-block;
+  transition: transform .4s var(--e-rolle);
+}
+[data-nf-roll] .nf-roll-d{
+  position: absolute;
+  left: 0; top: 0;
+  transform: translateY(110%);
+  transition: transform .4s var(--e-rolle);
+}
+[data-nf-roll]:hover .nf-roll-i,
+[data-nf-roll]:focus-visible .nf-roll-i{ transform: translateY(-110%); }
+[data-nf-roll]:hover .nf-roll-d,
+[data-nf-roll]:focus-visible .nf-roll-d{ transform: translateY(0); }
+html.nf-statisch [data-nf-roll] .nf-roll-i,
+html.nf-statisch [data-nf-roll] .nf-roll-d{ transition: none; }
+
+/* ═══ 6. Rotationswort ═══════════════════════════════════════════════════
+   Ein Wort-Schacht im Hero: das aktuelle Wort faehrt nach oben aus dem
+   Fenster, das naechste kommt von unten nach. Beide bewegen sich
+   gleichzeitig — sonst sieht man eine Luecke. */
+.nf-schacht{
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: bottom;
+  color: var(--coral);
+}
+.nf-schacht > span{
+  display: block;
+  transition: transform .5s var(--e-vorhang);
+}
+.nf-schacht > .nf-wort-neu{
+  position: absolute;
+  left: 0; top: 0; right: 0;
+  transform: translateY(110%);
+}
+.nf-schacht.dreht > .nf-wort-alt{ transform: translateY(-110%); }
+.nf-schacht.dreht > .nf-wort-neu{ transform: translateY(0); }
+
+/* Kein Abschnitt 7: das Korn liegt bereits in choreografie.css und wird in
+   palette.css pro Grund abgestimmt. Eine zweite Regel dafuer waere keine
+   Ergaenzung gewesen, sondern eine Verschlechterung — sie haette den
+   z-index von 1000 auf 60 gezogen und das Rauschen hinter Elemente
+   geschoben, ueber denen es liegen soll. */
