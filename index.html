@@ -552,6 +552,7 @@
     <script defer src="nf-sphaere.js"></script>
     <script defer src="nf-choreografie.js"></script>
     <script defer src="nf-feld.js"></script>
+    <script defer src="nf-buehne.js"></script>
 </head>
 <body>
     <a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
@@ -570,6 +571,14 @@
         </div>
         <span class="curtain-logo-text">NobleFrame</span>
         <span class="curtain-tagline">Premium Digital Atelier</span>
+    </div>
+    <div class="nf-lade">
+        <span class="nf-lade-zahl" data-nf-zaehler>000</span>
+        <span class="nf-lade-bar"><i data-nf-balken></i></span>
+    </div>
+    <div class="nf-lade-fuss">
+        <span>NobleFrame — Atelier lädt</span>
+        <span class="nf-uhr" data-nf-uhr>--:--:--</span>
     </div>
 </div>
 
@@ -604,6 +613,7 @@
             <li><a href="about.html" data-nf-roll>Über Uns</a></li>
             <li><a href="kontakt.html" data-nf-roll>Kontakt</a></li>
         </ul>
+        <span class="nf-uhr" data-nf-uhr aria-hidden="true">--:--:--</span>
         <a href="kontakt.html" class="nav-cta" data-nf-roll>Projekt anfragen</a>
         <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Menü">
             <span></span><span></span><span></span>
@@ -632,6 +642,10 @@
         </div>
     </div>
     <a href="kontakt.html" class="mobile-menu-cta">Projekt anfragen</a>
+    <div class="nf-menue-fuss">
+        <a href="mailto:info@nobleframe.de">info@nobleframe.de</a>
+        <span>Steinfurt <span class="nf-uhr" data-nf-uhr>--:--:--</span></span>
+    </div>
 </div>
 
 <section class="cine-wrap" id="hauptinhalt" tabindex="-1" data-cine>
@@ -722,7 +736,7 @@
     <div class="intro-inner">
         <div class="intro-lead reveal-left">
             <div class="section-eyebrow">Wer wir sind</div>
-            <h2>Ein <span>Atelier</span>, kein Baukasten.</h2>
+            <h2>Wir bauen <span class="nf-wechsel" data-nf-wechsel="Systeme,Oberflächen,Werkzeuge,Portale">Systeme</span>.<br>Ein <span>Atelier</span>, kein Baukasten.</h2>
         </div>
         <div class="intro-body reveal-right">
             <p>NobleFrame ist ein Premium Digital Atelier aus Steinfurt. Wir gestalten und entwickeln digitale Plattformen für Unternehmen, die Präzision erwarten – vom ersten Konzept bis zur letzten Zeile Code.</p>
@@ -1092,14 +1106,11 @@
 </footer>
 
 <script>
-/* Der Vorhang oeffnet, sobald das Dokument steht — nicht 1,8 s nach dem
-   letzten Bild. Waehrend der alten Wartezeit wurde nichts geladen; sie war
-   reine Verzoegerung vor der Kernaussage. Die 1,2-s-Transition bleibt. */
-document.addEventListener('DOMContentLoaded', () => {
-    requestAnimationFrame(() => {
-        document.getElementById('curtainOverlay').classList.add('open');
-    });
-});
+/* Der Vorhang wird von nf-buehne.js geoeffnet, sobald die gezaehlten
+   Posten fertig sind. Hier stand vorher ein zweiter Oeffner an
+   DOMContentLoaded — der riss den Vorhang mitten in der Zaehlung auf, bei
+   gedrosselter Verbindung schon bei sieben Prozent. Zwei Stellen, die
+   dasselbe Element oeffnen, sind immer eine zu viel. */
 
 const navWrapper = document.getElementById('navWrapper');
 window.addEventListener('scroll', () => {
