@@ -27,7 +27,7 @@
   'use strict';
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const GOLD = 0xC9A962;
+  const GOLD = 0xF4583D;
 
   /* ── 1. Lenis Smooth Scroll ─────────────────────────────────────────── */
   let lenis = null;
@@ -179,7 +179,7 @@
           scale: 1,
           scaleMobile: 1,
           color: GOLD,
-          backgroundColor: 0x000000,
+          backgroundColor: 0xECE0C6,
           points: mobile ? 6 : 11,
           maxDistance: 23,
           spacing: mobile ? 17 : 19,
