@@ -26,7 +26,7 @@ const CORE = [
   "./nf-tech.js",
   "./nf-choreografie.js",
   "./nf-feld.js",
-  "./nf-buehne.js",
+
   "./vendor/lenis.min.js",
   "./manifest.json",
   "./assets/fonts/fonts.css",
