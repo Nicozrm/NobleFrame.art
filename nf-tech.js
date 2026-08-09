@@ -106,19 +106,38 @@
     return webglAvailable();
   }
 
+  /* Geteilt mit nf-sphaere.js: beide Schichten brauchen Three.js, aber die
+     Bibliothek darf nur einmal ausgewertet werden. Ohne diesen
+     Zwischenspeicher ersetzt der zweite Ladevorgang `window.THREE` mitten
+     im Betrieb — die bereits laufende Szene haengt dann an Klassen, die es
+     nicht mehr gibt. Wer zuerst fragt, laedt; der zweite bekommt dasselbe
+     Versprechen zurueck. */
   function loadScript(src) {
-    return new Promise((resolve, reject) => {
+    const cache = (window.__nfSkript = window.__nfSkript || {});
+    if (cache[src]) return cache[src];
+    cache[src] = new Promise((resolve, reject) => {
       const s = document.createElement('script');
       s.src = src; s.async = true;
       s.onload = resolve; s.onerror = reject;
       document.head.appendChild(s);
     });
+    return cache[src];
   }
 
   if (vantaAllowed()) {
     // Inhaltsseiten: .page-hero · Startseite: .cta-section (ihr Hero gehört
     // bereits der Cinematic Engine — das Netz akzentuiert dort die CTA).
-    const hero = document.querySelector('.page-hero') || document.querySelector('.cta-section');
+    //
+    // Vorfahrt: trägt ein Kandidat bereits `data-nf-sphaere`, gehört das
+    // Blickfeld dem Drahtgitter aus nf-sphaere.js. Zwei WebGL-Flächen
+    // übereinander sind kein doppelter Eindruck, sondern zwei halbe — und
+    // zwei Kontexte, von denen der Browser den älteren still einzieht.
+    // Der nächste Kandidat rückt dann nach; gibt es keinen, bleibt die
+    // Seite ohne Netz, was sie ohnehin verträgt.
+    const hero = Array.prototype.find.call(
+      document.querySelectorAll('.page-hero, .cta-section'),
+      (el) => !el.hasAttribute('data-nf-sphaere')
+    ) || null;
     if (hero) {
       /* Erst laden, wenn die Sektion in Reichweite kommt. 300 px Vorlauf:
          genug, damit das Netz beim Eintreffen steht, zu wenig, um den

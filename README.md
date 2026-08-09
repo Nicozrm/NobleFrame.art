@@ -20,7 +20,9 @@ vendor/                 Fremdbibliotheken (Lenis, Three.js, Vanta)
 cinematic-engine.js     Canvas2D-Intro der Startseite
 nf-interactions.js      Reveals, Zähler, Mobilmenü
 nf-tech.js              Lenis, bedarfsgesteuertes Vanta, Glow-Parallax
-nf-shader.js            WebGL-Akzent
+nf-choreografie.js      Scrollstrecke: Wort-Scrub, Pin-Bahn, Laufband, Zählwerk
+nf-feld.js              eigener GLSL-Shader (fbm + Domain Warping), Startseite
+nf-sphaere.js           Three.js-Drahtgitterglobus im Footer (data-nf-sphaere)
 service-worker.js       network-first für Seiten, SWR für Assets
 _headers, wrangler.toml Cloudflare-Pages-Konfiguration
 docs/NOBLEFRAME-2032.md Design-Dossier: Analyse, Vision, Architektur
