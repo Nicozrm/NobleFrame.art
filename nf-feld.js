@@ -79,7 +79,7 @@ void main(){
   vec2 uv = gl_FragCoord.xy / u_res;
   vec2 p  = (gl_FragCoord.xy - 0.5 * u_res) / min(u_res.x, u_res.y);
 
-  float t = u_zeit * 0.045;
+  float t = u_zeit * 0.028;
 
   /* Domain Warping: der Raum, in dem das Rauschen ausgewertet wird, wird
      selbst von Rauschen verschoben. Zwei Stufen genuegen fuer den
@@ -115,13 +115,26 @@ void main(){
   vec3 c = mix(tief, coral, smoothstep(0.46, 0.78, f));
   c = mix(c, cream, smoothstep(0.82, 0.99, f));
 
+  /* Der stille Grund — dieselbe Flaeche, die steht, wenn kein Shader
+     laeuft: eine weiche Coral-Waschung oben links ueber Tiefe.
+
+     Er ist hier nicht Fallback, sondern Vorlage. Das Feld soll aussehen
+     wie dieser Zustand, dem jemand beim Atmen zusieht — nicht wie ein
+     anderes Bild, das ihn ersetzt. Deshalb wird das Rauschen zu ihm hin
+     gemischt statt ueber ihn gelegt: es traegt nur noch gut ein Drittel
+     bei. Man sieht die Bewegung, aber man sieht sie an derselben
+     Flaeche. */
+  float wasch = smoothstep(1.0, 0.0, length(p - vec2(-0.35, 0.20)) * 0.85);
+  vec3 grund = mix(tief, coral, wasch * 0.22);
+  c = mix(grund, c, 0.38);
+
   /* Randabdunklung, damit die Schrift darueber immer auf Tiefe sitzt. */
   float vig = smoothstep(1.15, 0.30, length(uv - 0.5) * 1.35);
   c *= mix(0.42, 1.0, vig);
 
   /* Korn: dieselbe Rauheit wie ueber der uebrigen Seite, damit das Feld
      nicht wie ein eingeklebtes Video wirkt. */
-  c += (hash(gl_FragCoord.xy + fract(u_zeit)) - 0.5) * 0.035;
+  c += (hash(gl_FragCoord.xy + fract(u_zeit)) - 0.5) * 0.022;
 
   gl_FragColor = vec4(c, 1.0);
 }`;
