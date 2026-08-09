@@ -536,6 +536,7 @@
         }
     </style>
     <link rel="stylesheet" href="assets/palette.css">
+    <link rel="stylesheet" href="assets/feld.css">
 
     <meta property="og:image" content="https://nobleframe.de/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -549,6 +550,7 @@
     <script defer src="vendor/lenis.min.js"></script>
     <script defer src="nf-tech.js"></script>
     <script defer src="nf-choreografie.js"></script>
+    <script defer src="nf-feld.js"></script>
 </head>
 <body>
     <a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
@@ -571,6 +573,7 @@
 </div>
 
 <div class="nf-korn" aria-hidden="true"></div>
+<div class="nf-rahmen" id="nfRahmen" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
 <div class="bg-effects">
     <div class="ambient-glow glow-1"></div>
@@ -731,6 +734,10 @@
         </div>
     </div>
 </section>
+
+<div class="nf-band-bahn" aria-hidden="true">
+    <div class="nf-band-spur" data-nf-laufband><span>Gebaut, nicht behauptet</span><span class="nf-band-stern">✦</span><span>Eigener Code</span><span class="nf-band-stern">✦</span><span>Kein Baukasten</span><span class="nf-band-stern">✦</span><span>Brutale Eleganz</span><span class="nf-band-stern">✦</span></div>
+</div>
 
 <!-- SHOWCASE -->
 <section class="live-work" id="arbeiten">
@@ -909,6 +916,19 @@
             <span class="nf-band-titel">Launch &amp; Growth</span>
             <div class="nf-band-text"><p>Go-live, Monitoring und kontinuierliche Optimierung für nachhaltiges Wachstum.</p></div>
         </div>
+    </div>
+</section>
+
+<section class="nf-feld" id="feld" data-nf-feld>
+    <canvas aria-hidden="true"></canvas>
+    <div class="nf-feld-inhalt">
+        <div class="nf-feld-marke"><span>Sek. 05 — Feld</span><span>Eigener Shader · kein Framework</span></div>
+        <h2 class="nf-feld-titel">Das hier ist <em>Rechenzeit</em>, kein Video.</h2>
+        <p class="nf-feld-text">Ein Fragment-Programm, das in Ihrem Browser läuft: strömendes Rauschen in verzerrtem Koordinatenraum, das Ihrem Zeiger folgt. Kein Three.js, keine Bibliothek — roher WebGL-Kontext, ein Dreieck, unter fünf Kilobyte. <span class="nf-feld-aufforderung">Bewegen Sie den Zeiger.</span></p>
+    </div>
+    <div class="nf-feld-fuss">
+        <span data-nf-telemetrie>U.ZEIT 0000.00   U.MAUS 0.500 / 0.450   U.KRAFT 0.00   60 FPS</span>
+        <a href="showcase.html">Woran wir sonst rechnen&nbsp;↗</a>
     </div>
 </section>
 

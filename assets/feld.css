@@ -1,0 +1,184 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   NobleFrame — Feld, Band, Rahmen
+
+   Die drei Auftritte, die die Seite teuer machen sollen. Teuer heisst
+   hier nicht: mehr davon. Es heisst, dass pro Bildschirm genau eine
+   schwere Sache passiert und die dafuer stimmt.
+
+     Feld    — ein Bildschirm eigener Shader (nf-feld.js)
+     Band    — eine volle Coral-Bahn quer durch die Seite
+     Rahmen  — vier Haarlinien-Ecken, die den Blick zum Sucher machen
+
+   Alle drei liegen ueber einem Dokument, das ohne sie vollstaendig
+   funktioniert.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ═══ Feld ═══════════════════════════════════════════════════════════════
+   Volle Hoehe, tiefer Grund. Der Shader legt sich darueber; faellt er
+   aus, bleibt genau dieser Grund stehen — deshalb ist er kein Platzhalter,
+   sondern ein fertiger Zustand. */
+.nf-feld{
+  position: relative;
+  height: 100dvh;
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 30% 35%, rgba(244, 88, 61, .22) 0%, transparent 60%),
+    #0A0A0B;
+  color: var(--cream, #ECE0C6);
+}
+.nf-feld canvas{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* Bis der erste Frame steht, waere ein schwarzes Rechteck ein Blitz.
+     Der Grund darunter ist schon richtig, also blendet die Leinwand auf. */
+  opacity: 0;
+  transition: opacity .9s var(--nf-ease, ease);
+}
+.nf-feld[data-nf-feld="aktiv"] canvas{ opacity: 1; }
+
+.nf-feld-inhalt{
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px);
+  pointer-events: none;   /* der Zeiger gehoert dem Feld, nicht dem Text */
+}
+.nf-feld-inhalt a{ pointer-events: auto; }
+
+.nf-feld-marke{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-family: var(--nf-mono, monospace);
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(236, 224, 198, .5);
+  padding-bottom: 16px;
+  margin-bottom: clamp(28px, 5vw, 48px);
+  border-bottom: 1px solid rgba(236, 224, 198, .18);
+}
+.nf-feld-titel{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -.01em;
+  max-width: 16ch;
+  color: var(--cream, #ECE0C6);
+}
+.nf-feld-titel em{ font-style: italic; color: #F4583D; }
+.nf-feld-text{
+  margin-top: clamp(18px, 3vw, 28px);
+  max-width: 46ch;
+  font-size: clamp(.95rem, 1.1vw, 1.05rem);
+  line-height: 1.75;
+  color: rgba(236, 224, 198, .72);
+}
+
+/* Die Telemetrie steht unten links und zeigt die echten Uniform-Werte.
+   Sie ist der Beleg, nicht die Behauptung. */
+.nf-feld-fuss{
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 0 clamp(20px, 4vw, 56px) clamp(20px, 3vw, 34px);
+  font-family: var(--nf-mono, monospace);
+  font-size: .64rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(236, 224, 198, .48);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+.nf-feld-fuss a{ pointer-events: auto; color: rgba(236, 224, 198, .7); text-decoration: none; }
+.nf-feld-fuss a:hover{ color: #F4583D; }
+@media(max-width: 720px){
+  .nf-feld-fuss [data-nf-telemetrie]{ display: none; }
+}
+/* Ohne Shader gibt es nichts zu melden. */
+.nf-feld:not([data-nf-feld="aktiv"]) [data-nf-telemetrie]{ visibility: hidden; }
+
+/* ═══ Band ═══════════════════════════════════════════════════════════════
+   Eine volle Coral-Bahn, leicht gekippt, mit Ueberstand an beiden Seiten,
+   damit die Kippung keine Ecken freilegt. Sie sitzt als Scharnier
+   zwischen zwei Abschnitten und ist das lauteste Element der Seite —
+   genau eines davon ist erlaubt. */
+.nf-band-bahn{
+  position: relative;
+  overflow: hidden;
+  background: #F4583D;
+  transform: rotate(-2deg);
+  width: 108vw;
+  margin-left: -4vw;
+  margin-block: clamp(60px, 9vw, 120px);
+  padding-block: clamp(14px, 2vw, 26px);
+  z-index: 1;
+}
+.nf-band-spur{
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: clamp(28px, 4vw, 60px);
+  will-change: transform;
+}
+.nf-band-spur > span{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 7vw, 6.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  white-space: nowrap;
+  color: #ECE0C6;
+}
+.nf-band-spur > .nf-band-stern{
+  font-size: clamp(1.2rem, 2.4vw, 2.2rem);
+  color: rgba(29, 29, 29, .55);
+}
+html.nf-statisch .nf-band-bahn{ transform: none; width: 100%; margin-left: 0; }
+html.nf-statisch .nf-band-spur{ justify-content: center; flex-wrap: wrap; }
+
+/* ═══ Rahmen ═════════════════════════════════════════════════════════════
+   Vier Ecken, je zwei Haarlinien. Sie erscheinen nur ueber dem dunklen
+   Abschnitt — dort ist der Blick ein Sucher, auf Cream waere derselbe
+   Rahmen eine Verzierung. */
+.nf-rahmen{
+  position: fixed;
+  inset: 16px;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--nf-transport, .32s) var(--nf-ease, ease);
+}
+.nf-rahmen.an{ opacity: 1; }
+.nf-rahmen i{
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 0 solid rgba(236, 224, 198, .55);
+}
+.nf-rahmen i:nth-child(1){ top: 0; left: 0;  border-top-width: 1px; border-left-width: 1px; }
+.nf-rahmen i:nth-child(2){ top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+.nf-rahmen i:nth-child(3){ bottom: 0; left: 0;  border-bottom-width: 1px; border-left-width: 1px; }
+.nf-rahmen i:nth-child(4){ bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+@media(max-width: 767px){ .nf-rahmen{ display: none; } }
+
+/* Die Aufforderung gilt nur, solange es etwas zu bewegen gibt. Laeuft
+   kein Shader — kein WebGL, reduzierte Bewegung —, waere sie eine
+   Anweisung ins Leere und damit genau die Sorte Behauptung, die dieser
+   Abschnitt widerlegen soll. */
+.nf-feld-aufforderung{ display: none; }
+.nf-feld[data-nf-feld="aktiv"] .nf-feld-aufforderung{ display: inline; }

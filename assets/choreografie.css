@@ -361,3 +361,8 @@ html.nf-choreo:not(.nf-statisch) .tech-track{
 }
 .nf-readout b{ color: var(--gold); font-weight: 400; }
 @media(max-width: 767px){ .nf-readout{ display: none; } }
+
+/* Ueber den dunklen Abschnitten tritt die Fahrtanzeige zurueck: dort
+   steht bereits eine Anzeige (die Uniform-Werte des Feldes), und zwei
+   Zaehler in derselben Ecke lesen sich als Fehler, nicht als Instrument. */
+html.nf-dunkel .nf-readout{ opacity: 0; }

@@ -70,6 +70,31 @@
     eintritt.observe(el);
   });
 
+  /* ═══ 1b. Sucherrahmen ════════════════════════════════════════════════
+     Vier Haarlinien-Ecken, die nur ueber den dunklen Abschnitten stehen —
+     der Kinosequenz und dem Feld. Dort ist der Blick ein Sucher. Auf
+     Cream waere derselbe Rahmen eine Verzierung, deshalb geht er dort aus.
+
+     Ein eigener Beobachter, weil dieser mehrfach schaltet: der obige
+     meldet jedes Ziel genau einmal und gibt es dann frei. */
+  const rahmenEl = document.getElementById('nfRahmen');
+  const dunkel = alle('.cine-wrap, .nf-feld');
+  if (rahmenEl && dunkel.length){
+    const drin = new Set();
+    const wache = new IntersectionObserver((eintraege) => {
+      eintraege.forEach((e) => {
+        if (e.isIntersecting) drin.add(e.target); else drin.delete(e.target);
+      });
+      const imDunkeln = drin.size > 0;
+      rahmenEl.classList.toggle('an', imDunkeln);
+      /* Das Feld bringt eine eigene Anzeige mit (die Uniform-Werte). Die
+         Fahrtanzeige stuende an derselben Ecke und saehe aus wie ein
+         zweiter Zaehler ueber demselben Wert. Sie tritt zurueck. */
+      wurzel.classList.toggle('nf-dunkel', imDunkeln);
+    }, { threshold: .35 });
+    dunkel.forEach((el) => wache.observe(el));
+  }
+
   /* ═══ 2. Wort-Scrub ═══════════════════════════════════════════════════
      Der Satz wird in Woerter zerlegt. Jedes Wort bekommt ein eigenes
      Fenster auf der Scrollstrecke des Blocks, leicht gegeneinander
