@@ -66,7 +66,8 @@ html, body{ background: var(--cream); color: var(--ink); }
 
 /* Akzentwoerter in Ueberschriften wurden per background-clip aus dem
    Verlauf gestanzt. Ohne Verlauf ist der Text sonst unsichtbar: die
-   Fuellfarbe steht dort auf transparent. */
+   Fuellfarbe steht dort auf transparent.
+
    Das :not() ist kein Feinschliff, sondern noetig: die Choreografie packt
    maskierte Ueberschriften in ein eigenes <span>. Ohne die Ausnahme faerbt
    diese Regel die ganze Zeile ein statt nur das Akzentwort. */
@@ -242,3 +243,11 @@ input:focus, textarea:focus, select:focus{ border-color: var(--coral); outline-c
    Sie war der dunkelste Block der Seite. Auf Cream ist sie eine
    abgesenkte Flaeche mit einer Haarlinie darueber. */
 .footer{ background: var(--cream-ab); border-top: 1px solid var(--haar); }
+
+/* Die Beschriftung im Referenz-Visual war cremefarben, weil dort frueher
+   immer ein dunkler Grund lag. Zwei der drei Visuals sind nach der
+   Umfaerbung hell — dort stand sie unsichtbar auf ihrem eigenen Grund.
+   :has() fragt den Grund ab, statt die Karten durchzuzaehlen; eine
+   Positionsregel waere beim naechsten Umsortieren wieder falsch. */
+.work-visual:has(.wv-portal) .wname,
+.work-visual:has(.wv-atelier) .wname{ color: rgba(29, 29, 29, .55); }

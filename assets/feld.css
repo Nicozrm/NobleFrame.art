@@ -182,3 +182,57 @@ html.nf-statisch .nf-band-spur{ justify-content: center; flex-wrap: wrap; }
    Abschnitt widerlegen soll. */
 .nf-feld-aufforderung{ display: none; }
 .nf-feld[data-nf-feld="aktiv"] .nf-feld-aufforderung{ display: inline; }
+
+/* ═══ Riesen ═════════════════════════════════════════════════════════════
+   Ein uebergrosses Wort hinter jedem Abschnitt, das quer durchzieht,
+   waehrend man scrollt. Es ist nicht zu lesen gedacht — es ist der
+   Massstab, an dem man sieht, dass man sich bewegt. Ohne so etwas steht
+   ein Abschnitt still, sobald er eingeblendet ist, und Scrollen wird zum
+   Blaettern.
+
+   Deshalb steht es in Konturschrift und sehr leise: es soll den Raum
+   hinter dem Inhalt oeffnen, nicht mit ihm um Aufmerksamkeit streiten.
+   aria-hidden, weil es nichts sagt. */
+.nf-riese{
+  position: absolute;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(7rem, 19vw, 22rem);
+  font-weight: 300;
+  line-height: .8;
+  letter-spacing: -.02em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(29, 29, 29, .10);
+  will-change: transform;
+}
+.nf-riese-dunkel{ -webkit-text-stroke-color: rgba(236, 224, 198, .13); }
+
+/* Die Abschnitte, die einen Riesen tragen, brauchen einen Bezugsrahmen
+   und muessen ihn am Rand abschneiden. */
+.services-preview,
+.referenzen-teaser,
+.why-section,
+.process{ position: relative; overflow: hidden; }
+.services-preview > *:not(.nf-riese),
+.referenzen-teaser > *:not(.nf-riese),
+.why-section > *:not(.nf-riese),
+.process > *:not(.nf-riese){ position: relative; z-index: 1; }
+
+/* Alles, was durchgehend am Scroll haengt, wird pro Bild gesetzt. Eine
+   Transition darauf wuerde jeden dieser Werte ueber ihre Dauer
+   nachziehen — das Ergebnis ist kein weicher Lauf, sondern Schlieren. */
+[data-nf-tiefe], [data-nf-zug]{
+  transition: none !important;
+  will-change: transform;
+}
+html.nf-statisch [data-nf-tiefe],
+html.nf-statisch [data-nf-zug]{ transform: none !important; }
+html.nf-statisch .nf-riese{ display: none; }
+
+/* Der Bildrahmen der Referenzkarten bleibt stehen, sein Inhalt faehrt.
+   Der Ueberstand oben und unten ist noetig, damit die Fahrt keine Kante
+   freilegt — ohne ihn saehe man beim Scrollen den Kartengrund durch. */
+.wv-inner{ position: absolute; inset: -14% 0; }
