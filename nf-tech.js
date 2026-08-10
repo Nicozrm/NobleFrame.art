@@ -11,7 +11,7 @@
                          (Nav, Fortschritt, Cinematic-Scrub) funktionieren
                          unverändert, nur geschmeidiger. In-Page-Anker werden
                          über Lenis mit Nav-Offset angesteuert.
-   2. Vanta.NET        — WebGL-Konstellation (Three.js) im Seiten-Hero bzw.
+   2. Vanta.GLOBE      — sich drehende WebGL-Weltkugel (Three.js) im Eingang bzw.
                          in der CTA-Sektion der Startseite. Gold auf Schwarz,
                          `mix-blend-mode:screen` → das Netz verschmilzt mit
                          den vorhandenen .bg-effects statt sie zu überdecken.
@@ -148,9 +148,9 @@
         const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1));
         idle(() => {
           loadScript('vendor/three.min.js')
-            .then(() => loadScript('vendor/vanta.net.min.js'))
+            .then(() => loadScript('vendor/vanta.globe.min.js'))
             .then(() => {
-              if (window.VANTA && window.VANTA.NET && window.THREE) initVanta(hero);
+              if (window.VANTA && window.VANTA.GLOBE && window.THREE) initVanta(hero);
             })
             .catch(() => { /* still fallback: Seite bleibt exakt wie sie ist */ });
         });
@@ -163,9 +163,26 @@
     {
       const css = document.createElement('style');
       css.textContent =
-        '.nf-vanta{position:absolute;inset:0;z-index:0;overflow:hidden;' +
-        'mix-blend-mode:screen;opacity:.58}' +
-        '@media(max-width:768px){.nf-vanta{opacity:.3}}';
+        /* screen stammt aus der dunklen Fassung: dort hellt es das Netz
+           aus dem Schwarz heraus. Auf Cream loescht derselbe Modus genau
+           die dunklen Linien aus, die man sehen soll. Also normal, dafuer
+           leiser.
+
+           Und nicht mehr inset:0. Ueber die ganze Sektion gespannt lag die
+           Kugel mitten im Fliesstext — man las den Absatz durch ein
+           Drahtgitter.
+
+           Sie steht jetzt unten links, halb angeschnitten: dort laesst die
+           Komposition ohnehin eine Flaeche frei, weil die Ueberschrift
+           kuerzer ist als die Spalte daneben. Damit fuellt sie ein Loch,
+           statt Text zu ueberlagern — und kann dabei kraeftig genug
+           stehen, um als Kugel gelesen zu werden. */
+        '.nf-vanta{position:absolute;left:-3vw;bottom:-6vh;' +
+        'width:min(52vmin,600px);aspect-ratio:1;' +
+        'z-index:0;overflow:hidden;mix-blend-mode:normal;opacity:.62;' +
+        'pointer-events:none}' +
+        '@media(max-width:900px){.nf-vanta{left:-22vw;bottom:-4vh;' +
+        'width:82vmin;opacity:.3}}';
       document.head.appendChild(css);
 
       const host = document.createElement('div');
@@ -188,7 +205,19 @@
       const mobile = matchMedia('(max-width: 768px)').matches;
       let vanta = null;
       try {
-        vanta = window.VANTA.NET({
+        /* GLOBE statt NET: eine Kugel, die sich dreht, statt einer Flaeche,
+           die zuckt. Die Drehung ist Teil des Effekts und braucht keine
+           eigene Animation — sie laeuft, solange gerendert wird, und der
+           Renderer haelt an, sobald die Sektion aus dem Blick geht.
+
+           color traegt die Struktur, color2 die Knoten. Beide in Tinte
+           bzw. Coral, weil sie auf Cream liegen: ein helles Netz auf
+           hellem Grund ist kein Netz.
+
+           points niedriger als in der Voreinstellung — die Vorgabe (10)
+           ergibt auf einem breiten Schirm ein Knaeuel. Weniger Punkte
+           lassen die Kugel als Kugel lesen. */
+        vanta = window.VANTA.GLOBE({
           el: host,
           mouseControls: true,
           touchControls: true,
@@ -197,12 +226,17 @@
           minWidth: 200,
           scale: 1,
           scaleMobile: 1,
-          color: GOLD,
+          color: 0xF4583D,
+          /* Voll deckende Tinte zeichnete harte Striche quer durch die
+             Kugel — bei dieser Groesse liest sich das als Kratzer, nicht
+             als Laengengrad. Ein gedaempfter Ton haelt die Struktur und
+             verliert den Schnitt. */
+          color2: 0x9A9280,
           backgroundColor: 0xECE0C6,
-          points: mobile ? 6 : 11,
-          maxDistance: 23,
-          spacing: mobile ? 17 : 19,
-          showDots: true
+          size: mobile ? 0.9 : 1.15,
+          points: mobile ? 6 : 9,
+          maxDistance: 22,
+          spacing: mobile ? 18 : 16
         });
       } catch (_) {
         host.remove();
