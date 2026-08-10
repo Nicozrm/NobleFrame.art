@@ -144,7 +144,7 @@
      Deshalb entscheidet, wer mehr Viewport besitzt. Das ergibt eine
      Uebergabe statt eines Verbots: im Anfahren der CTA gehoert das Bild
      dem Netz, am Grund der Seite dem Globus.                            */
-  const vantaWirte = Array.from(document.querySelectorAll('.page-hero, .cta-section'))
+  const vantaWirte = Array.from(document.querySelectorAll('.nf-hero, .page-hero, .cta-section'))
     .filter((el) => !el.hasAttribute('data-nf-sphaere'))
     .slice(0, 1);                   // nf-tech.js bespielt genau einen Wirt
 
@@ -260,10 +260,19 @@
          die Funktion darunter beschaedigt, ist keine Zugabe mehr. Neun
          zu fuenf bei 0.11 liest sich als Wasserzeichen: man sieht es,
          wenn man hinsieht, und es steht niemandem im Weg. */
+      /* Die Linienfarbe richtet sich nach dem Grund, auf dem der Wirt steht.
+         Seit der Farbbogen den Footer nach Tiefe gedreht hat, waere ein
+         festes Ink dort unsichtbar — dieselbe Zeile Code, dasselbe Motiv,
+         und trotzdem nichts zu sehen. Gefragt wird das Markup, nicht eine
+         zweite Liste im Skript: was sich als tief ausweist, bekommt Cream. */
+      const tief = wirte.some((w) => w.closest('[data-grund="tief"]'));
+      const linie = tief ? 0xECE0C6 : 0x1D1D1D;
+      const staerke = tief ? 0.16 : 0.11;
+
       const gitter = new THREE.LineSegments(
         globusBauen(1, 9, 5, 64),
         new THREE.LineBasicMaterial({
-          color: 0x1D1D1D, transparent: true, opacity: 0.11, depthWrite: false
+          color: linie, transparent: true, opacity: staerke, depthWrite: false
         })
       );
       globus.add(gitter);

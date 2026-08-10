@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/motion.css">
     <link rel="stylesheet" href="assets/choreografie.css">
-    <script defer src="cinematic-engine.js"></script>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{--gold:#F4583D;--gold-light:#F4583D;--gold-dark:#C43F26;--black:#ECE0C6;--white:#1D1D1D;--white-muted:rgba(29,29,29,.62);--white-subtle:rgba(29,29,29,.45);--gradient:linear-gradient(135deg,#F4583D 0%,#F4583D 50%,#F4583D 100%)}
@@ -558,21 +557,13 @@
 <body>
     <a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
 
-<div class="curtain-overlay" id="curtainOverlay">
-    <div class="curtain-left"></div>
-    <div class="curtain-right"></div>
-    <div class="curtain-logo">
-        <div class="curtain-logo-icon">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <rect x="5" y="5" width="90" height="90" fill="none" stroke="#F4583D" stroke-width="2"/>
-                <rect x="25" y="25" width="50" height="50" fill="none" stroke="#F4583D" stroke-width="1.5" opacity="0.7"/>
-                <line x1="50" y1="5" x2="50" y2="95" stroke="#F4583D" stroke-width="0.5" opacity="0.5"/>
-                <line x1="5" y1="50" x2="95" y2="50" stroke="#F4583D" stroke-width="0.5" opacity="0.5"/>
-            </svg>
-        </div>
-        <span class="curtain-logo-text">NobleFrame</span>
-        <span class="curtain-tagline">Premium Digital Atelier</span>
+<div class="nf-lader" id="nfLader" role="status" aria-live="polite">
+    <div class="nf-lader-mitte">
+        <span class="nf-lader-zahl" data-nf-laderzahl>000</span>
+        <span class="nf-lader-balken"><i data-nf-laderbalken></i></span>
     </div>
+    <span class="nf-lader-links">NobleFrame — Atelier wird geladen</span>
+    <span class="nf-lader-rechts" data-nf-uhr>--:--:--</span>
 </div>
 
 <div class="nf-korn" aria-hidden="true"></div>
@@ -636,90 +627,38 @@
     <a href="kontakt.html" class="mobile-menu-cta">Projekt anfragen</a>
 </div>
 
-<section class="cine-wrap" id="hauptinhalt" tabindex="-1" data-cine>
-    <div class="cine-stage" data-cine-stage>
-        <canvas class="cine-canvas" data-cine-canvas aria-hidden="true"></canvas>
-        <div class="cine-fx" aria-hidden="true"></div>
-        <div class="cine-bar cine-bar-top" data-cine-bar-top aria-hidden="true"></div>
-        <div class="cine-bar cine-bar-bottom" data-cine-bar-bottom aria-hidden="true"><span class="cine-slate" data-cine-slate></span></div>
+<header class="nf-hero" id="hauptinhalt" tabindex="-1">
+    <svg class="nf-orbit" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke">
+            <circle cx="100" cy="100" r="78"/>
+            <ellipse cx="100" cy="100" rx="78" ry="30"/>
+            <ellipse cx="100" cy="100" rx="78" ry="30" transform="rotate(60 100 100)"/>
+            <ellipse cx="100" cy="100" rx="78" ry="30" transform="rotate(120 100 100)"/>
+            <ellipse cx="100" cy="100" rx="30" ry="78"/>
+            <path d="M28 76h144M28 124h144"/>
+        </g>
+    </svg>
 
-        <div class="cine-chapter" data-cine-chapter="0">
-            <svg class="cine-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="5" y="5" width="90" height="90" fill="none" stroke="#F4583D" stroke-width="2"/>
-                <rect x="25" y="25" width="50" height="50" fill="none" stroke="#F4583D" stroke-width="1.5" opacity="0.7"/>
-                <line x1="50" y1="5" x2="50" y2="95" stroke="#F4583D" stroke-width="0.5" opacity="0.5"/>
-                <line x1="5" y1="50" x2="95" y2="50" stroke="#F4583D" stroke-width="0.5" opacity="0.5"/>
-            </svg>
-            <div class="cine-kicker">Premium Digital Atelier</div>
-            <div class="cine-wordmark">NobleFrame</div>
-            <div class="cine-sub">Ein Atelier. Kein Baukasten.</div>
-            <div class="cine-scrollhint"><span>Scrollen, um einzutreten</span><i></i></div>
-        </div>
-
-        <div class="cine-chapter cine-left" data-cine-chapter="1">
-            <div class="cine-num">01 / Strategie</div>
-            <div class="cine-h">Fundament <span>vor Pixel</span>.</div>
-            <p class="cine-p">Wir verstehen Geschäft, Ziele und Nutzer – bevor die erste Zeile Code entsteht.</p>
-        </div>
-
-        <div class="cine-chapter cine-right" data-cine-chapter="2">
-            <div class="cine-num">02 / Design</div>
-            <div class="cine-h">Brutale <span>Eleganz</span>.</div>
-            <p class="cine-p">Tiefes Schwarz, gesetztes Gold, Typografie mit Haltung. Design, das nicht dekoriert, sondern Wertigkeit spürbar macht.</p>
-        </div>
-
-        <div class="cine-chapter cine-left" data-cine-chapter="3">
-            <div class="cine-num">03 / Code</div>
-            <div class="cine-h">100&nbsp;% <span>handgeschrieben</span>.</div>
-            <p class="cine-p">Kein Template. Kein Baukasten. Jede Zeile unter Kontrolle – Performance als Grundhaltung.</p>
-        </div>
-
-        <div class="cine-chapter cine-finale" data-cine-chapter="4" tabindex="-1">
-            <div class="cine-finale-inner">
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    <span>Premium Digital Atelier</span>
-                </div>
-                <h1 class="hero-title">
-                    <span class="title-line"><span class="title-word">Wir bauen</span></span>
-                    <span class="title-line"><span class="nf-schacht" data-nf-dreher
-                        data-worte="Shader,Motion,Scroll,WebGL"><span class="nf-wort-alt">Shader</span></span></span>
-                    <span class="title-line"><span class="title-word">Erlebnisse<span class="title-accent"> ↗</span></span></span>
-                </h1>
-                <p class="hero-text">Digitale Plattformen für Unternehmen, die Präzision erwarten. Maßgeschneiderte E-Commerce- und Weblösungen mit messbarem Business Impact – ohne Kompromisse bei Design, Performance oder Code-Qualität.</p>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <span class="hero-stat-number">25+</span>
-                        <span class="hero-stat-label">Projekte</span>
-                    </div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-number">Ø 3 Mon.</span>
-                        <span class="hero-stat-label">Bis ROI</span>
-                    </div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-number">100%</span>
-                        <span class="hero-stat-label">Eigener Code</span>
-                    </div>
-                </div>
-                <div class="hero-ctas">
-                    <a href="kontakt.html" class="btn-primary">Projekt anfragen</a>
-                    <a href="referenzen.html" class="btn-secondary">Referenzen ansehen</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="cine-rail" aria-hidden="true">
-            <span class="cine-rail-track"></span>
-            <span class="cine-rail-fill" data-cine-railfill></span>
-            <span class="cine-tick" data-cine-tick style="top:2%"></span>
-            <span class="cine-tick" data-cine-tick style="top:28%"></span>
-            <span class="cine-tick" data-cine-tick style="top:50%"></span>
-            <span class="cine-tick" data-cine-tick style="top:72%"></span>
-            <span class="cine-tick" data-cine-tick style="top:95%"></span>
-        </div>
-        <button class="cine-skip" type="button" data-cine-skip>Intro überspringen</button>
+    <div class="nf-hero-kopf">
+        <span>Sek. 01 / 06 — Premium Digital Atelier</span>
+        <span>Steinfurt — 52.1500° N, 7.3333° O</span>
     </div>
-</section>
+
+    <h1 class="nf-hero-titel">
+        <span class="nf-zeile"><span>Wir bauen</span></span>
+        <span class="nf-zeile"><span class="nf-schacht" data-nf-dreher
+            data-worte="Shader,Motion,Scroll,WebGL"><span class="nf-wort-alt">Shader</span></span></span>
+        <span class="nf-zeile"><span>Erlebnisse<a href="referenzen.html" class="nf-pfeil" aria-label="Referenzen ansehen">↗</a></span></span>
+    </h1>
+
+    <p class="nf-hero-lead">NobleFrame ist ein Premium Digital Atelier aus Steinfurt — eigener Code, eigene Shader, kein Baukasten. Wir bauen digitale Plattformen für Unternehmen, die Präzision erwarten.</p>
+
+    <div class="nf-hero-fuss">
+        <span class="nf-hero-scroll"><i></i>Scrollen, um einzutreten</span>
+        <span data-nf-zustand>WEBGL / PRÜFT …</span>
+        <span data-nf-uhr>--:--:--</span>
+    </div>
+</header>
 
 <section class="intro-band">
     <div class="nf-marke"><span>Sek. 01 — Wer wir sind</span><span>Premium Digital Atelier</span></div>
@@ -1092,14 +1031,11 @@
 </footer>
 
 <script>
-/* Der Vorhang oeffnet, sobald das Dokument steht — nicht 1,8 s nach dem
-   letzten Bild. Waehrend der alten Wartezeit wurde nichts geladen; sie war
-   reine Verzoegerung vor der Kernaussage. Die 1,2-s-Transition bleibt. */
-document.addEventListener('DOMContentLoaded', () => {
-    requestAnimationFrame(() => {
-        document.getElementById('curtainOverlay').classList.add('open');
-    });
-});
+/* Der zweiteilige Vorhang ist dem Lader der Vorlage gewichen (nf-dreher.js):
+   cremefarbener Grund, Mono-Zaehler, Haarlinie, dann hebt sich die Flaeche.
+   Das Skript, das ihn hier oeffnete, ist deshalb ersatzlos raus — es griff
+   nach einem Element, das es nicht mehr gibt, und warf bei jedem Aufruf
+   einen Fehler, der alles Nachfolgende in diesem Block verhindert haette. */
 
 const navWrapper = document.getElementById('navWrapper');
 window.addEventListener('scroll', () => {

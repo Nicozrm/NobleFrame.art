@@ -103,7 +103,10 @@
      Ein eigener Beobachter, weil dieser mehrfach schaltet: der obige
      meldet jedes Ziel genau einmal und gibt es dann frei. */
   const rahmenEl = document.getElementById('nfRahmen');
-  const dunkel = alle('.cine-wrap, .nf-feld');
+  /* Frueher stand hier .cine-wrap — die Kinosequenz gibt es nicht mehr.
+     Der Rahmen haengt jetzt am Farbbogen selbst: jeder Abschnitt, der sich
+     als tief ausweist, bekommt ihn, und neue brauchen keine Codeaenderung. */
+  const dunkel = alle('[data-grund="tief"], .nf-feld');
   if (rahmenEl && dunkel.length){
     const drin = new Set();
     const wache = new IntersectionObserver((eintraege) => {

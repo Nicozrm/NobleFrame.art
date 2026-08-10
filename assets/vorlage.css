@@ -85,7 +85,8 @@ body{
   line-height: 1.6;
   letter-spacing: 0;
 }
-.section-subtitle, .page-subtitle, .cine-p, .footer-tagline{
+.section-subtitle, .page-subtitle, .cine-p, .footer-tagline,
+.hero-type-line, .hero-type, .hero-text, .intro-body p{
   font-family: var(--lauf);
   text-transform: none;
   letter-spacing: 0;
@@ -308,3 +309,289 @@ html.nf-statisch [data-nf-roll] .nf-roll-d{ transition: none; }
    Ergaenzung gewesen, sondern eine Verschlechterung — sie haette den
    z-index von 1000 auf 60 gezogen und das Rauschen hinter Elemente
    geschoben, ueber denen es liegen soll. */
+
+/* ═══ 7. Hero: Globus und Meta-Zeile ═════════════════════════════════════
+   Der Orbital-Globus ist bewusst SVG und nicht WebGL. Im Hero der
+   Startseite laeuft bereits die Kinosequenz auf Canvas2D; ein zweiter
+   Kontext daneben waere derselbe Fehler, den nf-sphaere.js im Footer
+   vermeidet. Sechs Ellipsen kosten nichts und drehen sich in derselben
+   Minute wie das Drahtgitter unten — dieselbe Bewegung an beiden Enden
+   der Seite. */
+.nf-orbit{
+  position: absolute;
+  right: -6vmin;
+  top: 50%;
+  width: 60vmin;
+  height: 60vmin;
+  transform: translateY(-50%);
+  color: var(--cream);
+  opacity: .14;
+  pointer-events: none;
+  z-index: 0;
+}
+.nf-orbit > g{ transform-origin: 100px 100px; animation: nf-orbit-dreht 60s linear infinite; }
+@keyframes nf-orbit-dreht{ to{ transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce){ .nf-orbit > g{ animation: none; } }
+@media (max-width: 860px){ .nf-orbit{ opacity: .08; right: -18vmin; } }
+
+/* Die Meta-Zeile ist die Stelle, an der die Seite zugibt, was sie tut:
+   links die Aufforderung, in der Mitte der tatsaechliche Zustand der
+   WebGL-Ebene, rechts die Uhr. Der Zustand wird nicht behauptet, sondern
+   von nf-dreher.js aus dem laufenden Betrieb gemeldet — steht dort
+   FALLBACK, ist auch wirklich keiner da. */
+.nf-hero-meta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(14px, 3vw, 44px);
+  align-items: center;
+  justify-content: center;
+  margin-top: clamp(22px, 3vw, 34px);
+  font-family: var(--nf-mono);
+  font-size: .65rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(236, 224, 198, .55);
+}
+.nf-hero-scroll{ display: inline-flex; align-items: center; gap: 10px; }
+.nf-hero-scroll > i{
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--coral);
+  animation: nf-tupf 1.2s cubic-bezier(.16,1,.3,1) infinite;
+}
+@keyframes nf-tupf{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce){ .nf-hero-scroll > i{ animation: none; } }
+@media (max-width: 620px){ .nf-hero-meta [data-nf-zustand]{ display: none; } }
+
+/* Der Hero der Startseite ist nicht der Hero der Vorlage: dort steht die
+   Anzeige allein auf einem leeren Bildschirm, hier teilt sie sich das
+   Finale-Kapitel mit Badge, Absatz, drei Zahlen, zwei Schaltflaechen und
+   der Meta-Zeile. Drei Zeilen zu 180 px ergeben dann uebereinander
+   liegende Woerter — gemessen, nicht vermutet.
+
+   Deshalb bekommt genau dieser Ort eine eigene Groesse. Der Charakter
+   bleibt (Anton, kondensiert, Versal, das rotierende Wort in Coral), nur
+   der Grad richtet sich nach dem, was daneben noch stehen muss. */
+.cine-finale .hero-title{
+  font-size: clamp(2.2rem, 6.4vw, 5.6rem);
+  line-height: .94;
+}
+.cine-finale .title-line{ display: block; }
+.cine-finale .nf-schacht{ line-height: .94; }
+
+/* Der Schacht ist ein Fenster: was herausfaehrt, darf nicht darueber
+   stehen bleiben. Ohne diese Hoehe wuerde das abfahrende Wort die
+   Zeilenhoehe des Absatzes bestimmen und die Zeile darunter verschieben. */
+.nf-schacht{ height: 1em; }
+
+/* ═══ 8. Der Anfang ══════════════════════════════════════════════════════
+   Vorher stand hier eine Kinosequenz: fünf scroll-gescrubbte Kapitel auf
+   Schwarz, bevor die Seite ueberhaupt begann. Das ist das Gegenteil der
+   Vorlage. Dort dauert der Auftakt knapp zwei Sekunden, ist cremefarben,
+   und danach steht ein stiller Bildschirm mit einer einzigen grossen
+   Aussage. Der Unterschied ist nicht Geschmack, sondern Haltung: die
+   Sequenz liess die Seite auf sich warten, der Hero laesst sie beginnen.
+
+   Der Lader: cremefarbener Grund, ein Mono-Zaehler, eine Haarlinie, die
+   sich fuellt, zwei Beschriftungen an den unteren Ecken. Danach hebt sich
+   die ganze Flaeche als Vorhang nach oben. */
+.nf-lader{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--cream);
+  display: grid;
+  place-items: center;
+  transform: translateY(0);
+  transition: transform .9s var(--e-vorhang);
+}
+.nf-lader.weg{ transform: translateY(-100%); }
+/* pointer-events erst weg, wenn er wirklich oben ist — sonst klickt man
+   waehrend der Fahrt durch ihn hindurch auf Dinge, die man nicht sieht. */
+.nf-lader.fort{ pointer-events: none; visibility: hidden; }
+
+.nf-lader-mitte{ display: grid; justify-items: center; gap: 14px; }
+.nf-lader-zahl{
+  font-family: var(--nf-mono);
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.nf-lader-balken{
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: rgba(29, 29, 29, .2);
+  overflow: hidden;
+}
+.nf-lader-balken > i{
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--coral);
+  transition: width .18s linear;
+}
+.nf-lader-links, .nf-lader-rechts{
+  position: absolute;
+  bottom: clamp(16px, 3vw, 30px);
+  font-family: var(--nf-mono);
+  font-size: .65rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(29, 29, 29, .45);
+}
+.nf-lader-links{ left: clamp(16px, 3.3vw, 40px); }
+.nf-lader-rechts{ right: clamp(16px, 3.3vw, 40px); }
+@media (prefers-reduced-motion: reduce){
+  .nf-lader{ transition: none; }
+}
+
+/* ── Der Hero ────────────────────────────────────────────────────────────
+   Voller Bildschirm, cremefarbener Grund, das Vanta-Netz dahinter. Der
+   Inhalt steht in drei Lagen uebereinander: Netz (z 0), Globus (z 0),
+   Schrift (z 1). Mehr Ebenen braucht es nicht, und jede weitere waere
+   eine Gelegenheit fuer einen Stapelfehler. */
+.nf-hero{
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(18px, 2.4vw, 30px);
+  padding: clamp(96px, 12vh, 150px) clamp(20px, 3.3vw, 40px) clamp(24px, 4vh, 44px);
+  background: var(--cream);
+  overflow: hidden;          /* haelt Netz und Globus im Rahmen */
+  isolation: isolate;
+}
+.nf-hero > *:not(.nf-orbit):not(.nf-vanta){ position: relative; z-index: 1; }
+
+.nf-hero-kopf{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  font-family: var(--nf-mono);
+  font-size: .65rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(29, 29, 29, .5);
+}
+
+.nf-hero-titel{
+  margin: 0;
+  font-family: var(--anzeige);
+  font-weight: 400;
+  font-size: clamp(3rem, 12.5vw, 13rem);
+  line-height: .92;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+/* Jede Zeile ist ein Fenster: der maskierte Aufstieg beim Eintritt faehrt
+   den Inhalt aus der eigenen Kante herauf, nicht aus dem Nichts. */
+.nf-zeile{ display: block; overflow: hidden; }
+.nf-zeile > span{ display: inline-block; }
+html.nf-choreo .nf-zeile > span{ transform: translateY(110%); transition: transform .9s var(--e-aus); }
+html.nf-choreo .nf-hero.in .nf-zeile > span{ transform: translateY(0); }
+html.nf-choreo .nf-hero .nf-zeile:nth-child(2) > span{ transition-delay: .12s; }
+html.nf-choreo .nf-hero .nf-zeile:nth-child(3) > span{ transition-delay: .24s; }
+html.nf-statisch .nf-zeile > span{ transform: none !important; transition: none; }
+
+/* Der Schacht darf nicht mitmaskiert werden: er bringt sein eigenes
+   Fenster mit, und zwei ineinander liegende Masken schneiden das Wort in
+   der Mitte durch. */
+.nf-zeile > .nf-schacht{ overflow: hidden; }
+
+.nf-pfeil{
+  color: var(--coral);
+  text-decoration: none;
+  margin-left: .12em;
+  display: inline-block;
+  transition: transform .4s var(--e-aus);
+}
+.nf-pfeil:hover, .nf-pfeil:focus-visible{ transform: translate(.08em, -.08em); }
+
+.nf-hero-lead{
+  max-width: 46ch;
+  margin: 0;
+  font-family: var(--lauf);
+  font-size: clamp(.95rem, .9vw + .4rem, 1.125rem);
+  line-height: 1.6;
+  color: rgba(29, 29, 29, .62);
+}
+
+.nf-hero-fuss{
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(14px, 3vw, 44px);
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--nf-mono);
+  font-size: .65rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(29, 29, 29, .5);
+}
+.nf-hero .nf-orbit{ color: var(--ink); opacity: .14; }
+@media (max-width: 620px){ .nf-hero-fuss [data-nf-zustand]{ display: none; } }
+
+/* ═══ 9. Reste auf tiefem Grund ══════════════════════════════════════════
+   Ein Farbwechsel ist nie mit dem Hintergrund erledigt. Was vorher auf
+   Cream stand, hat Farben, die dort funktionierten und hier verschwinden:
+   das Newsletter-Feld war dunkel auf dunkel, die Wortmarke Ink auf Void,
+   das Checkbox-Label unlesbar. Ein Formular, das man nicht sieht, ist
+   kein Gestaltungsdetail, sondern ein Funktionsverlust. */
+[data-grund="tief"] .footer-logo-text,
+[data-grund="tief"] .footer-section h4,
+[data-grund="tief"] .footer-links a,
+[data-grund="tief"] .newsletter-section h4,
+[data-grund="tief"] .copyright,
+[data-grund="tief"] .legal-links a{ color: var(--cream); }
+
+[data-grund="tief"] .footer-tagline,
+[data-grund="tief"] .newsletter-desc,
+[data-grund="tief"] .checkbox-label{ color: rgba(236, 224, 198, .62); }
+
+[data-grund="tief"] .footer-links a:hover,
+[data-grund="tief"] .legal-links a:hover{ color: var(--coral); }
+
+[data-grund="tief"] .newsletter-input{
+  background: rgba(236, 224, 198, .06);
+  border: 1px solid rgba(236, 224, 198, .22);
+  color: var(--cream);
+}
+[data-grund="tief"] .newsletter-input::placeholder{ color: rgba(236, 224, 198, .38); }
+[data-grund="tief"] .newsletter-input:focus{ border-color: var(--coral); }
+[data-grund="tief"] .custom-checkbox{
+  border: 1px solid rgba(236, 224, 198, .32);
+  background: transparent;
+}
+[data-grund="tief"] .checkbox-label a{ color: var(--coral); }
+[data-grund="tief"] .footer-bottom{ border-top-color: rgba(236, 224, 198, .16); }
+
+/* Das Logo-Quadrat ist Coral gezeichnet und steht auf beiden Gruenden. */
+[data-grund="tief"] .footer-logo-icon svg rect{ stroke: var(--coral); }
+
+/* ═══ 10. Karten-Ueberschriften ══════════════════════════════════════════
+   Die Seite setzt ihre h3 in fuenf Bauteilen einzeln (`.live-card h3`,
+   `.work-body h3`, …), jeweils mit Klassenspezifitaet. Ein blosser
+   Element-Selektor oben verliert dagegen — die Karten standen deshalb
+   weiter in der alten Serifenschrift, waehrend alles um sie herum schon
+   kondensiert war. Hier stehen sie noch einmal, gleich spezifisch. */
+.live-card h3,
+.work-body h3,
+.why-card h3,
+.process-step h3,
+.service-card h3{
+  font-family: var(--anzeige);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+.live-card h3{ font-size: clamp(1.3rem, 2.2vw, 1.9rem); }
+.work-body h3{ font-size: clamp(1.15rem, 1.9vw, 1.6rem); }
+.why-card h3{ font-size: clamp(1.2rem, 2vw, 1.7rem); }
+.process-step h3{ font-size: clamp(1.1rem, 1.8vw, 1.5rem); }
