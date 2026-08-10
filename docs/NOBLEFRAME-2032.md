@@ -614,3 +614,25 @@ Das ist kein Slogan. Es hat Konsequenzen, und dies sind sie:
 Der Unterschied zwischen einer Website und einem Produkt ist keine Technologie. Es ist die Frage, ob jemand dafür verantwortlich ist, dass jede einzelne Aussage darin stimmt.
 
 **Das ist die eigentliche Arbeit. Alles in Phase 3 und 4 ist erst danach relevant.**
+
+---
+
+## Nachtrag — Richtungswechsel zur Cream/Coral-Sprache
+
+**Dieses Dossier beschreibt ab hier nicht mehr die Seite, die im Repository liegt.** Es bleibt trotzdem stehen, weil seine Befunde weiter gelten und weil ein Dossier, das nachträglich zur gebauten Seite umgeschrieben wird, seinen Zweck verliert: Es wäre dann kein Urteil mehr, sondern eine Beschreibung.
+
+Was sich geändert hat und was davon unberührt bleibt:
+
+### Überholt
+
+- **Phase 2/3, „Licht — Gold ist eine Lichtfarbe".** Die Palette kommt jetzt aus einer externen Vorlage: Cream `#ECE0C6` als Grund, Ink `#1D1D1D` als Schrift, Coral `#F4583D` als einziger Akzent, dazu vier warme Bänder. Der Gedanke war richtig für Gold — Gold *ist* eine Lichtfarbe, also wurde es zu Licht gemacht. Coral ist keine. Es ist ein Pigment, ein flaches Feld neben Cream. Ein Verlauf darauf wäre der Glanz, den diese Sprache ausschließt. Das Lichtsystem ist deshalb nicht angepasst, sondern ersetzt worden.
+- **Die Typografie.** Cormorant Garamond und Outfit sind abgelöst durch Anton (Anzeige) und Archivo (Fließtext). JetBrains Mono bleibt.
+- **Die Verbote gegen Awwwards-Muster (Phase „Verbote").** Vorladeanzeige, eigener Zeiger, gepinnte Horizontalfahrt, Wort-Scrub, Laufband, Konturriesen und Seitenvorhang sind ausdrücklich gewünscht und gebaut. Das Dossier lehnte sie ab; der Auftraggeber hat anders entschieden, mehrfach und eindeutig.
+
+### Unberührt gültig
+
+- **Phase 0 und 1 — sämtliche Befunde.** Erfundene Kundenlogos, widersprüchliche Zahlen, tote Links, 404-feuernde Skripte, der Downloads-Ordner im Web-Root. Ein Farbwechsel heilt keine Unwahrheit.
+- **Schritt 0, „Wahrheit herstellen".** Selbst gehostete Schriften, keine Drittanbieter-Roundtrips. Der Schriftwechsel hat das nicht aufgeweicht: Anton und Archivo liegen im Repository, nicht bei Google.
+- **Das Bewegungssystem** (zwei Dauern, eine Kurve, `prefers-reduced-motion` global) und **der persistente Rahmen**.
+- **Die Budgetregel.** Jede schwere Schicht — Shader, Bahn, Zeiger, Vorladeanzeige — liegt über einem Dokument, das ohne sie vollständig funktioniert, und räumt sich bei reduzierter Bewegung, fehlendem WebGL oder schmalem Fenster selbst ab.
+- **Der Satz am Ende.** Dass jede einzelne Aussage stimmen muss, war beim Bauen die härteste Regel — und die einzige, die durch den Richtungswechsel nicht berührt wurde. Der Prozentzähler misst echte Posten. Die Shader-Telemetrie zeigt echte Uniforms. „Bewegen Sie den Zeiger" erscheint nur, wenn ein Shader läuft.
