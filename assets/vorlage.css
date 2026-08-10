@@ -584,7 +584,8 @@ html.nf-statisch .nf-zeile > span{ transform: none !important; transition: none;
 .work-body h3,
 .why-card h3,
 .process-step h3,
-.service-card h3{
+.service-card h3,
+.cta-title{
   font-family: var(--anzeige);
   font-weight: 400;
   text-transform: uppercase;
@@ -595,3 +596,70 @@ html.nf-statisch .nf-zeile > span{ transform: none !important; transition: none;
 .work-body h3{ font-size: clamp(1.15rem, 1.9vw, 1.6rem); }
 .why-card h3{ font-size: clamp(1.2rem, 2vw, 1.7rem); }
 .process-step h3{ font-size: clamp(1.1rem, 1.8vw, 1.5rem); }
+
+/* ═══ 11. Zahlen ═════════════════════════════════════════════════════════
+   Vier Spalten auf Cream, jede unter einer Haarlinie: die Ziffer gross und
+   kondensiert, das Suffix in Coral, die Beschriftung in Mono darunter.
+
+   Diese Sektion ersetzt die drei Zahlen, die frueher im Finale-Kapitel der
+   Kinosequenz standen. Beim Austausch des Anfangs waeren sie sonst
+   ersatzlos verschwunden — es sind Aussagen ueber das Atelier, nicht
+   Zierrat der Sequenz.
+
+   Die vierte Zahl ist bewusst „5 laufende Systeme": sie steht zwei
+   Abschnitte weiter oben als Liste und ist damit auf derselben Seite
+   nachpruefbar. Eine erfundene vierte Kennzahl waere gegen den Grundsatz
+   gewesen, dass hier keine Zahl ohne Deckung steht. */
+.nf-zahlen{
+  background: var(--cream);
+  padding: clamp(72px, 12vh, 150px) clamp(20px, 3.3vw, 40px);
+}
+.nf-zahlen-reihe{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 48px);
+  margin-top: clamp(32px, 5vw, 60px);
+}
+.nf-zahl{
+  border-top: 1px solid var(--haar);
+  padding-top: 24px;
+}
+.nf-zahl > b{
+  display: block;
+  font-family: var(--anzeige);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 7vw, 7rem);
+  line-height: .92;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  /* Kein Umbruch: die Ziffer und ihr Suffix sind eine Einheit. „Ø 3 Mon."
+     brach hier um, das Wort fiel in die naechste Zeile und riss die Reihe
+     auf. Woerter gehoeren deshalb in die Beschriftung darunter — im Grossgrad
+     stehen nur Ziffer und ein kurzes Zeichen. */
+  white-space: nowrap;
+}
+.nf-zahl > b > i{ font-style: normal; color: var(--coral); }
+.nf-zahl > span{
+  display: block;
+  margin-top: 12px;
+  font-family: var(--nf-mono);
+  font-size: .65rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gedaempft);
+}
+/* Beim Ueberfahren wird die Ziffer coral — dieselbe Geste wie in der
+   Vorlage, ein Farbwechsel statt einer Bewegung. */
+.nf-zahl:hover > b{ color: var(--coral); transition: color .3s ease; }
+
+@media (max-width: 860px){
+  .nf-zahlen-reihe{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 460px){
+  .nf-zahlen-reihe{ grid-template-columns: 1fr; }
+}
+
+/* Die CTA-Ueberschrift setzt ihre Schrift ueber `.cta-title` und stand
+   deshalb als letzte Serifenzeile zwischen lauter kondensierten. */
+.cta-title{ font-size: clamp(2rem, 5.5vw, 4.5rem); }
