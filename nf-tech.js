@@ -135,7 +135,7 @@
     // Der nächste Kandidat rückt dann nach; gibt es keinen, bleibt die
     // Seite ohne Netz, was sie ohnehin verträgt.
     const hero = Array.prototype.find.call(
-      document.querySelectorAll('.page-hero, .cta-section'),
+      document.querySelectorAll('.intro-band, .page-hero, .cta-section'),
       (el) => !el.hasAttribute('data-nf-sphaere')
     ) || null;
     if (hero) {

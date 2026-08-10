@@ -11,7 +11,7 @@
    (z. B. GitHub Pages), zeigt der Precache ins Leere und der Offline-Modus
    ist still kaputt. BASE unten macht die Prüfungen im fetch-Handler
    ebenfalls scope-relativ. */
-const CACHE = "nobleframe-v17";
+const CACHE = "nobleframe-v18";
 
 /* Verzeichnis, in dem dieser Worker liegt — mit abschliessendem Slash. */
 const BASE = self.location.pathname.replace(/[^/]*$/, "");
@@ -21,7 +21,6 @@ const BASE = self.location.pathname.replace(/[^/]*$/, "");
 const CORE = [
   "./",
   "./index.html",
-  "./cinematic-engine.js",
   "./nf-interactions.js",
   "./nf-zeiger.js",
   "./nf-tech.js",
