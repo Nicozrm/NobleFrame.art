@@ -56,22 +56,49 @@
 .nav-wrapper{ view-transition-name: nf-rahmen; }
 
 /* Nicht ein- und ausblenden, sondern stehen bleiben. Bei deckungsgleichem
-   Inhalt wäre jede Überblendung nur ein Flackern. */
-::view-transition-old(nf-rahmen),
+   Inhalt wäre jede Überblendung nur ein Flackern.
+
+   Die alte Navigation muss dabei sofort weg. Beide Fassungen liegen
+   während des Wechsels übereinander, und deckungsgleich sind sie nur
+   fast: die aktive Seite ist markiert, wodurch sich die Wortabstände
+   verschieben. Solange der Wechsel ein kaum sichtbarer Versatz war, ist
+   das niemandem aufgefallen — unter dem Vorhang stehen zwei Navigationen
+   sichtbar ineinander. Sichtbar bleibt deshalb nur die neue; weil sie an
+   derselben Stelle sitzt, steht der Rahmen trotzdem still. */
+::view-transition-old(nf-rahmen){
+  animation: nf-rahmen-weg .01s linear both;
+  mix-blend-mode: normal;
+}
 ::view-transition-new(nf-rahmen){
   animation: none;
   mix-blend-mode: normal;
 }
+@keyframes nf-rahmen-weg{ to{ opacity: 0; } }
 
-/* Der Inhalt zieht durch: ein knapper Versatz, eine Dauer aus dem System. */
+/* Der Seitenwechsel als Vorhang: die neue Seite faehrt als geschlossenes
+   Blatt von unten hoch ueber die alte. Das ist dieselbe Geste wie beim
+   Eintritt — dort hebt ein Blatt ab, hier schiebt sich eines herein.
+
+   Warum die neue Seite selbst das Blatt ist und nicht ein Tuch darueber:
+   ein zusaetzliches Tuch muesste erst gezeichnet, dann wieder entfernt
+   werden, und waehrend es liegt, sieht man nichts. So ist die Bewegung
+   die Ankunft — es wird nichts verdeckt, was man haette sehen wollen.
+
+   Die alte Seite bleibt darunter stehen und sinkt nur leicht ab. Ein
+   Wegblenden waere ein zweiter Vorgang; sie wird ohnehin ueberdeckt. */
 ::view-transition-old(root){
-  animation: nf-inhalt-ab var(--nf-transport) var(--nf-ease) both;
+  animation: nf-seite-ab .62s var(--nf-ease) both;
 }
 ::view-transition-new(root){
-  animation: nf-inhalt-an var(--nf-transport) var(--nf-ease) both;
+  animation: nf-seite-an .62s var(--nf-ease) both;
 }
-@keyframes nf-inhalt-ab{ to{ opacity: 0; transform: translateY(-8px); } }
-@keyframes nf-inhalt-an{ from{ opacity: 0; transform: translateY(10px); } }
+@keyframes nf-seite-ab{ to{ transform: translateY(-6vh); filter: brightness(.82); } }
+@keyframes nf-seite-an{ from{ clip-path: inset(100% 0 0 0); } to{ clip-path: inset(0 0 0 0); } }
+
+/* Die alte Seite muss unter der neuen liegen, sonst faehrt das Blatt
+   dahinter hoch und man sieht nur ein Absinken. */
+::view-transition-old(root){ z-index: 1; }
+::view-transition-new(root){ z-index: 2; }
 
 @media (prefers-reduced-motion: reduce){
   /* Der Block oben greift über `*` — Pseudo-Elemente des Wechsels erfasst
