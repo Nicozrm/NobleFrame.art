@@ -12,15 +12,15 @@
     <meta property="og:site_name" content="NobleFrame">
     <meta property="og:title" content="FAQ – NobleFrame | Häufige Fragen">
     <meta property="og:url" content="https://nobleframe.de/faq.html">
-    <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/motion.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{--gold:#F4583D;--gold-light:#F4583D;--gold-dark:#C43F26;--black:#ECE0C6;--white:#1D1D1D;--white-muted:rgba(29,29,29,.62);--white-subtle:rgba(29,29,29,.45);--gradient:linear-gradient(135deg,#F4583D 0%,#F4583D 50%,#F4583D 100%)}
         html{scroll-behavior:smooth;background:#ECE0C6;color-scheme:light}
-        body{font-family:'Outfit',sans-serif;background:#ECE0C6;color:var(--white);overflow-x:hidden;line-height:1.6;min-height:100vh}
+        body{font-family:'Archivo',sans-serif;background:#ECE0C6;color:var(--white);overflow-x:hidden;line-height:1.6;min-height:100vh}
 
         .bg-effects{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
         .ambient-glow{position:absolute;border-radius:50%;filter:blur(120px)}
@@ -34,7 +34,7 @@
         .nav-main{display:flex;justify-content:space-between;align-items:center;padding:20px 60px}
         .logo{display:flex;align-items:center;gap:15px;text-decoration:none}
         .logo-icon{width:45px;height:45px}.logo-icon svg{width:100%;height:100%}
-        .logo-text{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:8px;color:var(--white);text-transform:uppercase}
+        .logo-text{font-family:'Anton',sans-serif;font-size:1.6rem;font-weight:300;letter-spacing:8px;color:var(--white);text-transform:uppercase}
         .nav-links{display:flex;gap:4px;list-style:none}
         .nav-links>li{position:relative}
         .nav-links>li>a{position:relative;display:flex;align-items:center;padding:12px 16px;color:var(--white-muted);text-decoration:none;font-size:.82rem;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;transition:color .35s ease,letter-spacing .35s ease}
@@ -54,13 +54,13 @@
         .mobile-menu-section{margin-bottom:30px}
         .mobile-menu-section h5{font-size:.7rem;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid rgba(29,29,29,.15)}
         .mobile-menu-nav{counter-reset:m;display:flex;flex-direction:column}
-        .mobile-menu-nav a{position:relative;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--white);text-decoration:none;padding:14px 0 14px 44px;transition:all .3s ease;border-left:2px solid transparent;display:flex;align-items:center;min-height:44px}
-        .mobile-menu-nav a::before{counter-increment:m;content:counter(m,decimal-leading-zero);position:absolute;left:14px;font-family:'Outfit',sans-serif;font-size:.7rem;letter-spacing:1px;color:var(--gold);opacity:.6;top:50%;transform:translateY(-50%)}
+        .mobile-menu-nav a{position:relative;font-family:'Anton',sans-serif;font-size:1.5rem;color:var(--white);text-decoration:none;padding:14px 0 14px 44px;transition:all .3s ease;border-left:2px solid transparent;display:flex;align-items:center;min-height:44px}
+        .mobile-menu-nav a::before{counter-increment:m;content:counter(m,decimal-leading-zero);position:absolute;left:14px;font-family:'Archivo',sans-serif;font-size:.7rem;letter-spacing:1px;color:var(--gold);opacity:.6;top:50%;transform:translateY(-50%)}
         .mobile-menu-nav a::after{content:'→';margin-left:auto;color:var(--gold);opacity:0;transform:translateX(-8px);transition:all .3s ease}
         .mobile-menu-nav a:hover,.mobile-menu-nav a.active{color:var(--gold);border-left-color:var(--gold);padding-left:50px}
         .mobile-menu-nav a:hover::after,.mobile-menu-nav a.active::after{opacity:1;transform:translateX(0)}
         .mobile-menu-links{display:flex;flex-direction:column;gap:8px}
-        .mobile-menu-links a{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--white);text-decoration:none;padding:10px 0;transition:color .3s ease}
+        .mobile-menu-links a{font-family:'Anton',sans-serif;font-size:1.25rem;color:var(--white);text-decoration:none;padding:10px 0;transition:color .3s ease}
         .mobile-menu-links a:hover{color:var(--gold)}
         .mobile-menu-cta{margin-top:auto;padding:18px 35px;background:var(--gold);color:var(--black);font-size:.9rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center}
 
@@ -68,7 +68,7 @@
         .page-hero{padding:175px 60px 30px;text-align:center;position:relative;z-index:10}
         .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:rgba(29,29,29,.08);border:1px solid rgba(29,29,29,.25);margin-bottom:28px;animation:fadeUp .8s ease .1s both}
         .hero-badge span{font-size:.72rem;color:var(--gold-light);letter-spacing:3px;text-transform:uppercase}
-        .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5.5vw,4.6rem);font-weight:300;line-height:1.1;margin-bottom:22px;animation:fadeUp .8s ease .25s both}
+        .hero-title{font-family:'Anton',sans-serif;font-size:clamp(2.6rem,5.5vw,4.6rem);font-weight:300;line-height:1.1;margin-bottom:22px;animation:fadeUp .8s ease .25s both}
         .hero-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:400}
         .hero-subtitle{color:var(--white-muted);font-size:1.1rem;max-width:600px;margin:0 auto;line-height:1.75;animation:fadeUp .8s ease .4s both}
         @keyframes fadeUp{from{transform:translateY(24px);opacity:0}to{transform:translateY(0);opacity:1}}
@@ -77,18 +77,18 @@
         .faq-section{padding:50px 60px 60px;position:relative;z-index:10}
         .faq-container{max-width:920px;margin:0 auto}
         .faq-search{position:relative;margin-bottom:30px}
-        .faq-search input{width:100%;padding:18px 25px 18px 56px;background:rgba(29,29,29,.04);border:1px solid rgba(29,29,29,.2);color:var(--white);font-family:'Outfit',sans-serif;font-size:1rem;transition:all .3s}
+        .faq-search input{width:100%;padding:18px 25px 18px 56px;background:rgba(29,29,29,.04);border:1px solid rgba(29,29,29,.2);color:var(--white);font-family:'Archivo',sans-serif;font-size:1rem;transition:all .3s}
         .faq-search input:focus{outline:none;border-color:var(--gold);background:rgba(29,29,29,.06)}
         .faq-search input::placeholder{color:var(--white-subtle)}
         .faq-search svg{position:absolute;left:20px;top:50%;transform:translateY(-50%);width:20px;height:20px;stroke:var(--gold)}
         .faq-nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:45px;justify-content:center}
-        .faq-nav-btn{padding:11px 20px;background:rgba(29,29,29,.04);border:1px solid rgba(29,29,29,.2);color:var(--white-muted);font-family:'Outfit',sans-serif;font-size:.8rem;letter-spacing:.5px;cursor:pointer;transition:all .3s}
+        .faq-nav-btn{padding:11px 20px;background:rgba(29,29,29,.04);border:1px solid rgba(29,29,29,.2);color:var(--white-muted);font-family:'Archivo',sans-serif;font-size:.8rem;letter-spacing:.5px;cursor:pointer;transition:all .3s}
         .faq-nav-btn:hover{border-color:rgba(29,29,29,.5);color:var(--gold-light)}
         .faq-nav-btn.active{background:var(--gold);border-color:var(--gold);color:var(--black);font-weight:600}
 
         .faq-content{display:none}
         .faq-content.active{display:block;animation:fadeUp .5s ease both}
-        .faq-category-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--gold-light);margin-bottom:8px}
+        .faq-category-title{font-family:'Anton',sans-serif;font-size:1.7rem;font-weight:400;color:var(--gold-light);margin-bottom:8px}
         .faq-category-sub{color:var(--white-subtle);font-size:.9rem;margin-bottom:30px}
 
         .faq-item{border:1px solid rgba(29,29,29,.12);margin-bottom:12px;background:rgba(29,29,29,.02);transition:border-color .3s ease,background .3s ease;position:relative;overflow:hidden}
@@ -96,7 +96,7 @@
         .faq-item:hover{border-color:rgba(29,29,29,.3)}
         .faq-item.active{border-color:rgba(29,29,29,.4);background:rgba(29,29,29,.045)}
         .faq-item.active::before{transform:scaleY(1)}
-        .faq-question{width:100%;display:flex;align-items:center;gap:18px;padding:22px 24px;background:none;border:none;color:var(--white);font-family:'Outfit',sans-serif;font-size:1.02rem;font-weight:400;text-align:left;cursor:pointer;transition:color .3s ease}
+        .faq-question{width:100%;display:flex;align-items:center;gap:18px;padding:22px 24px;background:none;border:none;color:var(--white);font-family:'Archivo',sans-serif;font-size:1.02rem;font-weight:400;text-align:left;cursor:pointer;transition:color .3s ease}
         .faq-question:hover{color:var(--gold-light)}
         .faq-item.active .faq-question{color:var(--gold-light)}
         .faq-num{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--gold);opacity:.7;flex-shrink:0;letter-spacing:1px}
@@ -119,7 +119,7 @@
 
         /* CTA */
         .faq-cta{max-width:920px;margin:30px auto 0;text-align:center;padding:60px 40px;border:1px solid rgba(29,29,29,.15);background:linear-gradient(180deg,transparent,rgba(29,29,29,.04));position:relative;z-index:10}
-        .faq-cta h3{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:400;margin-bottom:14px}
+        .faq-cta h3{font-family:'Anton',sans-serif;font-size:1.9rem;font-weight:400;margin-bottom:14px}
         .faq-cta p{color:var(--white-muted);margin-bottom:28px}
         .faq-cta-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 36px;background:var(--gold);color:var(--black);font-size:.82rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);transition:all .4s ease}
         .faq-cta-btn:hover{background:transparent;color:var(--gold)}
@@ -133,7 +133,7 @@
         .footer-brand{max-width:300px}
         .footer-logo{display:flex;align-items:center;gap:15px;margin-bottom:20px}
         .footer-logo-icon{width:40px;height:40px}.footer-logo-icon svg{width:100%;height:100%}
-        .footer-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;letter-spacing:6px;color:var(--white)}
+        .footer-logo-text{font-family:'Anton',sans-serif;font-size:1.3rem;font-weight:300;letter-spacing:6px;color:var(--white)}
         .footer-tagline{color:var(--white-muted);font-size:.9rem;line-height:1.7}
         .footer-section h4{font-size:.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:25px;font-weight:500}
         .footer-links{list-style:none;display:flex;flex-direction:column;gap:14px}
@@ -142,7 +142,7 @@
         .newsletter-section h4{font-size:.8rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:15px;font-weight:500}
         .newsletter-desc{color:var(--white-muted);font-size:.85rem;margin-bottom:20px}
         .newsletter-form{display:flex;flex-direction:column;gap:15px}
-        .newsletter-input{background:rgba(29,29,29,.05);border:1px solid rgba(29,29,29,.2);padding:14px 18px;color:var(--white);font-family:'Outfit',sans-serif;font-size:.9rem;transition:all .3s ease}
+        .newsletter-input{background:rgba(29,29,29,.05);border:1px solid rgba(29,29,29,.2);padding:14px 18px;color:var(--white);font-family:'Archivo',sans-serif;font-size:.9rem;transition:all .3s ease}
         .newsletter-input:focus{outline:none;border-color:var(--gold)}
         .newsletter-input::placeholder{color:var(--white-subtle)}
         .checkbox-wrapper{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
@@ -153,7 +153,7 @@
         .checkbox-wrapper input:checked+.custom-checkbox svg{opacity:1}
         .checkbox-label{font-size:.8rem;color:var(--white-muted);line-height:1.4}
         .checkbox-label a{color:var(--gold);text-decoration:none}
-        .newsletter-btn{padding:14px 30px;background:var(--gold);color:var(--black);font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold);cursor:pointer;transition:all .4s ease}
+        .newsletter-btn{padding:14px 30px;background:var(--gold);color:var(--black);font-family:'Archivo',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold);cursor:pointer;transition:all .4s ease}
         .newsletter-btn:hover{background:transparent;color:var(--gold)}
         .form-message{padding:12px 15px;font-size:.85rem;margin-top:10px;display:none}
         .form-message.success{display:block;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#22c55e}
@@ -163,7 +163,7 @@
         .legal-links a{color:var(--white-subtle);text-decoration:none;font-size:.8rem;transition:color .3s ease}
         .legal-links a:hover{color:var(--gold)}
 
-        .cookie-text h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);margin-bottom:8px}
+        .cookie-text h4{font-family:'Anton',sans-serif;font-size:1.1rem;color:var(--gold);margin-bottom:8px}
         .cookie-text p{color:var(--white-muted);font-size:.9rem;margin:0}
         .cookie-text a{color:var(--gold);text-decoration:none}
 
@@ -193,10 +193,11 @@
             
         }
         @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}.reveal{opacity:1;transform:none}}
-        .skip-link{position:fixed;left:8px;top:-60px;z-index:3000;background:#F4583D;color:#ECE0C6;padding:10px 18px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:top .2s ease}
+        .skip-link{position:fixed;left:8px;top:-60px;z-index:3000;background:#F4583D;color:#ECE0C6;padding:10px 18px;font-family:'Archivo',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:top .2s ease}
         .skip-link:focus{top:8px;outline:2px solid #ECE0C6;outline-offset:2px}
     </style>
     <link rel="stylesheet" href="assets/palette.css">
+    <link rel="stylesheet" href="assets/typografie.css">
 
     <meta property="og:image" content="https://nobleframe.de/og-image.png">
     <meta property="og:image:width" content="1200">

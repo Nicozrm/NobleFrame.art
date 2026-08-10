@@ -6,13 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>NobleFrame Newsletter – Juli 2026</title>
-    <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/motion.css">
 <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Outfit',-apple-system,'Segoe UI',sans-serif;line-height:1.7;color:rgba(250,250,250,.82);background:#070707;-webkit-font-smoothing:antialiased}
+    body{font-family:'Archivo',-apple-system,'Segoe UI',sans-serif;line-height:1.7;color:rgba(250,250,250,.82);background:#070707;-webkit-font-smoothing:antialiased}
     a{color:#C9A962;text-decoration:none}
     .wrap{max-width:680px;margin:0 auto;background:#0b0b0b;border:1px solid rgba(201,169,98,.12)}
     .pad{padding:0 44px}
@@ -25,33 +25,33 @@
     .header{text-align:center;padding:54px 44px 40px;border-bottom:1px solid rgba(201,169,98,.1);position:relative}
     .logo-mark{width:52px;height:52px;margin:0 auto 22px}
     .logo-mark svg{width:100%;height:100%}
-    .logo-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;letter-spacing:10px;color:#FAFAFA;text-transform:uppercase}
+    .logo-name{font-family:'Anton',sans-serif;font-size:1.7rem;font-weight:300;letter-spacing:10px;color:#FAFAFA;text-transform:uppercase}
     .issue{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:#C9A962;margin-top:14px}
     /* hero */
     .hero{padding:50px 44px 16px}
     .eyebrow{font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;color:#C9A962;margin-bottom:16px}
-    .hero h1{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;line-height:1.15;color:#FAFAFA;margin-bottom:20px}
+    .hero h1{font-family:'Anton',sans-serif;font-size:2.5rem;font-weight:300;line-height:1.15;color:#FAFAFA;margin-bottom:20px}
     .hero h1 b{font-weight:500;background:linear-gradient(135deg,#C9A962,#E8D5A3 50%,#C9A962);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .hero p{font-size:1.02rem;color:rgba(250,250,250,.72);line-height:1.8}
     .rule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,98,.35),transparent);margin:42px 44px}
     /* feature card */
     .feature{margin:0 44px;border:1px solid rgba(201,169,98,.18);background:linear-gradient(160deg,rgba(201,169,98,.07),transparent);padding:36px}
     .feature .tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:#000;background:linear-gradient(135deg,#E8D5A3,#C9A962);padding:5px 12px;margin-bottom:18px}
-    .feature h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:#FAFAFA;margin-bottom:12px;line-height:1.25}
+    .feature h2{font-family:'Anton',sans-serif;font-size:1.7rem;font-weight:400;color:#FAFAFA;margin-bottom:12px;line-height:1.25}
     .feature p{font-size:.95rem;color:rgba(250,250,250,.72);margin-bottom:22px;line-height:1.8}
     .btn{display:inline-block;padding:13px 28px;background:#C9A962;color:#000;font-size:.76rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border:1px solid #C9A962}
     .btn.ghost{background:transparent;color:#C9A962}
     /* section */
     .section{padding:0 44px}
     .section-eyebrow{font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:#C9A962;margin-bottom:14px}
-    .section h3{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:400;color:#FAFAFA;margin-bottom:14px}
+    .section h3{font-family:'Anton',sans-serif;font-size:1.55rem;font-weight:400;color:#FAFAFA;margin-bottom:14px}
     .section p{font-size:.95rem;color:rgba(250,250,250,.72);line-height:1.8;margin-bottom:14px}
     /* spotlight */
     .spotlight{display:flex;gap:24px;align-items:center;margin:0 44px;border:1px solid rgba(201,169,98,.14);background:rgba(201,169,98,.02);padding:28px}
     .spot-visual{width:120px;height:120px;flex-shrink:0;border:1px solid rgba(201,169,98,.25);background:radial-gradient(120% 100% at 75% 15%,rgba(60,50,90,.6),transparent 55%),radial-gradient(80% 80% at 25% 100%,rgba(201,169,98,.12),transparent 60%),#06060a;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
     .spot-visual .moon{position:absolute;top:16px;right:18px;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f4ecd8,#cdbf9a 60%,#8b7f63);box-shadow:0 0 22px rgba(244,236,216,.4)}
-    .spot-visual span{font-family:'Cormorant Garamond',serif;font-size:.95rem;letter-spacing:5px;color:#f4ecd8;position:relative}
-    .spot-body h4{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:#FAFAFA;margin-bottom:6px}
+    .spot-visual span{font-family:'Anton',sans-serif;font-size:.95rem;letter-spacing:5px;color:#f4ecd8;position:relative}
+    .spot-body h4{font-family:'Anton',sans-serif;font-size:1.35rem;font-weight:400;color:#FAFAFA;margin-bottom:6px}
     .spot-body .meta{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:1px;color:#C9A962;text-transform:uppercase;margin-bottom:10px}
     .spot-body p{font-size:.9rem;color:rgba(250,250,250,.7);line-height:1.7;margin:0}
     /* tips */
@@ -63,12 +63,12 @@
     .tips .t b{color:#FAFAFA;font-weight:500}
     /* cta band */
     .cta{margin:50px 0 0;padding:52px 44px;text-align:center;background:linear-gradient(180deg,rgba(201,169,98,.05),transparent);border-top:1px solid rgba(201,169,98,.12)}
-    .cta h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#FAFAFA;margin-bottom:14px}
+    .cta h2{font-family:'Anton',sans-serif;font-size:2rem;font-weight:300;color:#FAFAFA;margin-bottom:14px}
     .cta h2 b{font-weight:500;color:#C9A962}
     .cta p{font-size:.96rem;color:rgba(250,250,250,.7);margin-bottom:28px}
     /* footer */
     .footer{padding:40px 44px;border-top:1px solid rgba(201,169,98,.1);text-align:center}
-    .footer .fname{font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:6px;color:#FAFAFA;text-transform:uppercase;margin-bottom:10px}
+    .footer .fname{font-family:'Anton',sans-serif;font-size:1.1rem;letter-spacing:6px;color:#FAFAFA;text-transform:uppercase;margin-bottom:10px}
     .footer .contact{font-size:.82rem;color:rgba(250,250,250,.55);line-height:1.9;margin-bottom:18px}
     .footer .social{margin-bottom:20px}
     .footer .social a{display:inline-block;margin:0 8px;font-size:.74rem;letter-spacing:1px;text-transform:uppercase;color:#C9A962}

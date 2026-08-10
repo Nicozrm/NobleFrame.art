@@ -1,0 +1,125 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   NobleFrame — Typografie
+
+   Drei Stimmen, wie in der Vorlage:
+
+     Anton          Anzeige. Ein Schnitt, kondensiert, immer versal.
+     Archivo        Fliesstext. 400 / 500 / 600 aus einer variablen Datei.
+     JetBrains Mono Technische Beschriftung: Koordinaten, Zaehler, Marken.
+
+   Die Familien wurden direkt in den Seiten ersetzt (273 Fundstellen). Was
+   eine Ersetzung nicht mitbringt, sind die Masse: Cormorant war eine
+   Renaissance-Antiqua mit lockerer Zeile und offener Laufweite, Anton ist
+   eine geschlossene Grotesk. Dieselbe Zeilenhoehe wuerde die Anzeige
+   auseinanderfallen lassen, dieselbe Laufweite sie aufblaehen.
+
+   Deshalb hier: die Anzeige bekommt ihre eigenen Masse, und die Stellen,
+   an denen die Vorlage ausdruecklich Fliesstext will statt Anzeige,
+   bekommen ihn zurueck.
+
+   Anton hat genau einen Schnitt. Jede Gewichtsangabe darauf ist entweder
+   wirkungslos oder — schlimmer — ein synthetischer Fettschnitt, den der
+   Browser selbst zeichnet. font-weight:400 steht deshalb ueberall, wo
+   vorher 300 oder 600 stand.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ═══ Anzeige ════════════════════════════════════════════════════════════ */
+.hero-title,
+.section-title,
+.cta-title,
+.teaser-content h2,
+.intro-lead h2,
+.cine-h,
+.live-card h3,
+.service-card h3,
+.why-card h3,
+.work-body h3,
+.process-step h3,
+.nf-band-titel,
+.nf-endkarte-titel,
+.nf-feld-titel,
+.nf-riese,
+.nf-band-spur > span,
+.tech-track span,
+.hero-stat-number,
+.teaser-stat-number{
+  font-weight: 400;
+  /* Nicht enger als 1.0: darunter stossen die Umlautpunkte einer Zeile
+     an die Versalien der Zeile darueber, und in einer maskierten
+     Ueberschrift verschwinden sie ganz. Deutsch ist keine Sprache, in der
+     man die Zeile bis an die Versalhoehe zuziehen kann. */
+  line-height: 1.0;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+
+/* Der Marquee-Massstab laeuft noch enger — bei dieser Groesse reisst
+   normale Laufweite die Woerter auseinander. */
+.nf-band-spur > span,
+.nf-riese{ letter-spacing: -.04em; }
+
+/* Die kleineren Anzeigen (Kartentitel) vertragen etwas mehr Zeile, sonst
+   kleben zwei Zeilen aufeinander. */
+.live-card h3,
+.service-card h3,
+.why-card h3,
+.work-body h3,
+.process-step h3{ line-height: 1.04; }
+
+/* Wortmarken: Anton ist bereits eng: positive Laufweite wuerde ihr genau
+   das nehmen, wofuer sie gewaehlt wurde. Die alten Werte (bis 12 px)
+   stammen aus einer Antiqua und muessen weg. */
+.logo-text,
+.footer-logo-text,
+.curtain-logo-text,
+.cine-wordmark{
+  font-weight: 400;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+}
+
+/* ═══ Wo die Vorlage Fliesstext will, nicht Anzeige ══════════════════════
+   Ein langer Satz in kondensierten Versalien ist ein Plakat, kein Zitat.
+   Die Vorlage setzt das Manifest ausdruecklich in Archivo 500. */
+.pull-quote blockquote,
+.mobile-menu-links a,
+.ip-v,
+.cookie-text h4{
+  font-family: 'Archivo', sans-serif;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -.01em;
+  line-height: 1.3;
+}
+.mobile-menu-links a,
+.ip-v{ font-weight: 400; line-height: 1.5; }
+
+/* Ziffern bleiben Anzeige, aber ohne Versalsatz — Zahlen haben keine
+   Kleinbuchstaben, uppercase waere hier nur eine wirkungslose Regel mit
+   Nebenwirkung auf die angehaengte Einheit. */
+.hero-stat-number,
+.teaser-stat-number,
+.work-result b,
+.ps-num{
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══ Fliesstext ═════════════════════════════════════════════════════════
+   Archivo laeuft enger als Outfit. Ohne Korrektur wirkt derselbe Absatz
+   gedraengt. */
+body{ letter-spacing: .002em; }
+
+/* ═══ Das Vollbildmenue ══════════════════════════════════════════════════
+   Hier zahlt sich die Anzeigenschrift am staerksten aus: aus sieben
+   Zeilen wird ein Aushang. */
+.mobile-menu-nav a{
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 11vw, 4.2rem);
+  line-height: 1.0;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}

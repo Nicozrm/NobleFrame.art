@@ -68,7 +68,7 @@
   border-bottom: 1px solid rgba(236, 224, 198, .18);
 }
 .nf-feld-titel{
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Anton', sans-serif;
   font-size: clamp(2.6rem, 7vw, 6rem);
   font-weight: 300;
   line-height: 1.02;
@@ -136,7 +136,7 @@
   will-change: transform;
 }
 .nf-band-spur > span{
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Anton', sans-serif;
   font-size: clamp(2.6rem, 7vw, 6.5rem);
   font-weight: 300;
   line-height: 1.1;
@@ -199,7 +199,7 @@ html.nf-statisch .nf-band-spur{ justify-content: center; flex-wrap: wrap; }
   z-index: 0;
   pointer-events: none;
   white-space: nowrap;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Anton', sans-serif;
   font-size: clamp(7rem, 19vw, 22rem);
   font-weight: 300;
   line-height: .8;
@@ -310,8 +310,11 @@ html.nf-statisch .nf-riese{ display: none; }
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
-  padding-bottom: .12em;
-  margin-bottom: -.12em;
+  /* Oben Luft fuer die Umlautpunkte, unten fuer die Unterlaengen. Ohne
+     die obere kappt die Maske genau die zwei Punkte, die ein Ä von einem
+     A unterscheiden. */
+  padding: .16em 0 .12em;
+  margin: -.16em 0 -.12em;
   color: #F4583D;
 }
 .nf-wechsel-i{
@@ -326,7 +329,7 @@ html.nf-statisch .nf-riese{ display: none; }
    Punkt an der Seite, auf der man gerade steht, unten Kontakt und Uhr.
    Dieselben Links, dieselbe Reihenfolge — nur nicht mehr im Fluesterton. */
 .mobile-menu-nav a{
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Anton', sans-serif;
   font-size: clamp(2.2rem, 9vw, 3.6rem);
   font-weight: 300;
   line-height: 1.12;

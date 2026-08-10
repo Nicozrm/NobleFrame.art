@@ -22,15 +22,15 @@
     <meta name="twitter:title" content="404 – Seite nicht gefunden | NobleFrame">
     <meta name="twitter:description" content="Diese Seite existiert nicht oder wurde verschoben.">
     <meta name="twitter:image" content="https://nobleframe.de/og-image.png">
-    <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/cormorant-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/motion.css">
     <style>
         :root{--gold:#F4583D;--gold-light:#F4583D;--black:#ECE0C6;--white:#1D1D1D;--white-muted:rgba(29,29,29,.62);--white-subtle:rgba(29,29,29,.45);--gradient:linear-gradient(135deg,#F4583D 0%,#F4583D 50%,#F4583D 100%)}
         *{margin:0;padding:0;box-sizing:border-box}
         html{background:#ECE0C6;color-scheme:light;scroll-behavior:smooth;overflow-x:hidden}
-        body{font-family:'Outfit',sans-serif;background:#ECE0C6;color:var(--white);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 22px;position:relative;overflow:hidden;line-height:1.6}
+        body{font-family:'Archivo',sans-serif;background:#ECE0C6;color:var(--white);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 22px;position:relative;overflow:hidden;line-height:1.6}
         .ambient{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none}
         .a1{width:560px;height:560px;background:rgba(29,29,29,.06);top:-220px;right:-160px}
         .a2{width:420px;height:420px;background:rgba(29,29,29,.04);bottom:-180px;left:-160px}
@@ -41,13 +41,13 @@
         .logo .glyph{width:34px;height:34px;position:relative}
         .logo .glyph::before{content:'';position:absolute;inset:0;border:2px solid var(--gold)}
         .logo .glyph::after{content:'';position:absolute;inset:8px;border:1px solid var(--gold)}
-        .logo .name{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.55rem;letter-spacing:6px;color:var(--white)}
+        .logo .name{font-family:'Anton',sans-serif;font-weight:400;font-size:1.55rem;letter-spacing:6px;color:var(--white)}
         .logo .name b{font-weight:500;color:var(--gold)}
         .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
-        .code{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(110px,22vw,200px);line-height:.9;margin-bottom:14px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.8rem,4vw,2.7rem);margin-bottom:18px}
+        .code{font-family:'Anton',sans-serif;font-weight:300;font-size:clamp(110px,22vw,200px);line-height:.9;margin-bottom:14px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        h1{font-family:'Anton',sans-serif;font-weight:300;font-size:clamp(1.8rem,4vw,2.7rem);margin-bottom:18px}
         p{color:var(--white-muted);font-size:1.02rem;max-width:420px;margin:0 auto 38px;line-height:1.8}
-        .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 38px;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:#ECE0C6;background:var(--gold);transition:transform .3s ease,box-shadow .3s ease;will-change:transform}
+        .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 38px;font-family:'Archivo',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:#ECE0C6;background:var(--gold);transition:transform .3s ease,box-shadow .3s ease;will-change:transform}
         .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(29,29,29,.22)}
         .links{margin-top:46px;display:flex;flex-wrap:wrap;gap:14px 30px;justify-content:center}
         .links a{color:var(--white-subtle);text-decoration:none;font-size:.86rem;letter-spacing:.02em;transition:color .3s ease;position:relative}
@@ -58,6 +58,7 @@
         @media(max-width:560px){.frame{inset:12px}.logo{margin-bottom:38px}}
     </style>
     <link rel="stylesheet" href="assets/palette.css">
+    <link rel="stylesheet" href="assets/typografie.css">
 
     <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
     <link rel="icon" href="favicon/favicon.ico" sizes="32x32">
