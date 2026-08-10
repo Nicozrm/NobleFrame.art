@@ -676,3 +676,38 @@ html.nf-statisch .nf-zeile > span{ transform: none !important; transition: none;
   line-height: .96;
   font-size: clamp(2rem, 6vw, 5rem);
 }
+
+/* ═══ 12. Arbeiten: Metadaten statt Zoom ═════════════════════════════════
+   Die Vorlage verbietet den billigen Bild-Zoom beim Ueberfahren und setzt
+   stattdessen eine Metazeile, die per clip-path von unten aufsteigt. Der
+   Unterschied ist nicht Geschmack: ein Zoom sagt „hier passiert etwas",
+   eine Metazeile sagt, WAS. Sie traegt Kategorie und Ziel.
+
+   clip-path ist hier unbedenklich — anders als bei den Baendern haengt
+   nichts an einem IntersectionObserver, der das geklippte Element sehen
+   muesste. Ausgeloest wird per Hover, und Hover fragt keine Flaeche ab. */
+.work-visual{ position: relative; overflow: hidden; }
+
+.work-visual::after{
+  content: attr(data-nf-meta);
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 10px 14px;
+  background: var(--void);
+  color: var(--cream);
+  font-family: var(--nf-mono);
+  font-size: .62rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path .4s var(--e-aus);
+}
+.work-card:hover .work-visual::after,
+.work-card:focus-visible .work-visual::after{ clip-path: inset(0 0 0 0); }
+
+/* Kein Zoom auf den Bildern — falls irgendwo noch einer steht. */
+.work-card:hover .wv-inner{ transform: none; }
+
+@media (prefers-reduced-motion: reduce){
+  .work-visual::after{ transition: none; }
+}
