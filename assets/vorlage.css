@@ -663,3 +663,16 @@ html.nf-statisch .nf-zeile > span{ transform: none !important; transition: none;
 /* Die CTA-Ueberschrift setzt ihre Schrift ueber `.cta-title` und stand
    deshalb als letzte Serifenzeile zwischen lauter kondensierten. */
 .cta-title{ font-size: clamp(2rem, 5.5vw, 4.5rem); }
+
+/* Rechtstexte und Stellenanzeigen setzen ihre Ueberschrift ueber eigene
+   Klassen (`.legal-header h1`, `.job-title`) und blieben deshalb als
+   letzte Serifenzeilen der Seite stehen. */
+.legal-header h1,
+.job-title{
+  font-family: var(--anzeige);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -.02em;
+  line-height: .96;
+  font-size: clamp(2rem, 6vw, 5rem);
+}
