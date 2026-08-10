@@ -374,3 +374,40 @@ html.nf-statisch .nf-riese{ display: none; }
 }
 .nf-menue-fuss a{ color: rgba(29, 29, 29, .62); text-decoration: none; }
 .nf-menue-fuss a:hover{ color: #F4583D; }
+
+/* ═══ Vorhang als ein Blatt ══════════════════════════════════════════════
+   Der Vorhang war zweigeteilt und fuhr zur Seite auf — eine Geste aus dem
+   Theater. Die Vorlage hebt stattdessen ein einziges Blatt nach oben ab,
+   und das ist hier das richtige Bild: der Zaehler misst einen Vorgang,
+   der endet, und was endet, wird weggenommen, nicht aufgeklappt.
+
+   Beide Haelften bleiben im Markup und bilden zusammen die Flaeche. Die
+   Bewegung liegt jetzt auf der Huelle, nicht mehr auf ihnen. */
+.curtain-overlay{
+  background: var(--cream, #ECE0C6);
+  transform: translateY(0);
+  transition: transform .9s cubic-bezier(.76, 0, .24, 1);
+  will-change: transform;
+}
+.curtain-overlay.open{ transform: translateY(-100%); }
+.curtain-left, .curtain-right{
+  background: transparent;
+  border: none;
+}
+.curtain-overlay.open .curtain-left,
+.curtain-overlay.open .curtain-right{ transform: none; }
+
+/* Die Wortmarke traegt den Vorhang, das grosse Zeichen daneben nicht: der
+   Zaehler soll die Mitte haben, nicht mit einem Logo darum konkurrieren. */
+.curtain-logo{ gap: 10px; }
+.curtain-logo-icon{ display: none; }
+.curtain-logo-text{
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  letter-spacing: .01em;
+  color: var(--ink, #1D1D1D);
+}
+.curtain-tagline{ color: rgba(29, 29, 29, .45); }
+.curtain-overlay.open .curtain-logo{ opacity: 0; }
+
+/* Zaehler und Balken sitzen unter der Wortmarke statt in derselben Mitte. */
+.nf-lade{ top: auto; bottom: 26%; transform: translate(-50%, 0); }

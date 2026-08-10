@@ -5,7 +5,7 @@
    in bestehende Transforms/Reveals der Seiten. Vier Bausteine:
 
    1. Scroll-Fortschritt  — 2px-Goldlinie am oberen Rand (alle Geräte)
-   2. Cursor-Aura         — weiches Goldlicht folgt der Maus (nur fine pointer)
+   2. (frei)              — die Cursor-Aura ist nach nf-zeiger.js gewandert
    3. Klick-Schockwelle   — expandierender Goldring an der Klickposition
                             (passend zu den Ringen des Cinematic-Engine)
    4. Magnetischer CTA    — .nav-cta neigt sich sanft zum Cursor (max. 4px)
@@ -39,10 +39,6 @@
     '.nfi-progress{position:fixed;top:0;left:0;width:100%;height:2px;z-index:2147483000;' +
       'background:linear-gradient(90deg,rgba(' + GOLD + ',.85),rgba(' + GOLD_HI + ',.95));' +
       'transform-origin:0 50%;transform:scaleX(0);pointer-events:none}' +
-    '.nfi-aura{position:fixed;top:0;left:0;width:560px;height:560px;margin:-280px 0 0 -280px;' +
-      'border-radius:50%;pointer-events:none;z-index:1;mix-blend-mode:screen;opacity:0;' +
-      'background:radial-gradient(circle,rgba(' + GOLD + ',.10) 0%,rgba(' + GOLD + ',.035) 42%,transparent 68%);' +
-      'transition:opacity .6s ease;will-change:transform}' +
     '.nfi-ring{position:fixed;border-radius:50%;pointer-events:none;z-index:2147483001;' +
       'border:1px solid rgba(' + GOLD_HI + ',.9);width:12px;height:12px;margin:-6px 0 0 -6px;' +
       'animation:nfi-ring .9s cubic-bezier(.22,.61,.36,1) forwards}' +
@@ -69,28 +65,12 @@
 
   if (reduced) return; // Aura/Ringe/Magnet nur mit erlaubter Bewegung
 
-  /* ── 2. Cursor-Aura (nur fine pointer) ──────────────────────────────── */
-  if (finePointer) {
-    const aura = document.createElement('div');
-    aura.className = 'nfi-aura';
-    aura.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(aura);
-    let ax = innerWidth / 2, ay = innerHeight / 2, tx = ax, ty = ay;
-    let seen = false, auraRaf = 0;
-    function moveAura() {
-      ax += (tx - ax) * 0.12;
-      ay += (ty - ay) * 0.12;
-      aura.style.transform = 'translate(' + ax.toFixed(1) + 'px,' + ay.toFixed(1) + 'px)';
-      if (Math.abs(tx - ax) + Math.abs(ty - ay) > 0.5) auraRaf = requestAnimationFrame(moveAura);
-      else auraRaf = 0;
-    }
-    addEventListener('pointermove', (e) => {
-      tx = e.clientX; ty = e.clientY;
-      if (!seen) { seen = true; ax = tx; ay = ty; aura.style.opacity = '1'; }
-      if (!auraRaf) auraRaf = requestAnimationFrame(moveAura);
-    }, { passive: true });
-    document.documentElement.addEventListener('pointerleave', () => { aura.style.opacity = '0'; seen = false; });
-  }
+  /* ── 2. Cursor-Aura — entfernt ──────────────────────────────────────
+     Hier lag ein weiches Lichtfeld, das der Maus folgte. Es stammt aus
+     der dunklen Fassung: auf Schwarz hellt ein Schein auf, auf Cream gibt
+     es nichts aufzuhellen. Seine Aufgabe — den Zeiger sichtbar begleiten —
+     uebernimmt jetzt nf-zeiger.js mit Ring und Punkt. Zwei Systeme, die
+     beide am Cursor haengen, waeren eines zu viel. */
 
   /* ── 3. Klick-Schockwelle ───────────────────────────────────────────── */
   let ringCount = 0;
