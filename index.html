@@ -553,18 +553,21 @@
     <script defer src="nf-sphaere.js"></script>
     <script defer src="nf-choreografie.js"></script>
     <script defer src="nf-feld.js"></script>
+    <script defer src="nf-buehne.js"></script>
     <script defer src="nf-dreher.js"></script>
 </head>
 <body>
     <a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
 
-<div class="nf-lader" id="nfLader" role="status" aria-live="polite">
-    <div class="nf-lader-mitte">
-        <span class="nf-lader-zahl" data-nf-laderzahl>000</span>
-        <span class="nf-lader-balken"><i data-nf-laderbalken></i></span>
+<div class="nf-lader" id="curtainOverlay" role="status" aria-live="polite">
+    <div class="nf-lade">
+        <span class="nf-lade-zahl" data-nf-zaehler>000</span>
+        <span class="nf-lade-bar"><i data-nf-balken></i></span>
     </div>
-    <span class="nf-lader-links">NobleFrame — Atelier wird geladen</span>
-    <span class="nf-lader-rechts" data-nf-uhr>--:--:--</span>
+    <div class="nf-lade-fuss">
+        <span>NobleFrame — Atelier lädt</span>
+        <span class="nf-uhr" data-nf-uhr>--:--:--</span>
+    </div>
 </div>
 
 <div class="nf-korn" aria-hidden="true"></div>
@@ -598,6 +601,7 @@
             <li><a href="about.html" data-nf-roll>Über Uns</a></li>
             <li><a href="kontakt.html" data-nf-roll>Kontakt</a></li>
         </ul>
+        <span class="nf-uhr" data-nf-uhr aria-hidden="true">--:--:--</span>
         <a href="kontakt.html" class="nav-cta" data-nf-roll>Projekt anfragen</a>
         <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Menü">
             <span></span><span></span><span></span>
@@ -626,6 +630,10 @@
         </div>
     </div>
     <a href="kontakt.html" class="mobile-menu-cta">Projekt anfragen</a>
+    <div class="nf-menue-fuss">
+        <a href="mailto:info@nobleframe.de">info@nobleframe.de</a>
+        <span>Steinfurt <span class="nf-uhr" data-nf-uhr>--:--:--</span></span>
+    </div>
 </div>
 
 <header class="nf-hero" id="hauptinhalt" tabindex="-1">
@@ -647,8 +655,7 @@
 
     <h1 class="nf-hero-titel">
         <span class="nf-zeile"><span>Wir bauen</span></span>
-        <span class="nf-zeile"><span class="nf-schacht" data-nf-dreher
-            data-worte="Shader,Motion,Scroll,WebGL"><span class="nf-wort-alt">Shader</span></span></span>
+        <span class="nf-zeile"><span class="nf-wechsel" data-nf-wechsel="Shader,Motion,Scroll,WebGL">Shader</span></span>
         <span class="nf-zeile"><span>Erlebnisse<a href="referenzen.html" class="nf-pfeil" aria-label="Referenzen ansehen">↗</a></span></span>
     </h1>
 
@@ -666,7 +673,7 @@
     <div class="intro-inner">
         <div class="intro-lead reveal-left">
             <div class="section-eyebrow">Wer wir sind</div>
-            <h2>Ein <span>Atelier</span>, kein Baukasten.</h2>
+            <h2>Wir bauen <span class="nf-wechsel" data-nf-wechsel="Systeme,Oberflächen,Werkzeuge,Portale">Systeme</span>.<br>Ein <span>Atelier</span>, kein Baukasten.</h2>
         </div>
         <div class="intro-body reveal-right">
             <p>NobleFrame ist ein Premium Digital Atelier aus Steinfurt. Wir gestalten und entwickeln digitale Plattformen für Unternehmen, die Präzision erwarten – vom ersten Konzept bis zur letzten Zeile Code.</p>
@@ -1054,11 +1061,11 @@
 </footer>
 
 <script>
-/* Der zweiteilige Vorhang ist dem Lader der Vorlage gewichen (nf-dreher.js):
-   cremefarbener Grund, Mono-Zaehler, Haarlinie, dann hebt sich die Flaeche.
-   Das Skript, das ihn hier oeffnete, ist deshalb ersatzlos raus — es griff
-   nach einem Element, das es nicht mehr gibt, und warf bei jedem Aufruf
-   einen Fehler, der alles Nachfolgende in diesem Block verhindert haette. */
+/* Der Vorhang wird von nf-buehne.js geoeffnet, sobald die gezaehlten
+   Posten fertig sind. Hier stand vorher ein zweiter Oeffner an
+   DOMContentLoaded — der riss den Vorhang mitten in der Zaehlung auf, bei
+   gedrosselter Verbindung schon bei sieben Prozent. Zwei Stellen, die
+   dasselbe Element oeffnen, sind immer eine zu viel. */
 
 const navWrapper = document.getElementById('navWrapper');
 window.addEventListener('scroll', () => {

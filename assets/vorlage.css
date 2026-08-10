@@ -281,34 +281,20 @@ html.nf-statisch [data-nf-baender] .nf-band{ clip-path: none; transition: none; 
 html.nf-statisch [data-nf-roll] .nf-roll-i,
 html.nf-statisch [data-nf-roll] .nf-roll-d{ transition: none; }
 
-/* ═══ 6. Rotationswort ═══════════════════════════════════════════════════
-   Ein Wort-Schacht im Hero: das aktuelle Wort faehrt nach oben aus dem
-   Fenster, das naechste kommt von unten nach. Beide bewegen sich
-   gleichzeitig — sonst sieht man eine Luecke. */
-.nf-schacht{
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-  vertical-align: bottom;
-  color: var(--coral);
-}
-.nf-schacht > span{
-  display: block;
-  transition: transform .5s var(--e-vorhang);
-}
-.nf-schacht > .nf-wort-neu{
-  position: absolute;
-  left: 0; top: 0; right: 0;
-  transform: translateY(110%);
-}
-.nf-schacht.dreht > .nf-wort-alt{ transform: translateY(-110%); }
-.nf-schacht.dreht > .nf-wort-neu{ transform: translateY(0); }
+/* Abschnitt 6 ist entfallen. Der Wort-Schacht steht jetzt in nf-buehne.js
+   auf main, an `[data-nf-wechsel]`. Zwei Mechanismen fuer denselben Effekt
+   waeren zwei Stellen, an denen er kaputtgehen kann — und die Seite haette
+   im Hero eine andere Wechsel-Kurve gehabt als im Intro-Band, wo derselbe
+   Effekt schon laeuft.
 
-/* Kein Abschnitt 7: das Korn liegt bereits in choreografie.css und wird in
-   palette.css pro Grund abgestimmt. Eine zweite Regel dafuer waere keine
-   Ergaenzung gewesen, sondern eine Verschlechterung — sie haette den
-   z-index von 1000 auf 60 gezogen und das Rauschen hinter Elemente
-   geschoben, ueber denen es liegen soll. */
+   Was bleibt: der Schacht im Hero muss die Anzeige-Groesse erben, nicht
+   die der Fliesszeile — er sitzt in einer Ueberschrift aus Anton. */
+.nf-hero-titel .nf-wechsel{
+  color: var(--coral);
+  font: inherit;
+  letter-spacing: inherit;
+}
+.nf-zeile > .nf-wechsel{ overflow: hidden; }
 
 /* ═══ 7. Hero: Globus und Meta-Zeile ═════════════════════════════════════
    Der Orbital-Globus ist bewusst SVG und nicht WebGL. Im Hero der
@@ -376,12 +362,7 @@ html.nf-statisch [data-nf-roll] .nf-roll-d{ transition: none; }
   line-height: .94;
 }
 .cine-finale .title-line{ display: block; }
-.cine-finale .nf-schacht{ line-height: .94; }
 
-/* Der Schacht ist ein Fenster: was herausfaehrt, darf nicht darueber
-   stehen bleiben. Ohne diese Hoehe wuerde das abfahrende Wort die
-   Zeilenhoehe des Absatzes bestimmen und die Zeile darunter verschieben. */
-.nf-schacht{ height: 1em; }
 
 /* ═══ 8. Der Anfang ══════════════════════════════════════════════════════
    Vorher stand hier eine Kinosequenz: fünf scroll-gescrubbte Kapitel auf
@@ -404,7 +385,10 @@ html.nf-statisch [data-nf-roll] .nf-roll-d{ transition: none; }
   transform: translateY(0);
   transition: transform .9s var(--e-vorhang);
 }
-.nf-lader.weg{ transform: translateY(-100%); }
+/* `.open` statt `.weg`: nf-buehne.js auf main steuert den Vorhang und
+   setzt diese Klasse. Zwei Namen fuer denselben Zustand waeren die
+   Garantie, dass irgendwann der falsche gesetzt wird. */
+.nf-lader.open{ transform: translateY(-100%); }
 /* pointer-events erst weg, wenn er wirklich oben ist — sonst klickt man
    waehrend der Fahrt durch ihn hindurch auf Dinge, die man nicht sieht. */
 .nf-lader.fort{ pointer-events: none; visibility: hidden; }
@@ -501,7 +485,7 @@ html.nf-statisch .nf-zeile > span{ transform: none !important; transition: none;
 /* Der Schacht darf nicht mitmaskiert werden: er bringt sein eigenes
    Fenster mit, und zwei ineinander liegende Masken schneiden das Wort in
    der Mitte durch. */
-.nf-zeile > .nf-schacht{ overflow: hidden; }
+.nf-zeile > .nf-wechsel{ overflow: hidden; }
 
 .nf-pfeil{
   color: var(--coral);
@@ -711,3 +695,15 @@ html.nf-statisch .nf-zeile > span{ transform: none !important; transition: none;
 @media (prefers-reduced-motion: reduce){
   .work-visual::after{ transition: none; }
 }
+
+/* ═══ 13. Nav-Uhr: Platz statt Ueberdeckung ══════════════════════════════
+   nf-buehne.js setzt eine Uhr in die Navigation. Sie wird ab 1240 px
+   ausgeblendet — aber genau darueber, bei 1440 px, lag sie auf der
+   „Projekt anfragen"-Schaltflaeche und schnitt deren Beschriftung ab.
+
+   Die Ursache ist keine der beiden Seiten allein: die Uhr kam auf main
+   dazu, die Anzeige-Schrift dieser Ebene macht die Navigation breiter,
+   und zusammen reicht der Platz nicht mehr. Ein Abstand loest das, ohne
+   eine der beiden Aenderungen zurueckzunehmen. */
+.nav-main .nf-uhr{ margin-right: clamp(12px, 1.6vw, 26px); }
+@media (max-width: 1400px){ .nav-main .nf-uhr{ display: none; } }

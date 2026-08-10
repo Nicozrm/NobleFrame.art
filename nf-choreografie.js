@@ -59,6 +59,13 @@
   /* ═══ 1. Marken & Masken ══════════════════════════════════════════════ */
   alle('.nf-marke').forEach((el) => eintritt.observe(el));
 
+  /* Der Hero steigt maskiert auf. Ausgeloest hat das frueher der Lader in
+     nf-dreher.js — der ist entfallen, seit nf-buehne.js den Vorhang fuehrt,
+     und damit stand die Ueberschrift dauerhaft 110 % nach unten verschoben
+     hinter ihrer eigenen Maske: drei unsichtbare Zeilen, kein Fehler in der
+     Konsole. Der Beobachter hier haengt an nichts, was wegfallen kann. */
+  alle('.nf-hero').forEach((el) => eintritt.observe(el));
+
   /* Die warmen Register-Zeilen wischen von oben herein.
 
      Beobachtet wird der Container, nicht die Zeile — und das ist keine

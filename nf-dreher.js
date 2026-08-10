@@ -1,168 +1,20 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   NobleFrame Dreher — der Wort-Schacht im Hero
+   NobleFrame Zustand — was die WebGL-Ebene wirklich tut
 
-   Ein Wort in der Ueberschrift wird ausgetauscht, nicht ueberblendet: das
-   alte faehrt nach oben aus dem Fenster, das neue kommt von unten nach.
-   Beide bewegen sich im selben Frame — laesst man das alte erst gehen und
-   holt das neue danach, sieht man dazwischen ein Loch, und die Zeile
-   springt in der Hoehe.
+   Diese Datei war einmal groesser. Sie brachte Lader, Uhr und Wechselwort
+   mit — bis nf-buehne.js auf main landete und dieselben drei Dinge besser
+   loeste: deren Zaehler misst echte Posten (Schriften, Bilder, Dokument)
+   und hat keine Mindestdauer, meiner lief in ungleichen Schritten und
+   behauptete damit einen Fortschritt, den er nicht kannte. Zwei Lader auf
+   einer Seite waeren nicht doppelt so gut gewesen, sondern zwei halbe.
 
-   Warum die Breite mitwandert: „Shader" und „WebGL" sind verschieden
-   breit. Ohne Uebergang auf der Breite ruckt die ganze Zeile bei jedem
-   Wechsel. Gemessen wird an einem versteckten Zwilling, nicht am
-   sichtbaren Wort — das steht waehrend der Fahrt halb ausserhalb seines
-   Fensters und liefert einen falschen Wert.
-
-   Ausfallverhalten: Bei prefers-reduced-motion bleibt ein Wort stehen.
-   Ohne JavaScript steht ebenfalls das Wort da, das im Markup liegt — der
-   Satz ist in jedem Fall vollstaendig lesbar, weil das erste Wort nicht
-   erzeugt, sondern nur ersetzt wird.
+   Uebrig bleibt das eine Stueck, das es dort nicht gibt: die Anzeige in
+   der Hero-Metazeile. Sie meldet, ob die WebGL-Ebene tatsaechlich laeuft —
+   nicht, ob sie geplant war. Eine Seite, die „VANTA.NET / AKTIV" schreibt,
+   waehrend nichts rechnet, behauptet etwas.
    ═══════════════════════════════════════════════════════════════════════ */
 (() => {
   'use strict';
-
-  const schacht = document.querySelector('[data-nf-dreher]');
-  if (!schacht) return;
-
-  const worte = (schacht.dataset.worte || '')
-    .split(',').map((w) => w.trim()).filter(Boolean);
-  if (worte.length < 2) return;
-
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  /* Der Messzwilling: dieselbe Schrift, derselbe Grad, aber ausserhalb des
-     Sichtfelds und ohne Einfluss auf das Layout. */
-  const lineal = document.createElement('span');
-  lineal.setAttribute('aria-hidden', 'true');
-  lineal.style.cssText =
-    'position:absolute;visibility:hidden;white-space:nowrap;pointer-events:none;left:-9999px;top:0';
-  schacht.appendChild(lineal);
-
-  const messen = (wort) => {
-    lineal.textContent = wort;
-    return lineal.getBoundingClientRect().width;
-  };
-
-  /* Der Schacht bekommt EINE feste Breite: die des breitesten Wortes.
-
-     Zuerst wanderte sie je Wort mit, animiert. Das sah in der Theorie
-     besser aus und war in der Praxis eine Fehlerquelle mit zwei Koepfen:
-     die Messung fiel vor dem Font-Swap zu klein aus (Arial Narrow statt
-     Anton), und weil die Breite zugleich animiert wurde, stand das Wort
-     waehrend der halben Fahrt hinter einer zu engen Kante — „WEBGL" war
-     rechts angeschnitten.
-
-     Eine feste Breite kann beides nicht. Die Zeile springt ohnehin nicht,
-     weil sich nichts mehr aendert, und der Rest ist eine Frage von
-     wenigen Pixeln Luft. Die drei Pixel Zugabe fangen das Nachkommaende
-     der negativen Laufweite ab, das sonst am letzten Buchstaben knabbert. */
-  schacht.style.display = 'inline-block';
-
-  const breiteSetzen = () => {
-    let max = 0;
-    worte.forEach((w) => { max = Math.max(max, messen(w)); });
-    schacht.style.width = (max + 3).toFixed(1) + 'px';
-  };
-  breiteSetzen();
-
-  let i = 0;
-  let laeuft = false;
-  let sichtbar = true;
-  let timer = 0;
-
-  const wechseln = () => {
-    if (laeuft || !sichtbar || document.hidden) return;
-    laeuft = true;
-
-    const naechstes = worte[(i + 1) % worte.length];
-    const alt = schacht.querySelector('.nf-wort-alt');
-    if (!alt) { laeuft = false; return; }
-
-    const neu = document.createElement('span');
-    neu.className = 'nf-wort-neu';
-    neu.textContent = naechstes;
-    schacht.insertBefore(neu, lineal);
-
-    /* Ein erzwungener Reflow zwischen Einfuegen und Klassenwechsel. Ohne
-       ihn fasst der Browser beides zu einem Schritt zusammen und das neue
-       Wort steht sofort am Ziel, statt hereinzufahren. */
-    void neu.offsetWidth;
-    schacht.classList.add('dreht');
-
-    const fertig = () => {
-      schacht.classList.remove('dreht');
-      alt.remove();
-      neu.className = 'nf-wort-alt';
-      i = (i + 1) % worte.length;
-      laeuft = false;
-    };
-    // transitionend ist die Wahrheit; der Timer faengt den Fall ab, dass
-    // das Ereignis ausbleibt (verstecktes Tab, unterbrochene Transition).
-    let erledigt = false;
-    const einmal = () => { if (!erledigt) { erledigt = true; fertig(); } };
-    neu.addEventListener('transitionend', einmal, { once: true });
-    setTimeout(einmal, 700);
-  };
-
-  const takten = () => {
-    clearInterval(timer);
-    timer = setInterval(wechseln, 2400);
-  };
-
-  /* Nur drehen, solange der Hero im Bild ist. Ein Wort, das sich im
-     Verborgenen weiterdreht, kostet Frames fuer niemanden. */
-  const wirt = schacht.closest('section') || schacht;
-  new IntersectionObserver((e) => {
-    sichtbar = e[0].isIntersecting;
-    if (sichtbar) takten(); else clearInterval(timer);
-  }, { threshold: 0.05 }).observe(wirt);
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) clearInterval(timer);
-    else if (sichtbar) takten();
-  });
-
-  addEventListener('resize', breiteSetzen, { passive: true });
-
-  /* Gemessen wird zweimal. Beim ersten Mal steht oft noch die Ersatz-
-     schrift, und Arial Narrow ist deutlich schmaler als Anton — die Breite
-     waere dauerhaft zu klein und das Wort rechts angeschnitten. Sobald die
-     echte Schrift steht, wird nachgemessen. */
-  const nachmessen = breiteSetzen;
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(nachmessen).catch(() => {});
-  }
-  addEventListener('load', nachmessen, { once: true });
-
-  takten();
-})();
-
-/* ═══════════════════════════════════════════════════════════════════════
-   Hero-Meta: Uhr und Zustandsanzeige
-
-   Die Zustandsanzeige ist kein Zierrat. Sie meldet, ob die WebGL-Ebene
-   tatsaechlich laeuft — nicht, ob sie geplant war. Eine Seite, die
-   „VANTA.NET / ACTIVE" schreibt, waehrend gar nichts rechnet, behauptet
-   etwas; deshalb wird hier der reale Zustand abgefragt, mit Verzoegerung,
-   weil das Netz erst bei Annaeherung geladen wird.
-   ═══════════════════════════════════════════════════════════════════════ */
-(() => {
-  'use strict';
-
-  /* Zwei Uhren: eine im Lader, eine im Hero. querySelector traf nur die
-     erste, und die verschwindet mit dem Vorhang — im Hero stand danach
-     dauerhaft --:--:--. */
-  const uhren = Array.from(document.querySelectorAll('[data-nf-uhr]'));
-  if (uhren.length) {
-    const zwei = (n) => String(n).padStart(2, '0');
-    const stellen = () => {
-      const d = new Date();
-      const s = zwei(d.getHours()) + ':' + zwei(d.getMinutes()) + ':' + zwei(d.getSeconds());
-      uhren.forEach((u) => { u.textContent = s; });
-    };
-    stellen();
-    setInterval(stellen, 1000);
-  }
 
   const zustand = document.querySelector('[data-nf-zustand]');
   if (!zustand) return;

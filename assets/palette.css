@@ -251,3 +251,9 @@ input:focus, textarea:focus, select:focus{ border-color: var(--coral); outline-c
    Positionsregel waere beim naechsten Umsortieren wieder falsch. */
 .work-visual:has(.wv-portal) .wname,
 .work-visual:has(.wv-atelier) .wname{ color: rgba(29, 29, 29, .55); }
+
+/* Das Vollbildmenue lag bei 98 % Deckkraft. Bei Riesentypo reicht das
+   nicht: die Kinosequenz dahinter zeichnete sich als Geisterbild zwischen
+   den Zeilen ab. Ein Menue, durch das die Seite schimmert, sieht nicht
+   nach Transparenz aus, sondern nach unfertig. */
+.mobile-menu{ background: var(--cream); }
