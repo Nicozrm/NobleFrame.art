@@ -14,6 +14,7 @@
     <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/motion.css">
+    <link rel="stylesheet" href="assets/choreografie.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--gold:#F4583D;--gold-light:#F4583D;--gold-dark:#C43F26;--black:#ECE0C6;--white:#1D1D1D;--white-muted:rgba(29,29,29,.62);--white-subtle:rgba(29,29,29,.45);--gradient:linear-gradient(135deg,#F4583D 0%,#F4583D 50%,#F4583D 100%);--green:#22c55e;--amber:#f59e0b;--red:#ef4444}
@@ -223,21 +224,23 @@ body{font-family:'Archivo',sans-serif;background:#ECE0C6;color:var(--white);over
     <link rel="manifest" href="manifest.json">
     <script defer src="nf-interactions.js"></script>
     <script defer src="nf-zeiger.js"></script>
+    <script defer src="nf-choreografie.js"></script>
     <script defer src="vendor/lenis.min.js"></script>
     <script defer src="nf-tech.js"></script>
     <script defer src="nf-sphaere.js"></script>
 </head>
 <body>
+<div class="nf-korn" aria-hidden="true"></div>
     <a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
 <div class="bg-effects"><div class="ambient-glow glow-1"></div><div class="ambient-glow glow-2"></div><div class="grid-overlay"></div></div>
 <div class="nav-wrapper" id="navWrapper"><nav class="nav-main">
 <a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#F4583D" stroke-width="2"/><rect x="25" y="25" width="50" height="50" fill="none" stroke="#F4583D" stroke-width="1.5" opacity="0.6"/><line x1="50" y1="5" x2="50" y2="95" stroke="#F4583D" stroke-width="0.5" opacity="0.4"/><line x1="5" y1="50" x2="95" y2="50" stroke="#F4583D" stroke-width="0.5" opacity="0.4"/></svg></div><span class="logo-text">NobleFrame</span></a>
-<ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="leistungen.html">Leistungen</a></li><li><a href="referenzen.html">Referenzen</a></li><li><a href="showcase.html">Showcase</a></li><li><a href="tools.html" class="active" aria-current="page">Tools</a></li><li><a href="about.html">Über Uns</a></li><li><a href="kontakt.html">Kontakt</a></li></ul>
-<a href="kontakt.html" class="nav-cta">Projekt anfragen</a>
+<ul class="nav-links"><li><a href="index.html" data-nf-roll>Home</a></li><li><a href="leistungen.html" data-nf-roll>Leistungen</a></li><li><a href="referenzen.html" data-nf-roll>Referenzen</a></li><li><a href="showcase.html" data-nf-roll>Showcase</a></li><li><a href="tools.html" class="active" aria-current="page" data-nf-roll>Tools</a></li><li><a href="about.html" data-nf-roll>Über Uns</a></li><li><a href="kontakt.html" data-nf-roll>Kontakt</a></li></ul>
+<a href="kontakt.html" class="nav-cta" data-nf-roll>Projekt anfragen</a>
 <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Menü"><span></span><span></span><span></span></button>
 </nav></div>
 <div class="mobile-menu" id="mobileMenu">
-<div class="mobile-menu-section"><h5>Navigation</h5><div class="mobile-menu-nav"><a href="index.html">Home</a><a href="leistungen.html">Leistungen</a><a href="referenzen.html">Referenzen</a><a href="showcase.html">Showcase</a><a href="tools.html" class="active" aria-current="page">Tools</a><a href="about.html">Über Uns</a><a href="kontakt.html">Kontakt</a></div></div>
+<div class="mobile-menu-section"><h5>Navigation</h5><div class="mobile-menu-nav"><a href="index.html">Home</a><a href="leistungen.html">Leistungen</a><a href="referenzen.html">Referenzen</a><a href="showcase.html">Showcase</a><a href="tools.html" class="active" aria-current="page" data-nf-roll>Tools</a><a href="about.html">Über Uns</a><a href="kontakt.html">Kontakt</a></div></div>
 <div class="mobile-menu-section"><h5>Direkt erreichen</h5><div class="mobile-menu-links"><a href="tel:+4915292612795">+49 152 92612795</a><a href="mailto:info@nobleframe.de">info@nobleframe.de</a></div></div>
 <a href="kontakt.html" class="mobile-menu-cta">Projekt anfragen</a>
 </div>
@@ -337,8 +340,8 @@ body{font-family:'Archivo',sans-serif;background:#ECE0C6;color:var(--white);over
 <section class="tools-cta"><h3>Bereit, das Potenzial zu heben?</h3><p>Die Zahlen sprechen für sich – lassen Sie uns über die Umsetzung sprechen.</p><a href="kontakt.html" class="tools-cta-btn">Projekt anfragen <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a></section>
 <footer class="footer" data-nf-sphaere><div class="footer-container"><div class="footer-main">
 <div class="footer-brand"><div class="footer-logo"><div class="footer-logo-icon"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="90" height="90" fill="none" stroke="#F4583D" stroke-width="2"/><rect x="25" y="25" width="50" height="50" fill="none" stroke="#F4583D" stroke-width="1.5" opacity="0.7"/></svg></div><span class="footer-logo-text">NOBLEFRAME</span></div><p class="footer-tagline">Premium Digital Atelier für Websites, Apps & Growth Solutions.</p></div>
-<div class="footer-section"><h4>Navigation</h4><ul class="footer-links"><li><a href="leistungen.html">Leistungen</a></li><li><a href="referenzen.html">Referenzen</a></li><li><a href="about.html">Über Uns</a></li><li><a href="kontakt.html">Kontakt</a></li></ul></div>
-<div class="footer-section"><h4>Mehr</h4><ul class="footer-links"><li><a href="showcase.html">Showcase</a></li><li><a href="tools.html">Tools</a></li><li><a href="faq.html">FAQ</a></li><li><a href="karriere.html">Karriere</a></li></ul></div>
+<div class="footer-section"><h4>Navigation</h4><ul class="footer-links"><li><a href="leistungen.html" data-nf-roll>Leistungen</a></li><li><a href="referenzen.html" data-nf-roll>Referenzen</a></li><li><a href="about.html" data-nf-roll>Über Uns</a></li><li><a href="kontakt.html" data-nf-roll>Kontakt</a></li></ul></div>
+<div class="footer-section"><h4>Mehr</h4><ul class="footer-links"><li><a href="showcase.html" data-nf-roll>Showcase</a></li><li><a href="tools.html" data-nf-roll>Tools</a></li><li><a href="faq.html" data-nf-roll>FAQ</a></li><li><a href="karriere.html" data-nf-roll>Karriere</a></li></ul></div>
 <div class="newsletter-section"><h4>Newsletter</h4><p class="newsletter-desc">Exklusive Insights und Updates zu unseren Projekten.</p>
 <form class="newsletter-form" id="newsletterForm"><input type="email" name="email" class="newsletter-input" placeholder="ihre@email.de" required>
 <label class="checkbox-wrapper"><input type="checkbox" name="privacy" required><span class="custom-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span><span class="checkbox-label">Ich akzeptiere die <a href="datenschutz.html">Datenschutzerklärung</a></span></label>

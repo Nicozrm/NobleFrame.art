@@ -30,6 +30,7 @@
     <link rel="preload" href="assets/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/motion.css">
+    <link rel="stylesheet" href="assets/choreografie.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{--gold:#F4583D;--gold-light:#F4583D;--gold-dark:#C43F26;--black:#ECE0C6;--white:#1D1D1D;--white-muted:rgba(29,29,29,.62);--white-subtle:rgba(29,29,29,.45);--gradient:linear-gradient(135deg,#F4583D 0%,#F4583D 50%,#F4583D 100%)}
@@ -311,11 +312,13 @@
     <link rel="manifest" href="manifest.json">
     <script defer src="nf-interactions.js"></script>
     <script defer src="nf-zeiger.js"></script>
+    <script defer src="nf-choreografie.js"></script>
     <script defer src="vendor/lenis.min.js"></script>
     <script defer src="nf-tech.js"></script>
     <script defer src="nf-sphaere.js"></script>
 </head>
 <body>
+<div class="nf-korn" aria-hidden="true"></div>
     <a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
 
 <div class="bg-effects">
@@ -338,15 +341,15 @@
             <span class="logo-text">NobleFrame</span>
         </a>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="leistungen.html" class="active" aria-current="page">Leistungen</a></li>
-            <li><a href="referenzen.html">Referenzen</a></li>
-            <li><a href="showcase.html">Showcase</a></li>
-            <li><a href="tools.html">Tools</a></li>
-            <li><a href="about.html">Über Uns</a></li>
-            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="index.html" data-nf-roll>Home</a></li>
+            <li><a href="leistungen.html" class="active" aria-current="page" data-nf-roll>Leistungen</a></li>
+            <li><a href="referenzen.html" data-nf-roll>Referenzen</a></li>
+            <li><a href="showcase.html" data-nf-roll>Showcase</a></li>
+            <li><a href="tools.html" data-nf-roll>Tools</a></li>
+            <li><a href="about.html" data-nf-roll>Über Uns</a></li>
+            <li><a href="kontakt.html" data-nf-roll>Kontakt</a></li>
         </ul>
-        <a href="kontakt.html" class="nav-cta">Projekt anfragen</a>
+        <a href="kontakt.html" class="nav-cta" data-nf-roll>Projekt anfragen</a>
         <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Menü">
             <span></span><span></span><span></span>
         </button>
@@ -358,7 +361,7 @@
         <h5>Navigation</h5>
         <div class="mobile-menu-nav">
             <a href="index.html">Home</a>
-            <a href="leistungen.html" class="active" aria-current="page">Leistungen</a>
+            <a href="leistungen.html" class="active" aria-current="page" data-nf-roll>Leistungen</a>
             <a href="referenzen.html">Referenzen</a>
             <a href="showcase.html">Showcase</a>
             <a href="tools.html">Tools</a>
@@ -390,7 +393,7 @@
 <section class="capabilities" id="leistungen">
     <div class="section-header reveal">
         <span class="section-eyebrow">Was wir umsetzen</span>
-        <h2 class="section-title">Ihr Projekt, in <span>guten Händen</span></h2>
+        <h2 class="section-title" data-nf-maske>Ihr Projekt, in <span>guten Händen</span></h2>
         <p class="section-sub">Filtern Sie nach Bereich und sehen Sie, was im Detail enthalten ist. Jede Leistung lässt sich einzeln oder als Gesamtpaket beauftragen.</p>
     </div>
 
@@ -407,7 +410,7 @@
     </div>
 
     <div class="services-grid reveal-stagger" id="servicesGrid">
-        <div class="service-card" data-cat="websites">
+        <div class="service-card" data-cat="websites" data-nf-tiefe="0.07">
             <span class="service-tag">Websites</span>
             <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
             <h3 class="service-title">Premium <span>Webdesign</span></h3>
@@ -421,7 +424,7 @@
             <a href="kontakt.html" class="service-cta">Anfrage stellen <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a>
         </div>
 
-        <div class="service-card" data-cat="ecommerce">
+        <div class="service-card" data-cat="ecommerce" data-nf-tiefe="-0.05">
             <span class="service-tag">E-Commerce</span>
             <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
             <h3 class="service-title">E-Commerce <span>Solutions</span></h3>
@@ -435,7 +438,7 @@
             <a href="kontakt.html" class="service-cta">Anfrage stellen <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a>
         </div>
 
-        <div class="service-card" data-cat="apps">
+        <div class="service-card" data-cat="apps" data-nf-tiefe="0.10">
             <span class="service-tag">Web-Apps</span>
             <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
             <h3 class="service-title">Web-<span>Applikationen</span></h3>
@@ -449,7 +452,7 @@
             <a href="kontakt.html" class="service-cta">Anfrage stellen <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a>
         </div>
 
-        <div class="service-card" data-cat="branding">
+        <div class="service-card" data-cat="branding" data-nf-tiefe="-0.03">
             <span class="service-tag">Branding</span>
             <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg></div>
             <h3 class="service-title">Branding & <span>UI Design</span></h3>
@@ -463,7 +466,7 @@
             <a href="kontakt.html" class="service-cta">Anfrage stellen <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a>
         </div>
 
-        <div class="service-card" data-cat="growth">
+        <div class="service-card" data-cat="growth" data-nf-tiefe="0.06">
             <span class="service-tag">Growth</span>
             <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
             <h3 class="service-title">Digital <span>Growth</span></h3>
@@ -477,7 +480,7 @@
             <a href="kontakt.html" class="service-cta">Anfrage stellen <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a>
         </div>
 
-        <div class="service-card" data-cat="ki">
+        <div class="service-card" data-cat="ki" data-nf-tiefe="-0.08">
             <span class="service-tag">KI & Automation</span>
             <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
             <h3 class="service-title">KI & <span>Automation</span></h3>
@@ -491,7 +494,7 @@
             <a href="kontakt.html" class="service-cta">Anfrage stellen <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a>
         </div>
 
-        <div class="service-card" data-cat="betrieb">
+        <div class="service-card" data-cat="betrieb" data-nf-tiefe="0.09">
             <span class="service-tag">Betrieb</span>
             <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
             <h3 class="service-title">Support & <span>Wartung</span></h3>
@@ -505,7 +508,7 @@
             <a href="kontakt.html" class="service-cta">Anfrage stellen <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></a>
         </div>
 
-        <div class="service-card" data-cat="beratung">
+        <div class="service-card" data-cat="beratung" data-nf-tiefe="-0.04">
             <span class="service-tag">Beratung</span>
             <div class="service-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg></div>
             <h3 class="service-title">Digital <span>Consulting</span></h3>
@@ -545,7 +548,7 @@
 <section class="process-section">
     <div class="section-header reveal">
         <span class="section-eyebrow">So entsteht Ihr Projekt</span>
-        <h2 class="section-title">Von der Idee zum <span>Ergebnis</span></h2>
+        <h2 class="section-title" data-nf-maske>Von der Idee zum <span>Ergebnis</span></h2>
     </div>
     <div class="process-grid">
         <div class="process-step reveal">
@@ -578,7 +581,7 @@
 <section class="tech-section">
     <div class="section-header reveal">
         <span class="section-eyebrow">Womit wir bauen</span>
-        <h2 class="section-title">Unser <span>Tech Stack</span></h2>
+        <h2 class="section-title" data-nf-maske>Unser <span>Tech Stack</span></h2>
     </div>
     <div class="tech-grid reveal-stagger">
         <div class="tech-item"><span class="tech-name">React</span></div>
@@ -634,19 +637,19 @@
             <div class="footer-section">
                 <h4>Navigation</h4>
                 <ul class="footer-links">
-                    <li><a href="leistungen.html">Leistungen</a></li>
-                    <li><a href="referenzen.html">Referenzen</a></li>
-                    <li><a href="about.html">Über Uns</a></li>
-                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="leistungen.html" data-nf-roll>Leistungen</a></li>
+                    <li><a href="referenzen.html" data-nf-roll>Referenzen</a></li>
+                    <li><a href="about.html" data-nf-roll>Über Uns</a></li>
+                    <li><a href="kontakt.html" data-nf-roll>Kontakt</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Mehr</h4>
                 <ul class="footer-links">
-                    <li><a href="showcase.html">Showcase</a></li>
-                    <li><a href="tools.html">Tools</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="karriere.html">Karriere</a></li>
+                    <li><a href="showcase.html" data-nf-roll>Showcase</a></li>
+                    <li><a href="tools.html" data-nf-roll>Tools</a></li>
+                    <li><a href="faq.html" data-nf-roll>FAQ</a></li>
+                    <li><a href="karriere.html" data-nf-roll>Karriere</a></li>
                 </ul>
             </div>
             <div class="newsletter-section">
