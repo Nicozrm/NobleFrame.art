@@ -125,8 +125,10 @@
   }
 
   if (vantaAllowed()) {
-    // Inhaltsseiten: .page-hero · Startseite: .cta-section (ihr Hero gehört
-    // bereits der Cinematic Engine — das Netz akzentuiert dort die CTA).
+    // Startseite: .nf-hero · Inhaltsseiten: .page-hero · sonst .cta-section.
+    // Der Hero der Startseite gehoerte frueher der Kinosequenz; seit sie dem
+    // stillen Hero der Vorlage gewichen ist, steht dort das Netz — genau wie
+    // in der Referenz, und nicht mehr als Ersatzplatz in der CTA.
     //
     // Vorfahrt: trägt ein Kandidat bereits `data-nf-sphaere`, gehört das
     // Blickfeld dem Drahtgitter aus nf-sphaere.js. Zwei WebGL-Flächen
@@ -135,7 +137,7 @@
     // Der nächste Kandidat rückt dann nach; gibt es keinen, bleibt die
     // Seite ohne Netz, was sie ohnehin verträgt.
     const hero = Array.prototype.find.call(
-      document.querySelectorAll('.page-hero, .cta-section'),
+      document.querySelectorAll('.nf-hero, .page-hero, .cta-section'),
       (el) => !el.hasAttribute('data-nf-sphaere')
     ) || null;
     if (hero) {
@@ -165,6 +167,12 @@
       css.textContent =
         '.nf-vanta{position:absolute;inset:0;z-index:0;overflow:hidden;' +
         'mix-blend-mode:screen;opacity:.58}' +
+        /* Auf Cream ist `screen` die falsche Rechnung: der Modus kann nur
+           aufhellen, und ein dunkles Netz auf hellem Grund verschwindet
+           darin restlos. Der Hero der Startseite steht auf Cream, also
+           wird dort normal gemischt und das Netz ist tatsaechlich zu
+           sehen — auf den dunklen Flaechen bleibt `screen` richtig. */
+        '.nf-hero .nf-vanta{mix-blend-mode:normal;opacity:.85}' +
         '@media(max-width:768px){.nf-vanta{opacity:.3}}';
       document.head.appendChild(css);
 
@@ -198,6 +206,7 @@
           scale: 1,
           scaleMobile: 1,
           color: GOLD,
+          color2: 0x1D1D1D,
           backgroundColor: 0xECE0C6,
           points: mobile ? 6 : 11,
           maxDistance: 23,

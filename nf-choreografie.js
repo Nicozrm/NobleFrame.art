@@ -59,6 +59,38 @@
   /* ═══ 1. Marken & Masken ══════════════════════════════════════════════ */
   alle('.nf-marke').forEach((el) => eintritt.observe(el));
 
+  /* Der Hero steigt maskiert auf. Ausgeloest hat das frueher der Lader in
+     nf-dreher.js — der ist entfallen, seit nf-buehne.js den Vorhang fuehrt,
+     und damit stand die Ueberschrift dauerhaft 110 % nach unten verschoben
+     hinter ihrer eigenen Maske: drei unsichtbare Zeilen, kein Fehler in der
+     Konsole. Der Beobachter hier haengt an nichts, was wegfallen kann. */
+  alle('.nf-hero').forEach((el) => eintritt.observe(el));
+
+  /* Die warmen Register-Zeilen wischen von oben herein.
+
+     Beobachtet wird der Container, nicht die Zeile — und das ist keine
+     Bequemlichkeit, sondern die Aufloesung einer Sackgasse:
+
+     Die Zeilen stehen vor ihrem Auftritt auf clip-path: inset(0 0 100% 0),
+     also auf Nullhoehe. In Chromium geht dieses Clipping in die
+     Intersection-Rechnung ein: das Element meldet ratio 0 und
+     isIntersecting false, dauerhaft. Ein Element, das sich selbst auf null
+     klippt, kann den Beobachter, der es aufdecken soll, nie ausloesen. Der
+     Aufdeckmechanismus haengt an einer Beobachtung, die sein eigener
+     Ausgangszustand verhindert — gemessen: die eine Zeile, der man das
+     clip-path nimmt, meldet sofort ratio 1, die drei anderen bleiben bei 0.
+
+     Der Container klippt sich nicht und wird deshalb normal gemeldet. Er
+     deckt dann alle Zeilen auf einmal auf; die Staffelung liegt als
+     transition-delay im Stil, nicht als Kette von Zeitgebern. */
+  alle('[data-nf-baender]').forEach((wirt) => {
+    const zeilen = alle('.nf-band', wirt);
+    if (!zeilen.length) return;
+    zeilen.forEach((el, i) => { el.style.transitionDelay = (i * 0.12).toFixed(2) + 's'; });
+    wirt.__nfEintritt = () => zeilen.forEach((el) => el.classList.add('in'));
+    eintritt.observe(wirt);
+  });
+
   /* Die Ueberschrift wird nicht ersetzt, sondern eingepackt: ihre inneren
      Auszeichnungen (das goldene <span>) bleiben unangetastet. */
   alle('[data-nf-maske]').forEach((el) => {
@@ -78,7 +110,10 @@
      Ein eigener Beobachter, weil dieser mehrfach schaltet: der obige
      meldet jedes Ziel genau einmal und gibt es dann frei. */
   const rahmenEl = document.getElementById('nfRahmen');
-  const dunkel = alle('.cine-wrap, .nf-feld');
+  /* Frueher stand hier .cine-wrap — die Kinosequenz gibt es nicht mehr.
+     Der Rahmen haengt jetzt am Farbbogen selbst: jeder Abschnitt, der sich
+     als tief ausweist, bekommt ihn, und neue brauchen keine Codeaenderung. */
+  const dunkel = alle('[data-grund="tief"], .nf-feld');
   if (rahmenEl && dunkel.length){
     const drin = new Set();
     const wache = new IntersectionObserver((eintraege) => {

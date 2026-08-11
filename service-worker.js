@@ -11,7 +11,7 @@
    (z. B. GitHub Pages), zeigt der Precache ins Leere und der Offline-Modus
    ist still kaputt. BASE unten macht die Prüfungen im fetch-Handler
    ebenfalls scope-relativ. */
-const CACHE = "nobleframe-v13";
+const CACHE = "nobleframe-v18";
 
 /* Verzeichnis, in dem dieser Worker liegt — mit abschliessendem Slash. */
 const BASE = self.location.pathname.replace(/[^/]*$/, "");
@@ -21,12 +21,18 @@ const BASE = self.location.pathname.replace(/[^/]*$/, "");
 const CORE = [
   "./",
   "./index.html",
-  "./cinematic-engine.js",
+  /* cinematic-engine.js steht nicht mehr hier: seit der Anfang dem Lader
+     und dem stillen Hero der Vorlage gehoert, laedt keine Seite sie noch.
+     Die Datei bleibt im Repo — ein <script defer src="cinematic-engine.js">
+     und das Markup mit [data-cine] holen die Sequenz zurueck. Im Precache
+     waere sie nur Bandbreite, die bei jeder Installation niemandem nuetzt. */
   "./nf-interactions.js",
   "./nf-tech.js",
   "./nf-choreografie.js",
   "./nf-feld.js",
-
+  "./nf-sphaere.js",
+  "./nf-zeiger.js",
+  "./nf-buehne.js",
   "./vendor/lenis.min.js",
   "./manifest.json",
   "./assets/fonts/fonts.css",
@@ -34,6 +40,9 @@ const CORE = [
   "./assets/choreografie.css",
   "./assets/palette.css",
   "./assets/feld.css",
+  "./assets/vorlage.css",
+  "./assets/fonts/anton-latin.woff2",
+  "./assets/fonts/archivo-latin.woff2",
   "./assets/fonts/outfit-latin.woff2",
   "./assets/fonts/cormorant-garamond-latin.woff2",
   "./assets/fonts/jetbrains-mono-latin.woff2",
