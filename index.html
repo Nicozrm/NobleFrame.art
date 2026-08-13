@@ -258,7 +258,19 @@
         .cookie-text a:hover{text-decoration:underline}
 
         /* RESPONSIVE */
-        @media(max-width:1366px){
+        /* 1514 statt 1366: erst ab 1515 px traegt der Kopf das grosszuegige
+           Mass, vorher das kompakte. Gemessen, nicht geschaetzt — dazwischen
+           reicht der Platz nicht, und die Schaltflaeche wurde als Flex-Element
+           zusammengedrueckt statt umzubrechen: bei 1440 px von 218 auf 143 px,
+           die Beschriftung mitten im Wort abgeschnitten.
+
+           Gemessen wird das, indem man die Schaltflaeche am Stauchen hindert
+           (flex-shrink: 0) und ihre Breite mit der tatsaechlichen vergleicht.
+           Der Ueberlauf des Kopfes taugt dafuer nicht: ein Flex-Container
+           meldet scrollWidth == clientWidth, waehrend er seine Kinder
+           zusammenschiebt — er sieht heil aus, genau waehrend er es nicht
+           ist. */
+        @media(max-width:1514px){
             .nav-main{padding:18px 36px}
             .nav-links{gap:0}
             .nav-links>li>a{padding:11px 11px;font-size:.78rem;letter-spacing:.8px}
@@ -271,10 +283,16 @@
             .services-grid{grid-template-columns:repeat(2,1fr)}
             .footer-main{grid-template-columns:1fr 1fr;gap:40px}
         }
-        @media(max-width:1024px){
+        /* Der Kopf passt erst ab 1180 px ungestaucht in eine Zeile. Der
+           Umschaltpunkt auf das Mobilmenue lag bei 1024 px, also 156 px zu
+           tief — dazwischen stand die Schaltflaeche gequetscht neben der
+           Wortmarke, auf 390 px auf 122 statt 198 px. */
+        @media(max-width:1179px){
             .nav-links{display:none}
             .nav-cta{display:none}
             .nav-mobile-toggle{display:flex}
+        }
+        @media(max-width:1024px){
             .nav-main{padding:15px 30px}
             .hero{flex-direction:column;min-height:auto}
             .hero-image{width:100%;height:45vh;min-height:300px}
