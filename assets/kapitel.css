@@ -1,0 +1,226 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   NobleFrame — Kapitelleiste
+
+   Die Fuehrung durch die Fahrt. Neun Kapitel, das laufende benannt, der
+   zurueckgelegte Weg gefuellt.
+
+   Sie ersetzt die Fahrtanzeige, die vorher unten rechts stand. Die zeigte
+   Prozent des Dokuments — eine Zahl, die sagt, wie viel noch kommt, aber
+   nicht, wo man ist. Und sie ging ueber jedem dunklen Abschnitt aus, weil
+   dort das Feld seine eigenen Werte anzeigt; ueber dem groessten Abschnitt
+   der Seite gab es also gar keine Anzeige.
+
+   Zwei Dinge, die diese Leiste anders macht:
+
+   Sie ist echte Navigation, kein Ornament. Die Eintraege sind Links auf
+   die Abschnitte, in der Tabulatorreihenfolge erreichbar, das laufende
+   Kapitel traegt aria-current. Lenis faengt die Klicks ohnehin ab und
+   faehrt sie mit Versatz an (nf-tech.js) — es braucht dafuer keine Zeile
+   JavaScript in dieser Schicht.
+
+   Und sie liest auf beidem. Der Grund wechselt unter ihr zwischen Cream
+   und Tiefe, deshalb haengen ihre Farben an html.nf-dunkel — demselben
+   Schalter, den die Choreografie ohnehin fuehrt. Ein fester Farbwert
+   waere auf einer der beiden Flaechen unlesbar.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.nf-leiste{
+  position: fixed;
+  right: clamp(14px, 1.6vw, 30px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+
+  /* Eine Rolle, an einer Stelle gesetzt: die Leiste erbt sie, die
+     Umschaltung weiter unten aendert nur diesen Wert.
+
+     .78 ist gerechnet, nicht gegriffen. Die Schrift hier ist knapp 10 px
+     gross, also gilt 4.5:1. Bei .58 kam sie auf 3.83:1 gegen Cream — eine
+     Stufe, die auf einer Ueberschrift genuegt und unter dieser Groesse
+     nicht. Mit .78 sind es 6.98:1 gegen Cream und 9.17:1 gegen Tiefe. */
+  --leiste-ink: rgba(29, 29, 29, .78);
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--nf-mono, ui-monospace, monospace);
+}
+
+/* Unter 1025 px faehrt auch die Bahn nicht mehr seitlich; dort ist die
+   Seite eine Liste, und eine Kapitelleiste am Rand waere ein Streifen
+   ueber dem Text. */
+@media(max-width: 1024px){ .nf-leiste{ display: none; } }
+
+/* ═══ Die Spur ═══════════════════════════════════════════════════════════
+   Eine Haarlinie ueber die volle Hoehe der Leiste, darin die Fuellung.
+   Sie steht rechts — auf der Seite, zu der hin gelesen aufgehoert wird. */
+.nf-leiste-spur{
+  position: relative;
+  order: 2;
+  width: 1px;
+  align-self: stretch;
+  min-height: 220px;
+  background: var(--leiste-haar);
+}
+.nf-leiste-spur > b{
+  position: absolute;
+  inset: 0;
+  background: var(--coral, #F4583D);
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+}
+
+/* ═══ Die Kapitel ════════════════════════════════════════════════════════ */
+.nf-leiste ol{
+  order: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nf-leiste li{ margin: 0; }
+
+.nf-leiste a{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 5px 0;
+  text-decoration: none;
+  color: var(--leiste-ink);
+  font-size: .6rem;
+  letter-spacing: .14em;
+  font-variant-numeric: tabular-nums;
+  transition: color var(--nf-response, .3s) var(--nf-ease, ease);
+}
+
+/* Der Name steht nur beim laufenden Kapitel — und beim Zeigen oder
+   Tabben. Alle neun gleichzeitig waeren eine zweite Navigation neben der
+   im Kopf; es geht hier um den Ort, nicht um das Menue. */
+.nf-leiste-name{
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  text-transform: uppercase;
+  transition: max-width var(--nf-transport, .6s) var(--nf-ease, ease),
+              opacity var(--nf-response, .3s) var(--nf-ease, ease);
+}
+.nf-leiste-nr{ opacity: .8; }
+
+/* Der Strich ist das eigentliche Zeichen: kurz, und beim laufenden
+   Kapitel lang. Er sitzt buendig an der Spur. */
+.nf-leiste-strich{
+  display: block;
+  width: 12px;
+  height: 1px;
+  background: currentColor;
+  opacity: .55;
+  transition: width var(--nf-response, .3s) var(--nf-ease, ease),
+              opacity var(--nf-response, .3s) var(--nf-ease, ease);
+}
+
+/* ═══ Warum die Schrift nicht Coral wird ═════════════════════════════════
+   Der naheliegende Weg waere, das laufende Kapitel in Coral zu setzen —
+   so macht es die Seite bei jedem Akzentwort. In dieser Groesse geht das
+   nicht auf: Coral auf Cream sind 2.54:1, und selbst das tiefere Coral
+   kommt nur auf 3.94:1. Ein Akzent, der auf einer Ueberschrift richtig
+   ist, wird bei 10 px zur unlesbaren Stelle.
+
+   Coral traegt hier deshalb die Zeichen, nicht die Schrift: den Strich,
+   die Fuellung der Spur. Fuer die gilt 3:1, und das haelt es. Das
+   laufende Kapitel erkennt man am langen Strich und an der vollen
+   Schriftstaerke — die Schrift selbst steht in voller Deckung. */
+.nf-leiste a:hover,
+.nf-leiste a:focus-visible{ color: var(--leiste-ink); opacity: 1; }
+.nf-leiste a:hover .nf-leiste-strich,
+.nf-leiste a:focus-visible .nf-leiste-strich{ background: var(--coral, #F4583D); }
+.nf-leiste a:hover .nf-leiste-name,
+.nf-leiste a:focus-visible .nf-leiste-name{ max-width: 15rem; opacity: .9; }
+.nf-leiste a:hover .nf-leiste-strich,
+.nf-leiste a:focus-visible .nf-leiste-strich{ width: 22px; opacity: 1; }
+.nf-leiste a:focus-visible{ outline: 2px solid var(--coral, #F4583D); outline-offset: 3px; }
+
+.nf-leiste a.an{ color: var(--leiste-ink); }
+.nf-leiste a.an .nf-leiste-strich{ background: var(--coral, #F4583D); }
+.nf-leiste a.an .nf-leiste-name{ max-width: 15rem; opacity: 1; }
+.nf-leiste a.an .nf-leiste-strich{ width: 26px; opacity: 1; }
+.nf-leiste a.an .nf-leiste-nr{ opacity: 1; }
+.nf-leiste a.an .nf-leiste-name{ font-weight: 500; }
+
+/* ═══ Auf tiefem Grund ═══════════════════════════════════════════════════
+   Nur die zwei Rollen kippen. Coral bleibt Coral — es steht auf beiden
+   Flaechen und ist genau deshalb der Akzent dieser Palette. */
+.nf-leiste a.tief{
+  --leiste-ink: rgba(236, 224, 198, .78);
+  color: var(--leiste-ink);
+}
+
+/* Die Spur laeuft ueber die ganze Hoehe der Leiste und damit oft ueber
+   beide Gruende zugleich. Eine Haarlinie, die zur Haelfte unsichtbar ist,
+   sieht aus wie eine abgerissene — deshalb steht sie in einem Wert, der
+   auf Cream wie auf Tiefe traegt, statt umzuschalten. */
+.nf-leiste-spur{ background: rgba(140, 128, 104, .42); }
+
+/* ═══ Ohne Bewegung ══════════════════════════════════════════════════════
+   Die Leiste bleibt: sie ist Auskunft, keine Zierde. Nur der Transport
+   faellt weg, und der Name steht dann dauerhaft — ohne Uebergang waere
+   das Auf- und Zuklappen ein Sprung im Layout. */
+@media(prefers-reduced-motion: reduce){
+  .nf-leiste-name{ max-width: 15rem; opacity: .85; }
+  .nf-leiste a,
+  .nf-leiste-name,
+  .nf-leiste-strich{ transition: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Der Kopf auf tiefem Grund
+
+   Die Seite faehrt durch einen Farbbogen: Cream, Tiefe, Cream, Tiefe. Der
+   Kopf blieb dabei stehen, wo er war — eine cremefarbene Leiste mit 95 %
+   Deckung, die ueber den dunklen Abschnitten als heller Balken auflag.
+   Genau dort riss die Fahrt sichtbar ab: unten der Sucher, oben das
+   Schaufenster.
+
+   Er nimmt jetzt den Grund an, der hinter ihm liegt. Gefragt wird an
+   seiner Unterkante (nf-choreografie.js), nicht in der Bildmitte — der
+   Kopf steht oben, und was in der Mitte des Bildes liegt, ist nicht das,
+   wovor er steht. Auf halber Strecke durch einen Uebergang zaehlt seine
+   eigene Zeile.
+
+   Die Schaltflaeche bleibt unveraendert: Coral mit Cream-Schrift steht auf
+   beiden Gruenden. Sie ist der einzige Teil des Kopfes, der nichts
+   umzurechnen hat — und das ist der Beleg dafuer, dass der Akzent dieser
+   Palette richtig gewaehlt ist.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+html.nf-kopf-tief .nav-wrapper.scrolled{
+  background: rgba(10, 10, 11, .92);
+  border-bottom-color: rgba(236, 224, 198, .14);
+}
+html.nf-kopf-tief .nav-links > li > a{ color: rgba(236, 224, 198, .72); }
+html.nf-kopf-tief .nav-links > li > a:hover,
+html.nf-kopf-tief .nav-links > li > a.active{ color: var(--coral); }
+html.nf-kopf-tief .logo-text{ color: var(--cream); }
+html.nf-kopf-tief .logo-icon svg .frame-outer,
+html.nf-kopf-tief .logo-icon svg .frame-inner{ stroke: var(--cream); }
+html.nf-kopf-tief .logo-icon svg .frame-lines{ stroke: rgba(236, 224, 198, .34); }
+html.nf-kopf-tief .nf-uhr{ color: rgba(236, 224, 198, .5); }
+html.nf-kopf-tief .nav-mobile-toggle span{ background: var(--cream); }
+
+/* Der Wechsel laeuft ueber dieselbe Dauer wie der Kopf selbst (.4s in
+   index.html). Ohne eigene Angabe spraenge die Schriftfarbe, waehrend die
+   Flaeche darunter weich umblendet. */
+.nav-links > li > a,
+.logo-text,
+.nf-uhr,
+.logo-icon svg *{ transition: color .4s ease, stroke .4s ease; }
+
+@media(prefers-reduced-motion: reduce){
+  .nav-links > li > a,
+  .logo-text,
+  .nf-uhr,
+  .logo-icon svg *{ transition: none; }
+}

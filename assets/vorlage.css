@@ -264,6 +264,22 @@ html.nf-statisch [data-nf-baender] .nf-band{ clip-path: none; transition: none; 
   overflow: hidden;
   vertical-align: bottom;
 }
+
+/* Der Rollentext setzt ein display — und hat damit eines ueberschrieben, das
+   woanders gebraucht wurde. Die Startseite blendet ihre Kopf-Schaltflaeche
+   unter 1180 px aus (@media in index.html), weil dort das Mobilmenue seine
+   eigene traegt. Diese Datei laedt nach dem Seitenkopf, gleiche Spezifitaet,
+   also gewann `display: inline-block` — und die Schaltflaeche stand wieder da,
+   nur ohne Platz: auf 390 px zwischen Wortmarke und Menueknopf gequetscht auf
+   122 px statt 198, die Beschriftung mitten im Wort abgeschnitten, ohne einen
+   Pixel Abstand zur Wortmarke.
+
+   Die Ausnahme steht hier und nicht in index.html, weil die Kollision hier
+   entsteht. Wer den Rollentext einmal von einem weiteren Element nimmt, das
+   sich selbst ausblendet, ergaenzt die Zeile. */
+@media(max-width: 1179px){
+  .nav-cta[data-nf-roll]{ display: none; }
+}
 [data-nf-roll] .nf-roll-i{
   display: inline-block;
   transition: transform .4s var(--e-rolle);

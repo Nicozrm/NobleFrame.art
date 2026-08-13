@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/motion.css">
     <link rel="stylesheet" href="assets/choreografie.css">
+    <link rel="stylesheet" href="assets/kapitel.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{--gold:#F4583D;--gold-light:#F4583D;--gold-dark:#C43F26;--black:#ECE0C6;--white:#1D1D1D;--white-muted:rgba(29,29,29,.62);--white-subtle:rgba(29,29,29,.45);--gradient:linear-gradient(135deg,#F4583D 0%,#F4583D 50%,#F4583D 100%)}
@@ -257,7 +258,19 @@
         .cookie-text a:hover{text-decoration:underline}
 
         /* RESPONSIVE */
-        @media(max-width:1366px){
+        /* 1514 statt 1366: erst ab 1515 px traegt der Kopf das grosszuegige
+           Mass, vorher das kompakte. Gemessen, nicht geschaetzt — dazwischen
+           reicht der Platz nicht, und die Schaltflaeche wurde als Flex-Element
+           zusammengedrueckt statt umzubrechen: bei 1440 px von 218 auf 143 px,
+           die Beschriftung mitten im Wort abgeschnitten.
+
+           Gemessen wird das, indem man die Schaltflaeche am Stauchen hindert
+           (flex-shrink: 0) und ihre Breite mit der tatsaechlichen vergleicht.
+           Der Ueberlauf des Kopfes taugt dafuer nicht: ein Flex-Container
+           meldet scrollWidth == clientWidth, waehrend er seine Kinder
+           zusammenschiebt — er sieht heil aus, genau waehrend er es nicht
+           ist. */
+        @media(max-width:1514px){
             .nav-main{padding:18px 36px}
             .nav-links{gap:0}
             .nav-links>li>a{padding:11px 11px;font-size:.78rem;letter-spacing:.8px}
@@ -270,10 +283,16 @@
             .services-grid{grid-template-columns:repeat(2,1fr)}
             .footer-main{grid-template-columns:1fr 1fr;gap:40px}
         }
-        @media(max-width:1024px){
+        /* Der Kopf passt erst ab 1180 px ungestaucht in eine Zeile. Der
+           Umschaltpunkt auf das Mobilmenue lag bei 1024 px, also 156 px zu
+           tief — dazwischen stand die Schaltflaeche gequetscht neben der
+           Wortmarke, auf 390 px auf 122 statt 198 px. */
+        @media(max-width:1179px){
             .nav-links{display:none}
             .nav-cta{display:none}
             .nav-mobile-toggle{display:flex}
+        }
+        @media(max-width:1024px){
             .nav-main{padding:15px 30px}
             .hero{flex-direction:column;min-height:auto}
             .hero-image{width:100%;height:45vh;min-height:300px}
@@ -376,11 +395,11 @@
         .work-card:hover .work-visual::after{opacity:1}
         .wv-lunara{background:radial-gradient(120% 90% at 75% 15%,rgba(70,58,104,.7),transparent 55%),radial-gradient(80% 80% at 20% 100%,rgba(29,29,29,.14),transparent 60%),#06060a}
         .wv-lunara .moon{position:absolute;top:30px;right:36px;width:50px;height:50px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f4ecd8,#cdbf9a 60%,#8b7f63);box-shadow:0 0 40px rgba(244,236,216,.45)}
-        .wv-portal{background:radial-gradient(100% 100% at 50% 0%,rgba(29,29,29,.12),transparent 60%),#F3EAD8;display:flex;align-items:flex-end;justify-content:center;padding-bottom:34px}
+        .wv-portal{background:radial-gradient(100% 100% at 50% 0%,rgba(244,88,61,.14),transparent 60%),#0D0D10;display:flex;align-items:flex-end;justify-content:center;padding-bottom:34px}
         .wv-portal .bars{display:flex;gap:9px;align-items:flex-end;height:84px}
         .wv-portal .bars i{width:13px;background:linear-gradient(180deg,#F4583D,#C43F26);display:block;opacity:.85}
-        .wv-atelier{background:radial-gradient(80% 80% at 50% 50%,rgba(29,29,29,.08),transparent 60%),#F3EAD8;display:flex;align-items:center;justify-content:center}
-        .wv-atelier .ring{position:absolute;border:1px solid rgba(29,29,29,.4);border-radius:50%}
+        .wv-atelier{background:radial-gradient(80% 80% at 50% 50%,rgba(244,88,61,.10),transparent 60%),#0D0D10;display:flex;align-items:center;justify-content:center}
+        .wv-atelier .ring{position:absolute;border:1px solid rgba(236,224,198,.34);border-radius:50%}
         .work-visual .wname{position:absolute;left:22px;bottom:16px;font-family:'Cormorant Garamond',serif;font-size:1.4rem;letter-spacing:4px;color:#f4ecd8;text-transform:uppercase;z-index:2}
         .work-body{padding:24px 24px 28px}
         .work-cat{font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
@@ -635,6 +654,7 @@
         <span>Steinfurt <span class="nf-uhr" data-nf-uhr>--:--:--</span></span>
     </div>
 </div>
+<main>
 
 <header class="nf-hero" id="hauptinhalt" tabindex="-1">
     <svg class="nf-orbit" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
@@ -649,7 +669,7 @@
     </svg>
 
     <div class="nf-hero-kopf">
-        <span>Sek. 01 / 06 — Premium Digital Atelier</span>
+        <span data-nf-auftakt>Auftakt / 09 — Premium Digital Atelier</span>
         <span>Steinfurt — 52.1500° N, 7.3333° O</span>
     </div>
 
@@ -669,7 +689,7 @@
 </header>
 
 <section class="intro-band">
-    <div class="nf-marke"><span>Sek. 01 — Wer wir sind</span><span>Premium Digital Atelier</span></div>
+    <div class="nf-marke" data-nf-kapitel="Wer wir sind"><span>Sek. 01 — Wer wir sind</span><span>Premium Digital Atelier</span></div>
     <div class="intro-inner">
         <div class="intro-lead reveal-left">
             <div class="section-eyebrow">Wer wir sind</div>
@@ -693,23 +713,23 @@
 
 <!-- SHOWCASE -->
 <section class="live-work" id="arbeiten" data-grund="tief">
-    <div class="nf-marke"><span>Sek. 02 — Laufende Systeme</span><span>Steinfurt · 52.1500° N, 7.3333° O</span></div>
+    <div class="nf-marke" data-nf-kapitel="Laufende Systeme"><span>Sek. 02 — Laufende Systeme</span><span>Steinfurt · 52.1500° N, 7.3333° O</span></div>
     <div class="section-header reveal">
         <div class="section-badge">Gebaut, nicht behauptet</div>
-        <h2 class="section-title" data-nf-maske><span>Fünf laufende Systeme</span></h2>
-        <p class="section-subtitle">Keine Fallstudien, keine Screenshots. Fünf vollständige Eigenentwicklungen – jede live, jede ohne Anmeldung benutzbar.</p>
+        <h2 class="section-title" data-nf-maske><span>Sieben laufende Systeme</span></h2>
+        <p class="section-subtitle">Keine Fallstudien, keine Screenshots. Sieben vollständige Eigenentwicklungen – jede live, jede ohne Anmeldung zu öffnen.</p>
     </div>
 
 <div class="nf-pin" data-nf-pin>
   <div class="nf-pin-stage">
     <div class="nf-bahn-kopf" aria-hidden="true">
         <span>Eigenentwicklungen 2024 — 2026</span>
-        <span><b data-nf-stand>01</b> / 06</span>
+        <span><b data-nf-stand>01</b> / 08</span>
     </div>
     <div class="live-grid nf-bahn reveal" data-nf-bahn data-stagger>
         <a href="showcase/omega-atelier/" class="live-card">
             <div class="live-shot">
-                <img src="assets/img/omega-atelier-preview.webp" alt="OMEGA Atelier: Grundriss-Editor mit Echtzeit-3D-Vorschau" loading="lazy" decoding="async" width="1400" height="600">
+                <img src="assets/img/sig-omega-atelier.svg" alt="Signatur OMEGA Atelier: Grundriss mit vier Raeumen und platzierten Geraeten, daneben derselbe Raum als Koerper in Echtzeit-3D" loading="lazy" decoding="async" width="2400" height="900">
                 <span class="live-state"><i></i>Live · ohne Anmeldung</span>
             </div>
             <div class="live-body">
@@ -723,7 +743,7 @@
 
         <a href="showcase/omega-os/index.html" class="live-card">
             <div class="live-shot">
-                <img src="assets/img/omega-os-preview.webp" alt="OMEGA OS: fenstergesteuerter Desktop im Browser" loading="lazy" decoding="async" width="1400" height="788">
+                <img src="assets/img/sig-omega-os.svg" alt="Signatur OMEGA OS: Menueleiste, zwei gestapelte Fenster mit App-Store-Kacheln und ein Dock" loading="lazy" decoding="async" width="2400" height="900">
                 <span class="live-state"><i></i>Live · offline-fähig</span>
             </div>
             <div class="live-body">
@@ -737,7 +757,7 @@
 
         <a href="showcase/omega-phone/" class="live-card">
             <div class="live-shot">
-                <img src="assets/img/omega-phone-preview.webp" alt="OMEGA Phone: Plattform für Smartphone-Reparatur" loading="lazy" decoding="async" width="1280" height="720">
+                <img src="assets/img/sig-omega-phone.svg" alt="Signatur OMEGA Phone: Geraet mit angezeigtem Sofortpreis, daneben die drei Schritte Geraet, Schaden, Preis" loading="lazy" decoding="async" width="2400" height="900">
                 <span class="live-state"><i></i>Live · Reparatur-Plattform</span>
             </div>
             <div class="live-body">
@@ -751,7 +771,7 @@
 
         <a href="showcase/omega-phone-produkt/" class="live-card">
             <div class="live-shot">
-                <img src="assets/img/omega-phone-produkt-preview.webp" alt="OMEGA Phone: Produktpräsentation mit 3D-Teardown" loading="lazy" decoding="async" width="1280" height="720">
+                <img src="assets/img/sig-omega-phone-produkt.svg" alt="Signatur OMEGA Phone Produkt: neun uebereinander aufgefaecherte Geraeteschichten des Teardowns" loading="lazy" decoding="async" width="2400" height="900">
                 <span class="live-state"><i></i>Live · Produktpräsentation</span>
             </div>
             <div class="live-body">
@@ -765,7 +785,7 @@
 
         <a href="showcase/lunara/index.html" class="live-card">
             <div class="live-shot">
-                <img src="assets/img/lunara-preview.webp" alt="Lunara: Luxury-Boutique mit Stripe-Checkout" loading="lazy" decoding="async" width="1280" height="720">
+                <img src="assets/img/sig-lunara.svg" alt="Signatur Lunara: Reihe von Mondphasen ueber vier Produktkacheln der Boutique" loading="lazy" decoding="async" width="2400" height="900">
                 <span class="live-state"><i></i>Live · Referenzprojekt</span>
             </div>
             <div class="live-body">
@@ -776,10 +796,37 @@
                 <span class="live-go">Öffnen<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
             </div>
         </a>
+        <a href="https://nicozrm.github.io/NobleMindai/" class="live-card" target="_blank" rel="noopener">
+            <div class="live-shot">
+                <img src="assets/img/sig-aurora.svg" alt="Signatur Aurora Desktop: Datei-Explorer und ein Terminal mit laufender Eingabe, davor die Menueleiste" loading="lazy" decoding="async" width="2400" height="900">
+                <span class="live-state"><i></i>Live · offline-fähig</span>
+            </div>
+            <div class="live-body">
+                <div class="live-kicker">Sechstes System · Eigenentwicklung</div>
+                <h3>Aurora Desktop</h3>
+                <p>Eine vollständige Desktop-Umgebung im Browser: Fensterverwaltung mit Andocken und virtuellen Desktops, Explorer, Editor und Entwicklerwerkzeuge – dazu ein eigener Befehlsinterpreter mit 107 Befehlen über einem virtuellen Dateisystem. Installierbar, ohne Backend.</p>
+                <div class="live-stack"><span>Vanilla JS</span><span>PWA</span><span>Service Worker</span><span>Web APIs</span><span>Kein Framework</span></div>
+                <span class="live-go">Öffnen<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+            </div>
+        </a>
+
+        <a href="https://nicozrm.github.io/R223-Remote/" class="live-card" target="_blank" rel="noopener">
+            <div class="live-shot">
+                <img src="assets/img/sig-noblemind.svg" alt="Signatur NOBLEmind: Chatfenster mit Eingabezeile, daneben fuenf Anbieternamen und ein Schloss" loading="lazy" decoding="async" width="2400" height="900">
+                <span class="live-state"><i></i>Live · Schlüssel bleibt lokal</span>
+            </div>
+            <div class="live-body">
+                <div class="live-kicker">Siebtes System · Eigenentwicklung</div>
+                <h3>NOBLEmind</h3>
+                <p>Ein installierbarer Client für fünf Modellanbieter – OpenAI, Claude, Gemini, Kimi und Grok in einer Oberfläche. Schlüssel und Verläufe bleiben auf dem Gerät: Es gibt kein Backend, das sie annehmen könnte. Die ganze App ist eine einzige Datei.</p>
+                <div class="live-stack"><span>Vanilla JS</span><span>PWA</span><span>Eine Datei</span><span>CSP</span><span>Kein Backend</span></div>
+                <span class="live-go">Öffnen<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10"/></svg></span>
+            </div>
+        </a>
         <a href="showcase.html" class="nf-endkarte">
             <span class="nf-endkarte-meta">Ende der Bahn</span>
             <span class="nf-endkarte-titel">Alle Projekte im Detail&nbsp;↗</span>
-            <span class="nf-endkarte-meta">5 Systeme · jedes live · ohne Anmeldung</span>
+            <span class="nf-endkarte-meta">7 Systeme · jedes live · ohne Anmeldung</span>
         </a>
     </div>
   </div>
@@ -788,7 +835,7 @@
 
 <section class="services-preview">
     <span class="nf-riese" aria-hidden="true" data-nf-zug="0.55" style="top:42%">Leistungen · Leistungen</span>
-    <div class="nf-marke"><span>Sek. 03 — Leistungen</span><span>Vier Felder, ein Atelier</span></div>
+    <div class="nf-marke" data-nf-kapitel="Leistungen"><span>Sek. 03 — Leistungen</span><span>Vier Felder, ein Atelier</span></div>
     <div class="section-header reveal">
         <div class="section-badge">Was wir tun</div>
         <h2 class="section-title" data-nf-maske><span>Leistungen</span></h2>
@@ -839,7 +886,7 @@
 
 <section class="process">
     <span class="nf-riese" aria-hidden="true" data-nf-zug="-0.5" style="top:38%">Vorgehen · Vorgehen</span>
-    <div class="nf-marke"><span>Sek. 04 — Vorgehen</span><span>Vier Zeilen, kein Diagramm</span></div>
+    <div class="nf-marke" data-nf-kapitel="Vorgehen"><span>Sek. 04 — Vorgehen</span><span>Vier Zeilen, kein Diagramm</span></div>
     <div class="section-header reveal">
         <div class="section-badge">Wie wir arbeiten</div>
         <h2 class="section-title" data-nf-maske>Unser <span>Vorgehen</span></h2>
@@ -872,9 +919,9 @@
 <section class="nf-feld" id="feld" data-nf-feld>
     <canvas aria-hidden="true"></canvas>
     <div class="nf-feld-inhalt" data-nf-tiefe="0.10">
-        <div class="nf-feld-marke"><span>Sek. 05 — Feld</span><span>Eigener Shader · kein Framework</span></div>
+        <div class="nf-feld-marke" data-nf-kapitel="Feld"><span>Sek. 05 — Feld</span><span>Eigener Shader · kein Framework</span></div>
         <h2 class="nf-feld-titel">Das hier ist <em>Rechenzeit</em>, kein Video.</h2>
-        <p class="nf-feld-text">Ein Fragment-Programm, das in Ihrem Browser läuft: strömendes Rauschen in verzerrtem Koordinatenraum, das Ihrem Zeiger folgt. Kein Three.js, keine Bibliothek — roher WebGL-Kontext, ein Dreieck, unter fünf Kilobyte. <span class="nf-feld-aufforderung">Bewegen Sie den Zeiger.</span></p>
+        <p class="nf-feld-text">Ein Fragment-Programm, das in Ihrem Browser läuft: strömendes Rauschen in verzerrtem Koordinatenraum<span class="nf-nur-zeiger">, das Ihrem Zeiger folgt</span>. Kein Three.js, keine Bibliothek — roher WebGL-Kontext, ein Dreieck, unter fünf Kilobyte. <span class="nf-feld-aufforderung nf-nur-zeiger">Bewegen Sie den Zeiger.</span></p>
     </div>
     <div class="nf-feld-fuss">
         <span data-nf-telemetrie>U.ZEIT 0000.00   U.MAUS 0.500 / 0.450   U.KRAFT 0.00   60 FPS</span>
@@ -884,7 +931,7 @@
 
 <section class="referenzen-teaser" data-grund="tief">
     <span class="nf-riese" aria-hidden="true" data-nf-zug="0.6" style="top:40%">Referenzen · Referenzen</span>
-    <div class="nf-marke"><span>Sek. 05 — Erfolgsgeschichten</span><span>Auszug aus dem Portfolio</span></div>
+    <div class="nf-marke" data-nf-kapitel="Erfolgsgeschichten"><span>Sek. 06 — Erfolgsgeschichten</span><span>Auszug aus dem Portfolio</span></div>
     <div class="section-header reveal">
         <div class="section-badge">Ausgewählte Arbeiten</div>
         <h2 class="section-title" data-nf-maske><span>Erfolgsgeschichten</span></h2>
@@ -931,7 +978,7 @@
 
 <section class="why-section">
     <span class="nf-riese" aria-hidden="true" data-nf-zug="-0.55" style="top:44%">Anspruch · Anspruch</span>
-    <div class="nf-marke"><span>Sek. 06 — Der Unterschied</span><span>Vier Überzeugungen</span></div>
+    <div class="nf-marke" data-nf-kapitel="Der Unterschied"><span>Sek. 07 — Der Unterschied</span><span>Vier Überzeugungen</span></div>
     <div class="section-header reveal">
         <div class="section-badge">Warum NobleFrame</div>
         <h2 class="section-title" data-nf-maske>Der <span>Unterschied</span> liegt im Anspruch</h2>
@@ -956,13 +1003,13 @@
         <div class="why-card" data-nf-tiefe="0.07">
             <span class="why-num">04</span>
             <h3>Brutale Eleganz</h3>
-            <p>Tiefes Schwarz, gesetztes Gold, Typografie mit Haltung. Eine klare Designsprache, die nicht dekoriert, sondern Wertigkeit spürbar macht – in jedem Detail.</p>
+            <p>Warmes Cream, ein einziger Akzent in Coral, Typografie mit Haltung. Eine klare Designsprache, die nicht dekoriert, sondern Wertigkeit spürbar macht – in jedem Detail.</p>
         </div>
     </div>
 </section>
 
 <section class="nf-zahlen">
-    <div class="nf-marke"><span>Sek. 06 — Zahlen</span><span>Nachprüfbar auf dieser Seite</span></div>
+    <div class="nf-marke" data-nf-kapitel="Zahlen"><span>Sek. 08 — Zahlen</span><span>Nachprüfbar auf dieser Seite</span></div>
     <div class="nf-zahlen-reihe">
         <div class="nf-zahl">
             <b><span data-nf-zaehl>25</span><i>+</i></b>
@@ -977,13 +1024,14 @@
             <span>Eigener Code</span>
         </div>
         <div class="nf-zahl">
-            <b><span data-nf-zaehl>5</span></b>
+            <b><span data-nf-zaehl>7</span></b>
             <span>Laufende Systeme</span>
         </div>
     </div>
 </section>
 
 <section class="cta-section" id="kontakt">
+    <div class="nf-marke" data-nf-kapitel="Kontakt"><span>Sek. 09 — Kontakt</span><span>Ende der Fahrt</span></div>
     <div class="cta-glow"></div>
     <div class="cta-frame"></div>
     <div class="cta-container reveal">
@@ -998,6 +1046,7 @@
         </div>
     </div>
 </section>
+</main>
 
 <footer class="footer" data-nf-sphaere data-grund="tief">
     <div class="footer-container">

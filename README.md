@@ -14,13 +14,16 @@ dass die Seite ihre Funktion verliert.
 ```
 *.html                  Seiten (Root)
 assets/fonts/           selbst gehostete Variable Fonts + fonts.css
-assets/img/             Vorschaubilder der Showcase-Projekte (WebP)
+assets/*.css            Palette, Vorlage, Choreografie, Feld, Motion,
+                        kapitel.css (Kapitelleiste + Kopf auf tiefem Grund)
+assets/img/             Projektsignaturen (SVG, je < 7 kB) + alte WebP-Screenshots
 favicon/                Favicons und PWA-Icons
 vendor/                 Fremdbibliotheken (Lenis, Three.js, Vanta)
 cinematic-engine.js     Canvas2D-Intro der Startseite
 nf-interactions.js      Reveals, Zähler, Mobilmenü
 nf-tech.js              Lenis, bedarfsgesteuertes Vanta, Glow-Parallax
-nf-choreografie.js      Scrollstrecke: Wort-Scrub, Pin-Bahn, Laufband, Zählwerk
+nf-choreografie.js      Scrollstrecke: Wort-Scrub, Pin-Bahn, Laufband, Zählwerk,
+                        Kapitelwerk (Nummern, Leiste, Grund unter Kopf und Leiste)
 nf-feld.js              eigener GLSL-Shader (fbm + Domain Warping), Startseite
 nf-sphaere.js           Three.js-Drahtgitterglobus im Footer (data-nf-sphaere)
 service-worker.js       network-first für Seiten, SWR für Assets
@@ -47,6 +50,23 @@ ausgeliefert, es gibt kein Tracking und keine einwilligungspflichtigen
 Dienste — deshalb braucht die Seite keinen Cookie-Banner. Einzige
 Ausnahme sind einige Bilder von Unsplash auf `about.html`; sie sind in
 der Datenschutzerklärung genannt.
+
+**Die Projektbilder sind Zeichnungen, keine Bildschirmfotos.** Sieben
+Signaturen in `assets/img/sig-*.svg`, alle in Cream/Ink/Coral auf tiefem
+Grund. Der Grund dafür ist nicht Geschmack: Ein Bildschirmfoto bringt die
+Farbwelt des abgebildeten Produkts mit, und die hat mit dieser Seite
+nichts zu tun — das noir/goldene OMEGA OS und der weiße Hero von OMEGA
+Phone lagen als zwei fremde Rechtecke auf demselben schwarzen Grund. Die
+Signaturen zeichnen stattdessen die Struktur des jeweiligen Systems
+(Grundriss und Körper, Fenster und Dock, neun Teardown-Schichten) und
+gehören damit zur Seite statt zum Produkt. Der Beleg bleibt ohnehin der
+Live-Link, nicht das Bild — genau das sagt die Sektion selbst.
+
+Erzeugt werden sie von Hand geschriebenem SVG mit einer gemeinsamen Hülle
+(Raster, Sucherecken, Fußzeile). Die Komposition sitzt in einer 16:9-Bühne
+innerhalb einer 2400×900-Leinwand: Die Bahn zeigt die Bildfläche mal in
+16:9, mal in 2.7:1, vergrößert sie auf 112 % und schiebt sie um ±5 % —
+ohne den Rand außen herum schneidet das jedes Mal etwas Wichtiges ab.
 
 **Alle Pfade relativ.** Die Seite muss auf einer Root-Domain und unter
 einem Unterpfad laufen. Das gilt auch für den Service Worker: absolute

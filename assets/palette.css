@@ -188,6 +188,12 @@ html, body{ background: var(--cream); color: var(--ink); }
 .live-shot{ background: var(--cream-ab); }
 .live-shot::after{ content: none; }
 
+/* Der Showcase steht auf tiefem Grund. Dort war die Bildflaeche weiterhin
+   cremefarben — sichtbar, solange das Bild noch nicht da ist, und als
+   heller Saum, wo es das Feld nicht restlos fuellt. Der Grund einer
+   Bildflaeche gehoert zu dem, worauf sie liegt, nicht zur Seite. */
+[data-grund="tief"] .live-shot{ background: var(--void-2, #131315); }
+
 /* ═══ Navigation ═════════════════════════════════════════════════════════ */
 .nav-wrapper{ border-bottom: 1px solid var(--haar); }
 .nav-links > li > a{ color: var(--ink); }
@@ -200,8 +206,6 @@ html, body{ background: var(--cream); color: var(--ink); }
 :root{ --nf-haarlinie: var(--haar); }
 .nf-marke{ color: var(--leise); }
 .nf-marke b{ color: var(--coral); }
-.nf-readout{ color: var(--leise); }
-.nf-readout b{ color: var(--coral); }
 .nf-band-nr{ color: var(--coral); opacity: 1; }
 .nf-band-titel{ color: var(--ink); }
 .nf-band-titel::after{ background: var(--coral); }
@@ -244,13 +248,12 @@ input:focus, textarea:focus, select:focus{ border-color: var(--coral); outline-c
    abgesenkte Flaeche mit einer Haarlinie darueber. */
 .footer{ background: var(--cream-ab); border-top: 1px solid var(--haar); }
 
-/* Die Beschriftung im Referenz-Visual war cremefarben, weil dort frueher
-   immer ein dunkler Grund lag. Zwei der drei Visuals sind nach der
-   Umfaerbung hell — dort stand sie unsichtbar auf ihrem eigenen Grund.
-   :has() fragt den Grund ab, statt die Karten durchzuzaehlen; eine
-   Positionsregel waere beim naechsten Umsortieren wieder falsch. */
-.work-visual:has(.wv-portal) .wname,
-.work-visual:has(.wv-atelier) .wname{ color: rgba(29, 29, 29, .55); }
+/* Hier stand eine Ausnahme fuer die Beschriftung zweier Referenz-Visuals:
+   sie waren als einzige hell umgefaerbt worden, also musste ihr Name von
+   Cream auf Ink kippen. Die Ausnahme ist weg, weil ihr Anlass weg ist —
+   beide tragen wieder den tiefen Grund des Abschnitts, in dem sie stehen.
+   Eine Regel, die eine Abweichung ausgleicht, ist immer der zweitbeste
+   Weg; der beste ist, die Abweichung aufzuheben. */
 
 /* Das Vollbildmenue lag bei 98 % Deckkraft. Bei Riesentypo reicht das
    nicht: die Kinosequenz dahinter zeichnete sich als Geisterbild zwischen
