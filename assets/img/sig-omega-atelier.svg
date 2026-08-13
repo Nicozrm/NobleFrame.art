@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" width="2400" height="900" role="img">
+<defs>
+  <pattern id="r" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0H0V50" fill="none" stroke="rgba(236,224,198,0.045)" stroke-width="1"/>
+  </pattern>
+  <linearGradient id="v" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F4583D" stop-opacity=".13"/>
+    <stop offset="1" stop-color="#F4583D" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+<rect width="2400" height="900" fill="#0A0A0B"/>
+<rect width="2400" height="900" fill="url(#r)"/>
+<rect width="2400" height="900" fill="url(#v)"/>
+<g transform="translate(400,0)">
+<g transform="translate(96,150)">
+  <rect x="0" y="0" width="300" height="210" fill="rgba(236,224,198,0.03)" stroke="rgba(236,224,198,0.3)" stroke-width="2"/>
+  <rect x="300" y="0" width="190" height="210" fill="rgba(236,224,198,0.03)" stroke="rgba(236,224,198,0.22)" stroke-width="2"/>
+  <rect x="0" y="210" width="190" height="190" fill="rgba(236,224,198,0.03)" stroke="rgba(236,224,198,0.22)" stroke-width="2"/>
+  <rect x="190" y="210" width="300" height="190" fill="rgba(236,224,198,0.03)" stroke="rgba(236,224,198,0.22)" stroke-width="2"/>
+  <path d="M300 66v-40M300 210h60M190 300h-46" stroke="#0A0A0B" stroke-width="7"/>
+  <g fill="#F4583D"><circle cx="150" cy="105" r="9"/><circle cx="395" cy="105" r="9"/><circle cx="95" cy="305" r="9"/><circle cx="340" cy="305" r="9"/></g>
+  <g fill="none" stroke="#F4583D" stroke-width="2" opacity=".5"><circle cx="150" cy="105" r="26"/><circle cx="395" cy="105" r="26"/></g>
+</g>
+<g transform="translate(880,240)">
+  <g stroke="rgba(236,224,198,0.09)" stroke-width="1.5" fill="none"><path d="M180.0 -30.0L-365.6 285.0"/><path d="M180.0 -30.0L725.6 285.0"/><path d="M270.9 22.5L-274.7 337.5"/><path d="M89.1 22.5L634.7 337.5"/><path d="M361.9 75.0L-183.7 390.0"/><path d="M-1.9 75.0L543.7 390.0"/><path d="M452.8 127.5L-92.8 442.5"/><path d="M-92.8 127.5L452.8 442.5"/><path d="M543.7 180.0L-1.9 495.0"/><path d="M-183.7 180.0L361.9 495.0"/><path d="M634.7 232.5L89.1 547.5"/><path d="M-274.7 232.5L270.9 547.5"/><path d="M725.6 285.0L180.0 600.0"/><path d="M-365.6 285.0L180.0 600.0"/></g>
+  <polygon points="180.0,-20.0 361.9,85.0 180.0,190.0 -1.9,85.0" fill="rgba(236,224,198,0.1)" stroke="rgba(236,224,198,0.34)" stroke-width="2"/>
+<polygon points="-1.9,285.0 180.0,390.0 180.0,190.0 -1.9,85.0" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.24)" stroke-width="2"/>
+<polygon points="361.9,285.0 180.0,390.0 180.0,190.0 361.9,85.0" fill="rgba(236,224,198,0.02)" stroke="rgba(236,224,198,0.24)" stroke-width="2"/></g>
+<path d="M640 355h150m0 0-16-13m16 13-16 13" fill="none" stroke="rgba(236,224,198,0.36)" stroke-width="2.5"/>
+<g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="19" letter-spacing="3" fill="rgba(236,224,198,0.38)">
+  <text x="96" y="128">GRUNDRISS</text><text x="976" y="128">ECHTZEIT-3D</text>
+</g></g>
+<g transform="translate(400,0)">
+  <g fill="none" stroke="rgba(236,224,198,0.3)" stroke-width="2">
+    <path d="M44 78V44h34M1522 44h34v34M1556 822v34h-34M78 856H44v-34"/>
+  </g>
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="21" letter-spacing="3.4">
+    <text x="70" y="838" fill="#F4583D">OMEGA ATELIER</text>
+    <text x="1530" y="838" fill="rgba(236,224,198,0.42)" text-anchor="end">PLANUNG · 3D · GERAETE</text>
+  </g>
+</g>
+</svg>

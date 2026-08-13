@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" width="2400" height="900" role="img">
+<defs>
+  <pattern id="r" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0H0V50" fill="none" stroke="rgba(236,224,198,0.045)" stroke-width="1"/>
+  </pattern>
+  <linearGradient id="v" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F5CE84" stop-opacity=".13"/>
+    <stop offset="1" stop-color="#F5CE84" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+<rect width="2400" height="900" fill="#0A0A0B"/>
+<rect width="2400" height="900" fill="url(#r)"/>
+<rect width="2400" height="900" fill="url(#v)"/>
+<g transform="translate(400,0)">
+<g transform="translate(0,300)">
+  <g><circle cx="250" cy="0" r="74" fill="rgba(236,224,198,0.055)" stroke="rgba(236,224,198,0.2)" stroke-width="2"/>
+    <path d="M250 -74A74 74 0 0 1 250 74A74 74 0 0 0 250 -74Z" fill="#F5CE84" opacity=".78"/></g><g><circle cx="525" cy="0" r="74" fill="rgba(236,224,198,0.055)" stroke="rgba(236,224,198,0.2)" stroke-width="2"/>
+    <path d="M525 -74A74 74 0 0 1 525 74A37 74 0 0 0 525 -74Z" fill="#F5CE84" opacity=".78"/></g><g><circle cx="800" cy="0" r="74" fill="rgba(236,224,198,0.055)" stroke="rgba(236,224,198,0.2)" stroke-width="2"/>
+    <path d="M800 -74A74 74 0 0 1 800 74A0 74 0 0 0 800 -74Z" fill="#F5CE84" opacity=".78"/></g><g><circle cx="1075" cy="0" r="74" fill="rgba(236,224,198,0.055)" stroke="rgba(236,224,198,0.2)" stroke-width="2"/>
+    <path d="M1075 -74A74 74 0 0 1 1075 74A37 74 0 0 1 1075 -74Z" fill="#F5CE84" opacity=".78"/></g><g><circle cx="1350" cy="0" r="74" fill="rgba(236,224,198,0.055)" stroke="rgba(236,224,198,0.2)" stroke-width="2"/>
+    <path d="M1350 -74A74 74 0 0 1 1350 74A74 74 0 0 1 1350 -74Z" fill="#F5CE84" opacity=".78"/></g>
+</g>
+<g transform="translate(250,470)">
+  <g transform="translate(0,0)">
+    <rect width="200" height="230" fill="#131315" stroke="rgba(236,224,198,0.16)" stroke-width="2"/>
+    <rect x="26" y="26" width="148" height="120" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.12)" stroke-width="1.5"/>
+    <rect x="26" y="170" width="104" height="11" fill="rgba(236,224,198,0.24)"/>
+    <rect x="26" y="194" width="60" height="11" fill="#E1654F"/>
+  </g><g transform="translate(275,0)">
+    <rect width="200" height="230" fill="#131315" stroke="rgba(236,224,198,0.16)" stroke-width="2"/>
+    <rect x="26" y="26" width="148" height="120" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.12)" stroke-width="1.5"/>
+    <rect x="26" y="170" width="104" height="11" fill="rgba(236,224,198,0.24)"/>
+    <rect x="26" y="194" width="60" height="11" fill="#E1654F"/>
+  </g><g transform="translate(550,0)">
+    <rect width="200" height="230" fill="#131315" stroke="rgba(236,224,198,0.16)" stroke-width="2"/>
+    <rect x="26" y="26" width="148" height="120" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.12)" stroke-width="1.5"/>
+    <rect x="26" y="170" width="104" height="11" fill="rgba(236,224,198,0.24)"/>
+    <rect x="26" y="194" width="60" height="11" fill="#E1654F"/>
+  </g><g transform="translate(825,0)">
+    <rect width="200" height="230" fill="#131315" stroke="rgba(236,224,198,0.16)" stroke-width="2"/>
+    <rect x="26" y="26" width="148" height="120" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.12)" stroke-width="1.5"/>
+    <rect x="26" y="170" width="104" height="11" fill="rgba(236,224,198,0.24)"/>
+    <rect x="26" y="194" width="60" height="11" fill="#E1654F"/>
+  </g>
+</g>
+<g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="20" letter-spacing="3.4" fill="rgba(236,224,198,0.4)">
+  <text x="96" y="150">KURATIERT</text>
+</g></g>
+<g transform="translate(400,0)">
+  <g fill="none" stroke="rgba(236,224,198,0.3)" stroke-width="2">
+    <path d="M44 78V44h34M1522 44h34v34M1556 822v34h-34M78 856H44v-34"/>
+  </g>
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="21" letter-spacing="3.4">
+    <text x="70" y="838" fill="#F5CE84">LUNARA</text>
+    <text x="1530" y="838" fill="rgba(236,224,198,0.42)" text-anchor="end">BOUTIQUE · STRIPE</text>
+  </g>
+</g>
+</svg>

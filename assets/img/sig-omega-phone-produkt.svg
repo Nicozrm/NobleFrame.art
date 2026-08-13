@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" width="2400" height="900" role="img">
+<defs>
+  <pattern id="r" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0H0V50" fill="none" stroke="rgba(236,224,198,0.045)" stroke-width="1"/>
+  </pattern>
+  <linearGradient id="v" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F5CE84" stop-opacity=".13"/>
+    <stop offset="1" stop-color="#F5CE84" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+<rect width="2400" height="900" fill="#0A0A0B"/>
+<rect width="2400" height="900" fill="url(#r)"/>
+<rect width="2400" height="900" fill="url(#v)"/>
+<g transform="translate(400,0)">
+<g transform="translate(430,120)">
+  <g transform="translate(0,0)">
+      <polygon points="0,60 250,0 560,86 310,146" fill="rgba(236,224,198,0.045)" stroke="#F4583D" stroke-width="2.6"/>
+      <path d="M600 74h64" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/>
+      <text x="686" y="82" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18" letter-spacing="2.6" fill="#F4583D">01</text>
+    </g><g transform="translate(26,72)">
+      <polygon points="0,60 250,0 560,86 310,146" fill="rgba(236,224,198,0.045)" stroke="rgba(236,224,198,0.314)" stroke-width="1.8"/>
+      <path d="M600 74h64" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/>
+      <text x="686" y="82" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18" letter-spacing="2.6" fill="rgba(236,224,198,0.32)">02</text>
+    </g><g transform="translate(52,144)">
+      <polygon points="0,60 250,0 560,86 310,146" fill="rgba(236,224,198,0.045)" stroke="rgba(236,224,198,0.28800000000000003)" stroke-width="1.8"/>
+      <path d="M600 74h64" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/>
+      <text x="686" y="82" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18" letter-spacing="2.6" fill="rgba(236,224,198,0.32)">03</text>
+    </g><g transform="translate(78,216)">
+      <polygon points="0,60 250,0 560,86 310,146" fill="rgba(236,224,198,0.045)" stroke="rgba(236,224,198,0.262)" stroke-width="1.8"/>
+      <path d="M600 74h64" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/>
+      <text x="686" y="82" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18" letter-spacing="2.6" fill="rgba(236,224,198,0.32)">04</text>
+    </g><g transform="translate(104,288)">
+      <polygon points="0,60 250,0 560,86 310,146" fill="rgba(236,224,198,0.045)" stroke="#E99C1E" stroke-width="2.6"/>
+      <path d="M600 74h64" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/>
+      <text x="686" y="82" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18" letter-spacing="2.6" fill="#E99C1E">05</text>
+    </g><g transform="translate(130,360)">
+      <polygon points="0,60 250,0 560,86 310,146" fill="rgba(236,224,198,0.045)" stroke="rgba(236,224,198,0.21000000000000002)" stroke-width="1.8"/>
+      <path d="M600 74h64" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/>
+      <text x="686" y="82" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18" letter-spacing="2.6" fill="rgba(236,224,198,0.32)">06</text>
+    </g><g transform="translate(156,432)">
+      <polygon points="0,60 250,0 560,86 310,146" fill="rgba(236,224,198,0.045)" stroke="rgba(236,224,198,0.18400000000000002)" stroke-width="1.8"/>
+      <path d="M600 74h64" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/>
+      <text x="686" y="82" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18" letter-spacing="2.6" fill="rgba(236,224,198,0.32)">07</text>
+    </g><g transform="translate(182,504)">
+      <polygon points="0,60 250,0 560,86 310,146" fill="rgba(236,224,198,0.045)" stroke="rgba(236,224,198,0.15800000000000003)" stroke-width="1.8"/>
+      <path d="M600 74h64" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/>
+      <text x="686" y="82" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18" letter-spacing="2.6" fill="rgba(236,224,198,0.32)">08</text>
+    </g><g transform="translate(208,576)">
+      <polygon points="0,60 250,0 560,86 310,146" fill="rgba(236,224,198,0.045)" stroke="rgba(236,224,198,0.13200000000000003)" stroke-width="1.8"/>
+      <path d="M600 74h64" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/>
+      <text x="686" y="82" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18" letter-spacing="2.6" fill="rgba(236,224,198,0.32)">09</text>
+    </g>
+</g>
+<g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="20" letter-spacing="3" fill="rgba(236,224,198,0.4)">
+  <text x="96" y="150">TITAN</text><text x="96" y="188">9 SCHICHTEN</text>
+</g></g>
+<g transform="translate(400,0)">
+  <g fill="none" stroke="rgba(236,224,198,0.3)" stroke-width="2">
+    <path d="M44 78V44h34M1522 44h34v34M1556 822v34h-34M78 856H44v-34"/>
+  </g>
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="21" letter-spacing="3.4">
+    <text x="70" y="838" fill="#F5CE84">OMEGA PHONE · PRODUKT</text>
+    <text x="1530" y="838" fill="rgba(236,224,198,0.42)" text-anchor="end">TEARDOWN · CSS-3D</text>
+  </g>
+</g>
+</svg>

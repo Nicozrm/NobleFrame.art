@@ -342,27 +342,9 @@ html.nf-choreo:not(.nf-statisch) .tech-track{
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ═══ Fahrtanzeige ═══════════════════════════════════════════════════════
-   Der duenne Goldbalken oben sagt, dass es weitergeht. Diese Ziffer sagt,
-   wie weit. */
-.nf-readout{
-  position: fixed;
-  right: 18px;
-  bottom: 14px;
-  z-index: 1000;
-  pointer-events: none;
-  font-family: var(--nf-mono);
-  font-size: .64rem;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: rgba(29, 29, 29, .45);
-  font-variant-numeric: tabular-nums;
-  transition: opacity var(--nf-transport) var(--nf-ease);
-}
-.nf-readout b{ color: var(--gold); font-weight: 400; }
-@media(max-width: 767px){ .nf-readout{ display: none; } }
-
-/* Ueber den dunklen Abschnitten tritt die Fahrtanzeige zurueck: dort
-   steht bereits eine Anzeige (die Uniform-Werte des Feldes), und zwei
-   Zaehler in derselben Ecke lesen sich als Fehler, nicht als Instrument. */
-html.nf-dunkel .nf-readout{ opacity: 0; }
+/* Die Fahrtanzeige stand hier: eine Ziffer unten rechts, die Prozent des
+   Dokuments zaehlte. Sie ist in die Kapitelleiste aufgegangen
+   (assets/kapitel.css) — dort steht der Weg als Fuellung neben dem Ort,
+   statt als Zahl ohne Ort daneben. Ihre letzte Regel war ausserdem eine
+   Falle: ueber jedem dunklen Abschnitt ging sie aus, also gerade ueber
+   dem laengsten Stueck der Strecke. */

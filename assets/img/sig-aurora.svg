@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" width="2400" height="900" role="img">
+<defs>
+  <pattern id="r" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0H0V50" fill="none" stroke="rgba(236,224,198,0.045)" stroke-width="1"/>
+  </pattern>
+  <linearGradient id="v" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#E1654F" stop-opacity=".13"/>
+    <stop offset="1" stop-color="#E1654F" stop-opacity="0"/>
+  </linearGradient>
+</defs>
+<rect width="2400" height="900" fill="#0A0A0B"/>
+<rect width="2400" height="900" fill="url(#r)"/>
+<rect width="2400" height="900" fill="url(#v)"/>
+<g transform="translate(400,0)">
+<rect x="106" y="112" width="1388" height="46" fill="#131315" stroke="rgba(236,224,198,0.14)" stroke-width="2"/>
+<g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="19" letter-spacing="3" fill="rgba(236,224,198,0.34)">
+  <text x="138" y="142">AURORA</text><text x="1462" y="142" text-anchor="end" fill="#E1654F">OFFLINE-FAEHIG</text>
+</g>
+<g transform="translate(120,200)">
+  <rect width="620" height="420" fill="#131315" stroke="rgba(236,224,198,0.16)" stroke-width="2"/>
+  <path d="M0 44h620M186 44v376" stroke="rgba(236,224,198,0.14)" stroke-width="2"/>
+  <g fill="rgba(236,224,198,0.5)"><circle cx="26" cy="22" r="6.5"/><circle cx="50" cy="22" r="6.5"/><circle cx="74" cy="22" r="6.5"/></g>
+  <g><rect x="24" y="74" width="18" height="18" fill="none" stroke="rgba(236,224,198,0.26)" stroke-width="1.6"/><rect x="56" y="79" width="104" height="10" fill="rgba(236,224,198,0.2)"/></g><g><rect x="24" y="120" width="18" height="18" fill="none" stroke="rgba(236,224,198,0.26)" stroke-width="1.6"/><rect x="56" y="125" width="95" height="10" fill="rgba(236,224,198,0.2)"/></g><g><rect x="24" y="166" width="18" height="18" fill="none" stroke="rgba(236,224,198,0.26)" stroke-width="1.6"/><rect x="56" y="171" width="86" height="10" fill="rgba(236,224,198,0.2)"/></g><g><rect x="24" y="212" width="18" height="18" fill="none" stroke="rgba(236,224,198,0.26)" stroke-width="1.6"/><rect x="56" y="217" width="77" height="10" fill="rgba(236,224,198,0.2)"/></g><g><rect x="24" y="258" width="18" height="18" fill="none" stroke="rgba(236,224,198,0.26)" stroke-width="1.6"/><rect x="56" y="263" width="68" height="10" fill="rgba(236,224,198,0.2)"/></g><g><rect x="24" y="304" width="18" height="18" fill="none" stroke="rgba(236,224,198,0.26)" stroke-width="1.6"/><rect x="56" y="309" width="59" height="10" fill="rgba(236,224,198,0.2)"/></g>
+  <g transform="translate(216,76)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g><g transform="translate(314,76)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g><g transform="translate(412,76)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g><g transform="translate(510,76)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g><g transform="translate(216,194)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g><g transform="translate(314,194)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g><g transform="translate(412,194)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g><g transform="translate(510,194)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g><g transform="translate(216,312)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g><g transform="translate(314,312)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g><g transform="translate(412,312)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g><g transform="translate(510,312)"><rect width="66" height="52" fill="rgba(236,224,198,0.05)" stroke="rgba(236,224,198,0.16)" stroke-width="1.5"/><rect y="62" width="52" height="9" fill="rgba(236,224,198,0.18)"/></g>
+</g>
+<g transform="translate(560,420)">
+  <rect width="880" height="380" fill="#0D0D0F" stroke="rgba(236,224,198,0.32)" stroke-width="2.5"/>
+  <path d="M0 44h880" stroke="rgba(236,224,198,0.22)" stroke-width="2"/>
+  <text x="24" y="30" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="18" letter-spacing="2.6" fill="rgba(236,224,198,0.44)">TERMINAL</text>
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="24">
+    <text x="30" y="106" fill="#E1654F">~ $</text><text x="96" y="106" fill="rgba(236,224,198,0.8)">find . -name "*.md" | wc -l</text>
+    <text x="30" y="156" fill="rgba(236,224,198,0.42)">  47</text>
+    <text x="30" y="212" fill="#E1654F">~ $</text><text x="96" y="212" fill="rgba(236,224,198,0.8)">for f in *.txt; do</text>
+    <text x="30" y="256" fill="rgba(236,224,198,0.42)">&gt;   grep -c ok "$f"</text>
+    <text x="30" y="300" fill="#E1654F">~ $</text><rect x="96" y="280" width="16" height="26" fill="#E1654F"/>
+  </g>
+</g></g>
+<g transform="translate(400,0)">
+  <g fill="none" stroke="rgba(236,224,198,0.3)" stroke-width="2">
+    <path d="M44 78V44h34M1522 44h34v34M1556 822v34h-34M78 856H44v-34"/>
+  </g>
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="21" letter-spacing="3.4">
+    <text x="70" y="838" fill="#E1654F">AURORA DESKTOP</text>
+    <text x="1530" y="838" fill="rgba(236,224,198,0.42)" text-anchor="end">107 BEFEHLE · PWA</text>
+  </g>
+</g>
+</svg>

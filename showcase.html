@@ -13,8 +13,10 @@
     <meta property="og:description" content="Ausgewählte Projekte, live erlebbar – erster Showcase: OMEGA OS.">
     <meta property="og:url" content="https://nobleframe.de/showcase.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta property="og:image" content="https://nobleframe.de/assets/img/omega-os-preview.webp">
-    <meta name="twitter:image" content="https://nobleframe.de/assets/img/omega-os-preview.webp">
+    <meta property="og:image" content="https://nobleframe.de/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:image" content="https://nobleframe.de/og-image.png">
     <meta name="twitter:title" content="Showcase – NobleFrame">
     <meta name="twitter:description" content="Ausgewählte Projekte, live erlebbar. Erster Showcase: OMEGA OS.">
     <script type="application/ld+json">
@@ -350,6 +352,26 @@
         .sc-more{display:flex;align-items:center;gap:14px;justify-content:center;margin-top:42px;color:var(--white-subtle);font-size:.92rem;text-align:center}
         .sc-more-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);opacity:.6;flex-shrink:0}
         @media(max-width:768px){.showcase-wrap{padding:20px 22px 70px}.sc-featured{grid-template-columns:1fr;gap:26px;padding:22px}}
+        /* Die uebrigen Systeme. Dieselben Bauteile wie oben, nur kleiner —
+           die Seite bekommt dadurch keine zweite Formensprache, sondern
+           eine zweite Groesse derselben. */
+        .sc-weiter-titel{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(1.7rem,3vw,2.4rem);margin:64px 0 26px;text-align:center}
+        .sc-gitter{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
+        .sc-karte{display:flex;flex-direction:column;border:1px solid rgba(29,29,29,.18);background:#F3EAD8;color:var(--white);text-decoration:none;overflow:hidden;transition:border-color .4s ease,transform .4s ease}
+        .sc-karte:hover,.sc-karte:focus-visible{border-color:var(--gold);transform:translateY(-4px)}
+        .sc-karte:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+        /* Die Signaturen bringen ihren eigenen tiefen Grund mit; die
+           Bildflaeche traegt deshalb denselben, damit an den Raendern keine
+           helle Kante stehen bleibt. */
+        .sc-karte-bild{background:#0A0A0B;aspect-ratio:16/9;overflow:hidden}
+        .sc-karte-bild img{display:block;width:100%;height:100%;object-fit:cover}
+        .sc-karte-text{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
+        .sc-karte-text h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.5rem;line-height:1.15;margin:0 0 10px}
+        .sc-karte-text p{color:var(--white-muted);font-size:.92rem;line-height:1.7;margin:0 0 16px}
+        .sc-karte-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+        .sc-karte-tags span{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:1px;text-transform:uppercase;color:var(--gold-light);border:1px solid rgba(29,29,29,.24);padding:4px 9px}
+        .sc-karte-go{margin-top:auto;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+        @media(prefers-reduced-motion:reduce){.sc-karte{transition:border-color .4s ease}.sc-karte:hover{transform:none}}
         .skip-link{position:fixed;left:8px;top:-60px;z-index:3000;background:#F4583D;color:#ECE0C6;padding:10px 18px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:top .2s ease}
         .skip-link:focus{top:8px;outline:2px solid #ECE0C6;outline-offset:2px}
     </style>
@@ -442,12 +464,12 @@
     <article class="sc-featured reveal">
         <div class="sc-media">
             <span class="sc-pill">Live-Projekt</span>
-            <img src="assets/img/omega-os-preview.webp" alt="OMEGA OS – noir/goldenes Desktop-Betriebssystem im Browser mit App Store, Dock und System-Widgets" loading="lazy">
+            <img src="assets/img/sig-omega-os.svg" alt="Signatur OMEGA OS: Menueleiste, zwei gestapelte Fenster mit App-Store-Kacheln und ein Dock" loading="lazy" width="2400" height="900">
         </div>
         <div class="sc-body">
             <span class="sc-eyebrow">Erster Showcase · Eigenentwicklung</span>
             <h2>OMEGA <span>OS</span></h2>
-            <p class="sc-lead">Ein vollständiges Desktop-Betriebssystem im Browser – noir/gold, fenstergesteuert, mit echtem App Store, eingebetteten Web-Apps und einer serverseitig gebundenen KI. Kein Mockup: läuft live, ist offline-fähig und installierbar.</p>
+            <p class="sc-lead">Ein vollständiges Desktop-Betriebssystem im Browser – fenstergesteuert, mit echtem App Store, eingebetteten Web-Apps und einer serverseitig gebundenen KI. Kein Mockup: läuft live, ist offline-fähig und installierbar.</p>
             <div class="sc-tags">
                 <span>React</span><span>TypeScript</span><span>Electron</span><span>Web Audio</span><span>PWA / Offline</span><span>Cloudflare Functions</span>
             </div>
@@ -463,9 +485,73 @@
         </div>
     </article>
 
+    <h2 class="sc-weiter-titel reveal">Die übrigen sechs Systeme</h2>
+    <div class="sc-gitter">
+        <a class="sc-karte reveal" href="showcase/omega-atelier/">
+            <div class="sc-karte-bild"><img src="assets/img/sig-omega-atelier.svg" alt="Signatur OMEGA Atelier" loading="lazy" width="2400" height="900"></div>
+            <div class="sc-karte-text">
+                <span class="sc-eyebrow">Flaggschiff · Eigenentwicklung</span>
+                <h3>OMEGA Atelier</h3>
+                <p>Smart-Home-Planungsstudio im Browser: Grundrisse zeichnen, Räume in Echtzeit-3D begehen, Geräte aus über 30 Ökosystemen platzieren.</p>
+                <span class="sc-karte-tags"><span>React</span><span>TypeScript</span><span>Three.js / R3F</span><span>Zustand</span></span>
+                <span class="sc-karte-go">Öffnen&nbsp;↗</span>
+            </div>
+        </a>
+        <a class="sc-karte reveal" href="showcase/omega-phone/">
+            <div class="sc-karte-bild"><img src="assets/img/sig-omega-phone.svg" alt="Signatur OMEGA Phone" loading="lazy" width="2400" height="900"></div>
+            <div class="sc-karte-text">
+                <span class="sc-eyebrow">Drittes System · Eigenentwicklung</span>
+                <h3>OMEGA Phone</h3>
+                <p>Plattform für Reparatur, Refurbished-Geräte und Ersatzteile. Sofortpreis in unter 60 Sekunden statt Warten auf ein Angebot.</p>
+                <span class="sc-karte-tags"><span>Next.js 15</span><span>TypeScript</span><span>Tailwind 4</span><span>PWA</span></span>
+                <span class="sc-karte-go">Öffnen&nbsp;↗</span>
+            </div>
+        </a>
+        <a class="sc-karte reveal" href="showcase/omega-phone-produkt/">
+            <div class="sc-karte-bild"><img src="assets/img/sig-omega-phone-produkt.svg" alt="Signatur OMEGA Phone · Das Produkt" loading="lazy" width="2400" height="900"></div>
+            <div class="sc-karte-text">
+                <span class="sc-eyebrow">Konzeptmarke · Produkt-Launch</span>
+                <h3>OMEGA Phone · Das Produkt</h3>
+                <p>Die Produktpräsentation zur Konzeptmarke: Keynote-Hero mit realistischem Gerät und ein 3D-Teardown, der es in neun Schichten zerlegt.</p>
+                <span class="sc-karte-tags"><span>HTML</span><span>CSS-3D</span><span>Vanilla JS</span><span>0 Dependencies</span></span>
+                <span class="sc-karte-go">Öffnen&nbsp;↗</span>
+            </div>
+        </a>
+        <a class="sc-karte reveal" href="showcase/lunara/index.html">
+            <div class="sc-karte-bild"><img src="assets/img/sig-lunara.svg" alt="Signatur Lunara" loading="lazy" width="2400" height="900"></div>
+            <div class="sc-karte-text">
+                <span class="sc-eyebrow">E-Commerce · Luxury</span>
+                <h3>Lunara</h3>
+                <p>Luxury-Boutique mit mondthematischer Designsprache, Stripe-Checkout und vierstufigem Rewards-Programm. 21 Seiten, headless aufgebaut.</p>
+                <span class="sc-karte-tags"><span>Headless</span><span>Stripe</span><span>PWA</span><span>21 Seiten</span></span>
+                <span class="sc-karte-go">Öffnen&nbsp;↗</span>
+            </div>
+        </a>
+        <a class="sc-karte reveal" href="https://nicozrm.github.io/NobleMindai/" target="_blank" rel="noopener">
+            <div class="sc-karte-bild"><img src="assets/img/sig-aurora.svg" alt="Signatur Aurora Desktop" loading="lazy" width="2400" height="900"></div>
+            <div class="sc-karte-text">
+                <span class="sc-eyebrow">Sechstes System · Eigenentwicklung</span>
+                <h3>Aurora Desktop</h3>
+                <p>Desktop-Umgebung im Browser: Fensterverwaltung mit Andocken, Explorer, Editor – dazu ein Befehlsinterpreter mit 107 Befehlen über einem virtuellen Dateisystem.</p>
+                <span class="sc-karte-tags"><span>Vanilla JS</span><span>PWA</span><span>Web APIs</span><span>Kein Framework</span></span>
+                <span class="sc-karte-go">Öffnen&nbsp;↗</span>
+            </div>
+        </a>
+        <a class="sc-karte reveal" href="https://nicozrm.github.io/R223-Remote/" target="_blank" rel="noopener">
+            <div class="sc-karte-bild"><img src="assets/img/sig-noblemind.svg" alt="Signatur NOBLEmind" loading="lazy" width="2400" height="900"></div>
+            <div class="sc-karte-text">
+                <span class="sc-eyebrow">Siebtes System · Eigenentwicklung</span>
+                <h3>NOBLEmind</h3>
+                <p>Installierbarer Client für fünf Modellanbieter. Schlüssel und Verläufe bleiben auf dem Gerät – es gibt kein Backend, das sie annehmen könnte.</p>
+                <span class="sc-karte-tags"><span>Vanilla JS</span><span>PWA</span><span>Eine Datei</span><span>Kein Backend</span></span>
+                <span class="sc-karte-go">Öffnen&nbsp;↗</span>
+            </div>
+        </a>
+    </div>
+
     <div class="sc-more reveal">
         <span class="sc-more-dot"></span>
-        <p>Weitere Showcases folgen – ausgewählte Projekte, jeweils live und in voller Tiefe.</p>
+        <p>Sieben Systeme, jedes live und ohne Anmeldung zu öffnen.</p>
     </div>
 </section>
 

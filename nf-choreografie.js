@@ -112,23 +112,36 @@
   const rahmenEl = document.getElementById('nfRahmen');
   /* Frueher stand hier .cine-wrap — die Kinosequenz gibt es nicht mehr.
      Der Rahmen haengt jetzt am Farbbogen selbst: jeder Abschnitt, der sich
-     als tief ausweist, bekommt ihn, und neue brauchen keine Codeaenderung. */
-  const dunkel = alle('[data-grund="tief"], .nf-feld');
-  if (rahmenEl && dunkel.length){
-    const drin = new Set();
-    const wache = new IntersectionObserver((eintraege) => {
-      eintraege.forEach((e) => {
-        if (e.isIntersecting) drin.add(e.target); else drin.delete(e.target);
-      });
-      const imDunkeln = drin.size > 0;
-      rahmenEl.classList.toggle('an', imDunkeln);
-      /* Das Feld bringt eine eigene Anzeige mit (die Uniform-Werte). Die
-         Fahrtanzeige stuende an derselben Ecke und saehe aus wie ein
-         zweiter Zaehler ueber demselben Wert. Sie tritt zurueck. */
-      wurzel.classList.toggle('nf-dunkel', imDunkeln);
-    }, { threshold: .35 });
-    dunkel.forEach((el) => wache.observe(el));
-  }
+     als tief ausweist, bekommt ihn, und neue brauchen keine Codeaenderung.
+
+     Gemessen statt beobachtet, und das ist eine Korrektur: hier stand ein
+     IntersectionObserver mit threshold .35 — 35 % des Abschnitts muessen
+     im Bild sein. Fuer die Abschnitte, um die es geht, ist diese Bedingung
+     unerfuellbar. Die Bahn der laufenden Systeme ist gepinnt und damit
+     rund 5.000 px hoch; in ein 900 px hohes Fenster passen davon nie mehr
+     als 18 %. Der Rahmen ging ueber dem groessten dunklen Abschnitt der
+     Seite also nie an, und nichts schlug fehl — der Beobachter meldete
+     korrekt, dass seine Schwelle nicht erreicht ist.
+
+     Ein Anteil am Abschnitt ist ohnehin die falsche Frage. Gefragt ist,
+     was gerade unter einer bestimmten Bildzeile liegt. Das ist ein
+     Zahlenvergleich, und er stimmt bei jeder Abschnittshoehe. */
+  const dunkel = alle('[data-grund="tief"], .nf-feld').map((el) => ({ el, oben: 0, unten: 0 }));
+  const dunkelMessen = () => {
+    dunkel.forEach((d) => {
+      const r = d.el.getBoundingClientRect();
+      d.oben = r.top + scrollY;
+      d.unten = d.oben + r.height;
+    });
+  };
+  /* Liegt diese Dokumentzeile auf tiefem Grund? */
+  const istTief = (dokY) => {
+    for (let i = 0; i < dunkel.length; i++) {
+      if (dokY >= dunkel[i].oben && dokY < dunkel[i].unten) return true;
+    }
+    return false;
+  };
+  let dunkelLetzter = null, kopfLetzter = null;
 
   /* ═══ 2. Wort-Scrub ═══════════════════════════════════════════════════
      Der Satz wird in Woerter zerlegt. Jedes Wort bekommt ein eigenes
@@ -328,17 +341,92 @@
     });
   }
 
-  /* Fahrtanzeige */
-  let readout = null;
-  if (!reduziert) {
-    readout = document.createElement('div');
-    readout.className = 'nf-readout';
-    readout.setAttribute('aria-hidden', 'true');
-    readout.innerHTML = 'Fahrt <b>000</b>%';
-    document.body.appendChild(readout);
+  /* ═══ 7. Kapitelwerk ══════════════════════════════════════════════════
+     Bis hierher sagte die Seite an zwei Stellen, wo man ist: die Marke am
+     Kopf jedes Abschnitts und die Fahrtanzeige unten rechts. Beide waren
+     unvollstaendig. Die Marken trugen ihre Nummer von Hand — und liefen
+     auseinander: „Sek. 01" stand ueber dem Auftakt und ueber „Wer wir
+     sind", „Sek. 05" ueber dem Feld und ueber den Erfolgsgeschichten,
+     „Sek. 06" gleich dreimal. Die Anzeige wiederum zaehlte Prozent des
+     Dokuments, also eine Zahl ohne Ort, und ging ueber jedem dunklen
+     Abschnitt aus — ausgerechnet ueber dem groessten der Seite.
+
+     Beides ersetzt eine Fuehrung: die Kapitel stehen als Leiste am Rand,
+     das laufende ist benannt, der Weg dahin gefuellt. Damit ist Scrollen
+     eine Fahrt mit Stationen statt eine Folge von Abschnitten.
+
+     Die Nummer schreibt diese Datei, nicht die Hand. Im Markup steht sie
+     weiterhin — als Fassung fuer den Fall ohne JavaScript — aber die
+     Reihenfolge im Dokument entscheidet. Zwei Kapitel koennen deshalb
+     nicht wieder dieselbe Nummer tragen.
+
+     Kein eigener rAF-Loop: die Leiste haengt am Takt weiter unten. Ein
+     zweiter Taktgeber waere genau der Fehler, den der Kopf dieser Datei
+     beschreibt. */
+  const kapitel = alle('[data-nf-kapitel]').map((marke, i) => {
+    const abschnitt = marke.closest('section, header, footer') || marke.parentElement;
+    const name = (marke.dataset.nfKapitel || '').trim();
+    const nr = String(i + 1).padStart(2, '0');
+    /* Die erste Spalte der Marke traegt Nummer und Namen. */
+    const feld = marke.querySelector('span');
+    if (feld) feld.textContent = 'Sek. ' + nr + ' — ' + name;
+    if (!abschnitt.id) abschnitt.id = 'sek-' + nr;
+    return { abschnitt, name, nr, oben: 0, unten: 1 };
+  });
+
+  /* Der Auftakt nennt die Gesamtzahl. Sie stand als „06" im Text, waehrend
+     es sechs, dann acht, dann neun Kapitel waren — eine Zahl, die bei jeder
+     neuen Sektion falsch wird, gehoert nicht ins Markup. */
+  const auftakt = document.querySelector('[data-nf-auftakt]');
+  if (auftakt && kapitel.length) {
+    auftakt.textContent = auftakt.textContent.replace(/\/\s*\d+/, '/ ' + String(kapitel.length).padStart(2, '0'));
   }
-  const readoutWert = readout ? readout.querySelector('b') : null;
-  let readoutLetzter = -1;
+
+  let leisteFuell = null, leisteStriche = [], leisteStand = -1;
+  if (kapitel.length > 1) {
+    const nav = document.createElement('nav');
+    nav.className = 'nf-leiste';
+    nav.setAttribute('aria-label', 'Kapitel dieser Seite');
+    const liste = document.createElement('ol');
+    /* Die Fuellung liegt hinter den Strichen und zeigt den zurueckgelegten
+       Weg — dieselbe Aussage, die die Prozentzahl vorher hatte, nur an
+       einem Ort, an dem sie etwas bedeutet. */
+    const spur = document.createElement('i');
+    spur.className = 'nf-leiste-spur';
+    spur.setAttribute('aria-hidden', 'true');
+    leisteFuell = document.createElement('b');
+    spur.appendChild(leisteFuell);
+    nav.appendChild(spur);
+
+    kapitel.forEach((k) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#' + k.abschnitt.id;
+      a.innerHTML = '<span class="nf-leiste-nr">' + k.nr + '</span>'
+        + '<span class="nf-leiste-name"></span>'
+        + '<span class="nf-leiste-strich" aria-hidden="true"></span>';
+      a.querySelector('.nf-leiste-name').textContent = k.name;
+      li.appendChild(a);
+      liste.appendChild(li);
+      leisteStriche.push(a);
+    });
+    nav.appendChild(liste);
+    document.body.appendChild(nav);
+  }
+
+  const kapitelMessen = () => {
+    kapitel.forEach((k) => {
+      const r = k.abschnitt.getBoundingClientRect();
+      k.oben = r.top + scrollY;
+      k.unten = k.oben + r.height;
+    });
+    /* Die Leiste ist fixiert: die Bildzeile jedes Eintrags steht fest und
+       wird einmal je Messung bestimmt, nicht je Frame. */
+    leisteStriche.forEach((a) => {
+      const r = a.getBoundingClientRect();
+      a.__nfMitte = r.top + r.height / 2;
+    });
+  };
 
   /* ═══ Der Loop ════════════════════════════════════════════════════════
      Eine Runde: erst alles lesen, dann alles schreiben. Dazwischen wird
@@ -424,12 +512,63 @@
       m.spur.style.transform = 'translate3d(' + m.x.toFixed(2) + 'px,0,0)';
     }
 
-    // Fahrtanzeige
-    if (readoutWert && dok > 0) {
-      const pr = Math.round(klemme(y / dok, 0, 1) * 100);
-      if (pr !== readoutLetzter) {
-        readoutLetzter = pr;
-        readoutWert.textContent = String(pr).padStart(3, '0');
+    // Grund unter der Bildmitte: Rahmen und Seitenzustand.
+    if (dunkel.length) {
+      const imDunkeln = istTief(y + hoehe * .5);
+      if (imDunkeln !== dunkelLetzter) {
+        dunkelLetzter = imDunkeln;
+        if (rahmenEl) rahmenEl.classList.toggle('an', imDunkeln);
+        wurzel.classList.toggle('nf-dunkel', imDunkeln);
+      }
+
+      /* Der Kopf fragt nach seiner eigenen Zeile, nicht nach der Bildmitte.
+         Er stand fest auf Cream, waehrend die Seite unter ihm ins Tiefe
+         ging — ein heller Balken auf schwarzem Grund, an dem die Fahrt
+         jedes Mal sichtbar abriss. Die Zeile ist die Unterkante des
+         Kopfes: was dort liegt, liegt hinter ihm. */
+      const kopfTief = istTief(y + 74);
+      if (kopfTief !== kopfLetzter) {
+        kopfLetzter = kopfTief;
+        wurzel.classList.toggle('nf-kopf-tief', kopfTief);
+      }
+      /* Die Kapitelleiste steht fest im Bild und ist hoeher als der
+         Abstand zweier Abschnittsgrenzen sein kann. Ein Zustand fuer die
+         ganze Leiste waere an jeder Grenze fuer die Haelfte ihrer
+         Eintraege falsch — dort stuenden sie dann Ink auf Void. Jeder
+         Eintrag fragt deshalb nach dem Grund an seiner eigenen Zeile. */
+      for (let i = 0; i < leisteStriche.length; i++) {
+        const a = leisteStriche[i];
+        const tief = istTief(y + a.__nfMitte);
+        if (tief !== a.__nfTief) { a.__nfTief = tief; a.classList.toggle('tief', tief); }
+      }
+    }
+
+    // Kapitelwerk: Fuellung stetig, Stand nur beim Wechsel.
+    if (leisteFuell && dok > 0) {
+      leisteFuell.style.transform = 'scaleY(' + klemme(y / dok, 0, 1).toFixed(4) + ')';
+    }
+    if (leisteStriche.length) {
+      /* Das laufende Kapitel ist das letzte, dessen Abschnitt die
+         Lesezeile schon erreicht hat. Nicht die groesste sichtbare
+         Flaeche: an jeder Grenze wechselte der Stand sonst hin und her,
+         solange zwei Abschnitte gleich viel Bild fuellen. */
+      const zeile = y + hoehe * 0.38;
+      let stand = 0;
+      for (let i = 0; i < kapitel.length; i++) {
+        if (kapitel[i].oben <= zeile) stand = i; else break;
+      }
+      /* Ueber dem Auftakt ist noch kein Kapitel erreicht. */
+      if (y + hoehe * 0.38 < kapitel[0].oben) stand = -1;
+      if (stand !== leisteStand) {
+        if (leisteStriche[leisteStand]) {
+          leisteStriche[leisteStand].classList.remove('an');
+          leisteStriche[leisteStand].removeAttribute('aria-current');
+        }
+        if (leisteStriche[stand]) {
+          leisteStriche[stand].classList.add('an');
+          leisteStriche[stand].setAttribute('aria-current', 'true');
+        }
+        leisteStand = stand;
       }
     }
 
@@ -453,7 +592,7 @@
 
   /* Messen erst, wenn Schriften und Bilder stehen: eine Bahn, die vor dem
      Font-Swap gemessen wurde, faehrt danach am Ziel vorbei. */
-  const messen = () => { bahnenMessen(); baenderMessen(); };
+  const messen = () => { bahnenMessen(); baenderMessen(); kapitelMessen(); dunkelMessen(); };
   messen();
   addEventListener('load', messen);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(messen).catch(() => {});
