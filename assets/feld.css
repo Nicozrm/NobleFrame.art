@@ -67,6 +67,21 @@
   margin-bottom: clamp(28px, 5vw, 48px);
   border-bottom: 1px solid rgba(236, 224, 198, .18);
 }
+
+/* Auf schmalen Schirmen tritt die rechte Angabe zurueck — dieselbe Regel,
+   die .nf-marke in choreografie.css schon hat. Sie fehlte hier, weil die
+   Feld-Marke eine eigene Klasse traegt: Zwei gesperrte Versalzeilen mit
+   space-between dazwischen brechen bei 390 px beide um, und aus der
+   Kapitelzeile wird ein vierzeiliger Block, in dem "SEK. 05 — FELD" und
+   "EIGENER SHADER · KEIN FRAMEWORK" ineinanderlaufen.
+
+   Die linke Angabe bleibt: sie traegt Nummer und Namen des Kapitels und
+   ist damit die Ortsangabe, die die Kapitelleiste am Rand auf schmalen
+   Schirmen nicht mehr geben kann. */
+@media(max-width: 640px){
+  .nf-feld-marke{ font-size: .62rem; letter-spacing: .1em; }
+  .nf-feld-marke > span + span{ display: none; }
+}
 .nf-feld-titel{
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2.6rem, 7vw, 6rem);
@@ -371,3 +386,26 @@ html.nf-statisch .nf-riese{ display: none; }
 }
 .nf-menue-fuss a{ color: rgba(29, 29, 29, .62); text-decoration: none; }
 .nf-menue-fuss a:hover{ color: #F4583D; }
+
+/* ═══ Was nur mit einem Zeiger gilt ══════════════════════════════════════
+   Das Feld folgt dem Zeiger — auf einem Telefon folgt es nichts. Nachgemessen
+   mit einem Finger auf der Flaeche: null pointermove-Ereignisse, U.MAUS bleibt
+   auf seinem Startwert 0.500 / 0.450 stehen. Der Grund ist keine Nachlaessigkeit,
+   sondern die Flaeche selbst: Sie ist bildschirmhoch, und eine Fingerbewegung
+   darauf ist eine Scrollgeste. Wer sie abfinge, tauschte eine Zugabe gegen die
+   Fortbewegung auf der Seite.
+
+   Also steht die Aufforderung dort nicht. Sie bittet sonst um eine Handlung,
+   die nichts bewirkt — und der beschreibende Halbsatz behauptete dasselbe im
+   Indikativ. Beides tritt zurueck, statt eine Fassung fuer Finger zu erfinden,
+   die es nicht gibt: lieber eine Luecke als eine Behauptung.
+
+   Der Rest der Karte bleibt wahr — das Rauschen stroemt auch ohne Zeiger. */
+@media (pointer: coarse){
+  /* Die zweite Zeile ist noetig, nicht doppelt gemoppelt: die Aufforderung
+     wird weiter oben ueber .nf-feld[data-nf-feld="aktiv"] eingeblendet, und
+     diese Regel wiegt schwerer als eine einzelne Klasse. Ohne den
+     gleichrangigen Selektor blieb der Satz auf dem Telefon stehen. */
+  .nf-nur-zeiger{ display: none; }
+  .nf-feld[data-nf-feld="aktiv"] .nf-feld-aufforderung.nf-nur-zeiger{ display: none; }
+}
